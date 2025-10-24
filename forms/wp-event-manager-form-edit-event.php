@@ -71,7 +71,7 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 						$this->fields[ $group_key ][ $key ]['value'] = esc_attr($event->post_title);
 					} elseif('event_description' === $key) {
 						$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($event->post_content);
-					} elseif('organizer_logo' === $key) {
+					} elseif('dj_logo' === $key) {
 						$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($event->ID) ? get_post_thumbnail_id($event->ID) : esc_url(get_post_meta($event->ID, '_' . $key, true));
 					} elseif('event_start_date' === $key) {
 						$event_start_date = esc_html(get_post_meta($event->ID, '_' . $key, true));
@@ -106,8 +106,8 @@ class WP_Event_Manager_Form_Edit_Event extends WP_Event_Manager_Form_Submit_Even
 			'event_id'           => esc_attr($this->get_event_id()),
 			'action'             => esc_url($this->get_action()),
 			'event_fields'       => $this->get_fields('event'),
-			'organizer_fields'   => $this->get_fields('organizer'),
-			'venue_fields'       => $this->get_fields('venue'),
+			'dj_fields'   => $this->get_fields('dj'),
+			'local_fields'       => $this->get_fields('local'),
 			'step'               => esc_attr($this->get_step()),
 			'submit_button_text' => __('Save changes', 'wp-event-manager')
 		));

@@ -21,11 +21,11 @@ EventSubmission = function () {
                 // Clear the hidden input field value
                 parentDiv.find('input[type="hidden"]').val('');
             });
-            jQuery(".wpem_add_organizer_popup").on('click', function(){
+            jQuery(".wpem_add_dj_popup").on('click', function(){
                 jQuery("#oragnizer_message").html('');
             });
-            jQuery(".wpem_add_venue_popup").on('click', function(){
-                jQuery("#venue_message").html('');
+            jQuery(".wpem_add_local_popup").on('click', function(){
+                jQuery("#local_message").html('');
             });
             if (jQuery('#event_start_time').length > 0) {
                 jQuery('#event_start_time').timepicker({
@@ -190,13 +190,13 @@ EventSubmission = function () {
 
             //initially hide address, pincode, location textbox.
             if (jQuery('#event_online').length > 0) {
-                //hide event venue name, address, location and pincode fields at the edit event when select online event
+                //hide event local name, address, location and pincode fields at the edit event when select online event
                 if (jQuery('input[name=event_online]:checked').val() == 'yes') {
-                    if (jQuery('.fieldset-event_venue_name').length > 0 && jQuery('input[name=event_venue_name]').length > 0) {
-                        if (jQuery('input[name=event_venue_name]').attr('required'))
-                            jQuery('input[name=event_venue_name]').attr('required', false);
+                    if (jQuery('.fieldset-event_local_name').length > 0 && jQuery('input[name=event_local_name]').length > 0) {
+                        if (jQuery('input[name=event_local_name]').attr('required'))
+                            jQuery('input[name=event_local_name]').attr('required', false);
 
-                        jQuery('.fieldset-event_venue_name').hide();
+                        jQuery('.fieldset-event_local_name').hide();
                     }
 
                     if (jQuery('.fieldset-event_address').length > 0 && jQuery('input[name=event_address]').length > 0) {
@@ -227,8 +227,8 @@ EventSubmission = function () {
                         jQuery('.fieldset-event_country').hide();
                     }
 
-                    if (jQuery('.fieldset-event_venue_ids').length > 0) {
-                        jQuery('.fieldset-event_venue_ids').hide();
+                    if (jQuery('.fieldset-event_local_ids').length > 0) {
+                        jQuery('.fieldset-event_local_ids').hide();
                     }
                 }
             }
@@ -244,8 +244,8 @@ EventSubmission = function () {
             jQuery('input[name=event_online]').on('change', EventSubmission.actions.onlineEvent);
             jQuery('input[name=event_ticket_options]').on('change', EventSubmission.actions.eventTicketOptions);
 
-            jQuery('body').on('click', '.wpem_add_organizer', EventSubmission.actions.addOrganizer);
-            jQuery('body').on('click', '.wpem_add_venue', EventSubmission.actions.addVenue);
+            jQuery('body').on('click', '.wpem_add_dj', EventSubmission.actions.adddj);
+            jQuery('body').on('click', '.wpem_add_local', EventSubmission.actions.addlocal);
 
             //add links for paid and free tickets   
             jQuery('.add-group-row').on('click', EventSubmission.actions.addGroupField);
@@ -394,11 +394,11 @@ EventSubmission = function () {
                 event.preventDefault();
                 if (jQuery('#event_online').length > 0) {
                     if (jQuery(this).val() == "yes") {
-                        if (jQuery('.fieldset-event_venue_name').length > 0 && jQuery('input[name=event_venue_name]').length > 0) {
-                            if (jQuery('input[name=event_venue_name]').attr('required'))
-                                jQuery('input[name=event_venue_name]').attr('required', false);
+                        if (jQuery('.fieldset-event_local_name').length > 0 && jQuery('input[name=event_local_name]').length > 0) {
+                            if (jQuery('input[name=event_local_name]').attr('required'))
+                                jQuery('input[name=event_local_name]').attr('required', false);
 
-                            jQuery('.fieldset-event_venue_name').hide();
+                            jQuery('.fieldset-event_local_name').hide();
                         }
                         if (jQuery('.fieldset-event_address').length > 0 && jQuery('input[name=event_address]').length > 0) {
                             if (jQuery('input[name=event_address]').attr('required'))
@@ -424,15 +424,15 @@ EventSubmission = function () {
     
                             jQuery('.fieldset-event_country').hide();
                         }
-                        if (jQuery('.fieldset-event_venue_ids').length > 0) {
-                            jQuery('.fieldset-event_venue_ids').hide();
+                        if (jQuery('.fieldset-event_local_ids').length > 0) {
+                            jQuery('.fieldset-event_local_ids').hide();
                         }
                     } else {
-                        if (jQuery('.fieldset-event_venue_name').length > 0 && jQuery('input[name=event_venue_name]').length > 0) {
-                            if (jQuery('input[name=event_venue_name]').attr('required'))
-                                jQuery('input[name=event_venue_name]').attr('required', true);
+                        if (jQuery('.fieldset-event_local_name').length > 0 && jQuery('input[name=event_local_name]').length > 0) {
+                            if (jQuery('input[name=event_local_name]').attr('required'))
+                                jQuery('input[name=event_local_name]').attr('required', true);
 
-                            jQuery('.fieldset-event_venue_name').show();
+                            jQuery('.fieldset-event_local_name').show();
                         }
                         if (jQuery('.fieldset-event_address').length > 0 && jQuery('input[name=event_address]').length > 0) {
                             if (jQuery('input[name=event_address]').attr('required'))
@@ -458,8 +458,8 @@ EventSubmission = function () {
 
                             jQuery('.fieldset-event_country').show();
                         }
-                        if (jQuery('.fieldset-event_venue_ids').length > 0) {
-                            jQuery('.fieldset-event_venue_ids').show();
+                        if (jQuery('.fieldset-event_local_ids').length > 0) {
+                            jQuery('.fieldset-event_local_ids').show();
                         }
                     }
                 }
@@ -581,22 +581,22 @@ EventSubmission = function () {
             },
 
             /// <summary>
-            /// add organizer.
+            /// add dj.
             /// </summary>
             /// <returns type="initialization ticket price settings" />
             /// <since>3.1.16</since>
-            addOrganizer: function (event) {
-                var formData = jQuery('body #submit-organizer-form').serialize();
-                var organizer_description = tinyMCE.get('organizer_description').getContent();
+            adddj: function (event) {
+                var formData = jQuery('body #submit-dj-form').serialize();
+                var dj_description = tinyMCE.get('dj_description').getContent();
 
                 var fd = new FormData();
-                if (jQuery('#organizer_logo').length > 0)
-                    fd.append("organizer_logo", jQuery('#organizer_logo')[0].files[0]);
+                if (jQuery('#dj_logo').length > 0)
+                    fd.append("dj_logo", jQuery('#dj_logo')[0].files[0]);
 
-                fd.append("action", 'add_organizer');
+                fd.append("action", 'add_dj');
                 fd.append("form_data", formData); 
-                fd.append("organizer_description", organizer_description);
-                fd.append("wpem_add_organizer_nonce", jQuery('#wpem_add_organizer_nonce').val());
+                fd.append("dj_description", dj_description);
+                fd.append("wpem_add_dj_nonce", jQuery('#wpem_add_dj_nonce').val());
 
                 jQuery.ajax({
                     url: wp_event_manager_event_submission.ajax_url,
@@ -606,20 +606,20 @@ EventSubmission = function () {
                     contentType: false,
                     data: fd,
                     beforeSend: function(){
-                        jQuery('.wpem_add_organizer').css('pointer-events', 'none');
+                        jQuery('.wpem_add_dj').css('pointer-events', 'none');
                     },
                     success: function (responce) {
                         if (responce.code == 200) {
-                            jQuery('select#event_organizer_ids').prepend('<option selected="selected" value="' + responce.organizer.organizer_id + '">' + responce.organizer.organizer_name + '</option>');
-                            jQuery('#event_organizer_ids').trigger("chosen:updated");
-                            jQuery('body #submit-organizer-form .event-manager-uploaded-files').html("");
-                            jQuery('body #submit-organizer-form')[0].reset();
-                            jQuery('.wpem_add_organizer').css('pointer-events', 'auto');
-                            //jQuery('.wpem_add_organizer').css('pointer-events', 'none');
-                            jQuery('#wpem_add_organizer_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
-                            jQuery('body #submit-organizer-form .wpem-form-footer .wpem-alert-danger').remove();
+                            jQuery('select#event_dj_ids').prepend('<option selected="selected" value="' + responce.dj.dj_id + '">' + responce.dj.dj_name + '</option>');
+                            jQuery('#event_dj_ids').trigger("chosen:updated");
+                            jQuery('body #submit-dj-form .event-manager-uploaded-files').html("");
+                            jQuery('body #submit-dj-form')[0].reset();
+                            jQuery('.wpem_add_dj').css('pointer-events', 'auto');
+                            //jQuery('.wpem_add_dj').css('pointer-events', 'none');
+                            jQuery('#wpem_add_dj_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
+                            jQuery('body #submit-dj-form .wpem-form-footer .wpem-alert-danger').remove();
                         } else {
-                            jQuery('.wpem_add_organizer').css('pointer-events', 'auto');
+                            jQuery('.wpem_add_dj').css('pointer-events', 'auto');
                             jQuery('#oragnizer_message').html(responce.message);
                         }
                     }
@@ -627,24 +627,24 @@ EventSubmission = function () {
             },
 
             /// <summary>
-            /// add venue.
+            /// add local.
             /// </summary>
             /// <returns type="initialization ticket price settings" />
             /// <since>3.1.16</since>
-            addVenue: function (event) {
+            addlocal: function (event) {
                
-                var formData = jQuery('body #submit-venue-form').serialize();
-                var venue_description = tinyMCE.get('venue_description').getContent();
+                var formData = jQuery('body #submit-local-form').serialize();
+                var local_description = tinyMCE.get('local_description').getContent();
                 var fd = new FormData();
-                console.log(jQuery('#venue_logo')[0]);
-                if(jQuery('#venue_logo')[0] !== undefined){
-                    fd.append("venue_logo", jQuery('#venue_logo')[0].files[0]);
+                console.log(jQuery('#local_logo')[0]);
+                if(jQuery('#local_logo')[0] !== undefined){
+                    fd.append("local_logo", jQuery('#local_logo')[0].files[0]);
                 }
                
-                fd.append("action", 'add_venue');
+                fd.append("action", 'add_local');
                 fd.append("form_data", formData);
-                fd.append("venue_description", venue_description);
-                fd.append("wpem_add_venue_nonce", jQuery('#wpem_add_venue_nonce').val());
+                fd.append("local_description", local_description);
+                fd.append("wpem_add_local_nonce", jQuery('#wpem_add_local_nonce').val());
 
                 jQuery.ajax({
                     url: wp_event_manager_event_submission.ajax_url,
@@ -655,17 +655,17 @@ EventSubmission = function () {
                     data: fd,
                     success: function (responce) {
                         if (responce.code == 200) {
-                            jQuery('select#event_venue_ids').append('<option selected="selected" value="' + responce.venue.venue_id + '">' + responce.venue.venue_name + '</option>');
-                            jQuery('#event_venue_ids').trigger("chosen:updated");
-                            jQuery('body #submit-venue-form .event-manager-uploaded-files').html("");
-                            jQuery('body #submit-venue-form')[0].reset();
-                            jQuery('.wpem_add_venue').css('pointer-events', 'auto');
-                            jQuery('.wpem_add_venue').css('pointer-events', 'none');
-                            jQuery('#wpem_add_venue_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
-                            jQuery('body #submit-venue-form .wpem-form-footer .wpem-alert-danger').remove();
+                            jQuery('select#event_local_ids').append('<option selected="selected" value="' + responce.local.local_id + '">' + responce.local.local_name + '</option>');
+                            jQuery('#event_local_ids').trigger("chosen:updated");
+                            jQuery('body #submit-local-form .event-manager-uploaded-files').html("");
+                            jQuery('body #submit-local-form')[0].reset();
+                            jQuery('.wpem_add_local').css('pointer-events', 'auto');
+                            jQuery('.wpem_add_local').css('pointer-events', 'none');
+                            jQuery('#wpem_add_local_popup .wpem-modal-header-close .wpem-modal-close').trigger("click");
+                            jQuery('body #submit-local-form .wpem-form-footer .wpem-alert-danger').remove();
                         } else {
-                            jQuery('#venue_message').html(responce.message);
-                            jQuery('.wpem_add_venue').css('pointer-events', 'auto');
+                            jQuery('#local_message').html(responce.message);
+                            jQuery('.wpem_add_local').css('pointer-events', 'auto');
                         }
                     }
                 });

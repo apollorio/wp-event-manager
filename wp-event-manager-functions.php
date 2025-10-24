@@ -161,7 +161,7 @@ if(!function_exists('get_event_listings')) :
 			$field    = is_numeric($args['search_categories'][0]) ? 'term_id' : 'slug';
 			$operator = 'all' === get_option('event_manager_category_filter_type', 'all') && sizeof($args['search_categories']) > 1 ? 'AND' : 'IN';
 			$query_args['tax_query'][] = array(
-									'taxonomy'         => 'event_listing_category',
+								'taxonomy'         => 'event_sounds',
 									'field'            => $field,
 									'terms'            => array_values($args['search_categories']),
 									'include_children' => 'AND' !== $operator,
@@ -383,7 +383,7 @@ if(!function_exists('get_event_listings_keyword_search')) :
 		// Searchable Meta Keys: set to empty to search all meta keys
 		$searchable_meta_keys = array(
 			'_event_location',
-			'_organizer_name',
+			'_dj_name',
 			'_event_tags',
 			'_event_address',
 			'_event_pincode',
@@ -391,18 +391,18 @@ if(!function_exists('get_event_listings_keyword_search')) :
 			'_registration',
 			'_event_start_date',
 			'_event_start_time',
-			'_organizer_contact_person_name',
-			'_organizer_email',
-			'_organizer_website',
-			'_organizer_video',
-			'_organizer_youtube',
-			'_organizer_google_plus',
-			'_organizer_facebook',
-			'_organizer_linkedin',
-			'_organizer_twitter',
-			'_organizer_xing',
-			'_organizer_pinterest',
-			'_organizer_instagram',
+			'_dj_contact_person_name',
+			'_dj_email',
+			'_dj_website',
+			'_dj_video',
+			'_dj_youtube',
+			'_dj_google_plus',
+			'_dj_facebook',
+			'_dj_linkedin',
+			'_dj_twitter',
+			'_dj_xing',
+			'_dj_pinterest',
+			'_dj_instagram',
 		);
 		$searchable_meta_keys = apply_filters('event_listing_searchable_meta_keys', $searchable_meta_keys);
 		$conditions   = array();
@@ -533,10 +533,10 @@ if(!function_exists('get_event_listing_categories')) :
 		 *
 		 * @param array $args
 		 */
-		$args = apply_filters('get_event_listing_category_args', $args);
+	$args = apply_filters('get_event_sounds_args', $args);
 
 		// Prevent users from filtering the taxonomy.
-		$args['taxonomy'] = 'event_listing_category';
+	$args['taxonomy'] = 'event_sounds';
 
 		return get_terms($args);
 	}
@@ -556,7 +556,7 @@ if(!function_exists('event_manager_get_filtered_links')) :
 		if($args['search_categories']) {
 			foreach($args['search_categories'] as $category) {
 				if(is_numeric($category)) {
-					$category_object = get_term_by('id', $category, 'event_listing_category');
+				$category_object = get_term_by('id', $category, 'event_sounds');
 					if(!is_wp_error($category_object)) {
 						$search_categories [] = $category_object->slug;
 					}
@@ -1034,7 +1034,7 @@ function event_manager_dropdown_selection($args = '') {
         'id'              => '',
         'class'           => 'event-manager-category-dropdown ' . (is_rtl() ? 'chosen-rtl' : ''),
         'depth'           => 0,
-        'taxonomy'        => 'event_listing_category',
+	'taxonomy'        => 'event_sounds',
         'value'           => 'id',
         'multiple'        => true,
         'show_option_all' => false,
@@ -1292,7 +1292,7 @@ function get_duplicate_post_link($post_id) {
  * @return  array  Array of allowed mime types
  */
 function event_manager_get_allowed_mime_types($field = ''){
-	if('organizer_logo' === $field)  {
+	if('dj_logo' === $field)  {
 		$allowed_mime_types = array(
 				'jpg|jpeg|jpe' => 'image/jpeg',
 				'gif'          => 'image/gif',
@@ -1502,18 +1502,18 @@ function event_manager_get_password_rules_hint() {
 }
 
 /**
- * Returns all organizers.
+ * Returns all djs.
  * 
  * @since 3.1.14
  * @param null
  * @return string
  */
-function get_all_event_organizer($user_id = '', $args = []) {
-	if(!get_option('enable_event_organizer'))
+function get_all_event_dj($user_id = '', $args = []) {
+	if(!get_option('enable_event_dj'))
 		return false;
 
 	$query_args = array(
-					'post_type'   => 'event_organizer',
+					'post_type'   => 'event_dj',
 					'post_status' => 'publish',
 					'posts_per_page'=> -1,
 					'suppress_filters' => 0
@@ -1528,57 +1528,57 @@ function get_all_event_organizer($user_id = '', $args = []) {
 		$query_args = array_merge($query_args,$args);
 	}
 
-	$query_args = apply_filters('get_all_event_organizer_args', $query_args);
+	$query_args = apply_filters('get_all_event_dj_args', $query_args);
 
-	$all_organizer = get_posts($query_args);
+	$all_dj = get_posts($query_args);
 
-	if(!empty($all_organizer)) {
-		return $all_organizer;	
+	if(!empty($all_dj)) {
+		return $all_dj;	
 	} else {
 		return false;
 	}	
 }
 
 /**
- * Returns array of all organizers.
+ * Returns array of all djs.
  * 
  * @since 3.1.14
  * @param null
  * @return string
  */
-function get_all_organizer_array($user_id = '', $args = []) {
-	$all_organizer =get_all_event_organizer($user_id, $args);
+function get_all_dj_array($user_id = '', $args = []) {
+	$all_dj =get_all_event_dj($user_id, $args);
 
-	$organizer_array =array();
+	$dj_array =array();
 
-	if(is_array($all_organizer) && !empty($all_organizer)) {
-		foreach($all_organizer as $organizer) {
-			$organizer_array[$organizer->ID] = $organizer->post_title;
+	if(is_array($all_dj) && !empty($all_dj)) {
+		foreach($all_dj as $dj) {
+			$dj_array[$dj->ID] = $dj->post_title;
 		}	
 	}
-	return $organizer_array;
+	return $dj_array;
 }
 
 /**
- * Returns total organizer.
+ * Returns total dj.
  * 
  * @param null
  * @return string
  * @since 3.1.14
  */
-function get_event_organizer_count($organizer_id = '') {
-	return sizeof(get_event_by_organizer_id($organizer_id));
+function get_event_dj_count($dj_id = '') {
+	return sizeof(get_event_by_dj_id($dj_id));
 }
 
 /**
- * Returns organizer ids.
+ * Returns dj ids.
  * 
  * @param null
  * @return string
  * @since 3.1.14
  */
-function get_event_by_organizer_id($organizer_id = '') {
-	if(!get_option('enable_event_organizer'))
+function get_event_by_dj_id($dj_id = '') {
+	if(!get_option('enable_event_dj'))
 		return false;
 
 	$args = [
@@ -1588,10 +1588,10 @@ function get_event_by_organizer_id($organizer_id = '') {
 		'suppress_filters' => 0,
 	];
 
-	if(!empty($organizer_id)) {
+	if(!empty($dj_id)) {
 		$args['meta_query'][] = [
-			'key' => '_event_organizer_ids',
-            'value' => $organizer_id,
+			'key' => '_event_dj_ids',
+            'value' => $dj_id,
             'compare' => 'LIKE',
 		];
 	}
@@ -1600,18 +1600,18 @@ function get_event_by_organizer_id($organizer_id = '') {
 }
 
 /**
- * Returns all venue of event.
+ * Returns all local of event.
  * 
  * @param null
  * @return string
  * @since 3.1.14
  */
-function get_all_event_venue($user_id = '', $args = []) {
-	if(!get_option('enable_event_venue'))
+function get_all_event_local($user_id = '', $args = []) {
+	if(!get_option('enable_event_local'))
 		return false;
 
 	$query_args = array(
-					'post_type'   => 'event_venue',
+					'post_type'   => 'event_local',
 					'post_status' => 'publish',
 					'posts_per_page'=> -1,
 					'suppress_filters' => 0,
@@ -1625,63 +1625,63 @@ function get_all_event_venue($user_id = '', $args = []) {
 		$query_args = array_merge($query_args,$args);
 	}
 
-	$query_args = apply_filters('get_all_event_venue_args', $query_args);
+	$query_args = apply_filters('get_all_event_local_args', $query_args);
 
-	$all_venue = get_posts($query_args);
+	$all_local = get_posts($query_args);
 
-	if(!empty($all_venue)) {
-		return $all_venue;	
+	if(!empty($all_local)) {
+		return $all_local;	
 	} else {
 		return false;	
 	}
 }
 
 /**
- * Returns array of venues.
+ * Returns array of locals.
  * 
  * @param null
  * @return string
  * @since 3.1.14
  */
-function get_all_venue_array($user_id = '', $args = [], $blank_option = false) {
-	$all_venue =get_all_event_venue($user_id, $args);
+function get_all_local_array($user_id = '', $args = [], $blank_option = false) {
+	$all_local =get_all_event_local($user_id, $args);
 	
-	$venue_array =array();
+	$local_array =array();
 
-	if(is_array($all_venue) && !empty($all_venue)) {
+	if(is_array($all_local) && !empty($all_local)) {
 
-		$all_venue = wp_list_sort($all_venue, 'post_title', 'ASC');
+		$all_local = wp_list_sort($all_local, 'post_title', 'ASC');
 		
 		if($blank_option) {
-			$venue_array[''] = __('Select Venue', 'wp-event-manager');
+			$local_array[''] = __('Select local', 'wp-event-manager');
 		}
-		foreach($all_venue as $venue) {
-			$venue_array[$venue->ID] = $venue->post_title;
+		foreach($all_local as $local) {
+			$local_array[$local->ID] = $local->post_title;
 		}	
 	}
-	return $venue_array;
+	return $local_array;
 }
 
 /**
- * Returns total venues.
+ * Returns total locals.
  * 
  * @param null
  * @return string
  * @since 3.1.16
  */
-function get_event_venue_count($venue_id = '') {
-	return sizeof(get_event_by_venue_id($venue_id));
+function get_event_local_count($local_id = '') {
+	return sizeof(get_event_by_local_id($local_id));
 }
 
 /**
- * Returns venue id of event.
+ * Returns local id of event.
  * 
  * @param null
  * @return string
  * @since 3.1.14
  */
-function get_event_by_venue_id($venue_id = '') {
-	if(!get_option('enable_event_venue'))
+function get_event_by_local_id($local_id = '') {
+	if(!get_option('enable_event_local'))
 		return false;
 	
 	$args = [
@@ -1690,10 +1690,10 @@ function get_event_by_venue_id($venue_id = '') {
 		'posts_per_page' => -1,
 		'suppress_filters' => 0,
 	];
-	if(!empty($venue_id)) {
+	if(!empty($local_id)) {
 		$args['meta_query'][] = [
-			'key' => '_event_venue_ids',
-            'value' => $venue_id,
+			'key' => '_event_local_ids',
+            'value' => $local_id,
             'compare' => 'LIKE',
 		];
 	}
@@ -1702,117 +1702,117 @@ function get_event_by_venue_id($venue_id = '') {
 }
 
 /**
- * Check organizer ids.
+ * Check dj ids.
  * @since 3.1.13
  * @param
  * @return
  **/
-function has_event_organizer_ids($post = null) {
+function has_event_dj_ids($post = null) {
 	$post = get_post($post);
 
 	if($post->post_type !== 'event_listing')
 		return;
 
-	if(!empty($post->_event_organizer_ids))	{
-		$organizer = get_post($post->_event_organizer_ids[0]);
+	if(!empty($post->_event_dj_ids))	{
+		$dj = get_post($post->_event_dj_ids[0]);
 
-		if(empty($organizer))
+		if(empty($dj))
 			return;
 
-		if($organizer->post_status != 'publish')
+		if($dj->post_status != 'publish')
 			return;
 	}
-	return !empty($post->_event_organizer_ids) ? true : false;
+	return !empty($post->_event_dj_ids) ? true : false;
 }
 
 /**
- * Get organizer ids.
+ * Get dj ids.
  * 
  * @since 3.1.13
  **/
-function get_event_organizer_ids( $post = null ) {
+function get_event_dj_ids( $post = null ) {
     $post = get_post( $post );
     if ( $post->post_type !== 'event_listing' ) {
         return;
     }
-    if ( class_exists('SitePress') && !empty($post->_event_organizer_ids) ) {
-        foreach ($post->_event_organizer_ids as $key => $organizer_id ) {
-            $result = $post->_event_organizer_ids;
-            $result[$key] = apply_filters( 'wpml_object_id', $organizer_id, 'event_organizer', TRUE  );
+    if ( class_exists('SitePress') && !empty($post->_event_dj_ids) ) {
+        foreach ($post->_event_dj_ids as $key => $dj_id ) {
+            $result = $post->_event_dj_ids;
+            $result[$key] = apply_filters( 'wpml_object_id', $dj_id, 'event_dj', TRUE  );
         }
  
         return $result;
     }
-    return !empty($post->_event_organizer_ids) ? $post->_event_organizer_ids : '';
+    return !empty($post->_event_dj_ids) ? $post->_event_dj_ids : '';
 }
 
 /**
- * Check organizer exist in event organizer.
+ * Check dj exist in event dj.
  * 
  * @since 3.1.15
  **/
-function check_organizer_exist($organizer_email) {
+function check_dj_exist($dj_email) {
 	$args = [
-			'post_type' 	=> 'event_organizer',
+			'post_type' 	=> 'event_dj',
 			'post_status' 	=> ['publish'],
 			'suppress_filters' => 0,
 			'meta_query' => [
 	        [
-	            'key'     => '_organizer_email',
-	            'value'   => $organizer_email,
+	            'key'     => '_dj_email',
+	            'value'   => $dj_email,
 	            'compare' => '=',
 	        ],
 	    ],
 	];
 
-	$args = apply_filters('check_organizer_exist_query_args', $args);
-	$organizer = get_posts($args);
+	$args = apply_filters('check_dj_exist_query_args', $args);
+	$dj = get_posts($args);
 
-	if(!empty($organizer) && isset($organizer[0]->ID)) {
-		return $organizer[0]->ID;
+	if(!empty($dj) && isset($dj[0]->ID)) {
+		return $dj[0]->ID;
 	} else {
 		return false;
 	}
 }
 
 /**
- * Check venue ids.
+ * Check local ids.
  * 
  * @since 3.1.16
  **/
-function has_event_venue_ids($post = null) {
+function has_event_local_ids($post = null) {
 	$post = get_post($post);
 
 	if($post->post_type !== 'event_listing')
 		return;
 
-	if(!empty($post->_event_venue_ids))	{
-		$venue = get_post($post->_event_venue_ids);
-		if(empty($venue))
+	if(!empty($post->_event_local_ids))	{
+		$local = get_post($post->_event_local_ids);
+		if(empty($local))
 			return;
 
-		if($venue->post_status != 'publish')
+		if($local->post_status != 'publish')
 			return;
 	}
 
-	return !empty($post->_event_venue_ids) ? true : false;
+	return !empty($post->_event_local_ids) ? true : false;
 }
 
 /**
- * Get venue ids.
+ * Get local ids.
  * 
  * @since 3.1.16
  **/
-function get_event_venue_ids( $post = null ) {
+function get_event_local_ids( $post = null ) {
     $post = get_post( $post );
     if ( $post->post_type !== 'event_listing' )
         return;
-    if ( class_exists('SitePress') && !empty($post->_event_venue_ids) ) {
-        $result = apply_filters( 'wpml_object_id', $post->_event_venue_ids , 'event_listing', TRUE  );
+    if ( class_exists('SitePress') && !empty($post->_event_local_ids) ) {
+        $result = apply_filters( 'wpml_object_id', $post->_event_local_ids , 'event_listing', TRUE  );
         return $result;
     }   
  
-    return !empty($post->_event_venue_ids) ? $post->_event_venue_ids : '';
+    return !empty($post->_event_local_ids) ? $post->_event_local_ids : '';
 }
 
 /**
@@ -1990,259 +1990,13 @@ if ( !function_exists( 'get_event_by_user_id' ) ) {
 /**
  * Get all countries with country code.
  * 
- * We have used this method for organizer country selection.
+ * We have used this method for dj country selection.
  * @since 3.1.39
  * @return countries information
  */
 function wpem_get_all_countries() {
-	return apply_filters('wpem_all_countries', array (
-		'' => __('Select Country', 'wp-event-manager'),
-		'AF' => 'Afghanistan',
-		'AX' => 'Aland Islands',
-		'AL' => 'Albania',
-		'DZ' => 'Algeria',
-		'AS' => 'American Samoa',
-		'AD' => 'Andorra',
-		'AO' => 'Angola',
-		'AI' => 'Anguilla',
-		'AQ' => 'Antarctica',
-		'AG' => 'Antigua And Barbuda',
-		'AR' => 'Argentina',
-		'AM' => 'Armenia',
-		'AW' => 'Aruba',
-		'AU' => 'Australia',
-		'AT' => 'Austria',
-		'AZ' => 'Azerbaijan',
-		'BS' => 'Bahamas',
-		'BH' => 'Bahrain',
-		'BD' => 'Bangladesh',
-		'BB' => 'Barbados',
-		'BY' => 'Belarus',
-		'BE' => 'Belgium',
-		'BZ' => 'Belize',
-		'BJ' => 'Benin',
-		'BM' => 'Bermuda',
-		'BT' => 'Bhutan',
-		'BO' => 'Bolivia',
-		'BA' => 'Bosnia And Herzegovina',
-		'BW' => 'Botswana',
-		'BV' => 'Bouvet Island',
-		'BR' => 'Brazil',
-		'IO' => 'British Indian Ocean Territory',
-		'BN' => 'Brunei Darussalam',
-		'BG' => 'Bulgaria',
-		'BF' => 'Burkina Faso',
-		'BI' => 'Burundi',
-		'KH' => 'Cambodia',
-		'CM' => 'Cameroon',
-		'CA' => 'Canada',
-		'CV' => 'Cape Verde',
-		'KY' => 'Cayman Islands',
-		'CF' => 'Central African Republic',
-		'TD' => 'Chad',
-		'CL' => 'Chile',
-		'CN' => 'China',
-		'CX' => 'Christmas Island',
-		'CC' => 'Cocos (Keeling) Islands',
-		'CO' => 'Colombia',
-		'KM' => 'Comoros',
-		'CG' => 'Congo',
-		'CD' => 'Congo, Democratic Republic',
-		'CK' => 'Cook Islands',
-		'CR' => 'Costa Rica',
-		'CI' => 'Cote D\'Ivoire',
-		'HR' => 'Croatia',
-		'CU' => 'Cuba',
-		'CY' => 'Cyprus',
-		'CZ' => 'Czech Republic',
-		'DK' => 'Denmark',
-		'DJ' => 'Djibouti',
-		'DM' => 'Dominica',
-		'DO' => 'Dominican Republic',
-		'EC' => 'Ecuador',
-		'EG' => 'Egypt',
-		'SV' => 'El Salvador',
-		'GQ' => 'Equatorial Guinea',
-		'ER' => 'Eritrea',
-		'EE' => 'Estonia',
-		'ET' => 'Ethiopia',
-		'FK' => 'Falkland Islands (Malvinas)',
-		'FO' => 'Faroe Islands',
-		'FJ' => 'Fiji',
-		'FI' => 'Finland',
-		'FR' => 'France',
-		'GF' => 'French Guiana',
-		'PF' => 'French Polynesia',
-		'TF' => 'French Southern Territories',
-		'GA' => 'Gabon',
-		'GM' => 'Gambia',
-		'GE' => 'Georgia',
-		'DE' => 'Germany',
-		'GH' => 'Ghana',
-		'GI' => 'Gibraltar',
-		'GR' => 'Greece',
-		'GL' => 'Greenland',
-		'GD' => 'Grenada',
-		'GP' => 'Guadeloupe',
-		'GU' => 'Guam',
-		'GT' => 'Guatemala',
-		'GG' => 'Guernsey',
-		'GN' => 'Guinea',
-		'GW' => 'Guinea-Bissau',
-		'GY' => 'Guyana',
-		'HT' => 'Haiti',
-		'HM' => 'Heard Island & Mcdonald Islands',
-		'VA' => 'Holy See (Vatican City State)',
-		'HN' => 'Honduras',
-		'HK' => 'Hong Kong',
-		'HU' => 'Hungary',
-		'IS' => 'Iceland',
-		'IN' => 'India',
-		'ID' => 'Indonesia',
-		'IR' => 'Iran, Islamic Republic Of',
-		'IQ' => 'Iraq',
-		'IE' => 'Ireland',
-		'IM' => 'Isle Of Man',
-		'IL' => 'Israel',
-		'IT' => 'Italy',
-		'JM' => 'Jamaica',
-		'JP' => 'Japan',
-		'JE' => 'Jersey',
-		'JO' => 'Jordan',
-		'KZ' => 'Kazakhstan',
-		'KE' => 'Kenya',
-		'KI' => 'Kiribati',
-		'KR' => 'Korea',
-		'KW' => 'Kuwait',
-		'KG' => 'Kyrgyzstan',
-		'LA' => 'Lao People\'s Democratic Republic',
-		'LV' => 'Latvia',
-		'LB' => 'Lebanon',
-		'LS' => 'Lesotho',
-		'LR' => 'Liberia',
-		'LY' => 'Libyan Arab Jamahiriya',
-		'LI' => 'Liechtenstein',
-		'LT' => 'Lithuania',
-		'LU' => 'Luxembourg',
-		'MO' => 'Macao',
-		'MK' => 'Macedonia',
-		'MG' => 'Madagascar',
-		'MW' => 'Malawi',
-		'MY' => 'Malaysia',
-		'MV' => 'Maldives',
-		'ML' => 'Mali',
-		'MT' => 'Malta',
-		'MH' => 'Marshall Islands',
-		'MQ' => 'Martinique',
-		'MR' => 'Mauritania',
-		'MU' => 'Mauritius',
-		'YT' => 'Mayotte',
-		'MX' => 'Mexico',
-		'FM' => 'Micronesia, Federated States Of',
-		'MD' => 'Moldova',
-		'MC' => 'Monaco',
-		'MN' => 'Mongolia',
-		'ME' => 'Montenegro',
-		'MS' => 'Montserrat',
-		'MA' => 'Morocco',
-		'MZ' => 'Mozambique',
-		'MM' => 'Myanmar',
-		'NA' => 'Namibia',
-		'NR' => 'Nauru',
-		'NP' => 'Nepal',
-		'NL' => 'Netherlands',
-		'AN' => 'Netherlands Antilles',
-		'NC' => 'New Caledonia',
-		'NZ' => 'New Zealand',
-		'NI' => 'Nicaragua',
-		'NE' => 'Niger',
-		'NG' => 'Nigeria',
-		'NU' => 'Niue',
-		'NF' => 'Norfolk Island',
-		'MP' => 'Northern Mariana Islands',
-		'NO' => 'Norway',
-		'OM' => 'Oman',
-		'PK' => 'Pakistan',
-		'PW' => 'Palau',
-		'PS' => 'Palestinian Territory, Occupied',
-		'PA' => 'Panama',
-		'PG' => 'Papua New Guinea',
-		'PY' => 'Paraguay',
-		'PE' => 'Peru',
-		'PH' => 'Philippines',
-		'PN' => 'Pitcairn',
-		'PL' => 'Poland',
-		'PT' => 'Portugal',
-		'PR' => 'Puerto Rico',
-		'QA' => 'Qatar',
-		'RE' => 'Reunion',
-		'RO' => 'Romania',
-		'RU' => 'Russian Federation',
-		'RW' => 'Rwanda',
-		'BL' => 'Saint Barthelemy',
-		'SH' => 'Saint Helena',
-		'KN' => 'Saint Kitts And Nevis',
-		'LC' => 'Saint Lucia',
-		'MF' => 'Saint Martin',
-		'PM' => 'Saint Pierre And Miquelon',
-		'VC' => 'Saint Vincent And Grenadines',
-		'WS' => 'Samoa',
-		'SM' => 'San Marino',
-		'ST' => 'Sao Tome And Principe',
-		'SA' => 'Saudi Arabia',
-		'SN' => 'Senegal',
-		'RS' => 'Serbia',
-		'SC' => 'Seychelles',
-		'SL' => 'Sierra Leone',
-		'SG' => 'Singapore',
-		'SK' => 'Slovakia',
-		'SI' => 'Slovenia',
-		'SB' => 'Solomon Islands',
-		'SO' => 'Somalia',
-		'ZA' => 'South Africa',
-		'GS' => 'South Georgia And Sandwich Isl.',
-		'ES' => 'Spain',
-		'LK' => 'Sri Lanka',
-		'SD' => 'Sudan',
-		'SR' => 'Suriname',
-		'SJ' => 'Svalbard And Jan Mayen',
-		'SZ' => 'Swaziland',
-		'SE' => 'Sweden',
-		'CH' => 'Switzerland',
-		'SY' => 'Syrian Arab Republic',
-		'TW' => 'Taiwan',
-		'TJ' => 'Tajikistan',
-		'TZ' => 'Tanzania',
-		'TH' => 'Thailand',
-		'TL' => 'Timor-Leste',
-		'TG' => 'Togo',
-		'TK' => 'Tokelau',
-		'TO' => 'Tonga',
-		'TT' => 'Trinidad And Tobago',
-		'TN' => 'Tunisia',
-		'TR' => 'Turkey',
-		'TM' => 'Turkmenistan',
-		'TC' => 'Turks And Caicos Islands',
-		'TV' => 'Tuvalu',
-		'UG' => 'Uganda',
-		'UA' => 'Ukraine',
-		'AE' => 'United Arab Emirates',
-		'GB' => 'United Kingdom',
-		'US' => 'United States',
-		'UM' => 'United States Outlying Islands',
-		'UY' => 'Uruguay',
-		'UZ' => 'Uzbekistan',
-		'VU' => 'Vanuatu',
-		'VE' => 'Venezuela',
-		'VN' => 'Viet Nam',
-		'VG' => 'Virgin Islands, British',
-		'VI' => 'Virgin Islands, U.S.',
-		'WF' => 'Wallis And Futuna',
-		'EH' => 'Western Sahara',
-		'YE' => 'Yemen',
-		'ZM' => 'Zambia',
-		'ZW' => 'Zimbabwe',
-	) );
+	// País sempre Brasil
+	return array('BR' => 'Brasil');
 }
 /**
  * Convert embed code to html.
@@ -2283,7 +2037,7 @@ function wpem_begnWith($str, $begin_string) {
  * @return bool True if access is allowed; false if access is denied for guests.
  */
 function wpem_checked_guest_user_access(){
-	$hide_data = get_option('wpem_hide_organizer_fields');
+	$hide_data = get_option('wpem_hide_dj_fields');
     if ( !is_user_logged_in() && $hide_data ) {
        return false; 
     }
@@ -2297,14 +2051,14 @@ function wpem_checked_guest_user_access(){
  * @return string
  * @since 3.1.47
  */
-function wpem_get_organizer_all_fields() {
+function wpem_get_dj_all_fields() {
 	$form_instance = new WP_Event_Manager_Forms(); // Create a new instance
-    $organizer_fields = $form_instance->get_fields('submit-organizer');
-	if (isset($organizer_fields['organizer'])) {
-        unset($organizer_fields['organizer']['organizer_email']);
-        unset($organizer_fields['organizer']['organizer_country']);
+    $dj_fields = $form_instance->get_fields('submit-dj');
+	if (isset($dj_fields['dj'])) {
+        unset($dj_fields['dj']['dj_email']);
+        unset($dj_fields['dj']['dj_country']);
     }
-	return $organizer_fields;
+	return $dj_fields;
 }
 
 /**

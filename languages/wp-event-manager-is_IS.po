@@ -90,7 +90,7 @@ msgid "Field Label"
 msgstr "Reitamerki"
 
 #: admin/wp-event-manager-field-editor.php:129
-msgid "Organizer fields"
+msgid "dj fields"
 msgstr "Skipulagsreitir"
 
 #: admin/wp-event-manager-field-editor.php:125
@@ -438,7 +438,7 @@ msgid "%s listed successfully. To view your listing <a href=\"%s\">click here</a
 msgstr "Það heppnaðist að skrá %s. <a href=\"%s\">Ýttu hér</a> til þess að skoða færsluna þína."
 
 #: templates/event-submit.php:37
-msgid "Organizer Details"
+msgid "dj Details"
 msgstr "Upplýsingar um skipuleggjanda"
 
 #: templates/event-submit.php:20
@@ -533,36 +533,36 @@ msgstr "Yfirlit yfir atburð"
 msgid "This listing has expired."
 msgstr "Þessi færsla er útrunnin."
 
-#: templates/content-single-event_listing-organizer.php:204
+#: templates/content-single-event_listing-dj.php:204
 msgid "Share This Event"
 msgstr "Deila þessum atburði"
 
-#: templates/content-single-event_listing-organizer.php:143
-msgid "Organizer Social"
+#: templates/content-single-event_listing-dj.php:143
+msgid "dj Social"
 msgstr "Skipuleggjandi Samskipti"
 
-#: templates/content-single-event_listing-organizer.php:111
+#: templates/content-single-event_listing-dj.php:111
 msgid "Registration End Date"
 msgstr "Síðasti skráningardagur"
 
-#: templates/content-single-event_listing-organizer.php:88
+#: templates/content-single-event_listing-dj.php:88
 msgid "When & Where"
 msgstr "Hvenær & hvar"
 
-#: templates/content-single-event_listing-organizer.php:80
+#: templates/content-single-event_listing-dj.php:80
 msgid "Ticket Information"
 msgstr "Upplýsingar um miða"
 
-#: templates/content-single-event_listing-organizer.php:59
-#: templates/content-single-event_listing-organizer.php:66
+#: templates/content-single-event_listing-dj.php:59
+#: templates/content-single-event_listing-dj.php:66
 msgid "Watch Video"
 msgstr "Horfa á myndband"
 
-#: templates/content-single-event_listing-organizer.php:52
+#: templates/content-single-event_listing-dj.php:52
 msgid "View More Details"
 msgstr "Skoða Fleiri Upplýsingar"
 
-#: templates/content-single-event_listing-organizer.php:36
+#: templates/content-single-event_listing-dj.php:36
 msgid "About"
 msgstr "Um"
 
@@ -734,11 +734,11 @@ msgid "%s is a required field"
 msgstr "%s er nauðsynlegt svæði"
 
 #: forms/wp-event-manager-form-submit-event.php:399
-msgid "Twitter URL e.g http://twitter.com/yourorganizer"
-msgstr "Twitter slóð t.d. http://twitter.com/yourorganizer"
+msgid "Twitter URL e.g http://twitter.com/yourdj"
+msgstr "Twitter slóð t.d. http://twitter.com/yourdj"
 
 #: forms/wp-event-manager-form-submit-event.php:396
-#: templates/content-single-event_listing-organizer.php:158
+#: templates/content-single-event_listing-dj.php:158
 msgid "Twitter"
 msgstr "Twitter"
 
@@ -832,19 +832,19 @@ msgid "This is where you can create and manage %s."
 msgstr "Hér getur þú búið til og stjórnað %s."
 
 #: core/wp-event-manager-post-types.php:323
-msgid "Use as organizer logo"
+msgid "Use as dj logo"
 msgstr "Nota sem skipuleggjanda lógó"
 
 #: core/wp-event-manager-post-types.php:321
-msgid "Remove organizer logo"
+msgid "Remove dj logo"
 msgstr "Fjarlægja skipuleggjanda lógó"
 
 #: core/wp-event-manager-post-types.php:319
-msgid "Set organizer logo"
+msgid "Set dj logo"
 msgstr "Setja skipuleggjanda lógó"
 
 #: core/wp-event-manager-post-types.php:317
-msgid "Organizer Logo"
+msgid "dj Logo"
 msgstr "Skipuleggjanda Lógó"
 
 #: core/wp-event-manager-post-types.php:313
@@ -961,7 +961,7 @@ msgid "Event category"
 msgstr "Atburðaflokkur"
 
 #: core/wp-event-manager-install.php:69
-msgid "Organizer"
+msgid "dj"
 msgstr "Skipuleggjandi"
 
 #: core/wp-event-manager-geocode.php:222 core/wp-event-manager-geocode.php:229
@@ -1110,7 +1110,7 @@ msgstr "Instagram slóð t.d. http://www.instagram.com/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:354
 #: forms/wp-event-manager-form-submit-event.php:420
-#: templates/content-single-event_listing-organizer.php:182
+#: templates/content-single-event_listing-dj.php:182
 msgid "Instagram"
 msgstr "Instagram"
 
@@ -1121,7 +1121,7 @@ msgstr "Pinterest slóð t.d. http://www.pinterest.com/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:346
 #: forms/wp-event-manager-form-submit-event.php:412
-#: templates/content-single-event_listing-organizer.php:176
+#: templates/content-single-event_listing-dj.php:176
 msgid "Pinterest"
 msgstr "Pinterest"
 
@@ -1132,12 +1132,12 @@ msgstr "Xing slóð t.d. http://www.xing.com/companies/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:338
 #: forms/wp-event-manager-form-submit-event.php:404
-#: templates/content-single-event_listing-organizer.php:170
+#: templates/content-single-event_listing-dj.php:170
 msgid "Xing"
 msgstr "Xing"
 
 #: admin/wp-event-manager-writepanels.php:333
-msgid "@yourorganizer"
+msgid "@yourdj"
 msgstr "@þinnskipuleggjandi"
 
 #: admin/wp-event-manager-writepanels.php:330
@@ -1151,7 +1151,7 @@ msgstr "Linkedin slóð t.d. http://www.linkedin.com/company/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:322
 #: forms/wp-event-manager-form-submit-event.php:388
-#: templates/content-single-event_listing-organizer.php:164
+#: templates/content-single-event_listing-dj.php:164
 msgid "Linkedin"
 msgstr "Linkedin"
 
@@ -1162,7 +1162,7 @@ msgstr "Facebook slóð t.d. http://www.facebook.com/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:314
 #: forms/wp-event-manager-form-submit-event.php:380
-#: templates/content-single-event_listing-organizer.php:152
+#: templates/content-single-event_listing-dj.php:152
 msgid "Facebook"
 msgstr "Facebook"
 
@@ -1173,7 +1173,7 @@ msgstr "Google+ slóð t.d. http://plus.google.com/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:306
 #: forms/wp-event-manager-form-submit-event.php:372
-#: templates/content-single-event_listing-organizer.php:194
+#: templates/content-single-event_listing-dj.php:194
 msgid "Google+"
 msgstr "Google+"
 
@@ -1184,7 +1184,7 @@ msgstr "Youtube slóð t.d. http://www.youtube.com/channel/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:298
 #: forms/wp-event-manager-form-submit-event.php:364
-#: templates/content-single-event_listing-organizer.php:188
+#: templates/content-single-event_listing-dj.php:188
 msgid "Youtube"
 msgstr "Youtube"
 
@@ -1213,7 +1213,7 @@ msgstr "Vefsíðuslóð t.d. http://www.yourorganization.com"
 
 #: admin/wp-event-manager-writepanels.php:273
 #: forms/wp-event-manager-form-submit-event.php:348
-#: templates/content-single-event_listing-organizer.php:147
+#: templates/content-single-event_listing-dj.php:147
 msgid "Website"
 msgstr "Vefsíða"
 
@@ -1239,7 +1239,7 @@ msgstr "Nafn Tengiliðs"
 
 #: admin/wp-event-manager-writepanels.php:249
 #: forms/wp-event-manager-form-submit-event.php:324
-msgid "Organizer Description"
+msgid "dj Description"
 msgstr "Lýsing Skipuleggjanda"
 
 #: admin/wp-event-manager-writepanels.php:240
@@ -1409,12 +1409,12 @@ msgstr "Heimilisfang"
 
 #: admin/wp-event-manager-writepanels.php:98
 #: forms/wp-event-manager-form-submit-event.php:163
-msgid "Please enter the venue name"
+msgid "Please enter the local name"
 msgstr "Vinsamlegast stimplaðu inn nafn vettvangs"
 
 #: admin/wp-event-manager-writepanels.php:95
 #: forms/wp-event-manager-form-submit-event.php:160
-msgid "Venue Name"
+msgid "local Name"
 msgstr "Nafn Vettvangs"
 
 #: admin/wp-event-manager-writepanels.php:88
@@ -1431,7 +1431,7 @@ msgstr "Já"
 #: forms/wp-event-manager-form-submit-event.php:148
 #: templates/content-event_listing.php:30
 #: templates/content-event_listing.php:56
-#: templates/content-single-event_listing-organizer.php:99
+#: templates/content-single-event_listing-dj.php:99
 #: templates/content-summary-event_listing.php:10
 #: templates/content-widget-event_listing.php:10
 #: templates/event-dashboard.php:78
@@ -2078,7 +2078,7 @@ msgid "Posted Date"
 msgstr "Dagsetning Færslu"
 
 #: admin/wp-event-manager-cpt.php:392
-msgid "Event Organizer"
+msgid "Event dj"
 msgstr "Atburðaskipuleggjandi"
 
 #: admin/wp-event-manager-cpt.php:390

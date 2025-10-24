@@ -212,13 +212,13 @@ a {
 .widefat .column-event_end_date,
 .widefat .column-event_expires,
 .widefat .column-event_location,
-.widefat .column-event_organizer,
+.widefat .column-event_dj,
 .widefat .column-event_start_date {
 	width: 10%;
 	text-align: left
 }
 
-.widefat td.column-event_title .organizer {
+.widefat td.column-event_title .dj {
 	margin-top: .2em;
 	display: block;
 	padding-top: 2px;
@@ -1529,12 +1529,12 @@ ul.wpem-product-action-list {
 
 @media screen and (min-width:783px) {
 
-	.post-type-event_organizer .widefat .column-_is_activecampaign_sync,
-	.post-type-event_organizer .widefat .column-_is_constant_contact_sync,
-	.post-type-event_organizer .widefat .column-_is_hubspot_crm_syncm,
-	.post-type-event_organizer .widefat .column-_is_salesforce_crm_sync,
-	.post-type-event_organizer .widefat .column-_is_sendinblue_sync,
-	.post-type-event_organizer .widefat .column-is_mailchimp_sync {
+	.post-type-event_dj .widefat .column-_is_activecampaign_sync,
+	.post-type-event_dj .widefat .column-_is_constant_contact_sync,
+	.post-type-event_dj .widefat .column-_is_hubspot_crm_syncm,
+	.post-type-event_dj .widefat .column-_is_salesforce_crm_sync,
+	.post-type-event_dj .widefat .column-_is_sendinblue_sync,
+	.post-type-event_dj .widefat .column-is_mailchimp_sync {
 		width: inherit
 	}
 }
@@ -1677,7 +1677,7 @@ input:checked+.slider:before {
 	content: "\f111"
 }
 
-#event_manager_data ul.wpem-tabs li.venue_tab a::before {
+#event_manager_data ul.wpem-tabs li.local_tab a::before {
 	content: "\f230"
 }
 

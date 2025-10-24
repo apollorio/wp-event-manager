@@ -43,46 +43,46 @@ class WP_Event_Manager_Settings{
 			$account_roles[$key] = $role['name'];
 		}
 
-		// Get organizers list
+		// Get djs list
 		$args = array(
-			'post_type'      => 'event_organizer',
+			'post_type'      => 'event_dj',
 			'posts_per_page' => -1,
 			'orderby'        => 'title',
 			'order'          => 'ASC',
 		);
-		$all_organizers = get_all_event_organizer('', $args);
-		$organizer_options_list = array('no_default' => __('No Default', 'wp-event-manager'));
+		$all_djs = get_all_event_dj('', $args);
+		$dj_options_list = array('no_default' => __('No Default', 'wp-event-manager'));
 
-		if (!empty($all_organizers)) {
-			foreach ($all_organizers as $organizer) {
-				$organizer_options_list[$organizer->ID] = $organizer->post_title;
+		if (!empty($all_djs)) {
+			foreach ($all_djs as $dj) {
+				$dj_options_list[$dj->ID] = $dj->post_title;
 			}
 		}
-		//Get Venue list
+		//Get local list
 		
 		$args = array(
-			'post_type'      => 'event_venue',
+			'post_type'      => 'event_local',
 			'posts_per_page' => -1,
 			'orderby'        => 'title',
 			'order'          => 'ASC',
 		);
-		$all_venue = get_all_event_venue('', $args);
-		$venue_options = array('no_default' => __('No Default', 'wp-event-manager'));
+		$all_local = get_all_event_local('', $args);
+		$local_options = array('no_default' => __('No Default', 'wp-event-manager'));
 
-		if (!empty($all_venue)) {
-			foreach ($all_venue as $venue) {
-				$venue_options[$venue->ID] = $venue->post_title;
+		if (!empty($all_local)) {
+			foreach ($all_local as $local) {
+				$local_options[$local->ID] = $local->post_title;
 			}
 		}
 		
 		// Get oganize field list
-		$organizer_fields  = wpem_get_organizer_all_fields();
-		$organizer_options = [];
+		$dj_fields  = wpem_get_dj_all_fields();
+		$dj_options = [];
 		
-		if (!empty($organizer_fields) && is_array($organizer_fields)) {
-			foreach ($organizer_fields['organizer'] as $field_key => $field_data) {
+		if (!empty($dj_fields) && is_array($dj_fields)) {
+			foreach ($dj_fields['dj'] as $field_key => $field_data) {
 				if (isset($field_data['label'])) {
-					$organizer_options[$field_key] = $field_data['label'];
+					$dj_options[$field_key] = $field_data['label'];
 				}
 			}
 		}
@@ -94,19 +94,19 @@ class WP_Event_Manager_Settings{
 					__('General', 'wp-event-manager'),
 					array(
 						array(
-							'name'       => 'enable_event_organizer',
+							'name'       => 'enable_event_dj',
 							'std'        => '1',
-							'label'      => __('Enable Organizer', 'wp-event-manager'),
-							'cb_label'   => __('Enable the option to show organizers on your events website.', 'wp-event-manager'),
+							'label'      => __('Enable dj', 'wp-event-manager'),
+							'cb_label'   => __('Enable the option to show djs on your events website.', 'wp-event-manager'),
 							'desc'       => '',
 							'type'       => 'checkbox',
 							'attributes' => array(),
 						),
 						array(
-							'name'       => 'enable_event_venue',
+							'name'       => 'enable_event_local',
 							'std'        => '1',
-							'label'      => __('Enable Venue', 'wp-event-manager'),
-							'cb_label'   => __('Enable the option to show event venues on your events website.', 'wp-event-manager'),
+							'label'      => __('Enable local', 'wp-event-manager'),
+							'cb_label'   => __('Enable the option to show event locals on your events website.', 'wp-event-manager'),
 							'desc'       => '',
 							'type'       => 'checkbox',
 							'attributes' => array(),
@@ -157,18 +157,18 @@ class WP_Event_Manager_Settings{
 							'name'       => 'wpem_hide_data_from_guest',
 							'std'        => '0',  
 							'label'      => __('Hide Data from Guest Users', 'wp-event-manager'),
-							'cb_label'   => __('Hide sensitive event organizer data from non-logged-in(guest) users.', 'wp-event-manager'),
+							'cb_label'   => __('Hide sensitive event dj data from non-logged-in(guest) users.', 'wp-event-manager'),
 							'desc'       => '',
 							'type'       => 'checkbox',
 							'attributes' => array(),
 						),
 						 array(
-							'name'       => 'wpem_hide_organizer_fields',
-							'class'		=> 'hide_organizer_fields',
-							'label'      => __('Select Organizer Fields to Hide', 'wp-event-manager'),
-							'desc'       => __('Choose which organizer fields to hide on the front end.', 'wp-event-manager'),
+							'name'       => 'wpem_hide_dj_fields',
+							'class'		=> 'hide_dj_fields',
+							'label'      => __('Select dj Fields to Hide', 'wp-event-manager'),
+							'desc'       => __('Choose which dj fields to hide on the front end.', 'wp-event-manager'),
 							'type'       => 'multiselect',
-							'options'    => $organizer_options,
+							'options'    => $dj_options,
 						),
 					),
 				),
@@ -375,7 +375,7 @@ class WP_Event_Manager_Settings{
 						),
 						array(
 							'name'    => 'event_manager_registration_role',
-							'std'     => 'organizer',
+							'std'     => 'dj',
 							'label'   => __('Account Role', 'wp-event-manager'),
 							'desc'    => __('If you enable user registration on your submission form, choose a role for the new user.', 'wp-event-manager'),
 							'type'    => 'select',
@@ -523,31 +523,31 @@ class WP_Event_Manager_Settings{
 							'type'  => 'text',
 						),
 						array(
-							'name'  => 'event_manager_submit_organizer_form_page_id',
+							'name'  => 'event_manager_submit_dj_form_page_id',
 							'std'   => '',
-							'label' => __('Submit Organizer Form Page', 'wp-event-manager'),
-							'desc'  => __('Select the page where you have placed the [submit_organizer_form] shortcode. This lets the plugin know where the form is located.', 'wp-event-manager'),
+							'label' => __('Submit dj Form Page', 'wp-event-manager'),
+							'desc'  => __('Select the page where you have placed the [submit_dj_form] shortcode. This lets the plugin know where the form is located.', 'wp-event-manager'),
 							'type'  => 'page',
 						),
 						array(
-							'name'  => 'event_manager_organizer_dashboard_page_id',
+							'name'  => 'event_manager_dj_dashboard_page_id',
 							'std'   => '',
-							'label' => __('Organizer Dashboard Page', 'wp-event-manager'),
-							'desc'  => __('Select the page where you have placed the [organizer_dashboard] shortcode. This lets the plugin know where the dashboard is located.', 'wp-event-manager'),
+							'label' => __('dj Dashboard Page', 'wp-event-manager'),
+							'desc'  => __('Select the page where you have placed the [dj_dashboard] shortcode. This lets the plugin know where the dashboard is located.', 'wp-event-manager'),
 							'type'  => 'page',
 						),
 						array(
-							'name'  => 'event_manager_submit_venue_form_page_id',
+							'name'  => 'event_manager_submit_local_form_page_id',
 							'std'   => '',
-							'label' => __('Submit Venue Form Page', 'wp-event-manager'),
-							'desc'  => __('Select the page where you have placed the [submit_venue_form] shortcode. This lets the plugin know where the form is located.', 'wp-event-manager'),
+							'label' => __('Submit local Form Page', 'wp-event-manager'),
+							'desc'  => __('Select the page where you have placed the [submit_local_form] shortcode. This lets the plugin know where the form is located.', 'wp-event-manager'),
 							'type'  => 'page',
 						),
 						array(
-							'name'  => 'event_manager_venue_dashboard_page_id',
+							'name'  => 'event_manager_local_dashboard_page_id',
 							'std'   => '',
-							'label' => __('Venue Dashboard Page', 'wp-event-manager'),
-							'desc'  => __('Select the page where you have placed the [venue_dashboard] shortcode. This lets the plugin know where the dashboard is located.', 'wp-event-manager'),
+							'label' => __('local Dashboard Page', 'wp-event-manager'),
+							'desc'  => __('Select the page where you have placed the [local_dashboard] shortcode. This lets the plugin know where the dashboard is located.', 'wp-event-manager'),
 							'type'  => 'page',
 						),
 					),
@@ -612,20 +612,20 @@ class WP_Event_Manager_Settings{
 					__( 'Default Content', 'wp-event-manager' ),
 					array(
 						array(
-							'name'    => 'default_organizer', 
+							'name'    => 'default_dj', 
 							'std'     => 'no_default', 
-							'label'   => __( 'Default Organizer', 'wp-event-manager' ), 
+							'label'   => __( 'Default dj', 'wp-event-manager' ), 
 							'type'    => 'select', 
-							'options' => $organizer_options_list,
-							'desc'    => __( 'You can choose default organizer from here.', 'wp-event-manager' ),
+							'options' => $dj_options_list,
+							'desc'    => __( 'You can choose default dj from here.', 'wp-event-manager' ),
 						),
 						array(
-							'name'    => 'default_venue', 
+							'name'    => 'default_local', 
 							'std'     => 'no_default', 
-							'label'   => __( 'Default Venue', 'wp-event-manager' ), 
+							'label'   => __( 'Default local', 'wp-event-manager' ), 
 							'type'    => 'select', 
-							'options' => $venue_options,
-							'desc'    => __( 'You can choose default venue from here.', 'wp-event-manager' ),
+							'options' => $local_options,
+							'desc'    => __( 'You can choose default local from here.', 'wp-event-manager' ),
 						),
 						array(
 							'name'    => 'default_address', 

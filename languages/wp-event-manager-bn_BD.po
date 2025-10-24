@@ -80,8 +80,8 @@ msgid ""
 "have a new release focusing on a handle of fixes and updates & here is a "
 "summary of what has been improved...\n"
 "\n"
-"Manage your Organizers directly at the frontend and backend.\n"
-"Migration of Old Organizer data would be transferred to the list "
+"Manage your djs directly at the frontend and backend.\n"
+"Migration of Old dj data would be transferred to the list "
 "Automatically.\n"
 "A prior Backup does no harm before updating the plugin!"
 msgstr ""
@@ -169,8 +169,8 @@ msgstr "এম জে, ওয়াই @ জি:আই"
 #: admin/wp-event-manager-cpt.php:306
 #: admin/wp-event-manager-shortcode-list.php:63
 #: external/elementor-widgets/elementor-event-listing.php:139
-#: external/elementor-widgets/elementor-event-organizers.php:112
-#: external/elementor-widgets/elementor-event-venues.php:110
+#: external/elementor-widgets/elementor-event-djs.php:112
+#: external/elementor-widgets/elementor-event-locals.php:110
 #: external/elementor-widgets/elementor-past-event-listing.php:130
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:121
 #: shortcodes/wp-event-manager-shortcodes.php:260
@@ -210,12 +210,12 @@ msgstr "অবস্থান"
 #: forms/wp-event-manager-form-submit-event.php:323
 #: includes/wp-event-manager-install.php:119
 #: includes/wp-event-manager-post-types.php:287
-#: templates/organizer/content-single-event-organizers.php:21
-#: templates/organizer/content-single-event-organizers.php:159
-#: templates/organizer/content-single-event_listing-organizer.php:20
-#: templates/organizer/content-single-event_listing-organizer.php:123
+#: templates/dj/content-single-event-djs.php:21
+#: templates/dj/content-single-event-djs.php:159
+#: templates/dj/content-single-event_listing-dj.php:20
+#: templates/dj/content-single-event_listing-dj.php:123
 
-msgid "Organizer"
+msgid "dj"
 msgstr "আয়োজকের"
 
 #: admin/wp-event-manager-cpt.php:311
@@ -286,14 +286,14 @@ msgstr "দেখুন"
 #: admin/wp-event-manager-cpt.php:478
 #: includes/wp-event-manager-post-types.php:228
 #: templates/event-dashboard.php:197 templates/event-dashboard.php:228
-#: templates/organizer/organizer-dashboard.php:120
-#: templates/venue/venue-dashboard.php:111
+#: templates/dj/dj-dashboard.php:120
+#: templates/local/local-dashboard.php:111
 msgid "Edit"
 msgstr "সম্পাদনা"
 
 #: admin/wp-event-manager-cpt.php:485 templates/event-dashboard.php:235
-#: templates/organizer/organizer-dashboard.php:130
-#: templates/venue/venue-dashboard.php:121 wp-event-manager.php:329
+#: templates/dj/dj-dashboard.php:130
+#: templates/local/local-dashboard.php:121 wp-event-manager.php:329
 #: wp-event-manager.php:337 wp-event-manager.php:346
 msgid "Delete"
 msgstr "মুছে ফেলুন"
@@ -555,8 +555,8 @@ msgstr "প্রযোজ্য নয়"
 #: templates/content-single-event_listing.php:334
 #: templates/content-single-event_listing.php:346
 #: templates/event-listings-start.php:7
-#: templates/organizer/content-single-event-organizers.php:179
-#: templates/organizer/content-single-event_listing-organizer.php:143
+#: templates/dj/content-single-event-djs.php:179
+#: templates/dj/content-single-event_listing-dj.php:143
 #: wp-event-manager-template.php:2496
 #, php-format
 msgid "%s"
@@ -634,22 +634,22 @@ msgstr "সাধারণ"
 
 #: admin/wp-event-manager-settings.php:51
 
-msgid "Enable Organizer"
+msgid "Enable dj"
 msgstr "সংগঠক সক্ষম করুন"
 
 #: admin/wp-event-manager-settings.php:52
 
-msgid "Enable the option to show organizers on your events website."
+msgid "Enable the option to show djs on your events website."
 msgstr "আপনার ইভেন্টের ওয়েবসাইটে সংগঠকদের দেখানোর বিকল্পটি সক্ষম করুন।"
 
 #: admin/wp-event-manager-settings.php:60
 
-msgid "Enable Venue"
+msgid "Enable local"
 msgstr "ভেন্যু সক্ষম করুন"
 
 #: admin/wp-event-manager-settings.php:61
 
-msgid "Enable the option to show event venues on your events website."
+msgid "Enable the option to show event locals on your events website."
 msgstr "আপনার ইভেন্টের ওয়েবসাইটে ইভেন্ট ের স্থানগুলি দেখানোর বিকল্পটি সক্ষম করুন।"
 
 #: admin/wp-event-manager-settings.php:69
@@ -1213,58 +1213,58 @@ msgstr "লগইন পৃষ্ঠার URL লিখুন।"
 
 #: admin/wp-event-manager-settings.php:364
 
-msgid "Submit Organizer Form Page"
+msgid "Submit dj Form Page"
 msgstr "সংগঠক ফর্ম পৃষ্ঠা জমা দিন"
 
 #: admin/wp-event-manager-settings.php:365
 
 msgid ""
-"Select the page where you have placed the [submit_organizer_form] shortcode. "
+"Select the page where you have placed the [submit_dj_form] shortcode. "
 "This lets the plugin know where the form is located."
 msgstr ""
-"আপনি যে পৃষ্ঠায় [submit_organizer_form] শর্টকোড স্থাপন করেছেন তা নির্বাচন করুন। "
+"আপনি যে পৃষ্ঠায় [submit_dj_form] শর্টকোড স্থাপন করেছেন তা নির্বাচন করুন। "
 "এটি প্লাগইনটিকে ফর্মটি কোথায় অবস্থিত তা জানতে দেয়।"
 
 #: admin/wp-event-manager-settings.php:371
 
-msgid "Organizer Dashboard Page"
+msgid "dj Dashboard Page"
 msgstr "সংগঠক ড্যাশবোর্ড পৃষ্ঠা"
 
 #: admin/wp-event-manager-settings.php:372
 
 msgid ""
-"Select the page where you have placed the [organizer_dashboard] shortcode. "
+"Select the page where you have placed the [dj_dashboard] shortcode. "
 "This lets the plugin know where the dashboard is located."
 msgstr ""
-"আপনি যে পৃষ্ঠায় [organizer_dashboard] শর্টকোড রেখেছেন তা নির্বাচন করুন। এটি "
+"আপনি যে পৃষ্ঠায় [dj_dashboard] শর্টকোড রেখেছেন তা নির্বাচন করুন। এটি "
 "প্লাগইনটিকে ড্যাশবোর্ডটি কোথায় অবস্থিত তা জানতে দেয়।"
 
 #: admin/wp-event-manager-settings.php:378
 
-msgid "Submit Venue Form Page"
+msgid "Submit local Form Page"
 msgstr "স্থান ফর্ম পৃষ্ঠা জমা দিন"
 
 #: admin/wp-event-manager-settings.php:379
 
 msgid ""
-"Select the page where you have placed the [submit_venue_form] shortcode. "
+"Select the page where you have placed the [submit_local_form] shortcode. "
 "This lets the plugin know where the form is located."
 msgstr ""
-"আপনি যে পৃষ্ঠায় [submit_venue_form] শর্টকোড রেখেছেন তা নির্বাচন করুন। এটি "
+"আপনি যে পৃষ্ঠায় [submit_local_form] শর্টকোড রেখেছেন তা নির্বাচন করুন। এটি "
 "প্লাগইনটিকে ফর্মটি কোথায় অবস্থিত তা জানতে দেয়।"
 
 #: admin/wp-event-manager-settings.php:385
 
-msgid "Venue Dashboard Page"
+msgid "local Dashboard Page"
 msgstr "ভেন্যু ড্যাশবোর্ড পৃষ্ঠা"
 
 #: admin/wp-event-manager-settings.php:386
 
 msgid ""
-"Select the page where you have placed the [venue_dashboard] shortcode. This "
+"Select the page where you have placed the [local_dashboard] shortcode. This "
 "lets the plugin know where the dashboard is located."
 msgstr ""
-"আপনি যে পৃষ্ঠায় [venue_dashboard] শর্টকোড রেখেছেন তা নির্বাচন করুন। এটি "
+"আপনি যে পৃষ্ঠায় [local_dashboard] শর্টকোড রেখেছেন তা নির্বাচন করুন। এটি "
 "প্লাগইনটিকে ড্যাশবোর্ডটি কোথায় অবস্থিত তা জানতে দেয়।"
 
 #: admin/wp-event-manager-settings.php:392
@@ -1484,7 +1484,7 @@ msgstr "ডাব্লুপি ইভেন্ট ম্যানেজার 
 
 msgid ""
 "The Setup wizard helps you create various pages for event submission, event "
-"listings, handing events along with organizers and venue pages."
+"listings, handing events along with djs and local pages."
 msgstr ""
 "সেটআপ উইজার্ড আপনাকে ইভেন্ট জমা, ইভেন্ট তালিকা, আয়োজক এবং ভেন্যু পৃষ্ঠাগুলির সাথে "
 "ইভেন্টগুলি হস্তান্তরের জন্য বিভিন্ন পৃষ্ঠা তৈরি করতে সহায়তা করে।"
@@ -1606,18 +1606,18 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:223
 
 msgctxt "Default page title (wizard)"
-msgid "Submit Organizer Form"
+msgid "Submit dj Form"
 msgstr "সংগঠক ফরম জমা দিন"
 
 #: admin/wp-event-manager-setup.php:225
 
-msgid "This page allows users to Submit the organizers form the frontend."
+msgid "This page allows users to Submit the djs form the frontend."
 msgstr "এই পৃষ্ঠাটি ব্যবহারকারীদের আয়োজকদের ফ্রন্টএন্ড থেকে জমা দেওয়ার অনুমতি দেয়।"
 
 #: admin/wp-event-manager-setup.php:226
 
 msgid ""
-"In case if you do not want to allow your users to submit organizers from the "
+"In case if you do not want to allow your users to submit djs from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
 "আপনি যদি আপনার ব্যবহারকারীদের ফ্রন্টএন্ড থেকে সংগঠক জমা দেওয়ার অনুমতি না দিতে চান "
@@ -1626,14 +1626,14 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:232
 
 msgctxt "Default page title (wizard)"
-msgid "Organizer Dashboard"
+msgid "dj Dashboard"
 msgstr "সংগঠক ড্যাশবোর্ড"
 
 #: admin/wp-event-manager-setup.php:234
 
 msgid ""
 "This page allows people to manage (edit, delete and duplicate) the "
-"organizers form the frontend."
+"djs form the frontend."
 msgstr ""
 "এই পৃষ্ঠাটি লোকেদের ফ্রন্টএন্ড থেকে সংগঠকদের পরিচালনা (সম্পাদনা, মুছে ফেলা এবং নকল) "
 "করতে দেয়।"
@@ -1641,7 +1641,7 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:235
 
 msgid ""
-"In case if you do not want to allow your users to manage organizers from the "
+"In case if you do not want to allow your users to manage djs from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
 "আপনি যদি আপনার ব্যবহারকারীদের ফ্রন্টএন্ড থেকে সংগঠকদের পরিচালনা করার অনুমতি না "
@@ -1651,18 +1651,18 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:241
 
 msgctxt "Default page title (wizard)"
-msgid "Event Organizers"
+msgid "Event djs"
 msgstr "ইভেন্ট আয়োজক"
 
 #: admin/wp-event-manager-setup.php:243
 
-msgid "This page allows peoples to show organizers from the front-end."
+msgid "This page allows peoples to show djs from the front-end."
 msgstr "এই পৃষ্ঠাটি লোকেদের সামনের প্রান্ত থেকে আয়োজকদের দেখানোর অনুমতি দেয়।"
 
 #: admin/wp-event-manager-setup.php:244
 
 msgid ""
-"In case if you do not want to allow your users to show organizers from the "
+"In case if you do not want to allow your users to show djs from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
 "আপনি যদি আপনার ব্যবহারকারীদের ফ্রন্টএন্ড থেকে সংগঠকদের দেখানোর অনুমতি না দিতে চান "
@@ -1671,18 +1671,18 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:250
 
 msgctxt "Default page title (wizard)"
-msgid "Submit Venue Form"
+msgid "Submit local Form"
 msgstr "স্থান ফরম জমা দিন"
 
 #: admin/wp-event-manager-setup.php:252
 
-msgid "This page allows people to Submit the venues from the frontend."
+msgid "This page allows people to Submit the locals from the frontend."
 msgstr "এই পৃষ্ঠাটি লোকেদের ফ্রন্টএন্ড থেকে স্থানগুলি জমা দেওয়ার অনুমতি দেয়।"
 
 #: admin/wp-event-manager-setup.php:253
 
 msgid ""
-"In case if you do not want to allow your users to submit venues from the "
+"In case if you do not want to allow your users to submit locals from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
 "আপনি যদি আপনার ব্যবহারকারীদের ফ্রন্টএন্ড থেকে স্থান জমা দেওয়ার অনুমতি না দিতে চান "
@@ -1691,13 +1691,13 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:259
 
 msgctxt "Default page title (wizard)"
-msgid "Venue Dashboard"
+msgid "local Dashboard"
 msgstr "ভেন্যু ড্যাশবোর্ড"
 
 #: admin/wp-event-manager-setup.php:261
 
 msgid ""
-"This page allows people to manage (edit, delete and duplicate) the venues "
+"This page allows people to manage (edit, delete and duplicate) the locals "
 "form the frontend."
 msgstr ""
 "এই পৃষ্ঠাটি লোকেদের ফ্রন্টএন্ড ের স্থানগুলি পরিচালনা (সম্পাদনা, মুছে ফেলা এবং নকল) "
@@ -1706,7 +1706,7 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:262
 
 msgid ""
-"In case if you do not want to allow your users to manage venues from the "
+"In case if you do not want to allow your users to manage locals from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
 "আপনি যদি আপনার ব্যবহারকারীদের ফ্রন্টএন্ড থেকে স্থানগুলি পরিচালনা করার অনুমতি না "
@@ -1716,18 +1716,18 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:268
 
 msgctxt "Default page title (wizard)"
-msgid "Event Venues"
+msgid "Event locals"
 msgstr "ইভেন্টের স্থান"
 
 #: admin/wp-event-manager-setup.php:270
 
-msgid "This page allows peoples to show venues from the front-end."
+msgid "This page allows peoples to show locals from the front-end."
 msgstr "এই পৃষ্ঠাটি লোকেদের সামনের প্রান্ত থেকে স্থানগুলি দেখানোর অনুমতি দেয়।"
 
 #: admin/wp-event-manager-setup.php:271
 
 msgid ""
-"In case if you do not want to allow your users to show venues from the "
+"In case if you do not want to allow your users to show locals from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
 "আপনি যদি আপনার ব্যবহারকারীদের ফ্রন্টএন্ড থেকে স্থানগুলি দেখানোর অনুমতি না দিতে চান "
@@ -1891,7 +1891,7 @@ msgstr ""
 
 #: admin/wp-event-manager-shortcode-list.php:95
 #: shortcodes/wp-event-manager-shortcodes.php:1001
-#: templates/organizer/organizer-event_listing.php:13 wp-event-manager.php:355
+#: templates/dj/dj-event_listing.php:13 wp-event-manager.php:355
 #: wp-event-manager.php:363
 msgid "Past Events"
 msgstr "আগের"
@@ -1925,56 +1925,56 @@ msgstr ""
 
 #: admin/wp-event-manager-shortcode-list.php:107
 
-msgid "Submit Organizer Page"
+msgid "Submit dj Page"
 msgstr "সংগঠক পৃষ্ঠা জমা দিন"
 
 #: admin/wp-event-manager-shortcode-list.php:108
 
 msgid ""
-"The Submit Organizers Page contains a form in which a user needs to fill in "
-"the details of the event organizers. To set up the Submit Organizer Page, "
-"paste the shortcode [submit_organizer_form], in the content area of  the "
-"Submit Organizer Page."
+"The Submit djs Page contains a form in which a user needs to fill in "
+"the details of the event djs. To set up the Submit dj Page, "
+"paste the shortcode [submit_dj_form], in the content area of  the "
+"Submit dj Page."
 msgstr ""
 "সাবমিট আয়োজক পৃষ্ঠায় একটি ফর্ম রয়েছে যাতে একজন ব্যবহারকারীকে ইভেন্ট আয়োজকদের বিশদ "
 "পূরণ করতে হবে। সাবমিট সংগঠক পৃষ্ঠাটি সেট আপ করতে, সাবমিট সংগঠক পৃষ্ঠার বিষয়বস্তু "
-"অঞ্চলে শর্টকোড [submit_organizer_form] পেস্ট করুন।"
+"অঞ্চলে শর্টকোড [submit_dj_form] পেস্ট করুন।"
 
 #: admin/wp-event-manager-shortcode-list.php:113
-#: external/elementor-widgets/elementor-organizer-dashboard.php:36
-#: external/elementor-widgets/elementor-organizer-dashboard.php:89
-#: templates/organizer/organizer-dashboard.php:4
+#: external/elementor-widgets/elementor-dj-dashboard.php:36
+#: external/elementor-widgets/elementor-dj-dashboard.php:89
+#: templates/dj/dj-dashboard.php:4
 
-msgid "Organizer Dashboard"
+msgid "dj Dashboard"
 msgstr "সংগঠক ড্যাশবোর্ড"
 
 #: admin/wp-event-manager-shortcode-list.php:114
 
 msgid ""
-"The dashboard displays the list of all the organizers created. A user can "
-"add, delete, duplicate organizers from the Organizer Dashboard."
+"The dashboard displays the list of all the djs created. A user can "
+"add, delete, duplicate djs from the dj Dashboard."
 msgstr ""
 "ড্যাশবোর্ডটি তৈরি সমস্ত আয়োজকদের তালিকা প্রদর্শন করে। একজন ব্যবহারকারী সংগঠক "
 "ড্যাশবোর্ড থেকে সংগঠক যোগ, মুছতে, নকল সংগঠক করতে পারেন।"
 
 #: admin/wp-event-manager-shortcode-list.php:119
-#: external/elementor-widgets/elementor-event-organizers.php:36
-#: external/elementor-widgets/elementor-event-organizers.php:89
+#: external/elementor-widgets/elementor-event-djs.php:36
+#: external/elementor-widgets/elementor-event-djs.php:89
 
-msgid "Event Organizers"
+msgid "Event djs"
 msgstr "ইভেন্ট আয়োজক"
 
 #: admin/wp-event-manager-shortcode-list.php:120
 
 msgid ""
-"The event Organizer page displays event organizers list in alphabetical "
-"order with an alphabetic filter option. To set up the Event Organizer page, "
-"paste the shortcode [event_organizers] in the content area of the Event "
-"Organizer page."
+"The event dj page displays event djs list in alphabetical "
+"order with an alphabetic filter option. To set up the Event dj page, "
+"paste the shortcode [event_djs] in the content area of the Event "
+"dj page."
 msgstr ""
 "ইভেন্ট সংগঠক পৃষ্ঠাটি বর্ণমালার ফিল্টার বিকল্পের সাথে বর্ণানুক্রমিক ক্রম অনুসারে ইভেন্ট "
 "আয়োজকদের তালিকা প্রদর্শন করে। ইভেন্ট সংগঠক পৃষ্ঠাটি সেট আপ করতে, ইভেন্ট সংগঠক "
-"পৃষ্ঠার বিষয়বস্তু অঞ্চলে শর্টকোড [event_organizers] পেস্ট করুন।"
+"পৃষ্ঠার বিষয়বস্তু অঞ্চলে শর্টকোড [event_djs] পেস্ট করুন।"
 
 #: admin/wp-event-manager-writepanels.php:111
 
@@ -2120,10 +2120,10 @@ msgstr "Event Dashboard"
 
 #: external/elementor-widgets/elementor-event-dashboard.php:91
 #: external/elementor-widgets/elementor-event-listing.php:110
-#: external/elementor-widgets/elementor-organizer-dashboard.php:94
+#: external/elementor-widgets/elementor-dj-dashboard.php:94
 #: external/elementor-widgets/elementor-past-event-listing.php:106
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:97
-#: external/elementor-widgets/elementor-venue-dashboard.php:86
+#: external/elementor-widgets/elementor-local-dashboard.php:86
 
 msgid "Post Per Page"
 msgstr "প্রতি পৃষ্ঠায় পোস্ট"
@@ -2147,10 +2147,10 @@ msgstr "Show Pagination"
 #: external/elementor-widgets/elementor-event-listing.php:185
 #: external/elementor-widgets/elementor-event-listing.php:198
 #: external/elementor-widgets/elementor-event-listing.php:211
-#: external/elementor-widgets/elementor-event-organizers.php:128
-#: external/elementor-widgets/elementor-event-organizers.php:141
-#: external/elementor-widgets/elementor-event-venues.php:125
-#: external/elementor-widgets/elementor-event-venues.php:137
+#: external/elementor-widgets/elementor-event-djs.php:128
+#: external/elementor-widgets/elementor-event-djs.php:141
+#: external/elementor-widgets/elementor-event-locals.php:125
+#: external/elementor-widgets/elementor-event-locals.php:137
 #: external/elementor-widgets/elementor-past-event-listing.php:98
 #: external/elementor-widgets/elementor-single-event-summary.php:134
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:89
@@ -2164,10 +2164,10 @@ msgstr "ভুয়া"
 #: external/elementor-widgets/elementor-event-listing.php:186
 #: external/elementor-widgets/elementor-event-listing.php:199
 #: external/elementor-widgets/elementor-event-listing.php:212
-#: external/elementor-widgets/elementor-event-organizers.php:129
-#: external/elementor-widgets/elementor-event-organizers.php:142
-#: external/elementor-widgets/elementor-event-venues.php:126
-#: external/elementor-widgets/elementor-event-venues.php:138
+#: external/elementor-widgets/elementor-event-djs.php:129
+#: external/elementor-widgets/elementor-event-djs.php:142
+#: external/elementor-widgets/elementor-event-locals.php:126
+#: external/elementor-widgets/elementor-event-locals.php:138
 #: external/elementor-widgets/elementor-past-event-listing.php:99
 #: external/elementor-widgets/elementor-single-event-summary.php:135
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:90
@@ -2176,8 +2176,8 @@ msgid "True"
 msgstr "সত্য"
 
 #: external/elementor-widgets/elementor-event-listing.php:122
-#: external/elementor-widgets/elementor-event-organizers.php:95
-#: external/elementor-widgets/elementor-event-venues.php:94
+#: external/elementor-widgets/elementor-event-djs.php:95
+#: external/elementor-widgets/elementor-event-locals.php:94
 #: external/elementor-widgets/elementor-past-event-listing.php:114
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:105
 #: widgets/wp-event-manager-widgets.php:417
@@ -2187,8 +2187,8 @@ msgid "Order"
 msgstr "ক্রম"
 
 #: external/elementor-widgets/elementor-event-listing.php:126
-#: external/elementor-widgets/elementor-event-organizers.php:99
-#: external/elementor-widgets/elementor-event-venues.php:98
+#: external/elementor-widgets/elementor-event-djs.php:99
+#: external/elementor-widgets/elementor-event-locals.php:98
 #: external/elementor-widgets/elementor-past-event-listing.php:118
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:109
 #: widgets/wp-event-manager-widgets.php:193
@@ -2202,8 +2202,8 @@ msgid "Ascending (ASC)"
 msgstr "আরোহণ (ASC)"
 
 #: external/elementor-widgets/elementor-event-listing.php:127
-#: external/elementor-widgets/elementor-event-organizers.php:100
-#: external/elementor-widgets/elementor-event-venues.php:99
+#: external/elementor-widgets/elementor-event-djs.php:100
+#: external/elementor-widgets/elementor-event-locals.php:99
 #: external/elementor-widgets/elementor-past-event-listing.php:119
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:110
 #: widgets/wp-event-manager-widgets.php:194
@@ -2215,8 +2215,8 @@ msgid "Descending  (DESC)"
 msgstr "অবতরণ (DESC)"
 
 #: external/elementor-widgets/elementor-event-listing.php:135
-#: external/elementor-widgets/elementor-event-organizers.php:108
-#: external/elementor-widgets/elementor-event-venues.php:106
+#: external/elementor-widgets/elementor-event-djs.php:108
+#: external/elementor-widgets/elementor-event-locals.php:106
 #: external/elementor-widgets/elementor-past-event-listing.php:126
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:117
 
@@ -2224,8 +2224,8 @@ msgid "Order By"
 msgstr "অর্ডার দ্বারা"
 
 #: external/elementor-widgets/elementor-event-listing.php:140
-#: external/elementor-widgets/elementor-event-organizers.php:113
-#: external/elementor-widgets/elementor-event-venues.php:111
+#: external/elementor-widgets/elementor-event-djs.php:113
+#: external/elementor-widgets/elementor-event-locals.php:111
 #: external/elementor-widgets/elementor-past-event-listing.php:131
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:122
 #: widgets/wp-event-manager-widgets.php:429
@@ -2234,8 +2234,8 @@ msgid "ID"
 msgstr "আইডি"
 
 #: external/elementor-widgets/elementor-event-listing.php:141
-#: external/elementor-widgets/elementor-event-organizers.php:114
-#: external/elementor-widgets/elementor-event-venues.php:112
+#: external/elementor-widgets/elementor-event-djs.php:114
+#: external/elementor-widgets/elementor-event-locals.php:112
 #: external/elementor-widgets/elementor-past-event-listing.php:132
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:123
 #: widgets/wp-event-manager-widgets.php:430
@@ -2244,8 +2244,8 @@ msgid "Name"
 msgstr "নাম"
 
 #: external/elementor-widgets/elementor-event-listing.php:142
-#: external/elementor-widgets/elementor-event-organizers.php:115
-#: external/elementor-widgets/elementor-event-venues.php:113
+#: external/elementor-widgets/elementor-event-djs.php:115
+#: external/elementor-widgets/elementor-event-locals.php:113
 #: external/elementor-widgets/elementor-past-event-listing.php:133
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:124
 #: widgets/wp-event-manager-widgets.php:431
@@ -2272,8 +2272,8 @@ msgid "Event Start Date"
 msgstr "ইভেন্ট শুরুর তারিখ"
 
 #: external/elementor-widgets/elementor-event-listing.php:145
-#: external/elementor-widgets/elementor-event-organizers.php:116
-#: external/elementor-widgets/elementor-event-venues.php:114
+#: external/elementor-widgets/elementor-event-djs.php:116
+#: external/elementor-widgets/elementor-event-locals.php:114
 #: external/elementor-widgets/elementor-past-event-listing.php:136
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:127
 
@@ -2363,22 +2363,22 @@ msgstr "ইভেন্টের ধরন "
 msgid "Enter Event Types by comma separate"
 msgstr "Comma পৃথকভাবে ইভেন্টের প্রকারগুলি লিখুন"
 
-#: external/elementor-widgets/elementor-event-organizers.php:124
-#: external/elementor-widgets/elementor-event-venues.php:121
+#: external/elementor-widgets/elementor-event-djs.php:124
+#: external/elementor-widgets/elementor-event-locals.php:121
 
 msgid "Show Thumb"
 msgstr "থাম্ব দেখান"
 
-#: external/elementor-widgets/elementor-event-organizers.php:137
-#: external/elementor-widgets/elementor-event-venues.php:133
+#: external/elementor-widgets/elementor-event-djs.php:137
+#: external/elementor-widgets/elementor-event-locals.php:133
 
 msgid "Show Count"
 msgstr "গণনা দেখান"
 
-#: external/elementor-widgets/elementor-event-venues.php:36
-#: external/elementor-widgets/elementor-event-venues.php:89
+#: external/elementor-widgets/elementor-event-locals.php:36
+#: external/elementor-widgets/elementor-event-locals.php:89
 
-msgid "Event Venues"
+msgid "Event locals"
 msgstr "ইভেন্টের স্থান"
 
 #: external/elementor-widgets/elementor-past-event-listing.php:36
@@ -2521,16 +2521,16 @@ msgstr "একই দিন"
 msgid "specific day"
 msgstr "নির্দিষ্ট দিন"
 
-#: external/elementor-widgets/elementor-single-event-organizer.php:36
-#: external/elementor-widgets/elementor-single-event-organizer.php:89
+#: external/elementor-widgets/elementor-single-event-dj.php:36
+#: external/elementor-widgets/elementor-single-event-dj.php:89
 
-msgid "Single Event Organizer"
+msgid "Single Event dj"
 msgstr "একক ইভেন্ট সংগঠক"
 
-#: external/elementor-widgets/elementor-single-event-organizer.php:101
-#: external/elementor-widgets/elementor-single-event-organizer.php:110
-#: external/elementor-widgets/elementor-single-event-venue.php:92
-#: external/elementor-widgets/elementor-single-event-venue.php:101
+#: external/elementor-widgets/elementor-single-event-dj.php:101
+#: external/elementor-widgets/elementor-single-event-dj.php:110
+#: external/elementor-widgets/elementor-single-event-local.php:92
+#: external/elementor-widgets/elementor-single-event-local.php:101
 
 msgid "Select event"
 msgstr "ইভেন্ট নির্বাচন করুন"
@@ -2578,10 +2578,10 @@ msgstr "মাঝখান"
 msgid "Right"
 msgstr "ডান "
 
-#: external/elementor-widgets/elementor-single-event-venue.php:34
-#: external/elementor-widgets/elementor-single-event-venue.php:83
+#: external/elementor-widgets/elementor-single-event-local.php:34
+#: external/elementor-widgets/elementor-single-event-local.php:83
 
-msgid "Single Event Venue"
+msgid "Single Event local"
 msgstr "একক ইভেন্ট ভেন্যু"
 
 #: external/elementor-widgets/elementor-single-event.php:36
@@ -2590,38 +2590,38 @@ msgstr "একক ইভেন্ট ভেন্যু"
 msgid "Single Event"
 msgstr "একক ইভেন্ট"
 
-#: external/elementor-widgets/elementor-single-organizer.php:36
-#: external/elementor-widgets/elementor-single-organizer.php:87
+#: external/elementor-widgets/elementor-single-dj.php:36
+#: external/elementor-widgets/elementor-single-dj.php:87
 
-msgid "Single Organizer"
+msgid "Single dj"
 msgstr "একক সংগঠক"
 
-#: external/elementor-widgets/elementor-single-organizer.php:103
+#: external/elementor-widgets/elementor-single-dj.php:103
 
-msgid "Not Found Organizer"
+msgid "Not Found dj"
 msgstr "সংগঠক খুঁজে পাওয়া যায়নি"
 
-#: external/elementor-widgets/elementor-single-organizer.php:108
+#: external/elementor-widgets/elementor-single-dj.php:108
 
-msgid "Select Organizer"
+msgid "Select dj"
 msgstr "সংগঠক নির্বাচন করুন"
 
-#: external/elementor-widgets/elementor-single-venue.php:35
-#: external/elementor-widgets/elementor-single-venue.php:82
+#: external/elementor-widgets/elementor-single-local.php:35
+#: external/elementor-widgets/elementor-single-local.php:82
 
-msgid "Single Venue"
+msgid "Single local"
 msgstr "একক ভেন্যু"
 
-#: external/elementor-widgets/elementor-single-venue.php:98
+#: external/elementor-widgets/elementor-single-local.php:98
 
-msgid "Not Found Venue"
+msgid "Not Found local"
 msgstr "স্থান খুঁজে পাওয়া যায়নি"
 
-#: external/elementor-widgets/elementor-single-venue.php:103
+#: external/elementor-widgets/elementor-single-local.php:103
 #: forms/wp-event-manager-form-submit-event.php:338
 #: wp-event-manager-functions.php:1746
 
-msgid "Select Venue"
+msgid "Select local"
 msgstr "স্থান নির্বাচন করুন"
 
 #: external/elementor-widgets/elementor-submit-event-form.php:34
@@ -2630,16 +2630,16 @@ msgstr "স্থান নির্বাচন করুন"
 msgid "Submit Event Form"
 msgstr "ইভেন্ট ফর্ম জমা দিন"
 
-#: external/elementor-widgets/elementor-submit-organizer-form.php:34
-#: external/elementor-widgets/elementor-submit-organizer-form.php:80
+#: external/elementor-widgets/elementor-submit-dj-form.php:34
+#: external/elementor-widgets/elementor-submit-dj-form.php:80
 
-msgid "Submit Organizer Form"
+msgid "Submit dj Form"
 msgstr "সংগঠক ফরম জমা দিন"
 
-#: external/elementor-widgets/elementor-submit-venue-form.php:36
-#: external/elementor-widgets/elementor-submit-venue-form.php:89
+#: external/elementor-widgets/elementor-submit-local-form.php:36
+#: external/elementor-widgets/elementor-submit-local-form.php:89
 
-msgid "Submit Venue Form"
+msgid "Submit local Form"
 msgstr "স্থান ফরম জমা দিন"
 
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:34
@@ -2648,11 +2648,11 @@ msgstr "স্থান ফরম জমা দিন"
 msgid "Upcoming Event Listing"
 msgstr "আসন্ন ইভেন্ট তালিকা"
 
-#: external/elementor-widgets/elementor-venue-dashboard.php:34
-#: external/elementor-widgets/elementor-venue-dashboard.php:81
-#: templates/venue/venue-dashboard.php:4
+#: external/elementor-widgets/elementor-local-dashboard.php:34
+#: external/elementor-widgets/elementor-local-dashboard.php:81
+#: templates/local/local-dashboard.php:4
 
-msgid "Venue Dashboard"
+msgid "local Dashboard"
 msgstr "ভেন্যু ড্যাশবোর্ড"
 
 #: external/elementor.php:123
@@ -2802,38 +2802,38 @@ msgid "Free"
 msgstr "বিনামূল্যে"
 
 #: forms/wp-event-manager-form-edit-event.php:49
-#: forms/wp-event-manager-form-edit-organizer.php:49
-#: forms/wp-event-manager-form-edit-venue.php:49
+#: forms/wp-event-manager-form-edit-dj.php:49
+#: forms/wp-event-manager-form-edit-local.php:49
 
 msgid "Invalid listing"
 msgstr "অবৈধ তালিকা"
 
 #: forms/wp-event-manager-form-edit-event.php:110
-#: forms/wp-event-manager-form-edit-organizer.php:95
-#: forms/wp-event-manager-form-edit-venue.php:96
+#: forms/wp-event-manager-form-edit-dj.php:95
+#: forms/wp-event-manager-form-edit-local.php:96
 msgid "Save changes"
 msgstr "পরিবর্তনগুলো সংরক্ষণ করুন"
 
 #: forms/wp-event-manager-form-edit-event.php:137
 #: forms/wp-event-manager-form-edit-event.php:140
-#: forms/wp-event-manager-form-edit-organizer.php:126
-#: forms/wp-event-manager-form-edit-organizer.php:129
-#: forms/wp-event-manager-form-edit-venue.php:124
-#: forms/wp-event-manager-form-edit-venue.php:127
+#: forms/wp-event-manager-form-edit-dj.php:126
+#: forms/wp-event-manager-form-edit-dj.php:129
+#: forms/wp-event-manager-form-edit-local.php:124
+#: forms/wp-event-manager-form-edit-local.php:127
 
 msgid "Your changes have been saved."
 msgstr "আপনার পরিবর্তনগুলি সংরক্ষিত হয়েছে।"
 
 #: forms/wp-event-manager-form-edit-event.php:137
-#: forms/wp-event-manager-form-edit-organizer.php:126
-#: forms/wp-event-manager-form-edit-venue.php:124
+#: forms/wp-event-manager-form-edit-dj.php:126
+#: forms/wp-event-manager-form-edit-local.php:124
 
 msgid "View &rarr;"
 msgstr "→ দেখুন"
 
 #: forms/wp-event-manager-form-submit-event.php:30
-#: forms/wp-event-manager-form-submit-organizer.php:31
-#: forms/wp-event-manager-form-submit-venue.php:31
+#: forms/wp-event-manager-form-submit-dj.php:31
+#: forms/wp-event-manager-form-submit-local.php:31
 
 msgid "Submit Details"
 msgstr "বিস্তারিত জমা দিন"
@@ -2845,8 +2845,8 @@ msgid "Preview"
 msgstr "দেখা"
 
 #: forms/wp-event-manager-form-submit-event.php:44
-#: forms/wp-event-manager-form-submit-organizer.php:37
-#: forms/wp-event-manager-form-submit-venue.php:37
+#: forms/wp-event-manager-form-submit-dj.php:37
+#: forms/wp-event-manager-form-submit-local.php:37
 
 msgid "Done"
 msgstr "সম্পন্ন হয়েছে"
@@ -2886,55 +2886,55 @@ msgstr "একটি ইমেল ঠিকানা বা ওয়েবস�
 
 msgid ""
 "<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">If it doesn't show "
-"organizer(s). Manage your organizer(s) from <a href=\"post-new.php?"
-"post_type=event_organizer\" target=\"_blank\" class="
-"\"wpem_add_organizer_popup wpem-modal-button\" data-modal-id="
-"\"wpem_add_organizer_popup\">here</a></div>"
+"dj(s). Manage your dj(s) from <a href=\"post-new.php?"
+"post_type=event_dj\" target=\"_blank\" class="
+"\"wpem_add_dj_popup wpem-modal-button\" data-modal-id="
+"\"wpem_add_dj_popup\">here</a></div>"
 msgstr ""
 "<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">যদি এটি সংগঠক (গুলি) "
-"প্রদর্শন না করে। <a href=\"post-new.php?post_type=event_organizer\" target="
-"\"_blank\" class=\"wpem_add_organizer_popup wpem-modal-button\" data-modal-"
-"id=\"wpem_add_organizer_popup\">এখান</a> থেকে আপনার সংগঠক (গুলি) পরিচালনা "
+"প্রদর্শন না করে। <a href=\"post-new.php?post_type=event_dj\" target="
+"\"_blank\" class=\"wpem_add_dj_popup wpem-modal-button\" data-modal-"
+"id=\"wpem_add_dj_popup\">এখান</a> থেকে আপনার সংগঠক (গুলি) পরিচালনা "
 "করুন</div>"
 
 #: forms/wp-event-manager-form-submit-event.php:149
 
 msgid ""
 "<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">If it doesn't show "
-"organizer(s). Manage your organizer(s) from <a href=\"javascript:void(0)\" "
-"class=\"wpem_add_organizer_popup wpem-modal-button\" data-modal-id="
-"\"wpem_add_organizer_popup\">here</a></div>"
+"dj(s). Manage your dj(s) from <a href=\"javascript:void(0)\" "
+"class=\"wpem_add_dj_popup wpem-modal-button\" data-modal-id="
+"\"wpem_add_dj_popup\">here</a></div>"
 msgstr ""
 "<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">যদি এটি সংগঠক (গুলি) "
 "প্রদর্শন না করে। <a href=\"javascript:void(0)\" class="
-"\"wpem_add_organizer_popup wpem-modal-button\" data-modal-id="
-"\"wpem_add_organizer_popup\">এখান</a> থেকে আপনার সংগঠক (গুলি) পরিচালনা করুন</"
+"\"wpem_add_dj_popup wpem-modal-button\" data-modal-id="
+"\"wpem_add_dj_popup\">এখান</a> থেকে আপনার সংগঠক (গুলি) পরিচালনা করুন</"
 "div>"
 
 #: forms/wp-event-manager-form-submit-event.php:150
 
 msgid ""
 "<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">If it doesn't show "
-"venue(s). Manage your venue(s) from <a href=\"post-new.php?"
-"post_type=event_venue\" target=\"_blank\" class=\"wpem_add_venue_popup wpem-"
-"modal-button\" data-modal-id=\"wpem_add_venue_popup\">here</a></div>"
+"local(s). Manage your local(s) from <a href=\"post-new.php?"
+"post_type=event_local\" target=\"_blank\" class=\"wpem_add_local_popup wpem-"
+"modal-button\" data-modal-id=\"wpem_add_local_popup\">here</a></div>"
 msgstr ""
 "<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">যদি এটি স্থান (গুলি) "
-"প্রদর্শন না করে। <a href=\"post-new.php?post_type=event_venue\" target=\"_blank"
-"\" class=\"wpem_add_venue_popup wpem-modal-button\" data-modal-id="
-"\"wpem_add_venue_popup\">এখান</a> থেকে আপনার স্থান (গুলি) পরিচালনা করুন</div>"
+"প্রদর্শন না করে। <a href=\"post-new.php?post_type=event_local\" target=\"_blank"
+"\" class=\"wpem_add_local_popup wpem-modal-button\" data-modal-id="
+"\"wpem_add_local_popup\">এখান</a> থেকে আপনার স্থান (গুলি) পরিচালনা করুন</div>"
 
 #: forms/wp-event-manager-form-submit-event.php:150
 
 msgid ""
 "<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">If it doesn't show "
-"venue(s). Manage your venue(s) from <a href=\"javascript:void(0)\" class="
-"\"wpem_add_venue_popup wpem-modal-button\" data-modal-id="
-"\"wpem_add_venue_popup\">here</a></div>"
+"local(s). Manage your local(s) from <a href=\"javascript:void(0)\" class="
+"\"wpem_add_local_popup wpem-modal-button\" data-modal-id="
+"\"wpem_add_local_popup\">here</a></div>"
 msgstr ""
 "<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">যদি এটি স্থান (গুলি) "
-"প্রদর্শন না করে। <a href=\"javascript:void(0)\" class=\"wpem_add_venue_popup "
-"wpem-modal-button\" data-modal-id=\"wpem_add_venue_popup\">এখান</a> থেকে "
+"প্রদর্শন না করে। <a href=\"javascript:void(0)\" class=\"wpem_add_local_popup "
+"wpem-modal-button\" data-modal-id=\"wpem_add_local_popup\">এখান</a> থেকে "
 "আপনার স্থান (গুলি) পরিচালনা করুন</div>"
 
 #: forms/wp-event-manager-form-submit-event.php:158
@@ -3070,9 +3070,9 @@ msgstr "অনুগ্রহ করে ইভেন্টের জন্য �
 
 #: forms/wp-event-manager-form-submit-event.php:335
 #: includes/wp-event-manager-post-types.php:318
-#: templates/event-dashboard.php:25 templates/venue/event-venues.php:10
+#: templates/event-dashboard.php:25 templates/local/event-locals.php:10
 
-msgid "Venues"
+msgid "locals"
 msgstr "স্থান"
 
 #: forms/wp-event-manager-form-submit-event.php:431
@@ -3121,189 +3121,189 @@ msgstr "পাসওয়ার্ড বৈধ নয়।"
 msgid "You must be signed in to post a new listing."
 msgstr "একটি নতুন তালিকা পোস্ট করতে আপনাকে অবশ্যই সাইন ইন করতে হবে।"
 
-#: forms/wp-event-manager-form-submit-organizer.php:95
+#: forms/wp-event-manager-form-submit-dj.php:95
 #: shortcodes/wp-event-manager-shortcodes.php:397
 
-msgid "Organizer name"
+msgid "dj name"
 msgstr "আয়োজকের নাম"
 
-#: forms/wp-event-manager-form-submit-organizer.php:98
+#: forms/wp-event-manager-form-submit-dj.php:98
 
-msgid "Enter the name of the organizer"
+msgid "Enter the name of the dj"
 msgstr "আয়োজকের নাম লিখুন"
 
-#: forms/wp-event-manager-form-submit-organizer.php:102
-#: forms/wp-event-manager-form-submit-venue.php:107
+#: forms/wp-event-manager-form-submit-dj.php:102
+#: forms/wp-event-manager-form-submit-local.php:107
 
 msgid "Logo"
 msgstr "লোগো"
 
-#: forms/wp-event-manager-form-submit-organizer.php:117
+#: forms/wp-event-manager-form-submit-dj.php:117
 
-msgid "Organizer Description"
+msgid "dj Description"
 msgstr "আয়োজক বিবরণ"
 
-#: forms/wp-event-manager-form-submit-organizer.php:124
+#: forms/wp-event-manager-form-submit-dj.php:124
 
-msgid "Organizer Email"
+msgid "dj Email"
 msgstr "সংগঠক ইমেইল"
 
-#: forms/wp-event-manager-form-submit-organizer.php:127
+#: forms/wp-event-manager-form-submit-dj.php:127
 msgid "Enter your email address"
 msgstr "আপনার ইমেইল অ্যাড্রেস লিখুন"
 
-#: forms/wp-event-manager-form-submit-organizer.php:131
-#: forms/wp-event-manager-form-submit-venue.php:122
-#: templates/organizer/content-single-event-organizers.php:76
-#: templates/organizer/content-single-event-organizers.php:194
-#: templates/organizer/content-single-event_listing-organizer.php:72
-#: templates/organizer/content-single-event_listing-organizer.php:158
-#: templates/organizer/content-single-event_organizer.php:44
-#: templates/organizer/organizer-dashboard.php:66
-#: templates/venue/content-single-event-venues.php:64
-#: templates/venue/content-single-event_listing-venue.php:71
-#: templates/venue/content-single-event_venue.php:40
-#: templates/venue/venue-dashboard.php:61
+#: forms/wp-event-manager-form-submit-dj.php:131
+#: forms/wp-event-manager-form-submit-local.php:122
+#: templates/dj/content-single-event-djs.php:76
+#: templates/dj/content-single-event-djs.php:194
+#: templates/dj/content-single-event_listing-dj.php:72
+#: templates/dj/content-single-event_listing-dj.php:158
+#: templates/dj/content-single-event_dj.php:44
+#: templates/dj/dj-dashboard.php:66
+#: templates/local/content-single-event-locals.php:64
+#: templates/local/content-single-event_listing-local.php:71
+#: templates/local/content-single-event_local.php:40
+#: templates/local/local-dashboard.php:61
 msgid "Website"
 msgstr "ওয়েবসাইট"
 
-#: forms/wp-event-manager-form-submit-organizer.php:134
+#: forms/wp-event-manager-form-submit-dj.php:134
 
 msgid "Website URL e.g http://www.yourorganization.com"
 msgstr "ওয়েবসাইটের URL যেমন http://www.yourorganization.com"
 
-#: forms/wp-event-manager-form-submit-organizer.php:138
-#: forms/wp-event-manager-form-submit-venue.php:129
+#: forms/wp-event-manager-form-submit-dj.php:138
+#: forms/wp-event-manager-form-submit-local.php:129
 #: templates/content-single-event_listing.php:536
-#: templates/organizer/content-single-event-organizers.php:82
-#: templates/organizer/content-single-event_organizer.php:50
-#: templates/organizer/organizer-dashboard.php:72
-#: templates/venue/content-single-event-venues.php:70
-#: templates/venue/content-single-event_listing-venue.php:77
-#: templates/venue/content-single-event_venue.php:45
-#: templates/venue/venue-dashboard.php:66
+#: templates/dj/content-single-event-djs.php:82
+#: templates/dj/content-single-event_dj.php:50
+#: templates/dj/dj-dashboard.php:72
+#: templates/local/content-single-event-locals.php:70
+#: templates/local/content-single-event_listing-local.php:77
+#: templates/local/content-single-event_local.php:45
+#: templates/local/local-dashboard.php:66
 msgid "Facebook"
 msgstr "ফেসবুক"
 
-#: forms/wp-event-manager-form-submit-organizer.php:141
+#: forms/wp-event-manager-form-submit-dj.php:141
 
-msgid "Facebook URL e.g http://www.facebook.com/yourorganizer"
-msgstr "ফেসবুক URL যেমন http://www.facebook.com/yourorganizer"
+msgid "Facebook URL e.g http://www.facebook.com/yourdj"
+msgstr "ফেসবুক URL যেমন http://www.facebook.com/yourdj"
 
-#: forms/wp-event-manager-form-submit-organizer.php:145
-#: forms/wp-event-manager-form-submit-venue.php:136
-#: templates/organizer/content-single-event-organizers.php:88
-#: templates/organizer/content-single-event-organizers.php:200
-#: templates/organizer/content-single-event_listing-organizer.php:78
-#: templates/organizer/content-single-event_listing-organizer.php:164
-#: templates/organizer/content-single-event_organizer.php:56
-#: templates/organizer/organizer-dashboard.php:78
-#: templates/venue/content-single-event-venues.php:76
-#: templates/venue/content-single-event_listing-venue.php:83
-#: templates/venue/content-single-event_venue.php:50
-#: templates/venue/venue-dashboard.php:71
+#: forms/wp-event-manager-form-submit-dj.php:145
+#: forms/wp-event-manager-form-submit-local.php:136
+#: templates/dj/content-single-event-djs.php:88
+#: templates/dj/content-single-event-djs.php:200
+#: templates/dj/content-single-event_listing-dj.php:78
+#: templates/dj/content-single-event_listing-dj.php:164
+#: templates/dj/content-single-event_dj.php:56
+#: templates/dj/dj-dashboard.php:78
+#: templates/local/content-single-event-locals.php:76
+#: templates/local/content-single-event_listing-local.php:83
+#: templates/local/content-single-event_local.php:50
+#: templates/local/local-dashboard.php:71
 msgid "Instagram"
 msgstr "ইনস্টাগ্রাম"
 
-#: forms/wp-event-manager-form-submit-organizer.php:148
+#: forms/wp-event-manager-form-submit-dj.php:148
 
-msgid "Instagram URL e.g http://www.instagram.com/yourorganizer"
-msgstr "Instagram URL যেমন http://www.instagram.com/yourorganizer"
+msgid "Instagram URL e.g http://www.instagram.com/yourdj"
+msgstr "Instagram URL যেমন http://www.instagram.com/yourdj"
 
-#: forms/wp-event-manager-form-submit-organizer.php:152
-#: forms/wp-event-manager-form-submit-venue.php:143
-#: templates/organizer/content-single-event-organizers.php:99
-#: templates/organizer/content-single-event-organizers.php:206
-#: templates/organizer/content-single-event_listing-organizer.php:84
-#: templates/organizer/content-single-event_listing-organizer.php:170
-#: templates/organizer/content-single-event_organizer.php:67
-#: templates/organizer/organizer-dashboard.php:90
-#: templates/venue/content-single-event-venues.php:87
-#: templates/venue/content-single-event_listing-venue.php:95
-#: templates/venue/content-single-event_venue.php:60
-#: templates/venue/venue-dashboard.php:81
+#: forms/wp-event-manager-form-submit-dj.php:152
+#: forms/wp-event-manager-form-submit-local.php:143
+#: templates/dj/content-single-event-djs.php:99
+#: templates/dj/content-single-event-djs.php:206
+#: templates/dj/content-single-event_listing-dj.php:84
+#: templates/dj/content-single-event_listing-dj.php:170
+#: templates/dj/content-single-event_dj.php:67
+#: templates/dj/dj-dashboard.php:90
+#: templates/local/content-single-event-locals.php:87
+#: templates/local/content-single-event_listing-local.php:95
+#: templates/local/content-single-event_local.php:60
+#: templates/local/local-dashboard.php:81
 msgid "Youtube"
 msgstr "ইউটিউব"
 
-#: forms/wp-event-manager-form-submit-organizer.php:155
+#: forms/wp-event-manager-form-submit-dj.php:155
 
-msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourorganizer"
-msgstr "ইউটিউব চ্যানেল ইউআরএল যেমন http://www.youtube.com/channel/yourorganizer"
+msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourdj"
+msgstr "ইউটিউব চ্যানেল ইউআরএল যেমন http://www.youtube.com/channel/yourdj"
 
-#: forms/wp-event-manager-form-submit-organizer.php:159
-#: forms/wp-event-manager-form-submit-venue.php:150
+#: forms/wp-event-manager-form-submit-dj.php:159
+#: forms/wp-event-manager-form-submit-local.php:150
 #: templates/content-single-event_listing.php:539
-#: templates/organizer/content-single-event-organizers.php:94
-#: templates/organizer/content-single-event-organizers.php:203
-#: templates/organizer/content-single-event_listing-organizer.php:81
-#: templates/organizer/content-single-event_listing-organizer.php:167
-#: templates/organizer/content-single-event_organizer.php:62
-#: templates/organizer/organizer-dashboard.php:84
-#: templates/venue/content-single-event-venues.php:82
-#: templates/venue/content-single-event_listing-venue.php:89
-#: templates/venue/content-single-event_venue.php:55
-#: templates/venue/venue-dashboard.php:76
+#: templates/dj/content-single-event-djs.php:94
+#: templates/dj/content-single-event-djs.php:203
+#: templates/dj/content-single-event_listing-dj.php:81
+#: templates/dj/content-single-event_listing-dj.php:167
+#: templates/dj/content-single-event_dj.php:62
+#: templates/dj/dj-dashboard.php:84
+#: templates/local/content-single-event-locals.php:82
+#: templates/local/content-single-event_listing-local.php:89
+#: templates/local/content-single-event_local.php:55
+#: templates/local/local-dashboard.php:76
 msgid "Twitter"
 msgstr "টুইটার"
 
-#: forms/wp-event-manager-form-submit-organizer.php:162
+#: forms/wp-event-manager-form-submit-dj.php:162
 
-msgid "Twitter URL e.g http://twitter.com/yourorganizer"
-msgstr "টুইটার URL যেমন http://twitter.com/yourorganizer"
+msgid "Twitter URL e.g http://twitter.com/yourdj"
+msgstr "টুইটার URL যেমন http://twitter.com/yourdj"
 
-#: forms/wp-event-manager-form-submit-organizer.php:249
-#: forms/wp-event-manager-form-submit-venue.php:240
+#: forms/wp-event-manager-form-submit-dj.php:249
+#: forms/wp-event-manager-form-submit-local.php:240
 msgid "Submit"
 msgstr "জমা দিন"
 
-#: forms/wp-event-manager-form-submit-organizer.php:305
+#: forms/wp-event-manager-form-submit-dj.php:305
 
-msgid "Please enter a valid organizer email address"
+msgid "Please enter a valid dj email address"
 msgstr "অনুগ্রহ করে একটি বৈধ সংগঠক ইমেল ঠিকানা লিখুন"
 
-#: forms/wp-event-manager-form-submit-venue.php:93
+#: forms/wp-event-manager-form-submit-local.php:93
 
-msgid "Venue Name"
+msgid "local Name"
 msgstr "স্থানের নাম"
 
-#: forms/wp-event-manager-form-submit-venue.php:96
+#: forms/wp-event-manager-form-submit-local.php:96
 
-msgid "Please enter the venue name"
+msgid "Please enter the local name"
 msgstr "অনুগ্রহ করে স্থানের নাম লিখুন"
 
-#: forms/wp-event-manager-form-submit-venue.php:100
+#: forms/wp-event-manager-form-submit-local.php:100
 
-msgid "Venue Description"
+msgid "local Description"
 msgstr "স্থানের বিবরণ"
 
-#: forms/wp-event-manager-form-submit-venue.php:125
+#: forms/wp-event-manager-form-submit-local.php:125
 
-msgid "Website URL e.g http://www.yourvenue.com"
-msgstr "ওয়েবসাইটের URL যেমন http://www.yourvenue.com"
+msgid "Website URL e.g http://www.yourlocal.com"
+msgstr "ওয়েবসাইটের URL যেমন http://www.yourlocal.com"
 
-#: forms/wp-event-manager-form-submit-venue.php:132
+#: forms/wp-event-manager-form-submit-local.php:132
 
-msgid "Facebook URL e.g http://www.facebook.com/yourvenue"
-msgstr "ফেসবুক URL যেমন http://www.facebook.com/yourvenue"
+msgid "Facebook URL e.g http://www.facebook.com/yourlocal"
+msgstr "ফেসবুক URL যেমন http://www.facebook.com/yourlocal"
 
-#: forms/wp-event-manager-form-submit-venue.php:139
+#: forms/wp-event-manager-form-submit-local.php:139
 
-msgid "Instagram URL e.g http://www.instagram.com/yourvenue"
-msgstr "Instagram URL যেমন http://www.instagram.com/yourvenue"
+msgid "Instagram URL e.g http://www.instagram.com/yourlocal"
+msgstr "Instagram URL যেমন http://www.instagram.com/yourlocal"
 
-#: forms/wp-event-manager-form-submit-venue.php:146
+#: forms/wp-event-manager-form-submit-local.php:146
 
-msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourvenue"
-msgstr "ইউটিউব চ্যানেল ইউআরএল যেমন http://www.youtube.com/channel/yourvenue"
+msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourlocal"
+msgstr "ইউটিউব চ্যানেল ইউআরএল যেমন http://www.youtube.com/channel/yourlocal"
 
-#: forms/wp-event-manager-form-submit-venue.php:153
+#: forms/wp-event-manager-form-submit-local.php:153
 
-msgid "Twitter URL e.g http://twitter.com/yourvenue"
-msgstr "টুইটার URL যেমন http://twitter.com/yourvenue"
+msgid "Twitter URL e.g http://twitter.com/yourlocal"
+msgstr "টুইটার URL যেমন http://twitter.com/yourlocal"
 
-#: forms/wp-event-manager-form-submit-venue.php:295
+#: forms/wp-event-manager-form-submit-local.php:295
 
-msgid "Please enter a valid venue email address"
+msgid "Please enter a valid local email address"
 msgstr "অনুগ্রহ করে একটি বৈধ স্থান ইমেল ঠিকানা লিখুন"
 
 #: includes/wp-event-manager-ajax.php:179
@@ -3334,12 +3334,12 @@ msgstr "সফলভাবে তৈরি করা হয়েছে"
 
 #: includes/wp-event-manager-ajax.php:365
 
-msgid "Organizer Name is a required field."
+msgid "dj Name is a required field."
 msgstr "সংগঠকের নাম একটি প্রয়োজনীয় ক্ষেত্র।"
 
 #: includes/wp-event-manager-ajax.php:425
 
-msgid "Venue Name is a required field."
+msgid "local Name is a required field."
 msgstr "ভেন্যুর নাম একটি প্রয়োজনীয় ক্ষেত্র।"
 
 #: includes/wp-event-manager-geocode.php:198
@@ -3458,57 +3458,57 @@ msgstr[0] "পূর্বরূপ <span class=\"count\">(%s)</span>"
 msgstr[1] "পূর্বরূপ <span class=\"count\">(%s)</span>"
 
 #: includes/wp-event-manager-post-types.php:288
-#: templates/event-dashboard.php:18 templates/organizer/event-organizers.php:12
+#: templates/event-dashboard.php:18 templates/dj/event-djs.php:12
 
-msgid "Organizers"
+msgid "djs"
 msgstr "আয়োজক"
 
 #: includes/wp-event-manager-post-types.php:295
 
-msgid "Organizer Logo"
+msgid "dj Logo"
 msgstr "সংগঠক লোগো"
 
 #: includes/wp-event-manager-post-types.php:296
 
-msgid "Set organizer logo"
+msgid "Set dj logo"
 msgstr "সংগঠক লোগো সেট করুন"
 
 #: includes/wp-event-manager-post-types.php:297
 
-msgid "Remove organizer logo"
+msgid "Remove dj logo"
 msgstr "সংগঠক লোগো অপসারণ করুন"
 
 #: includes/wp-event-manager-post-types.php:298
 
-msgid "Use as organizer logo"
+msgid "Use as dj logo"
 msgstr "সংগঠক লোগো হিসাবে ব্যবহার করুন"
 
 #: includes/wp-event-manager-post-types.php:317
-#: templates/venue/content-single-event-venues.php:13
-#: templates/venue/content-single-event-venues.php:136
-#: templates/venue/content-single-event_listing-venue.php:18
-#: templates/venue/content-single-event_listing-venue.php:122
-msgid "Venue"
+#: templates/local/content-single-event-locals.php:13
+#: templates/local/content-single-event-locals.php:136
+#: templates/local/content-single-event_listing-local.php:18
+#: templates/local/content-single-event_listing-local.php:122
+msgid "local"
 msgstr "স্থান"
 
 #: includes/wp-event-manager-post-types.php:325
 
-msgid "Venue Logo"
+msgid "local Logo"
 msgstr "ভেন্যু লোগো"
 
 #: includes/wp-event-manager-post-types.php:326
 
-msgid "Set venue logo"
+msgid "Set local logo"
 msgstr "ভেন্যু লোগো সেট করুন"
 
 #: includes/wp-event-manager-post-types.php:327
 
-msgid "Remove venue logo"
+msgid "Remove local logo"
 msgstr "ভেন্যু লোগো অপসারণ করুন"
 
 #: includes/wp-event-manager-post-types.php:328
 
-msgid "Use as venue logo"
+msgid "Use as local logo"
 msgstr "ভেন্যু লোগো হিসাবে ব্যবহার করুন"
 
 #. translators: %s: product count
@@ -3554,80 +3554,80 @@ msgstr[1] "%s ইভেন্টগুলি ট্র্যাশ থেকে 
 #. translators: %s: product count
 #: includes/wp-event-manager-post-types.php:1088
 #, php-format
-msgid "%s organizer updated."
-msgid_plural "%s organizers updated."
+msgid "%s dj updated."
+msgid_plural "%s djs updated."
 msgstr[0] "%s আয়োজক আপডেট করা হয়েছে।"
 msgstr[1] "%s আয়োজকরা আপডেট করেছেন।"
 
 #. translators: %s: product count
 #: includes/wp-event-manager-post-types.php:1090
 #, php-format
-msgid "%s organizer not updated, somebody is editing it."
-msgid_plural "%s organizers not updated, somebody is editing them."
+msgid "%s dj not updated, somebody is editing it."
+msgid_plural "%s djs not updated, somebody is editing them."
 msgstr[0] "%s সংগঠক আপডেট করা হয়নি, কেউ এটি সম্পাদনা করছে।"
 msgstr[1] "%s আয়োজকরা আপডেট না করেন, কেউ তাদের সম্পাদনা করছেন।"
 
 #. translators: %s: product count
 #: includes/wp-event-manager-post-types.php:1092
 #, php-format
-msgid "%s organizer permanently deleted."
-msgid_plural "%s organizers permanently deleted."
+msgid "%s dj permanently deleted."
+msgid_plural "%s djs permanently deleted."
 msgstr[0] "%s সংগঠক স্থায়ীভাবে মুছে ফেলা হয়েছে।"
 msgstr[1] "আয়োজকদের %s চিরতরে মুছে ফেলা হয়েছে।"
 
 #. translators: %s: product count
 #: includes/wp-event-manager-post-types.php:1094
 #, php-format
-msgid "%s organizer moved to the Trash."
-msgid_plural "%s organizers moved to the Trash."
+msgid "%s dj moved to the Trash."
+msgid_plural "%s djs moved to the Trash."
 msgstr[0] "%s সংগঠক ট্র্যাশে চলে গেলেন।"
 msgstr[1] "%s আয়োজকরা ট্র্যাশে চলে যান।"
 
 #. translators: %s: product count
 #: includes/wp-event-manager-post-types.php:1096
 #, php-format
-msgid "%s organizer restored from the Trash."
-msgid_plural "%s organizers restored from the Trash."
+msgid "%s dj restored from the Trash."
+msgid_plural "%s djs restored from the Trash."
 msgstr[0] "%s আয়োজক আবর্জনা থেকে পুনরুদ্ধার করা হয়েছে।"
 msgstr[1] "%s আয়োজকরা আবর্জনা থেকে পুনরুদ্ধার করা হয়েছে।"
 
 #. translators: %s: product count
 #: includes/wp-event-manager-post-types.php:1103
 #, php-format
-msgid "%s venue updated."
-msgid_plural "%s venues updated."
+msgid "%s local updated."
+msgid_plural "%s locals updated."
 msgstr[0] "%s স্থান আপডেট করা হয়েছে।"
 msgstr[1] "%s স্থান আপডেট করা হয়েছে।"
 
 #. translators: %s: product count
 #: includes/wp-event-manager-post-types.php:1105
 #, php-format
-msgid "%s venue not updated, somebody is editing it."
-msgid_plural "%s venues not updated, somebody is editing them."
+msgid "%s local not updated, somebody is editing it."
+msgid_plural "%s locals not updated, somebody is editing them."
 msgstr[0] "%s স্থান আপডেট করা হয়নি, কেউ এটি সম্পাদনা করছে।"
 msgstr[1] "%s স্থান আপডেট করা হয়নি, কেউ তাদের সম্পাদনা করছে।"
 
 #. translators: %s: product count
 #: includes/wp-event-manager-post-types.php:1107
 #, php-format
-msgid "%s venue permanently deleted."
-msgid_plural "%s venues permanently deleted."
+msgid "%s local permanently deleted."
+msgid_plural "%s locals permanently deleted."
 msgstr[0] "%s স্থানস্থায়ীভাবে মুছে ফেলা হয়েছে।"
 msgstr[1] "%s স্থানস্থায়ীভাবে মুছে ফেলা হয়েছে।"
 
 #. translators: %s: product count
 #: includes/wp-event-manager-post-types.php:1109
 #, php-format
-msgid "%s venue moved to the Trash."
-msgid_plural "%s venues moved to the Trash."
+msgid "%s local moved to the Trash."
+msgid_plural "%s locals moved to the Trash."
 msgstr[0] "%s স্থানটি ট্র্যাশে স্থানান্তরিত হয়েছিল।"
 msgstr[1] "%s ভেন্যু ট্র্যাশে স্থানান্তরিত হয়েছে।"
 
 #. translators: %s: product count
 #: includes/wp-event-manager-post-types.php:1111
 #, php-format
-msgid "%s venue restored from the Trash."
-msgid_plural "%s venues restored from the Trash."
+msgid "%s local restored from the Trash."
+msgid_plural "%s locals restored from the Trash."
 msgstr[0] "%s স্থানটি আবর্জনা থেকে পুনরুদ্ধার করা হয়েছে।"
 msgstr[1] "%s স্থানগুলি ট্র্যাশ থেকে পুনরুদ্ধার করা হয়েছে।"
 
@@ -3678,7 +3678,7 @@ msgstr "দর্শন"
 
 #: shortcodes/wp-event-manager-shortcodes.php:356
 
-msgid "You need to be signed in to manage your organizer listings."
+msgid "You need to be signed in to manage your dj listings."
 msgstr "আপনার সংগঠক তালিকাগুলি পরিচালনা করতে আপনাকে সাইন ইন করতে হবে।"
 
 #: shortcodes/wp-event-manager-shortcodes.php:356
@@ -3695,12 +3695,12 @@ msgstr "বিস্তারিত"
 
 #: shortcodes/wp-event-manager-shortcodes.php:489
 
-msgid "You need to be signed in to manage your venue listings."
+msgid "You need to be signed in to manage your local listings."
 msgstr "আপনার ভেন্যু তালিকা পরিচালনা করতে আপনাকে সাইন ইন করতে হবে।"
 
 #: shortcodes/wp-event-manager-shortcodes.php:532
 
-msgid "Venue name"
+msgid "local name"
 msgstr "স্থানের নাম"
 
 #: shortcodes/wp-event-manager-shortcodes.php:830
@@ -3714,7 +3714,7 @@ msgid "There are no events."
 msgstr "কোনো ইভেন্ট নেই।"
 
 #: shortcodes/wp-event-manager-shortcodes.php:1518
-#: templates/organizer/organizer-event_listing.php:10 wp-event-manager.php:354
+#: templates/dj/dj-event_listing.php:10 wp-event-manager.php:354
 #: wp-event-manager.php:362
 
 msgid "Upcoming Events"
@@ -3735,7 +3735,7 @@ msgstr "আপনি বর্তমানে সাইন ইন করেছ�
 msgid "Sign out"
 msgstr "সাইন আউট করুন"
 
-#: templates/account-signin.php:19 templates/organizer/organizer-submit.php:44
+#: templates/account-signin.php:19 templates/dj/dj-submit.php:44
 
 msgid "Have an account?"
 msgstr "একটি অ্যাকাউন্ট আছে?"
@@ -3756,8 +3756,8 @@ msgstr ""
 #: templates/form-fields/group-field.php:83
 #: templates/form-fields/repeated-field.php:38
 #: templates/form-fields/repeated-field.php:96
-#: templates/organizer/organizer-submit.php:28
-#: templates/venue/venue-submit.php:20
+#: templates/dj/dj-submit.php:28
+#: templates/local/local-submit.php:20
 
 msgid "(optional)"
 msgstr "(ঐচ্ছিক)"
@@ -3889,8 +3889,8 @@ msgid "Mark cancelled"
 msgstr "মার্ক বাতিল"
 
 #: templates/event-dashboard.php:212
-#: templates/organizer/organizer-dashboard.php:124
-#: templates/venue/venue-dashboard.php:115
+#: templates/dj/dj-dashboard.php:124
+#: templates/local/local-dashboard.php:115
 
 msgid "Duplicate"
 msgstr "অনুরূপ"
@@ -4037,27 +4037,27 @@ msgid "Create A New Event"
 msgstr "একটি নতুন ইভেন্ট তৈরি করুন"
 
 #: templates/event-submit.php:42 templates/event-submit.php:109
-#: templates/organizer/organizer-submit.php:21
+#: templates/dj/dj-submit.php:21
 
-msgid "Organizer Details"
+msgid "dj Details"
 msgstr "আয়োজকের বিস্তারিত"
 
 #: templates/event-submit.php:62 templates/event-submit.php:157
-#: templates/venue/venue-submit.php:10
+#: templates/local/local-submit.php:10
 
-msgid "Venue Details"
+msgid "local Details"
 msgstr "স্থানের বিবরণ"
 
 #: templates/event-submit.php:99 templates/event-submit.php:103
 #: templates/event-submit.php:129
 
-msgid "Add Organizer"
+msgid "Add dj"
 msgstr "সংগঠক যোগ করুন"
 
 #: templates/event-submit.php:147 templates/event-submit.php:151
 #: templates/event-submit.php:177
 
-msgid "Add Venue"
+msgid "Add local"
 msgstr "স্থান যোগ করুন"
 
 #: templates/event-submitted.php:7
@@ -4111,158 +4111,158 @@ msgstr "একটি বিভাগ চয়ন করুন"
 msgid "remove"
 msgstr "অপসারণ"
 
-#: templates/organizer/content-single-event-organizers.php:76
-#: templates/organizer/content-single-event-organizers.php:194
-#: templates/organizer/content-single-event_listing-organizer.php:72
-#: templates/organizer/content-single-event_listing-organizer.php:158
-#: templates/organizer/content-single-event_organizer.php:44
-#: templates/organizer/organizer-dashboard.php:66
-#: templates/venue/content-single-event-venues.php:64
-#: templates/venue/content-single-event_listing-venue.php:71
-#: templates/venue/content-single-event_venue.php:40
-#: templates/venue/venue-dashboard.php:61
+#: templates/dj/content-single-event-djs.php:76
+#: templates/dj/content-single-event-djs.php:194
+#: templates/dj/content-single-event_listing-dj.php:72
+#: templates/dj/content-single-event_listing-dj.php:158
+#: templates/dj/content-single-event_dj.php:44
+#: templates/dj/dj-dashboard.php:66
+#: templates/local/content-single-event-locals.php:64
+#: templates/local/content-single-event_listing-local.php:71
+#: templates/local/content-single-event_local.php:40
+#: templates/local/local-dashboard.php:61
 
 msgid "Get Connect on Website"
 msgstr "ওয়েবসাইটে সংযোগ করুন"
 
-#: templates/organizer/content-single-event-organizers.php:82
-#: templates/organizer/content-single-event-organizers.php:197
-#: templates/organizer/content-single-event_listing-organizer.php:75
-#: templates/organizer/content-single-event_listing-organizer.php:161
-#: templates/organizer/content-single-event_organizer.php:50
-#: templates/organizer/organizer-dashboard.php:72
-#: templates/venue/content-single-event-venues.php:70
-#: templates/venue/content-single-event_listing-venue.php:77
-#: templates/venue/content-single-event_venue.php:45
-#: templates/venue/venue-dashboard.php:66
+#: templates/dj/content-single-event-djs.php:82
+#: templates/dj/content-single-event-djs.php:197
+#: templates/dj/content-single-event_listing-dj.php:75
+#: templates/dj/content-single-event_listing-dj.php:161
+#: templates/dj/content-single-event_dj.php:50
+#: templates/dj/dj-dashboard.php:72
+#: templates/local/content-single-event-locals.php:70
+#: templates/local/content-single-event_listing-local.php:77
+#: templates/local/content-single-event_local.php:45
+#: templates/local/local-dashboard.php:66
 
 msgid "Get Connect on Facebook"
 msgstr "ফেসবুকে সংযোগ করুন"
 
-#: templates/organizer/content-single-event-organizers.php:88
-#: templates/organizer/content-single-event-organizers.php:200
-#: templates/organizer/content-single-event_listing-organizer.php:78
-#: templates/organizer/content-single-event_listing-organizer.php:164
-#: templates/organizer/content-single-event_organizer.php:56
-#: templates/organizer/organizer-dashboard.php:78
-#: templates/venue/content-single-event-venues.php:76
-#: templates/venue/content-single-event_listing-venue.php:83
-#: templates/venue/content-single-event_venue.php:50
-#: templates/venue/venue-dashboard.php:71
+#: templates/dj/content-single-event-djs.php:88
+#: templates/dj/content-single-event-djs.php:200
+#: templates/dj/content-single-event_listing-dj.php:78
+#: templates/dj/content-single-event_listing-dj.php:164
+#: templates/dj/content-single-event_dj.php:56
+#: templates/dj/dj-dashboard.php:78
+#: templates/local/content-single-event-locals.php:76
+#: templates/local/content-single-event_listing-local.php:83
+#: templates/local/content-single-event_local.php:50
+#: templates/local/local-dashboard.php:71
 
 msgid "Get Connect on Instagram"
 msgstr "Instagram-এ সংযোগ করুন"
 
-#: templates/organizer/content-single-event-organizers.php:94
-#: templates/organizer/content-single-event-organizers.php:203
-#: templates/organizer/content-single-event_listing-organizer.php:81
-#: templates/organizer/content-single-event_listing-organizer.php:167
-#: templates/organizer/content-single-event_organizer.php:62
-#: templates/organizer/organizer-dashboard.php:84
-#: templates/venue/content-single-event-venues.php:82
-#: templates/venue/content-single-event_listing-venue.php:89
-#: templates/venue/content-single-event_venue.php:55
-#: templates/venue/venue-dashboard.php:76
+#: templates/dj/content-single-event-djs.php:94
+#: templates/dj/content-single-event-djs.php:203
+#: templates/dj/content-single-event_listing-dj.php:81
+#: templates/dj/content-single-event_listing-dj.php:167
+#: templates/dj/content-single-event_dj.php:62
+#: templates/dj/dj-dashboard.php:84
+#: templates/local/content-single-event-locals.php:82
+#: templates/local/content-single-event_listing-local.php:89
+#: templates/local/content-single-event_local.php:55
+#: templates/local/local-dashboard.php:76
 
 msgid "Get Connect on Twitter"
 msgstr "টুইটারে সংযোগ করুন"
 
-#: templates/organizer/content-single-event-organizers.php:99
-#: templates/organizer/content-single-event-organizers.php:206
-#: templates/organizer/content-single-event_listing-organizer.php:84
-#: templates/organizer/content-single-event_listing-organizer.php:170
-#: templates/organizer/content-single-event_organizer.php:67
-#: templates/organizer/organizer-dashboard.php:90
-#: templates/venue/content-single-event-venues.php:87
-#: templates/venue/content-single-event_listing-venue.php:95
-#: templates/venue/content-single-event_venue.php:60
-#: templates/venue/venue-dashboard.php:81
+#: templates/dj/content-single-event-djs.php:99
+#: templates/dj/content-single-event-djs.php:206
+#: templates/dj/content-single-event_listing-dj.php:84
+#: templates/dj/content-single-event_listing-dj.php:170
+#: templates/dj/content-single-event_dj.php:67
+#: templates/dj/dj-dashboard.php:90
+#: templates/local/content-single-event-locals.php:87
+#: templates/local/content-single-event_listing-local.php:95
+#: templates/local/content-single-event_local.php:60
+#: templates/local/local-dashboard.php:81
 
 msgid "Get Connect on Youtube"
 msgstr "YouTube এ সংযোগ করুন"
 
-#: templates/organizer/content-single-event-organizers.php:197
-#: templates/organizer/content-single-event_listing-organizer.php:75
-#: templates/organizer/content-single-event_listing-organizer.php:161
+#: templates/dj/content-single-event-djs.php:197
+#: templates/dj/content-single-event_listing-dj.php:75
+#: templates/dj/content-single-event_listing-dj.php:161
 
 msgid "Faceboo"
 msgstr "Faceboo"
 
-#: templates/organizer/event-organizers.php:15
-#: templates/venue/event-venues.php:13
+#: templates/dj/event-djs.php:15
+#: templates/local/event-locals.php:13
 
 msgid "Browse events"
 msgstr "ইভেন্টগুলি ব্রাউজ করুন"
 
-#: templates/organizer/event-organizers.php:20
-#: templates/venue/event-venues.php:18
+#: templates/dj/event-djs.php:20
+#: templates/local/event-locals.php:18
 
 msgid "Available events"
 msgstr "উপলভ্য ইভেন্ট"
 
-#: templates/organizer/event-organizers.php:29
-#: templates/venue/event-venues.php:27
+#: templates/dj/event-djs.php:29
+#: templates/local/event-locals.php:27
 msgid "All"
 msgstr "সকল"
 
-#: templates/organizer/event-organizers.php:58
-#: templates/venue/event-venues.php:53
+#: templates/dj/event-djs.php:58
+#: templates/local/event-locals.php:53
 
 msgid "Click here, for more info."
 msgstr "আরো তথ্যের জন্য এখানে ক্লিক করুন।"
 
-#: templates/organizer/event-organizers.php:80
-#: templates/organizer/event-organizers.php:89
-#: templates/organizer/organizer-dashboard.php:35
+#: templates/dj/event-djs.php:80
+#: templates/dj/event-djs.php:89
+#: templates/dj/dj-dashboard.php:35
 
-msgid "There are no organizers."
+msgid "There are no djs."
 msgstr "কোনো সংগঠক নেই।"
 
-#: templates/organizer/organizer-dashboard.php:12
+#: templates/dj/dj-dashboard.php:12
 
-msgid "Add organizer"
+msgid "Add dj"
 msgstr "সংগঠক যোগ করুন"
 
-#: templates/organizer/organizer-dashboard.php:109
-#: templates/venue/venue-dashboard.php:101
+#: templates/dj/dj-dashboard.php:109
+#: templates/local/local-dashboard.php:101
 
 msgid "There is no event."
 msgstr "ইভেন্ট শুরুর তারিখ"
 
-#: templates/organizer/organizer-event_listing.php:7 wp-event-manager.php:356
+#: templates/dj/dj-event_listing.php:7 wp-event-manager.php:356
 #: wp-event-manager.php:364
 
 msgid "Current Events"
 msgstr "সাম্প্রতিক ঘটনাবলী"
 
-#: templates/organizer/organizer-submit.php:23
+#: templates/dj/dj-submit.php:23
 #, php-format
-msgid "You are editing an existing organizer. %s"
+msgid "You are editing an existing dj. %s"
 msgstr "আপনি একটি বিদ্যমান সংগঠক সম্পাদনা করছেন। %s"
 
-#: templates/organizer/organizer-submit.php:23
+#: templates/dj/dj-submit.php:23
 
-msgid "Create A New organizer"
+msgid "Create A New dj"
 msgstr "একটি নতুন সংগঠক তৈরি করুন"
 
-#: templates/organizer/organizer-submit.php:46
-#: templates/venue/venue-submit.php:38
+#: templates/dj/dj-submit.php:46
+#: templates/local/local-submit.php:38
 msgid "Log In"
 msgstr "লগ ইন"
 
-#: templates/organizer/organizer-submitted.php:8
+#: templates/dj/dj-submitted.php:8
 #, php-format
 msgid ""
-"%s listed successfully. To view your organizer list <a href=\"%s\">click "
+"%s listed successfully. To view your dj list <a href=\"%s\">click "
 "here</a>."
 msgstr ""
 "%s সফলভাবে তালিকাভুক্ত। আপনার সংগঠক তালিকা দেখতে <a href=\"%s\">এখানে ক্লিক "
 "করুন</a>।"
 
-#: templates/organizer/organizer-submitted.php:11
+#: templates/dj/dj-submitted.php:11
 #, php-format
 msgid ""
-"%s submitted successfully. Your organizer will be visible once approved."
+"%s submitted successfully. Your dj will be visible once approved."
 msgstr "%s সফলভাবে জমা দেওয়া হয়েছে। অনুমোদিত হয়ে গেলে আপনার সংগঠক দৃশ্যমান হবে।"
 
 #: templates/sign-in-link.php:3
@@ -4270,39 +4270,39 @@ msgstr "%s সফলভাবে জমা দেওয়া হয়েছে
 msgid "You must <a href=\"%s\">sign in</a> to view more details."
 msgstr "আরও বিশদ দেখতে আপনাকে অবশ্যই <a href=\"%s\">সাইন ইন</a> করতে হবে।"
 
-#: templates/venue/event-venues.php:74 templates/venue/event-venues.php:82
-#: templates/venue/venue-dashboard.php:33
+#: templates/local/event-locals.php:74 templates/local/event-locals.php:82
+#: templates/local/local-dashboard.php:33
 
-msgid "There are no venues."
+msgid "There are no locals."
 msgstr "কোনো ভেন্যু নেই।"
 
-#: templates/venue/venue-dashboard.php:11
+#: templates/local/local-dashboard.php:11
 
-msgid "Add venue"
+msgid "Add local"
 msgstr "স্থান যোগ করুন"
 
-#: templates/venue/venue-submit.php:13
+#: templates/local/local-submit.php:13
 #, php-format
-msgid "You are editing an existing venue. %s"
+msgid "You are editing an existing local. %s"
 msgstr "আপনি একটি বিদ্যমান স্থান সম্পাদনা করছেন। %s"
 
-#: templates/venue/venue-submit.php:13
+#: templates/local/local-submit.php:13
 
-msgid "Create A New venue"
+msgid "Create A New local"
 msgstr "একটি নতুন স্থান তৈরি করুন"
 
-#: templates/venue/venue-submitted.php:6
+#: templates/local/local-submitted.php:6
 #, php-format
 msgid ""
-"%s listed successfully. To view your venue list <a href=\"%s\">click here</"
+"%s listed successfully. To view your local list <a href=\"%s\">click here</"
 "a>."
 msgstr ""
 "%s সফলভাবে তালিকাভুক্ত। আপনার স্থান তালিকা দেখতে <a href=\"%s\">এখানে ক্লিক করুন</"
 "a>।"
 
-#: templates/venue/venue-submitted.php:9
+#: templates/local/local-submitted.php:9
 #, php-format
-msgid "%s submitted successfully. Your venue will be visible once approved."
+msgid "%s submitted successfully. Your local will be visible once approved."
 msgstr "%s সফলভাবে জমা দেওয়া হয়েছে। অনুমোদিত হয়ে গেলে আপনার স্থানটি দৃশ্যমান হবে।"
 
 #: widgets/wp-event-manager-widgets.php:160
@@ -4492,12 +4492,12 @@ msgstr "আপনি কি নিশ্চিত যে আপনি এই ই
 
 #: wp-event-manager.php:339
 
-msgid "Are you sure you want to delete this organizer?"
+msgid "Are you sure you want to delete this dj?"
 msgstr "আপনি কি নিশ্চিত যে আপনি এই সংগঠকটি মুছে ফেলতে চান?"
 
 #: wp-event-manager.php:348
 
-msgid "Are you sure you want to delete this venue?"
+msgid "Are you sure you want to delete this local?"
 msgstr "আপনি কি নিশ্চিত যে আপনি এই স্থানটি মুছে ফেলতে চান?"
 
 #. Plugin URI of the plugin/theme

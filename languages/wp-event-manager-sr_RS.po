@@ -86,7 +86,7 @@ msgid "Field Label"
 msgstr "Ознака поља"
 
 #: admin/wp-event-manager-field-editor.php:129
-msgid "Organizer fields"
+msgid "dj fields"
 msgstr "Поља организатора"
 
 #: admin/wp-event-manager-field-editor.php:125
@@ -257,11 +257,11 @@ msgid "Passwords must match."
 msgstr "Лозинке се не поклапају."
 
 #: core/wp-event-manager-post-types.php:319
-msgid "Set organizer logo"
+msgid "Set dj logo"
 msgstr "Подеси лого организатора"
 
 #: core/wp-event-manager-post-types.php:317
-msgid "Organizer Logo"
+msgid "dj Logo"
 msgstr "Лого организатора"
 
 #: admin/wp-event-manager-settings.php:162
@@ -301,11 +301,11 @@ msgid "You are editing an existing event. %s"
 msgstr "Уређујете постојећи догађај. %s"
 
 #: core/wp-event-manager-post-types.php:323
-msgid "Use as organizer logo"
+msgid "Use as dj logo"
 msgstr "Користи лого организатора"
 
 #: core/wp-event-manager-post-types.php:321
-msgid "Remove organizer logo"
+msgid "Remove dj logo"
 msgstr "Уклони лого организатора"
 
 #: admin/wp-event-manager-settings.php:83
@@ -524,7 +524,7 @@ msgid "Event category"
 msgstr "Категорија догађаја"
 
 #: core/wp-event-manager-install.php:69
-msgid "Organizer"
+msgid "dj"
 msgstr "Организатор"
 
 #: core/wp-event-manager-geocode.php:222 core/wp-event-manager-geocode.php:229
@@ -651,7 +651,7 @@ msgstr "Инстаграм URL нпр.  http://www.instagram.com/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:354
 #: forms/wp-event-manager-form-submit-event.php:420
-#: templates/content-single-event_listing-organizer.php:182
+#: templates/content-single-event_listing-dj.php:182
 msgid "Instagram"
 msgstr "Инстаграм "
 
@@ -662,7 +662,7 @@ msgstr "Пинтерест URL нпр. http://www.pinterest.com/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:346
 #: forms/wp-event-manager-form-submit-event.php:412
-#: templates/content-single-event_listing-organizer.php:176
+#: templates/content-single-event_listing-dj.php:176
 msgid "Pinterest"
 msgstr "Пинтерест"
 
@@ -673,7 +673,7 @@ msgstr "Ксинг URL нпр. http://www.xing.com/companies/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:338
 #: forms/wp-event-manager-form-submit-event.php:404
-#: templates/content-single-event_listing-organizer.php:170
+#: templates/content-single-event_listing-dj.php:170
 msgid "Xing"
 msgstr "Ксинг"
 
@@ -682,8 +682,8 @@ msgid "Twitter username"
 msgstr "Твитер корисничко име"
 
 #: admin/wp-event-manager-writepanels.php:333
-msgid "@yourorganizer"
-msgstr "@yourorganizer"
+msgid "@yourdj"
+msgstr "@yourdj"
 
 #: admin/wp-event-manager-writepanels.php:317
 #: forms/wp-event-manager-form-submit-event.php:383
@@ -692,7 +692,7 @@ msgstr "Фејсбук URL нпр. http://www.facebook.com/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:314
 #: forms/wp-event-manager-form-submit-event.php:380
-#: templates/content-single-event_listing-organizer.php:152
+#: templates/content-single-event_listing-dj.php:152
 msgid "Facebook"
 msgstr "Фејсбук"
 
@@ -703,7 +703,7 @@ msgstr "Гугл+ URL нпр. http://plus.google.com/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:306
 #: forms/wp-event-manager-form-submit-event.php:372
-#: templates/content-single-event_listing-organizer.php:194
+#: templates/content-single-event_listing-dj.php:194
 msgid "Google+"
 msgstr "Гугл+"
 
@@ -714,7 +714,7 @@ msgstr "URL Јутјуб канала нпр. http://www.youtube.com/channel/you
 
 #: admin/wp-event-manager-writepanels.php:298
 #: forms/wp-event-manager-form-submit-event.php:364
-#: templates/content-single-event_listing-organizer.php:188
+#: templates/content-single-event_listing-dj.php:188
 msgid "Youtube"
 msgstr "Јутјуб"
 
@@ -743,7 +743,7 @@ msgstr "Вебсајт URL нпр. http://www.yourorganization.com"
 
 #: admin/wp-event-manager-writepanels.php:273
 #: forms/wp-event-manager-form-submit-event.php:348
-#: templates/content-single-event_listing-organizer.php:147
+#: templates/content-single-event_listing-dj.php:147
 msgid "Website"
 msgstr "Вебсајт"
 
@@ -769,7 +769,7 @@ msgstr "Име контакт особе"
 
 #: admin/wp-event-manager-writepanels.php:249
 #: forms/wp-event-manager-form-submit-event.php:324
-msgid "Organizer Description"
+msgid "dj Description"
 msgstr "Опис организатора"
 
 #: admin/wp-event-manager-writepanels.php:240
@@ -923,12 +923,12 @@ msgstr "Адреса"
 
 #: admin/wp-event-manager-writepanels.php:98
 #: forms/wp-event-manager-form-submit-event.php:163
-msgid "Please enter the venue name"
+msgid "Please enter the local name"
 msgstr "Молим унесите име места"
 
 #: admin/wp-event-manager-writepanels.php:95
 #: forms/wp-event-manager-form-submit-event.php:160
-msgid "Venue Name"
+msgid "local Name"
 msgstr "Име места"
 
 #: admin/wp-event-manager-writepanels.php:88
@@ -945,7 +945,7 @@ msgstr "Да"
 #: forms/wp-event-manager-form-submit-event.php:148
 #: templates/content-event_listing.php:30
 #: templates/content-event_listing.php:56
-#: templates/content-single-event_listing-organizer.php:99
+#: templates/content-single-event_listing-dj.php:99
 #: templates/content-summary-event_listing.php:10
 #: templates/content-widget-event_listing.php:10
 #: templates/event-dashboard.php:78
@@ -1490,7 +1490,7 @@ msgid "Posted Date"
 msgstr "Датум постављања"
 
 #: admin/wp-event-manager-cpt.php:392
-msgid "Event Organizer"
+msgid "Event dj"
 msgstr "Организатор догађаја"
 
 #: admin/wp-event-manager-cpt.php:390
@@ -1780,7 +1780,7 @@ msgid "%s listed successfully. To view your listing <a href=\"%s\">click here</a
 msgstr "%s успешно додат. Да видите свој листинг <a href=\"%s\">кликните овде</a>."
 
 #: templates/event-submit.php:37
-msgid "Organizer Details"
+msgid "dj Details"
 msgstr "Детаљи организатора"
 
 #: templates/event-submit.php:17
@@ -1867,36 +1867,36 @@ msgstr "Pregled događaja"
 msgid "This listing has expired."
 msgstr "Овај листинг је истекао."
 
-#: templates/content-single-event_listing-organizer.php:204
+#: templates/content-single-event_listing-dj.php:204
 msgid "Share This Event"
 msgstr "Дели овај догађај"
 
-#: templates/content-single-event_listing-organizer.php:143
-msgid "Organizer Social"
+#: templates/content-single-event_listing-dj.php:143
+msgid "dj Social"
 msgstr "Društveni organizator"
 
-#: templates/content-single-event_listing-organizer.php:111
+#: templates/content-single-event_listing-dj.php:111
 msgid "Registration End Date"
 msgstr "Датум истека регистрације"
 
-#: templates/content-single-event_listing-organizer.php:88
+#: templates/content-single-event_listing-dj.php:88
 msgid "When & Where"
 msgstr "Kada & gde"
 
-#: templates/content-single-event_listing-organizer.php:80
+#: templates/content-single-event_listing-dj.php:80
 msgid "Ticket Information"
 msgstr "Информације о карти"
 
-#: templates/content-single-event_listing-organizer.php:59
-#: templates/content-single-event_listing-organizer.php:66
+#: templates/content-single-event_listing-dj.php:59
+#: templates/content-single-event_listing-dj.php:66
 msgid "Watch Video"
 msgstr "Гледај видео"
 
-#: templates/content-single-event_listing-organizer.php:52
+#: templates/content-single-event_listing-dj.php:52
 msgid "View More Details"
 msgstr "Види више детаља"
 
-#: templates/content-single-event_listing-organizer.php:36
+#: templates/content-single-event_listing-dj.php:36
 msgid "About"
 msgstr "О овоме"
 
@@ -2052,11 +2052,11 @@ msgid "%s is a required field"
 msgstr "%s je zahtevano polje"
 
 #: forms/wp-event-manager-form-submit-event.php:399
-msgid "Twitter URL e.g http://twitter.com/yourorganizer"
-msgstr "Twitter URL e.g http://twitter.com/yourorganizer"
+msgid "Twitter URL e.g http://twitter.com/yourdj"
+msgstr "Twitter URL e.g http://twitter.com/yourdj"
 
 #: forms/wp-event-manager-form-submit-event.php:396
-#: templates/content-single-event_listing-organizer.php:158
+#: templates/content-single-event_listing-dj.php:158
 msgid "Twitter"
 msgstr "Twitter"
 
@@ -2156,7 +2156,7 @@ msgstr "Linkedin URL нпр. http://www.linkedin.com/company/yourcompany"
 
 #: admin/wp-event-manager-writepanels.php:322
 #: forms/wp-event-manager-form-submit-event.php:388
-#: templates/content-single-event_listing-organizer.php:164
+#: templates/content-single-event_listing-dj.php:164
 msgid "Linkedin"
 msgstr "Linkedin"
 

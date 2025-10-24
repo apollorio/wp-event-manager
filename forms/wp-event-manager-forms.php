@@ -61,10 +61,10 @@ class WP_Event_Manager_Forms {
 		$allowed_forms = array(
 			'submit-event'     => 'wp-event-manager-form-submit-event.php',
 			'edit-event'       => 'wp-event-manager-form-edit-event.php',
-			'submit-venue'     => 'wp-event-manager-form-submit-venue.php',
-			'edit-venue'       => 'wp-event-manager-form-edit-venue.php',
-			'submit-organizer' => 'wp-event-manager-form-submit-organizer.php',
-			'edit-organizer'   => 'wp-event-manager-form-edit-organizer.php',
+			'submit-local'     => 'wp-event-manager-form-submit-local.php',
+			'edit-local'       => 'wp-event-manager-form-edit-local.php',
+			'submit-dj'        => 'wp-event-manager-form-submit-dj.php',
+			'edit-dj'          => 'wp-event-manager-form-edit-dj.php',
 		);
 
 		if ( ! isset( $allowed_forms[ $form_name ] ) ) {
@@ -120,8 +120,9 @@ class WP_Event_Manager_Forms {
 	 * @return array
 	 */
 	public function get_fields($form_name) {
+		$fields = array();
 		if($form = $this->load_form_class($form_name)) {
-			 $fields = $form->merge_with_custom_fields('frontend');
+			$fields = $form->merge_with_custom_fields('frontend');
 		}
 		return $fields;
 	}

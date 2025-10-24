@@ -65,13 +65,13 @@ class WP_Event_Manager_Field_Editor {
 			echo wp_kses_post('<div class="updated"><p>' . esc_attr('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
 		}
 
-		if(!empty($_GET['organizer-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce(sanitize_key($_GET['_wpnonce']), 'reset')) {
-			delete_option('event_manager_submit_organizer_form_fields');
+		if(!empty($_GET['dj-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce(sanitize_key($_GET['_wpnonce']), 'reset')) {
+			delete_option('event_manager_submit_dj_form_fields');
 			echo wp_kses_post('<div class="updated"><p>' . esc_attr('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
 		}
 
-		if(!empty($_GET['venue-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce(sanitize_key($_GET['_wpnonce']), 'reset')) {
-			delete_option('event_manager_submit_venue_form_fields');
+		if(!empty($_GET['local-reset-fields']) && !empty($_GET['_wpnonce']) && wp_verify_nonce(sanitize_key($_GET['_wpnonce']), 'reset')) {
+			delete_option('event_manager_submit_local_form_fields');
 			echo wp_kses_post('<div class="updated"><p>' . esc_attr('The fields were successfully reset.', 'wp-event-manager') . '</p></div>');
 		}
 
@@ -82,8 +82,8 @@ class WP_Event_Manager_Field_Editor {
 			}
 		}
 
-		$disbled_fields = apply_filters('wpem_admin_field_editor_disabled_fields', array('event_title', 'event_description', 'event_country', 'organizer_name', 'organizer_description', 'venue_name', 'venue_description', 'organizer_country'));
-		$disbled_fields_tab_group = apply_filters('wpem_admin_field_editor_disabled_fields', array('event_title', 'event_description', 'event_country', 'organizer_name', 'organizer_description', 'venue_name', 'venue_description', 'organizer_country', 'event_type', 'event_category'));
+		$disbled_fields = apply_filters('wpem_admin_field_editor_disabled_fields', array('event_title', 'event_description', 'event_country', 'dj_name', 'dj_description', 'local_name', 'local_description', 'dj_country'));
+		$disbled_fields_tab_group = apply_filters('wpem_admin_field_editor_disabled_fields', array('event_title', 'event_description', 'event_country', 'dj_name', 'dj_description', 'local_name', 'local_description', 'dj_country', 'event_type', 'event_category'));
 		$taxonomy_fields = apply_filters('wpem_admin_field_editor_taxonomy_fields', array('event_type', 'event_category'));
 		$field_types = wpem_get_form_field_types();
 
@@ -91,27 +91,27 @@ class WP_Event_Manager_Field_Editor {
 		$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
 		$event_fields               = $form_submit_event_instance->merge_with_custom_fields('backend');
 		
-		if(get_option('enable_event_organizer')) {
-			$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
-			$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
-			$organizer_fields               = $form_submit_organizer_instance->merge_with_custom_fields('backend');
+		if(get_option('enable_event_dj')) {
+			$GLOBALS['event_manager']->forms->get_form('submit-dj', array());
+			$form_submit_dj_instance = call_user_func(array('WP_Event_Manager_Form_Submit_dj', 'instance'));
+			$dj_fields               = $form_submit_dj_instance->merge_with_custom_fields('backend');
 		} else {
-			$organizer_fields = array();
+			$dj_fields = array();
 		}
 
-		if(get_option('enable_event_venue')) {
-			$GLOBALS['event_manager']->forms->get_form('submit-venue', array());
-			$form_submit_venue_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Venue', 'instance'));
-			$venue_fields               = $form_submit_venue_instance->merge_with_custom_fields('backend');
+		if(get_option('enable_event_local')) {
+			$GLOBALS['event_manager']->forms->get_form('submit-local', array());
+			$form_submit_local_instance = call_user_func(array('WP_Event_Manager_Form_Submit_local', 'instance'));
+			$local_fields               = $form_submit_local_instance->merge_with_custom_fields('backend');
 		} else {
-			$venue_fields = array();
+			$local_fields = array();
 		}
-		$fields = array_merge($event_fields, $organizer_fields, $venue_fields);
+		$fields = array_merge($event_fields, $dj_fields, $local_fields);
 		$add_event_form_fields = get_option('event_manager_form_fields');
-		if(isset($fields['organizer']['event_organizer_ids']))
-			unset($fields['organizer']['event_organizer_ids']);
-		if(isset($fields['venue']['event_venue_ids']))
-			unset($fields['venue']['event_venue_ids']);
+		if(isset($fields['dj']['event_dj_ids']))
+			unset($fields['dj']['event_dj_ids']);
+		if(isset($fields['local']['event_local_ids']))
+			unset($fields['local']['event_local_ids']);
 		foreach ($fields  as $group_key => $group_fields) {
 			if(empty($group_fields)) {
 				continue;
@@ -243,15 +243,15 @@ class WP_Event_Manager_Field_Editor {
 		if(wp_verify_nonce(sanitize_key($_POST['_wpnonce']), 'save-wp-event-manager-form-field-editor')) {
 			
 			$event_field     = !empty($_POST['event']) ? $this->sanitize_array( wp_unslash( $_POST['event'] ) ) : array();
-			$event_organizer = !empty($_POST['organizer']) ? $this->sanitize_array( wp_unslash( $_POST['organizer'] ) ) : array();
-			$event_venue     = !empty($_POST['venue']) ? $this->sanitize_array( wp_unslash( $_POST['venue'] ) ) : array();
+			$event_dj = !empty($_POST['dj']) ? $this->sanitize_array( wp_unslash( $_POST['dj'] ) ) : array();
+			$event_local     = !empty($_POST['local']) ? $this->sanitize_array( wp_unslash( $_POST['local'] ) ) : array();
 			$index           = 0;
 			$hasSave = 1;
 			if(!empty($event_field)) {
 				$new_fields = array(
 					'event'     => $event_field,
-					'organizer' => $event_organizer,
-					'venue'     => $event_venue, 
+					'dj' => $event_dj,
+					'local'     => $event_local, 
 				);
 				// Find the numers keys from the fields array and replace with lable if label not exist remove that field
 				foreach ($new_fields as $group_key => $group_fields) {
@@ -309,22 +309,22 @@ class WP_Event_Manager_Field_Editor {
 					$GLOBALS['event_manager']->forms->get_form('submit-event', array());
 					$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
 					$event_fields =   $form_submit_event_instance->get_default_fields();
-					if(get_option('enable_event_organizer')) {
-						$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
-						$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
-						$organizer_fields               = $form_submit_organizer_instance->init_fields();
+					if(get_option('enable_event_dj')) {
+						$GLOBALS['event_manager']->forms->get_form('submit-dj', array());
+						$form_submit_dj_instance = call_user_func(array('WP_Event_Manager_Form_Submit_dj', 'instance'));
+						$dj_fields               = $form_submit_dj_instance->init_fields();
 					} else {
-						$organizer_fields = array();
+						$dj_fields = array();
 					}
 
-					if( get_option('enable_event_venue') ) {
-						$GLOBALS['event_manager']->forms->get_form('submit-venue', array());
-						$form_submit_venue_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Venue', 'instance'));
-						$venue_fields               = $form_submit_venue_instance->init_fields();
+					if( get_option('enable_event_local') ) {
+						$GLOBALS['event_manager']->forms->get_form('submit-local', array());
+						$form_submit_local_instance = call_user_func(array('WP_Event_Manager_Form_Submit_local', 'instance'));
+						$local_fields               = $form_submit_local_instance->init_fields();
 					} else {
-						$venue_fields = array();
+						$local_fields = array();
 					}
-					$default_fields = array_merge($event_fields, $organizer_fields, $venue_fields);
+					$default_fields = array_merge($event_fields, $dj_fields, $local_fields);
 
 					// If field in not exist in new fields array then make visiblity false
 					if(!empty($default_fields)) {
@@ -343,11 +343,11 @@ class WP_Event_Manager_Field_Editor {
 					if(isset($new_fields['event'])) {
 						update_option('event_manager_submit_event_form_fields', array('event' => $new_fields['event']));
 					}
-					if(isset($new_fields['organizer'])) {
-						update_option('event_manager_submit_organizer_form_fields', array('organizer' => $new_fields['organizer']));
+					if(isset($new_fields['dj'])) {
+						update_option('event_manager_submit_dj_form_fields', array('dj' => $new_fields['dj']));
 					}
-					if(isset($new_fields['venue'])) {
-						update_option('event_manager_submit_venue_form_fields', array('venue' => $new_fields['venue']));
+					if(isset($new_fields['local'])) {
+						update_option('event_manager_submit_local_form_fields', array('local' => $new_fields['local']));
 					}
 					// This will be removed in future
 					$result = update_option('event_manager_form_fields', $this->sanitize_array($new_fields));

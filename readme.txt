@@ -2,7 +2,7 @@
 
 Contributors: wpeventmanager,ashokdudhat,krinay
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=55FRYATTFLA5N
-Tags: calendar, event, events, organizer, tickets
+Tags: calendar, event, events, dj, tickets
 Requires at least: 6.3.0
 Tested up to: 6.8.2
 Stable Tag: 3.2.2
@@ -17,7 +17,7 @@ Lightweight, scalable and full-featured event listings & management plugin for m
 WP Event Manager brings you a feature-packed event management plugin that helps you create event listings and manage them all from your WordPress events site effortlessly. It is the ultimate solution for all types of events including in-person, virtual, and hybrid. 
 
 The superior events plugin users can easily **[Create an Event](https://wp-eventmanager.com/knowledge-base/adding-your-first-event/)**, manage **[Event listing](https://wp-eventmanager.com/knowledge-base/the-event-listings/
-)**, add an events **[Calendar](https://wp-eventmanager.com/product/wp-event-manager-calendar/)**, Automate marketing, conduct automated **[Recurring events](https://wp-eventmanager.com/product/wp-event-manager-recurring-events/)**,  manage event **[Registrations](https://wp-eventmanager.com/product/wp-event-manager-registrations/)**, and **[Sell Tickets](https://wp-eventmanager.com/product/wp-event-manager-sell-tickets/)** with **[QR code](https://wp-eventmanager.com/knowledge-base/organizer-app/)**,through their WordPress website. The plugin also offers an **[Organizer App](https://wp-eventmanager.com/product/organizer-app/)** that allows organizers to track all their events along with check-ins and check-outs with their mobiles. 
+)**, add an events **[Calendar](https://wp-eventmanager.com/product/wp-event-manager-calendar/)**, Automate marketing, conduct automated **[Recurring events](https://wp-eventmanager.com/product/wp-event-manager-recurring-events/)**,  manage event **[Registrations](https://wp-eventmanager.com/product/wp-event-manager-registrations/)**, and **[Sell Tickets](https://wp-eventmanager.com/product/wp-event-manager-sell-tickets/)** with **[QR code](https://wp-eventmanager.com/knowledge-base/dj-app/)**,through their WordPress website. The plugin also offers an **[dj App](https://wp-eventmanager.com/product/dj-app/)** that allows djs to track all their events along with check-ins and check-outs with their mobiles. 
 
 Now managing events online has become easy and convenient for everyone including event planners with  WP Event Manager(WPEM) as it does not require any coding expertise. The All-In-One events plugin is everything that you need to manage your event listings on your events website.
 
@@ -27,12 +27,12 @@ Besides excellent event plugins, the brand also offers a set of **WordPress even
 
 WP Event Manager is an easy-to-use, beginner-friendly events plugin that offers a coding-free solution to the users making it a suitable choice for people from different professional backgrounds including: 
 
- 📣 Event organizers 
+ 📣 Event djs 
  💼 Business owners 
  👨🏻‍🏫 Teachers 
  💪 Fitness trainers 
  🎸 Music trainers 
- ▶️ Virtual event organizers
+ ▶️ Virtual event djs
  🩺 Doctors and more. 🙌
 
 **Meet the most user-friendly event management plugin for WordPress: WP Event Manager**
@@ -49,7 +49,7 @@ WP Event Manager offers more than **[37 Premium Event Plugins](https://wp-eventm
 
   **🤝 [WooCommerce compatibility](https://wp-eventmanager.com/knowledge-base/sell-tickets/)**: Get WooCommerce compatibility to sell your event tickets with ease and security. 
 
-  **🎪 [Frontend event submission form](https://wp-eventmanager.com/knowledge-base/the-event-submission-form/)**: Allow event organizers to post events on your website by filling up the frontend event submission form.
+  **🎪 [Frontend event submission form](https://wp-eventmanager.com/knowledge-base/the-event-submission-form/)**: Allow event djs to post events on your website by filling up the frontend event submission form.
 
 == ✨ Discover the key features of WP Event Manager ==
 
@@ -71,7 +71,7 @@ WP Event Manager offers more than **[37 Premium Event Plugins](https://wp-eventm
  
   **📲 Fully responsive**: it is fully responsive and it fits well with every screen size. 
 
-  **🎪 Frontend event submission form**: GIve event organizers the ultimate freedom of submitting their events on your website. 
+  **🎪 Frontend event submission form**: GIve event djs the ultimate freedom of submitting their events on your website. 
  
   **🔠 Multi-lingual support**: Translate the event plugin into your preferred language to offer a better user experience.
  
@@ -93,11 +93,11 @@ We offers 37+ premium add-ons for different event management needs. Explore some
 
   **🔁 [Recurring Events](https://wp-eventmanager.com/knowledge-base/recurring-events/)**: Simplifies your recurring event management process by updating your recurring event dates automatically on your events calendar.  
 
-  **💳 [Stripe Split Payment](https://wp-eventmanager.com/knowledge-base/stripe-split-payment/)**: Distributes the events ticket revenue among the website owner and event organizer making it easy for admins to monetize their events website.
+  **💳 [Stripe Split Payment](https://wp-eventmanager.com/knowledge-base/stripe-split-payment/)**: Distributes the events ticket relocal among the website owner and event dj making it easy for admins to monetize their events website.
 
-  **🤑 [WooCommerce Paid Listing](https://wp-eventmanager.com/knowledge-base/woocommerce-paid-listings/)**: Offers a great way to monetize your events website by earning commissions from event organizers for posting their events on your events website. 
+  **🤑 [WooCommerce Paid Listing](https://wp-eventmanager.com/knowledge-base/woocommerce-paid-listings/)**: Offers a great way to monetize your events website by earning commissions from event djs for posting their events on your events website. 
 
-  **💻 [Expo Networking](https://wp-eventmanager.com/knowledge-base/expo-and-networking-for-organizers/)**: Creates engaging virtual exhibitions or events with interactive booths, sessions, and more. 
+  **💻 [Expo Networking](https://wp-eventmanager.com/knowledge-base/expo-and-networking-for-djs/)**: Creates engaging virtual exhibitions or events with interactive booths, sessions, and more. 
 
   **🎦 [Zoom](https://wp-eventmanager.com/knowledge-base/zoom/)**: lets you create uninterrupted virtual meets with the power of Zoom where meeting links can be shared directly from the events website.
 
@@ -161,23 +161,23 @@ Sell event tickets, manage registrations and take control of your entire ticketi
 
  **📇 Customizable registration**: Create customized registration forms for event ticket buyers to fill in at the time of purchasing tickets. 
 
- **🔍 QR scan code**: Add QR scan code on tickets to simplify the check-in process for both event attendees and event organizers. 
+ **🔍 QR scan code**: Add QR scan code on tickets to simplify the check-in process for both event attendees and event djs. 
 
- **👥 Create a multi-vendor marketplace**: Transform your ordinary events website into a multi-vendor marketplace where you can earn commission from other event organizers for selling their event tickets on your website
+ **👥 Create a multi-vendor marketplace**: Transform your ordinary events website into a multi-vendor marketplace where you can earn commission from other event djs for selling their event tickets on your website
 
-== 📱 Organizer App: A Game-Changer for All Event Organizers ==
+== 📱 dj App: A Game-Changer for All Event djs ==
 
-The Organizer app from WP Event Manager brings the best event management solution for event organizers at their fingertips.
+The dj app from WP Event Manager brings the best event management solution for event djs at their fingertips.
 
- **✅ Track attendee check-in**: Offering event organizers the comfort of managing and tracking attendee check-ins through their mobiles. 
+ **✅ Track attendee check-in**: Offering event djs the comfort of managing and tracking attendee check-ins through their mobiles. 
 
- **👨‍👩‍👦‍👦 Manage attendee data**: Organizers can manage event attendee data and experience real-time data syncing on all devices. 
+ **👨‍👩‍👦‍👦 Manage attendee data**: djs can manage event attendee data and experience real-time data syncing on all devices. 
 
  **🛜 Work offline**: When offline, it saves all the important event data and syncs it immediately after the connection is restored. 
 
- **📅 Handle event lists**: Organizers get a detailed dashboard for all their past and upcoming events. 
+ **📅 Handle event lists**: djs get a detailed dashboard for all their past and upcoming events. 
 
- **▶️ YouTube video of [Organizer app](https://www.youtube.com/watch?v=lfX1uz-CvHc&t=1s)**
+ **▶️ YouTube video of [dj app](https://www.youtube.com/watch?v=lfX1uz-CvHc&t=1s)**
 
 == 📆 Manage Event Schedules effortlessly with the Event Calendar ==
 
@@ -296,9 +296,9 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 3. Event Dashboard - Frontend
 
-4. Organizer Dashboard - Frontend
+4. dj Dashboard - Frontend
 
-5. Venue Dashboard - Frontend
+5. local Dashboard - Frontend
 
 6. Event Details - Frontend
 
@@ -326,9 +326,9 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 18. Event Types - Admin Panel
 
-19. Organizers - Admin Panel
+19. djs - Admin Panel
 
-20. Venues - Admin Panel
+20. locals - Admin Panel
 
 21. Field Editor - Admin Panel
 
@@ -346,7 +346,7 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 = [3.2.2] 27-08-2025 =
 
 Fixed : Past Event shortcode pagination is not working
-Fixed : Venue and Organize not shows at admin side
+Fixed : local and Organize not shows at admin side
 Fixed : License tab not shows all addons into list
 Fixed : Bug Fixes and Code Improvements
 
@@ -356,7 +356,7 @@ Fixed : When add new plugin it shows error
 Fixed : Vulnerability issue
 Fixed : Rename the field type of Image Gallery to Media Library Image for the field editor
 Fixed : Pagination issue for upcoming event shortcode
-Fixed : Only organizer and admin can create and edit organizer and venue
+Fixed : Only dj and admin can create and edit dj and local
 
 = [3.2.0] 13-08-2025 =
 
@@ -366,7 +366,7 @@ Fixed: Rss Feed there is not field of start and end date
 Fixed: Various Code improvements and Bug Fixes
 Fixed: Registration field shows extra space in text area
 Fixed: Event type and category is selected as term multiselect then on edit event the selected value is not showing at frontside
-Fixed: Venue list shows order as alphabetically
+Fixed: local list shows order as alphabetically
 Fixed: Google autocomplete is not working in new filter
 Fixed: Event listing page the event tag is not showing
 Fixed: Shortcode section based on addon filter is not working
@@ -403,9 +403,9 @@ Added: Events can now be duplicated on the admin side.
 
 = [3.1.49] 09-05-2025 =
 
-Fixed : The logo of the deleted organizer and venue is no longer displayed on the details page.
+Fixed : The logo of the deleted dj and local is no longer displayed on the details page.
 Fixed : No vulnerability issue is detected while creating a post an event using the front side.
-Fixed : No warning message is found while deleting an organizer or venue from the frontend side.
+Fixed : No warning message is found while deleting an dj or local from the frontend side.
 Fixed : When the Upload Custom Thumbnail option is disabled no validation message is displayed on the post-event page after submitting an event.
 Fixed : HTML code is no longer displayed on the event listing page in the dashboard.
 Fixed : The selected event type parameter is working properly.
@@ -428,9 +428,9 @@ Fixed : While adding a ticket, the event details page shows multiple labels.
 Fixed : When you embed a YouTube video it will be displayed on the event page.
 Fixed : Vulnerable issue is fixed.
 Fixed : The load more button is now working when two shortcodes are added on the same page.
-Fixed : The organizer can now change the event page image, as well as the preview image.
+Fixed : The dj can now change the event page image, as well as the preview image.
 Fixed : The terms checklist and multi-select options in the Field editor's event type and category are now available.
-Fixed : Default content tab organizer list are available.
+Fixed : Default content tab dj list are available.
 Fixed : Even details page additional section thumbnail image issue is fixed.
 Fixed : Translation issue is fixed.
 
@@ -449,7 +449,7 @@ Fixed : Expiry date field move to Date and time section.
 Fixed : A line is shown below filter is fixed.
 Added : Filter option settings is added in the event listing tab.
 Added : Related events can now be hidden as per users' wish.
-Added : Now specific organizer data can be hidden from the guest users.
+Added : Now specific dj data can be hidden from the guest users.
 Added : The UI of the installation setup wizard is changed.
 Added : Admin UI for Add Event is changed.
 Added : The UI of the Event listing filter at front-side is changed.
@@ -481,13 +481,13 @@ Fixed: Load more events button is now available.
 Fixed: Start and end dates are now displayed on the event listing page.
 Fixed: Code issue on the event page is resolved.
 Fixed: Issue related to the backend add event option is now resolved.
-Fixed: More info button in the organizer section of the event detail page is now available.
+Fixed: More info button in the dj section of the event detail page is now available.
 Fixed: Parse syntax error is now resolved.
 Fixed: Load more option is now available in the upcoming events of Elementor.
 Fixed: Placeholder is available on the page.
-Fixed: New organizer and venue can now be created.
-Fixed: Add organizer and venues buttons are now available in post an event page.
-Fixed: Edit organizer and venue page are now working properly.
+Fixed: New dj and local can now be created.
+Fixed: Add dj and locals buttons are now available in post an event page.
+Fixed: Edit dj and local page are now working properly.
 Fixed: Event Listing Page events are loaded properly in enable debug log file.
 Fixed: The deprecated error message is now removed.
 Fixed: Events are not loaded in the event listing page.
@@ -506,7 +506,7 @@ Fixed: Now event start time with start date can be saved.
 Fixed: Setting tabs are now displayed properly.
 Fixed: Events are now disabled after the closure of registrations.
 Fixed: Upload event thumbnail is added to add and edit event page.
-Added: Organizers/admins can now post news regarding the event .
+Added: djs/admins can now post news regarding the event .
 Added : The default content tab is available in settings.
 Added : Related events are now available on the event details page.
 Added : A quick feedback feature is now available after deactivating the addon.
@@ -521,21 +521,21 @@ Added : Questions Field is added to the Zoom addon.
 = [3.1.44] 12-07-2024 =
 
 Fixed : The Error Message Displayed On The Sign-Out Page Is Removed
-Fixed : Now Multiple Logos Can Be Saved In The Venue And Organizer Section
+Fixed : Now Multiple Logos Can Be Saved In The local And dj Section
 Fixed : Security Issue Of WP Events Manager Is Resolved
 
 = [3.1.43] 22-02-2024 =
 
-Fixed : Url Type Value Is Now Shown On The Organizer Details Page
-Fixed : Orgnaizer And Venue Section Image Is Missing
-Fixed : Venue Shortcode And Details Are Added To The Shortcode Menu
+Fixed : Url Type Value Is Now Shown On The dj Details Page
+Fixed : Orgnaizer And local Section Image Is Missing
+Fixed : local Shortcode And Details Are Added To The Shortcode Menu
 Fixed : Youtube Videos On Gutenberg Blocks Are Now Working Properly
 Fixed : The Security Issue Faced While Updating Events Has Been Resolved
 
 = [3.1.42] 07-02-2024 =
 
-Fixed : The Organizer Logo Can Now Be Saved In The Backend
-Fixed : In Organizer, Id Field Is Available In The Backend
+Fixed : The dj Logo Can Now Be Saved In The Backend
+Fixed : In dj, Id Field Is Available In The Backend
 Fixed : The Issue Of Image Removal After Deleting An Event Is Resolved
 Fixed : Visual Composer Added Events Listing Shortcodes
 Fixed : Security Issue Fixed And Improved
@@ -552,7 +552,7 @@ Fixed: Security Issue With Version 3.1.40 Is Resolved Now
 
 Fixed: The Event summary Shortcode Is Now Working Properly
 Fixed: The Order By Name Attribute Is Now Working Properly
-Fixed: The Problem Of Adding An Organizer Is Now Resolved
+Fixed: The Problem Of Adding An dj Is Now Resolved
 = [3.1.39] 24-10-2023 =
 
 Fixed : The Availability Issue Of The Field Editor Option Is Resolved
@@ -599,7 +599,7 @@ Fixed - Event Ticket Numbering Issue While Creating Added Tickets For An Event
 
 Fixed - Events Language Translation Issues
 Fixed - Featured Event Search Issue On The Event Listing Page
-Fixed - Single Event Venue And Organizer Issue With Elementor
+Fixed - Single Event local And dj Issue With Elementor
 Fixed - Priority Values Issue In The Event Field Editor On The Admin Side
 Fixed - Issue With Event Listing Shortcode Attributes
 Removed - Removed Unwanted Files From The Event Manager
@@ -610,7 +610,7 @@ Fixed - Setting The Issue Of Expired Events On The Event Listing Page
 
 Fixed - Event Manager Security Issues
 Fixed - Event Details Page End Date Issue
-Fixed - Event Organizer Ditelse Visibility Issue
+Fixed - Event dj Ditelse Visibility Issue
 
 = [3.1.31] 22-08-2022 =
 
@@ -639,15 +639,15 @@ Fixed - Event Date Issue At The Backend
 
 Fixed - Pagination Attribute Issue In The Upcoming Events Listing 
 Fixed - Compatibility Issue Between WP Event Manager And Elementor 
-Fixed - Event Organizer Field Issue In The Frontend And Backend
-Fixed - Duplicate Event Venue And Event Organizer Functionality Issue 
+Fixed - Event dj Field Issue In The Frontend And Backend
+Fixed - Duplicate Event local And Event dj Functionality Issue 
 
 = [3.1.27] 02-05-2022 =
 
 Fixed - Pagination Issue For Upcoming Events On Event Calendar 
 Fixed - Am And Pm Translation Issue In Events Calendar
-Fixed - Issue In Changing Author For Event Venue And Organizer 
-Fixed - Paragraph Issue In Event Organizer Section 
+Fixed - Issue In Changing Author For Event local And dj 
+Fixed - Paragraph Issue In Event dj Section 
 
 = [3.1.26] 21-04-2022 =
 
@@ -659,7 +659,7 @@ Fixed - Issue In The Featured Event Background Color
 
 = [3.1.25] 04-03-2022 =
 
-Fixed - Event Organizers Listing Related Issues
+Fixed - Event djs Listing Related Issues
 Fixed - The Code Display At The Backend Setting
 Fixed - The Display Of Event Type 
 Fixed - Shortcode Related Issue With Elementor 
@@ -668,8 +668,8 @@ Fixed - Shortcode Related Issue With Elementor
 
 Fixed - Event Image Duplicate Issue
 Fixed - Single Event Detail Page
-Fixed - The Submit Organizer Form
-Fixed - Issue In Adding Event Organizer On Post An Event Page
+Fixed - The Submit dj Form
+Fixed - Issue In Adding Event dj On Post An Event Page
 Fixed - The Event Category Permalink
 
  = [3.1.23] 10-12-2021 =
@@ -689,7 +689,7 @@ Fixed - Event Manager Expo And Virtual Compatibility
 
 = [3.1.21] 27-05-2021 =
 
-Fixed - The Notice Text On Event Organizer Submit Form Page For Events
+Fixed - The Notice Text On Event dj Submit Form Page For Events
 Fixed - Bool(True) On The Event Submit Page
 
 = [3.1.20] 06-04-2021 =
@@ -710,7 +710,7 @@ Fixed - Theme Issue In The Event Dashboard Menu
 
 Fixed - Content Related Issue On The Event Dashboard
 Fixed - Text Related Issue In The Event Registration Form
-Fixed - Pagination Issue On The Event Organizer Page
+Fixed - Pagination Issue On The Event dj Page
 Fixed - Punctuation Related Issue In The Event Calendar
 
 = [3.1.17] 22-12-2020 =
@@ -723,15 +723,15 @@ Fixed - The Event Ticket Price Option
 = [3.1.16] 02-12-2020 =
 
 Fixed - Compatibility Issue Between WP Event Manager And WPml
-Fixed - Adding Event Venue Page In Page Setup
+Fixed - Adding Event local Page In Page Setup
 Fixed - The Event Listing Page Banner
-Fixed - The Event Organizer And Venue Pop Up Option
+Fixed - The Event dj And local Pop Up Option
 Fixed - Design Issue For Date Selection In The Event Calendar
 Fixed - Event Shortcode Related Issue In Event Theme Layout
 Added - Added Event Listings Shortcode Attributes To Elementor Widget
 Fixed - Deleting Events From Events Dashboard
 Added - Event Dashboard Shortcode Issue With Elementor
-Fixed - Event Organizer And Venue Related Issue
+Fixed - Event dj And local Related Issue
 
 = [3.1.15] 02-12-2020 =
 
@@ -742,11 +742,11 @@ Added - Auto Removes Banners When Event Listing Expires
 = [3.1.14] 02-12-2020 =
 
 Added - Option To Notify People When Registration Date Is Passed
-Fixed - The Event Organizer Venue On Field Editor
+Fixed - The Event dj local On Field Editor
 Fixed - Linkedin Share Button Issue On Single Event Page
 Fixed - Event Types And Event Category Related Issues
 Fixed - Event Listing Shortcode Related Issue
-Fixed - Event Organizer Details Section  In The Field Editor
+Fixed - Event dj Details Section  In The Field Editor
 Fixed - The Event Category And Type Settings
 
 = [3.1.12] 11-06-2020 =
@@ -897,7 +897,7 @@ Tweak - Event Listing Compatibility With Event Calendar
 Fixed - The Ticket Start Date In The Donation Ticket Section
 Fixed - Adding Tickets From The Woocommerce Page
 Fixed - The Orderby Attribute For Past Event Listings
-Fixed - Editing Event Venue Field
+Fixed - Editing Event local Field
 Fixed - The Event Registration Form Fields
 Fixed - Uploading An Ics File On Google Calendar
 Fixed - Importing Events On Google Calendar

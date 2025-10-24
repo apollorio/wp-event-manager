@@ -62,8 +62,8 @@ msgid ""
 "have a new release focusing on a handle of fixes and updates & here is a "
 "summary of what has been improved...\n"
 "\n"
-"Manage your Organizers directly at the frontend and backend.\n"
-"Migration of Old Organizer data would be transferred to the list "
+"Manage your djs directly at the frontend and backend.\n"
+"Migration of Old dj data would be transferred to the list "
 "Automatically.\n"
 "A prior Backup does no harm before updating the plugin!"
 msgstr ""
@@ -138,8 +138,8 @@ msgstr "M j, Y @ G:i"
 
 #: admin/wp-event-manager-cpt.php:397
 #: external/elementor-widgets/elementor-event-listing.php:139
-#: external/elementor-widgets/elementor-event-organizers.php:114
-#: external/elementor-widgets/elementor-event-venues.php:114
+#: external/elementor-widgets/elementor-event-djs.php:114
+#: external/elementor-widgets/elementor-event-locals.php:114
 #: external/elementor-widgets/elementor-past-event-listing.php:136
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:136
 #: shortcodes/wp-event-manager-shortcodes.php:293
@@ -177,11 +177,11 @@ msgstr "位置"
 #: admin/wp-event-manager-cpt.php:405 core/wp-event-manager-install.php:139
 #: core/wp-event-manager-post-types.php:431
 #: forms/wp-event-manager-form-submit-event.php:320
-#: templates/organizer/content-single-event-organizers.php:19
-#: templates/organizer/content-single-event-organizers.php:153
-#: templates/organizer/content-single-event_listing-organizer.php:23
-#: templates/organizer/content-single-event_listing-organizer.php:128
-msgid "Organizer"
+#: templates/dj/content-single-event-djs.php:19
+#: templates/dj/content-single-event-djs.php:153
+#: templates/dj/content-single-event_listing-dj.php:23
+#: templates/dj/content-single-event_listing-dj.php:128
+msgid "dj"
 msgstr "组织者"
 
 #: admin/wp-event-manager-cpt.php:407
@@ -245,14 +245,14 @@ msgstr "查看"
 
 #: admin/wp-event-manager-cpt.php:640 core/wp-event-manager-post-types.php:333
 #: templates/event-dashboard.php:231 templates/event-dashboard.php:264
-#: templates/organizer/organizer-dashboard.php:122
-#: templates/venue/venue-dashboard.php:121
+#: templates/dj/dj-dashboard.php:122
+#: templates/local/local-dashboard.php:121
 msgid "Edit"
 msgstr "编辑"
 
 #: admin/wp-event-manager-cpt.php:652 templates/event-dashboard.php:272
-#: templates/organizer/organizer-dashboard.php:132
-#: templates/venue/venue-dashboard.php:131 wp-event-manager.php:364
+#: templates/dj/dj-dashboard.php:132
+#: templates/local/local-dashboard.php:131 wp-event-manager.php:364
 #: wp-event-manager.php:376 wp-event-manager.php:388
 msgid "Delete"
 msgstr "删除"
@@ -511,8 +511,8 @@ msgstr "“添加子项”字段"
 #: templates/content-single-event_listing.php:338
 #: templates/content-single-event_listing.php:365
 #: templates/content-single-event_listing.php:377
-#: templates/organizer/content-single-event-organizers.php:173
-#: templates/organizer/content-single-event_listing-organizer.php:148
+#: templates/dj/content-single-event-djs.php:173
+#: templates/dj/content-single-event_listing-dj.php:148
 #: wp-event-manager-template.php:2786
 #, php-format
 msgid "%s"
@@ -554,22 +554,22 @@ msgstr "常规"
 
 #: admin/wp-event-manager-settings.php:62
 
-msgid "Enable Organizer"
+msgid "Enable dj"
 msgstr "启用管理器"
 
 #: admin/wp-event-manager-settings.php:63
 msgid ""
-"Disable this to remove the functionality of Organizers on Your Event Website."
+"Disable this to remove the functionality of djs on Your Event Website."
 msgstr "禁用此功能可删除活动网站上组织者的功能。"
 
 #: admin/wp-event-manager-settings.php:72
 
-msgid "Enable Venue"
+msgid "Enable local"
 msgstr "启用场地"
 
 #: admin/wp-event-manager-settings.php:73
 msgid ""
-"Disable this to remove the functionality of Venue on your Event Website."
+"Disable this to remove the functionality of local on your Event Website."
 msgstr "禁用此选项可在活动网站上删除场地的功能。"
 
 #: admin/wp-event-manager-settings.php:82
@@ -1003,44 +1003,44 @@ msgid "Enter the Login page URL."
 msgstr "输入登录页面网址。"
 
 #: admin/wp-event-manager-settings.php:572
-msgid "Submit Organizer Form Page"
+msgid "Submit dj Form Page"
 msgstr "提交组织者表单页面"
 
 #: admin/wp-event-manager-settings.php:574
 msgid ""
-"Select the page where you have placed the [submit_organizer_form] shortcode. "
+"Select the page where you have placed the [submit_dj_form] shortcode. "
 "This lets the plugin know where the form is located."
 msgstr ""
 "选择已放置[submit_event_form]简码的页面。该插件将会检测到表单所在的位置。"
 
 #: admin/wp-event-manager-settings.php:584
-msgid "Organizer Dashboard Page"
+msgid "dj Dashboard Page"
 msgstr "活动仪表盘页面"
 
 #: admin/wp-event-manager-settings.php:586
 msgid ""
-"Select the page where you have placed the [organizer_dashboard] shortcode. "
+"Select the page where you have placed the [dj_dashboard] shortcode. "
 "This lets the plugin know where the dashboard is located."
 msgstr "选择您已放置[event_dashboard]简码的页面。 该插件将会检测到仪表盘页面。"
 
 #: admin/wp-event-manager-settings.php:597
-msgid "Submit Venue Form Page"
+msgid "Submit local Form Page"
 msgstr "提交场地表单页面"
 
 #: admin/wp-event-manager-settings.php:599
 msgid ""
-"Select the page where you have placed the [submit_venue_form] shortcode. "
+"Select the page where you have placed the [submit_local_form] shortcode. "
 "This lets the plugin know where the form is located."
 msgstr ""
 "选择已放置[submit_event_form]简码的页面。该插件将会检测到表单所在的位置。"
 
 #: admin/wp-event-manager-settings.php:609
-msgid "Venue Dashboard Page"
+msgid "local Dashboard Page"
 msgstr "场地仪表盘页面"
 
 #: admin/wp-event-manager-settings.php:611
 msgid ""
-"Select the page where you have placed the [venue_dashboard] shortcode. This "
+"Select the page where you have placed the [local_dashboard] shortcode. This "
 "lets the plugin know where the dashboard is located."
 msgstr "选择您已放置[event_dashboard]简码的页面。 该插件将会检测到仪表盘页面。"
 
@@ -1226,7 +1226,7 @@ msgstr "感谢您安装WP事件管理器！"
 
 msgid ""
 "The Setup wizard helps you create various pages for event submission, event "
-"listings, handing events along with organizers and venue pages."
+"listings, handing events along with djs and local pages."
 msgstr ""
 "设置向导可帮助您创建用于活动提交、活动列表、处理活动以及组织者和场地页面的各"
 "种页面。"
@@ -1327,54 +1327,54 @@ msgstr "此页面允许用户浏览、搜索和过滤网站前端的事件列表
 
 #: admin/wp-event-manager-setup.php:288
 msgctxt "Default page title (wizard)"
-msgid "Submit Organizer Form"
+msgid "Submit dj Form"
 msgstr "提交组织者表单"
 
 #: admin/wp-event-manager-setup.php:290
 
-msgid "This page allows users to Submit the organizers form the frontend."
+msgid "This page allows users to Submit the djs form the frontend."
 msgstr "此页面允许用户从前端提交组织者。"
 
 #: admin/wp-event-manager-setup.php:291
 
 msgid ""
-"In case if you do not want to allow your users to submit organizers from the "
+"In case if you do not want to allow your users to submit djs from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
 "如果您不想允许用户从前端提交组织者，您可以取消选中此选项并跳过创建此页面。"
 
 #: admin/wp-event-manager-setup.php:297
 msgctxt "Default page title (wizard)"
-msgid "Organizer Dashboard"
+msgid "dj Dashboard"
 msgstr "主办者详情"
 
 #: admin/wp-event-manager-setup.php:299
 msgid ""
 "This page allows people to manage (edit, delete and duplicate) the "
-"organizers form the frontend."
+"djs form the frontend."
 msgstr "该页面允许人们从前端管理（编辑，删除和复制）组织者。"
 
 #: admin/wp-event-manager-setup.php:300
 msgid ""
-"In case if you do not want to allow your users to manage organizers from the "
+"In case if you do not want to allow your users to manage djs from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
 "如果您不想让您的用户从前端管理组织者，则可以取消选中它并跳过创建此页面。"
 
 #: admin/wp-event-manager-setup.php:306
 msgctxt "Default page title (wizard)"
-msgid "Event Organizers"
+msgid "Event djs"
 msgstr "活动组织者"
 
 #: admin/wp-event-manager-setup.php:308
 
-msgid "This page allows peoples to show organizers from the front-end."
+msgid "This page allows peoples to show djs from the front-end."
 msgstr "此页面允许人们从前端显示组织者。"
 
 #: admin/wp-event-manager-setup.php:309
 
 msgid ""
-"In case if you do not want to allow your users to show organizers from the "
+"In case if you do not want to allow your users to show djs from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
 "如果您不想允许用户从前端显示组织者，您可以取消选中此选项并跳过创建此页面。"
@@ -1382,18 +1382,18 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:315
 
 msgctxt "Default page title (wizard)"
-msgid "Submit Venue Form"
+msgid "Submit local Form"
 msgstr "提交场地表格"
 
 #: admin/wp-event-manager-setup.php:317
 
-msgid "This page allows people to Submit the venues from the frontend."
+msgid "This page allows people to Submit the locals from the frontend."
 msgstr "此页面允许人们从前端提交场地。"
 
 #: admin/wp-event-manager-setup.php:318
 
 msgid ""
-"In case if you do not want to allow your users to submit venues from the "
+"In case if you do not want to allow your users to submit locals from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
 "如果您不想允许用户从前端提交场地，您可以取消选中此选项并跳过创建此页面。"
@@ -1401,37 +1401,37 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:324
 
 msgctxt "Default page title (wizard)"
-msgid "Venue Dashboard"
+msgid "local Dashboard"
 msgstr "场地仪表板"
 
 #: admin/wp-event-manager-setup.php:326
 msgid ""
-"This page allows people to manage (edit, delete and duplicate) the venues "
+"This page allows people to manage (edit, delete and duplicate) the locals "
 "form the frontend."
 msgstr "该页面允许人们从前端管理（编辑，删除和复制）场地。"
 
 #: admin/wp-event-manager-setup.php:327
 
 msgid ""
-"In case if you do not want to allow your users to manage venues from the "
+"In case if you do not want to allow your users to manage locals from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
 "如果您不想允许用户从前端管理场地，您可以取消选中此选项并跳过创建此页面。"
 
 #: admin/wp-event-manager-setup.php:333
 msgctxt "Default page title (wizard)"
-msgid "Event Venues"
+msgid "Event locals"
 msgstr "活动当地"
 
 #: admin/wp-event-manager-setup.php:335
 
-msgid "This page allows peoples to show venues from the front-end."
+msgid "This page allows peoples to show locals from the front-end."
 msgstr "此页面允许人们从前端显示场地。"
 
 #: admin/wp-event-manager-setup.php:336
 
 msgid ""
-"In case if you do not want to allow your users to show venues from the "
+"In case if you do not want to allow your users to show locals from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
 "如果您不想允许用户从前端显示场地，您可以取消选中此选项并跳过创建此页面。"
@@ -1564,12 +1564,12 @@ msgstr "已成功创建"
 
 #: core/wp-event-manager-ajax.php:499
 
-msgid "Organizer Name is a required field."
+msgid "dj Name is a required field."
 msgstr "组织者名称是必填字段。"
 
 #: core/wp-event-manager-ajax.php:568
 
-msgid "Venue Name is a required field."
+msgid "local Name is a required field."
 msgstr "场地名称是必填字段。"
 
 #: core/wp-event-manager-filters.php:23 external/elementor.php:131
@@ -1752,58 +1752,58 @@ msgid_plural "Preview <span class=\"count\">(%s)</span>"
 msgstr[0] "预览<span class=\"count\">（%s）</span>"
 
 #: core/wp-event-manager-post-types.php:432 templates/event-dashboard.php:22
-#: templates/organizer/event-organizers.php:13
-msgid "Organizers"
+#: templates/dj/event-djs.php:13
+msgid "djs"
 msgstr "组织者"
 
 #: core/wp-event-manager-post-types.php:444
 
-msgid "Organizer Logo"
+msgid "dj Logo"
 msgstr "主办方标志"
 
 #: core/wp-event-manager-post-types.php:446
 
-msgid "Set organizer logo"
+msgid "Set dj logo"
 msgstr "设置组织者徽标"
 
 #: core/wp-event-manager-post-types.php:448
 
-msgid "Remove organizer logo"
+msgid "Remove dj logo"
 msgstr "删除组织者徽标"
 
 #: core/wp-event-manager-post-types.php:450
 
-msgid "Use as organizer logo"
+msgid "Use as dj logo"
 msgstr "用作组织者徽标"
 
 #: core/wp-event-manager-post-types.php:472
-#: templates/venue/content-single-event-venues.php:14
-#: templates/venue/content-single-event-venues.php:116
-#: templates/venue/content-single-event_listing-venue.php:21
-#: templates/venue/content-single-event_listing-venue.php:136
-msgid "Venue"
+#: templates/local/content-single-event-locals.php:14
+#: templates/local/content-single-event-locals.php:116
+#: templates/local/content-single-event_listing-local.php:21
+#: templates/local/content-single-event_listing-local.php:136
+msgid "local"
 msgstr "地点"
 
 #: core/wp-event-manager-post-types.php:473
 #: forms/wp-event-manager-form-submit-event.php:332
-#: templates/event-dashboard.php:29 templates/venue/event-venues.php:13
-msgid "Venues"
+#: templates/event-dashboard.php:29 templates/local/event-locals.php:13
+msgid "locals"
 msgstr "场地"
 
 #: core/wp-event-manager-post-types.php:485
-msgid "Venue Logo"
+msgid "local Logo"
 msgstr "场地Logo"
 
 #: core/wp-event-manager-post-types.php:487
-msgid "Set venue logo"
+msgid "Set local logo"
 msgstr "设置场地Logo"
 
 #: core/wp-event-manager-post-types.php:489
-msgid "Remove venue logo"
+msgid "Remove local logo"
 msgstr "移除场地Logo"
 
 #: core/wp-event-manager-post-types.php:491
-msgid "Use as venue logo"
+msgid "Use as local logo"
 msgstr "用作场地Logo"
 
 #. translators: %s: product count
@@ -1844,71 +1844,71 @@ msgstr[0] "%s个活动已从回收站恢复。"
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1458
 #, php-format
-msgid "%s organizer updated."
-msgid_plural "%s organizers updated."
+msgid "%s dj updated."
+msgid_plural "%s djs updated."
 msgstr[0] "%s 组织者已更新。"
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1460
 #, php-format
-msgid "%s organizer not updated, somebody is editing it."
-msgid_plural "%s organizers not updated, somebody is editing them."
+msgid "%s dj not updated, somebody is editing it."
+msgid_plural "%s djs not updated, somebody is editing them."
 msgstr[0] "%s组织者尚未更新，有人正在对其进行编辑。"
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1462
 #, php-format
-msgid "%s organizer permanently deleted."
-msgid_plural "%s organizers permanently deleted."
+msgid "%s dj permanently deleted."
+msgid_plural "%s djs permanently deleted."
 msgstr[0] "%s 组织者已被删除。"
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1464
 #, php-format
-msgid "%s organizer moved to the Trash."
-msgid_plural "%s organizers moved to the Trash."
+msgid "%s dj moved to the Trash."
+msgid_plural "%s djs moved to the Trash."
 msgstr[0] "%s组织者已移至回收站.。"
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1466
 #, php-format
-msgid "%s organizer restored from the Trash."
-msgid_plural "%s organizers restored from the Trash."
+msgid "%s dj restored from the Trash."
+msgid_plural "%s djs restored from the Trash."
 msgstr[0] "%s组织者已从回收站恢复。"
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1474
 #, php-format
-msgid "%s venue updated."
-msgid_plural "%s venues updated."
+msgid "%s local updated."
+msgid_plural "%s locals updated."
 msgstr[0] "%s 场地已更新。"
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1476
 #, php-format
-msgid "%s venue not updated, somebody is editing it."
-msgid_plural "%s venues not updated, somebody is editing them."
+msgid "%s local not updated, somebody is editing it."
+msgid_plural "%s locals not updated, somebody is editing them."
 msgstr[0] "%s场所未更新，有人正在对其进行编辑。"
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1478
 #, php-format
-msgid "%s venue permanently deleted."
-msgid_plural "%s venues permanently deleted."
+msgid "%s local permanently deleted."
+msgid_plural "%s locals permanently deleted."
 msgstr[0] "%s 场地已被删除。"
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1480
 #, php-format
-msgid "%s venue moved to the Trash."
-msgid_plural "%s venues moved to the Trash."
+msgid "%s local moved to the Trash."
+msgid_plural "%s locals moved to the Trash."
 msgstr[0] "%s个场所已移至回收站。"
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1482
 #, php-format
-msgid "%s venue restored from the Trash."
-msgid_plural "%s venues restored from the Trash."
+msgid "%s local restored from the Trash."
+msgid_plural "%s locals restored from the Trash."
 msgstr[0] "%s个场所已从回收站中恢复。"
 
 #: external/elementor-tags/elementor-single-event-gallery-tag.php:45
@@ -1964,10 +1964,10 @@ msgstr "事项主页面"
 
 #: external/elementor-widgets/elementor-event-dashboard.php:97
 #: external/elementor-widgets/elementor-event-listing.php:110
-#: external/elementor-widgets/elementor-organizer-dashboard.php:97
+#: external/elementor-widgets/elementor-dj-dashboard.php:97
 #: external/elementor-widgets/elementor-past-event-listing.php:110
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:110
-#: external/elementor-widgets/elementor-venue-dashboard.php:97
+#: external/elementor-widgets/elementor-local-dashboard.php:97
 msgid "Post Per Page"
 msgstr "每页文章数"
 
@@ -1988,10 +1988,10 @@ msgstr "显示分页"
 #: external/elementor-widgets/elementor-event-listing.php:185
 #: external/elementor-widgets/elementor-event-listing.php:198
 #: external/elementor-widgets/elementor-event-listing.php:211
-#: external/elementor-widgets/elementor-event-organizers.php:130
-#: external/elementor-widgets/elementor-event-organizers.php:143
-#: external/elementor-widgets/elementor-event-venues.php:130
-#: external/elementor-widgets/elementor-event-venues.php:143
+#: external/elementor-widgets/elementor-event-djs.php:130
+#: external/elementor-widgets/elementor-event-djs.php:143
+#: external/elementor-widgets/elementor-event-locals.php:130
+#: external/elementor-widgets/elementor-event-locals.php:143
 #: external/elementor-widgets/elementor-past-event-listing.php:101
 #: external/elementor-widgets/elementor-single-event-summary.php:155
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:101
@@ -2004,10 +2004,10 @@ msgstr "否"
 #: external/elementor-widgets/elementor-event-listing.php:186
 #: external/elementor-widgets/elementor-event-listing.php:199
 #: external/elementor-widgets/elementor-event-listing.php:212
-#: external/elementor-widgets/elementor-event-organizers.php:131
-#: external/elementor-widgets/elementor-event-organizers.php:144
-#: external/elementor-widgets/elementor-event-venues.php:131
-#: external/elementor-widgets/elementor-event-venues.php:144
+#: external/elementor-widgets/elementor-event-djs.php:131
+#: external/elementor-widgets/elementor-event-djs.php:144
+#: external/elementor-widgets/elementor-event-locals.php:131
+#: external/elementor-widgets/elementor-event-locals.php:144
 #: external/elementor-widgets/elementor-past-event-listing.php:102
 #: external/elementor-widgets/elementor-single-event-summary.php:156
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:102
@@ -2015,8 +2015,8 @@ msgid "True"
 msgstr "是"
 
 #: external/elementor-widgets/elementor-event-listing.php:122
-#: external/elementor-widgets/elementor-event-organizers.php:97
-#: external/elementor-widgets/elementor-event-venues.php:97
+#: external/elementor-widgets/elementor-event-djs.php:97
+#: external/elementor-widgets/elementor-event-locals.php:97
 #: external/elementor-widgets/elementor-past-event-listing.php:119
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:119
 #: widgets/wp-event-manager-widgets.php:563
@@ -2026,8 +2026,8 @@ msgid "Order"
 msgstr "排序"
 
 #: external/elementor-widgets/elementor-event-listing.php:126
-#: external/elementor-widgets/elementor-event-organizers.php:101
-#: external/elementor-widgets/elementor-event-venues.php:101
+#: external/elementor-widgets/elementor-event-djs.php:101
+#: external/elementor-widgets/elementor-event-locals.php:101
 #: external/elementor-widgets/elementor-past-event-listing.php:123
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:123
 #: widgets/wp-event-manager-widgets.php:271
@@ -2041,8 +2041,8 @@ msgid "Ascending (ASC)"
 msgstr "升序 （ASC）"
 
 #: external/elementor-widgets/elementor-event-listing.php:127
-#: external/elementor-widgets/elementor-event-organizers.php:102
-#: external/elementor-widgets/elementor-event-venues.php:102
+#: external/elementor-widgets/elementor-event-djs.php:102
+#: external/elementor-widgets/elementor-event-locals.php:102
 #: external/elementor-widgets/elementor-past-event-listing.php:124
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:124
 #: widgets/wp-event-manager-widgets.php:272
@@ -2054,16 +2054,16 @@ msgid "Descending  (DESC)"
 msgstr "降序 （DESC）"
 
 #: external/elementor-widgets/elementor-event-listing.php:135
-#: external/elementor-widgets/elementor-event-organizers.php:110
-#: external/elementor-widgets/elementor-event-venues.php:110
+#: external/elementor-widgets/elementor-event-djs.php:110
+#: external/elementor-widgets/elementor-event-locals.php:110
 #: external/elementor-widgets/elementor-past-event-listing.php:132
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:132
 msgid "Order By"
 msgstr "排序"
 
 #: external/elementor-widgets/elementor-event-listing.php:140
-#: external/elementor-widgets/elementor-event-organizers.php:115
-#: external/elementor-widgets/elementor-event-venues.php:115
+#: external/elementor-widgets/elementor-event-djs.php:115
+#: external/elementor-widgets/elementor-event-locals.php:115
 #: external/elementor-widgets/elementor-past-event-listing.php:137
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:137
 #: widgets/wp-event-manager-widgets.php:578
@@ -2072,8 +2072,8 @@ msgid "ID"
 msgstr "ID"
 
 #: external/elementor-widgets/elementor-event-listing.php:141
-#: external/elementor-widgets/elementor-event-organizers.php:116
-#: external/elementor-widgets/elementor-event-venues.php:116
+#: external/elementor-widgets/elementor-event-djs.php:116
+#: external/elementor-widgets/elementor-event-locals.php:116
 #: external/elementor-widgets/elementor-past-event-listing.php:138
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:138
 #: widgets/wp-event-manager-widgets.php:579
@@ -2082,8 +2082,8 @@ msgid "Name"
 msgstr "名称"
 
 #: external/elementor-widgets/elementor-event-listing.php:142
-#: external/elementor-widgets/elementor-event-organizers.php:117
-#: external/elementor-widgets/elementor-event-venues.php:117
+#: external/elementor-widgets/elementor-event-djs.php:117
+#: external/elementor-widgets/elementor-event-locals.php:117
 #: external/elementor-widgets/elementor-past-event-listing.php:139
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:139
 #: widgets/wp-event-manager-widgets.php:580
@@ -2108,8 +2108,8 @@ msgid "Event Start Date"
 msgstr "活动开始日期"
 
 #: external/elementor-widgets/elementor-event-listing.php:145
-#: external/elementor-widgets/elementor-event-organizers.php:118
-#: external/elementor-widgets/elementor-event-venues.php:118
+#: external/elementor-widgets/elementor-event-djs.php:118
+#: external/elementor-widgets/elementor-event-locals.php:118
 #: external/elementor-widgets/elementor-past-event-listing.php:142
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:142
 msgid "Rand"
@@ -2187,30 +2187,30 @@ msgstr "活动类型"
 msgid "Enter Event Types by comma separate"
 msgstr "用英文逗号分开输入活动类型"
 
-#: external/elementor-widgets/elementor-event-organizers.php:36
-#: external/elementor-widgets/elementor-event-organizers.php:90
-msgid "Event Organizers"
+#: external/elementor-widgets/elementor-event-djs.php:36
+#: external/elementor-widgets/elementor-event-djs.php:90
+msgid "Event djs"
 msgstr "活动组织者"
 
-#: external/elementor-widgets/elementor-event-organizers.php:126
-#: external/elementor-widgets/elementor-event-venues.php:126
+#: external/elementor-widgets/elementor-event-djs.php:126
+#: external/elementor-widgets/elementor-event-locals.php:126
 msgid "Show Thumb"
 msgstr "缩略图显示"
 
-#: external/elementor-widgets/elementor-event-organizers.php:139
-#: external/elementor-widgets/elementor-event-venues.php:139
+#: external/elementor-widgets/elementor-event-djs.php:139
+#: external/elementor-widgets/elementor-event-locals.php:139
 msgid "Show Count"
 msgstr "显示计数"
 
-#: external/elementor-widgets/elementor-event-venues.php:36
-#: external/elementor-widgets/elementor-event-venues.php:90
-msgid "Event Venues"
+#: external/elementor-widgets/elementor-event-locals.php:36
+#: external/elementor-widgets/elementor-event-locals.php:90
+msgid "Event locals"
 msgstr "活动当地"
 
-#: external/elementor-widgets/elementor-organizer-dashboard.php:36
-#: external/elementor-widgets/elementor-organizer-dashboard.php:90
-#: templates/organizer/organizer-dashboard.php:4
-msgid "Organizer Dashboard"
+#: external/elementor-widgets/elementor-dj-dashboard.php:36
+#: external/elementor-widgets/elementor-dj-dashboard.php:90
+#: templates/dj/dj-dashboard.php:4
+msgid "dj Dashboard"
 msgstr "主办者详情"
 
 #: external/elementor-widgets/elementor-past-event-listing.php:36
@@ -2336,15 +2336,15 @@ msgstr "启用当天交货的订单。"
 msgid "specific day"
 msgstr "特定日期"
 
-#: external/elementor-widgets/elementor-single-event-organizer.php:36
-#: external/elementor-widgets/elementor-single-event-organizer.php:90
-msgid "Single Event Organizer"
+#: external/elementor-widgets/elementor-single-event-dj.php:36
+#: external/elementor-widgets/elementor-single-event-dj.php:90
+msgid "Single Event dj"
 msgstr "单个活动组织者"
 
-#: external/elementor-widgets/elementor-single-event-organizer.php:103
-#: external/elementor-widgets/elementor-single-event-organizer.php:114
-#: external/elementor-widgets/elementor-single-event-venue.php:103
-#: external/elementor-widgets/elementor-single-event-venue.php:114
+#: external/elementor-widgets/elementor-single-event-dj.php:103
+#: external/elementor-widgets/elementor-single-event-dj.php:114
+#: external/elementor-widgets/elementor-single-event-local.php:103
+#: external/elementor-widgets/elementor-single-event-local.php:114
 msgid "Select event"
 msgstr "选择事件"
 
@@ -2387,9 +2387,9 @@ msgstr "居中"
 msgid "Right"
 msgstr "右侧"
 
-#: external/elementor-widgets/elementor-single-event-venue.php:36
-#: external/elementor-widgets/elementor-single-event-venue.php:90
-msgid "Single Event Venue"
+#: external/elementor-widgets/elementor-single-event-local.php:36
+#: external/elementor-widgets/elementor-single-event-local.php:90
+msgid "Single Event local"
 msgstr "单个活动场地"
 
 #: external/elementor-widgets/elementor-single-event.php:36
@@ -2397,32 +2397,32 @@ msgstr "单个活动场地"
 msgid "Single Event"
 msgstr "单个活动"
 
-#: external/elementor-widgets/elementor-single-organizer.php:36
-#: external/elementor-widgets/elementor-single-organizer.php:90
-msgid "Single Organizer"
+#: external/elementor-widgets/elementor-single-dj.php:36
+#: external/elementor-widgets/elementor-single-dj.php:90
+msgid "Single dj"
 msgstr "单个组织者"
 
-#: external/elementor-widgets/elementor-single-organizer.php:112
-msgid "Not Found Organizer"
+#: external/elementor-widgets/elementor-single-dj.php:112
+msgid "Not Found dj"
 msgstr "未找到组织者"
 
-#: external/elementor-widgets/elementor-single-organizer.php:118
-msgid "Select Organizer"
+#: external/elementor-widgets/elementor-single-dj.php:118
+msgid "Select dj"
 msgstr "选择组织者"
 
-#: external/elementor-widgets/elementor-single-venue.php:36
-#: external/elementor-widgets/elementor-single-venue.php:90
-msgid "Single Venue"
+#: external/elementor-widgets/elementor-single-local.php:36
+#: external/elementor-widgets/elementor-single-local.php:90
+msgid "Single local"
 msgstr "单个场地"
 
-#: external/elementor-widgets/elementor-single-venue.php:112
-msgid "Not Found Venue"
+#: external/elementor-widgets/elementor-single-local.php:112
+msgid "Not Found local"
 msgstr "未找到场地"
 
-#: external/elementor-widgets/elementor-single-venue.php:118
+#: external/elementor-widgets/elementor-single-local.php:118
 #: forms/wp-event-manager-form-submit-event.php:335
 #: wp-event-manager-functions.php:1831
-msgid "Select Venue"
+msgid "Select local"
 msgstr "选择地点"
 
 #: external/elementor-widgets/elementor-submit-event-form.php:36
@@ -2430,15 +2430,15 @@ msgstr "选择地点"
 msgid "Submit Event Form"
 msgstr "提交活动表单"
 
-#: external/elementor-widgets/elementor-submit-organizer-form.php:36
-#: external/elementor-widgets/elementor-submit-organizer-form.php:90
-msgid "Submit Organizer Form"
+#: external/elementor-widgets/elementor-submit-dj-form.php:36
+#: external/elementor-widgets/elementor-submit-dj-form.php:90
+msgid "Submit dj Form"
 msgstr "提交组织者表单"
 
-#: external/elementor-widgets/elementor-submit-venue-form.php:36
-#: external/elementor-widgets/elementor-submit-venue-form.php:90
+#: external/elementor-widgets/elementor-submit-local-form.php:36
+#: external/elementor-widgets/elementor-submit-local-form.php:90
 
-msgid "Submit Venue Form"
+msgid "Submit local Form"
 msgstr "提交场地表格"
 
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:36
@@ -2446,11 +2446,11 @@ msgstr "提交场地表格"
 msgid "Upcoming Event Listing"
 msgstr "即将举办的活动列表"
 
-#: external/elementor-widgets/elementor-venue-dashboard.php:36
-#: external/elementor-widgets/elementor-venue-dashboard.php:90
-#: templates/venue/venue-dashboard.php:4
+#: external/elementor-widgets/elementor-local-dashboard.php:36
+#: external/elementor-widgets/elementor-local-dashboard.php:90
+#: templates/local/local-dashboard.php:4
 
-msgid "Venue Dashboard"
+msgid "local Dashboard"
 msgstr "场地仪表板"
 
 #: external/elementor.php:126
@@ -2507,35 +2507,35 @@ msgid "Select Ticket Type"
 msgstr "选择门票类型"
 
 #: forms/wp-event-manager-form-edit-event.php:57
-#: forms/wp-event-manager-form-edit-organizer.php:60
-#: forms/wp-event-manager-form-edit-venue.php:61
+#: forms/wp-event-manager-form-edit-dj.php:60
+#: forms/wp-event-manager-form-edit-local.php:61
 msgid "Invalid listing"
 msgstr "无效信息"
 
 #: forms/wp-event-manager-form-edit-event.php:140
-#: forms/wp-event-manager-form-edit-organizer.php:120
-#: forms/wp-event-manager-form-edit-venue.php:121
+#: forms/wp-event-manager-form-edit-dj.php:120
+#: forms/wp-event-manager-form-edit-local.php:121
 msgid "Save changes"
 msgstr "保存更改"
 
 #: forms/wp-event-manager-form-edit-event.php:173
 #: forms/wp-event-manager-form-edit-event.php:177
-#: forms/wp-event-manager-form-edit-organizer.php:155
-#: forms/wp-event-manager-form-edit-organizer.php:159
-#: forms/wp-event-manager-form-edit-venue.php:157
-#: forms/wp-event-manager-form-edit-venue.php:161
+#: forms/wp-event-manager-form-edit-dj.php:155
+#: forms/wp-event-manager-form-edit-dj.php:159
+#: forms/wp-event-manager-form-edit-local.php:157
+#: forms/wp-event-manager-form-edit-local.php:161
 msgid "Your changes have been saved."
 msgstr "你的修改已被保存。"
 
 #: forms/wp-event-manager-form-edit-event.php:173
-#: forms/wp-event-manager-form-edit-organizer.php:155
-#: forms/wp-event-manager-form-edit-venue.php:157
+#: forms/wp-event-manager-form-edit-dj.php:155
+#: forms/wp-event-manager-form-edit-local.php:157
 msgid "View &rarr;"
 msgstr "查看 &rarr;"
 
 #: forms/wp-event-manager-form-submit-event.php:30
-#: forms/wp-event-manager-form-submit-organizer.php:33
-#: forms/wp-event-manager-form-submit-venue.php:32
+#: forms/wp-event-manager-form-submit-dj.php:33
+#: forms/wp-event-manager-form-submit-local.php:32
 msgid "Submit Details"
 msgstr "提交详细信息"
 
@@ -2546,8 +2546,8 @@ msgid "Preview"
 msgstr "预览"
 
 #: forms/wp-event-manager-form-submit-event.php:44
-#: forms/wp-event-manager-form-submit-organizer.php:40
-#: forms/wp-event-manager-form-submit-venue.php:39
+#: forms/wp-event-manager-form-submit-dj.php:40
+#: forms/wp-event-manager-form-submit-local.php:39
 msgid "Done"
 msgstr "完成"
 
@@ -2699,26 +2699,26 @@ msgstr "请选择活动时区"
 
 msgid ""
 "<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">If it doesn't show "
-"organizer(s). Manage your organizer(s) from <a href=\"javascript:void(0)\" "
-"class=\"wpem_add_organizer_popup wpem-modal-button\" data-modal-id="
-"\"wpem_add_organizer_popup\">here</a></div>"
+"dj(s). Manage your dj(s) from <a href=\"javascript:void(0)\" "
+"class=\"wpem_add_dj_popup wpem-modal-button\" data-modal-id="
+"\"wpem_add_dj_popup\">here</a></div>"
 msgstr ""
 "<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">如果未显示组织者。从"
-"<a href=\"javascript:void(0)\" class=\"wpem_add_organizer_popup wpem-modal-"
-"button\" data-modal-id=\"wpem_add_organizer_popup\">这里</a>管理您的组织者</"
+"<a href=\"javascript:void(0)\" class=\"wpem_add_dj_popup wpem-modal-"
+"button\" data-modal-id=\"wpem_add_dj_popup\">这里</a>管理您的组织者</"
 "div>"
 
 #: forms/wp-event-manager-form-submit-event.php:336
 
 msgid ""
 "<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">If it doesn't show "
-"venue(s). Manage your venue(s) from <a href=\"javascript:void(0)\" class="
-"\"wpem_add_venue_popup wpem-modal-button\" data-modal-id="
-"\"wpem_add_venue_popup\">here</a></div>"
+"local(s). Manage your local(s) from <a href=\"javascript:void(0)\" class="
+"\"wpem_add_local_popup wpem-modal-button\" data-modal-id="
+"\"wpem_add_local_popup\">here</a></div>"
 msgstr ""
 "<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">如果未显示地点。从<a "
-"href=\"javascript:void(0)\" class=\"wpem_add_venue_popup wpem-modal-button\" "
-"data-modal-id=\"wpem_add_venue_popup\">这里</a>管理您的场地</div>"
+"href=\"javascript:void(0)\" class=\"wpem_add_local_popup wpem-modal-button\" "
+"data-modal-id=\"wpem_add_local_popup\">这里</a>管理您的场地</div>"
 
 #: forms/wp-event-manager-form-submit-event.php:428
 
@@ -2759,180 +2759,180 @@ msgstr "密码无效。"
 msgid "You must be signed in to post a new listing."
 msgstr "您必须登录才能发布新活动。"
 
-#: forms/wp-event-manager-form-submit-organizer.php:99
+#: forms/wp-event-manager-form-submit-dj.php:99
 #: shortcodes/wp-event-manager-shortcodes.php:453
-msgid "Organizer name"
+msgid "dj name"
 msgstr "主催者名"
 
-#: forms/wp-event-manager-form-submit-organizer.php:102
+#: forms/wp-event-manager-form-submit-dj.php:102
 
-msgid "Enter the name of the organizer"
+msgid "Enter the name of the dj"
 msgstr "输入组织者的名称"
 
-#: forms/wp-event-manager-form-submit-organizer.php:107
-#: forms/wp-event-manager-form-submit-venue.php:114
+#: forms/wp-event-manager-form-submit-dj.php:107
+#: forms/wp-event-manager-form-submit-local.php:114
 msgid "Logo"
 msgstr "Logo"
 
-#: forms/wp-event-manager-form-submit-organizer.php:123
-msgid "Organizer Description"
+#: forms/wp-event-manager-form-submit-dj.php:123
+msgid "dj Description"
 msgstr "组织者描述"
 
-#: forms/wp-event-manager-form-submit-organizer.php:131
-msgid "Organizer Email"
+#: forms/wp-event-manager-form-submit-dj.php:131
+msgid "dj Email"
 msgstr "组织者电子邮件"
 
-#: forms/wp-event-manager-form-submit-organizer.php:134
+#: forms/wp-event-manager-form-submit-dj.php:134
 msgid "Enter your email address"
 msgstr "输入你的电子邮箱地址"
 
-#: forms/wp-event-manager-form-submit-organizer.php:139
-#: forms/wp-event-manager-form-submit-venue.php:130
-#: templates/organizer/content-single-event-organizers.php:75
-#: templates/organizer/content-single-event-organizers.php:188
-#: templates/organizer/content-single-event_listing-organizer.php:75
-#: templates/organizer/content-single-event_listing-organizer.php:163
-#: templates/organizer/content-single-event_organizer.php:45
-#: templates/organizer/organizer-dashboard.php:67
-#: templates/venue/content-single-event-venues.php:62
-#: templates/venue/content-single-event_listing-venue.php:78
-#: templates/venue/content-single-event_venue.php:39
-#: templates/venue/venue-dashboard.php:66
+#: forms/wp-event-manager-form-submit-dj.php:139
+#: forms/wp-event-manager-form-submit-local.php:130
+#: templates/dj/content-single-event-djs.php:75
+#: templates/dj/content-single-event-djs.php:188
+#: templates/dj/content-single-event_listing-dj.php:75
+#: templates/dj/content-single-event_listing-dj.php:163
+#: templates/dj/content-single-event_dj.php:45
+#: templates/dj/dj-dashboard.php:67
+#: templates/local/content-single-event-locals.php:62
+#: templates/local/content-single-event_listing-local.php:78
+#: templates/local/content-single-event_local.php:39
+#: templates/local/local-dashboard.php:66
 msgid "Website"
 msgstr "网站"
 
-#: forms/wp-event-manager-form-submit-organizer.php:142
+#: forms/wp-event-manager-form-submit-dj.php:142
 
 msgid "Website URL e.g http://www.yourorganization.com"
 msgstr "网站网址，例如 http://www.yourorganization.com"
 
-#: forms/wp-event-manager-form-submit-organizer.php:147
-#: forms/wp-event-manager-form-submit-venue.php:138
+#: forms/wp-event-manager-form-submit-dj.php:147
+#: forms/wp-event-manager-form-submit-local.php:138
 #: templates/content-single-event_listing.php:584
-#: templates/organizer/content-single-event-organizers.php:81
-#: templates/organizer/content-single-event_organizer.php:52
-#: templates/organizer/organizer-dashboard.php:73
-#: templates/venue/content-single-event-venues.php:68
-#: templates/venue/content-single-event_listing-venue.php:84
-#: templates/venue/content-single-event_venue.php:45
-#: templates/venue/venue-dashboard.php:72
+#: templates/dj/content-single-event-djs.php:81
+#: templates/dj/content-single-event_dj.php:52
+#: templates/dj/dj-dashboard.php:73
+#: templates/local/content-single-event-locals.php:68
+#: templates/local/content-single-event_listing-local.php:84
+#: templates/local/content-single-event_local.php:45
+#: templates/local/local-dashboard.php:72
 msgid "Facebook"
 msgstr "Facebook"
 
-#: forms/wp-event-manager-form-submit-organizer.php:150
-msgid "Facebook URL e.g http://www.facebook.com/yourorganizer"
-msgstr "Facebook网址，例如http://www.facebook.com/yourorganizer"
+#: forms/wp-event-manager-form-submit-dj.php:150
+msgid "Facebook URL e.g http://www.facebook.com/yourdj"
+msgstr "Facebook网址，例如http://www.facebook.com/yourdj"
 
-#: forms/wp-event-manager-form-submit-organizer.php:155
-#: forms/wp-event-manager-form-submit-venue.php:146
-#: templates/organizer/content-single-event-organizers.php:87
-#: templates/organizer/content-single-event-organizers.php:194
-#: templates/organizer/content-single-event_listing-organizer.php:81
-#: templates/organizer/content-single-event_listing-organizer.php:169
-#: templates/organizer/content-single-event_organizer.php:58
-#: templates/organizer/organizer-dashboard.php:79
-#: templates/venue/content-single-event-venues.php:74
-#: templates/venue/content-single-event_listing-venue.php:90
-#: templates/venue/content-single-event_venue.php:51
-#: templates/venue/venue-dashboard.php:78
+#: forms/wp-event-manager-form-submit-dj.php:155
+#: forms/wp-event-manager-form-submit-local.php:146
+#: templates/dj/content-single-event-djs.php:87
+#: templates/dj/content-single-event-djs.php:194
+#: templates/dj/content-single-event_listing-dj.php:81
+#: templates/dj/content-single-event_listing-dj.php:169
+#: templates/dj/content-single-event_dj.php:58
+#: templates/dj/dj-dashboard.php:79
+#: templates/local/content-single-event-locals.php:74
+#: templates/local/content-single-event_listing-local.php:90
+#: templates/local/content-single-event_local.php:51
+#: templates/local/local-dashboard.php:78
 msgid "Instagram"
 msgstr "Instagram"
 
-#: forms/wp-event-manager-form-submit-organizer.php:158
+#: forms/wp-event-manager-form-submit-dj.php:158
 
-msgid "Instagram URL e.g http://www.instagram.com/yourorganizer"
-msgstr "Instagram 网址，例如 http://www.instagram.com/yourorganizer"
+msgid "Instagram URL e.g http://www.instagram.com/yourdj"
+msgstr "Instagram 网址，例如 http://www.instagram.com/yourdj"
 
-#: forms/wp-event-manager-form-submit-organizer.php:163
-#: forms/wp-event-manager-form-submit-venue.php:154
-#: templates/organizer/content-single-event-organizers.php:98
-#: templates/organizer/content-single-event-organizers.php:200
-#: templates/organizer/content-single-event_listing-organizer.php:87
-#: templates/organizer/content-single-event_listing-organizer.php:175
-#: templates/organizer/content-single-event_organizer.php:70
-#: templates/organizer/organizer-dashboard.php:91
-#: templates/venue/content-single-event-venues.php:85
-#: templates/venue/content-single-event_listing-venue.php:102
-#: templates/venue/content-single-event_venue.php:62
-#: templates/venue/venue-dashboard.php:90
+#: forms/wp-event-manager-form-submit-dj.php:163
+#: forms/wp-event-manager-form-submit-local.php:154
+#: templates/dj/content-single-event-djs.php:98
+#: templates/dj/content-single-event-djs.php:200
+#: templates/dj/content-single-event_listing-dj.php:87
+#: templates/dj/content-single-event_listing-dj.php:175
+#: templates/dj/content-single-event_dj.php:70
+#: templates/dj/dj-dashboard.php:91
+#: templates/local/content-single-event-locals.php:85
+#: templates/local/content-single-event_listing-local.php:102
+#: templates/local/content-single-event_local.php:62
+#: templates/local/local-dashboard.php:90
 msgid "Youtube"
 msgstr "Youtube"
 
-#: forms/wp-event-manager-form-submit-organizer.php:166
+#: forms/wp-event-manager-form-submit-dj.php:166
 
-msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourorganizer"
-msgstr "优酷频道网址，例如 http://www.youtube.com/channel/yourorganizer"
+msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourdj"
+msgstr "优酷频道网址，例如 http://www.youtube.com/channel/yourdj"
 
-#: forms/wp-event-manager-form-submit-organizer.php:171
-#: forms/wp-event-manager-form-submit-venue.php:162
+#: forms/wp-event-manager-form-submit-dj.php:171
+#: forms/wp-event-manager-form-submit-local.php:162
 #: templates/content-single-event_listing.php:587
-#: templates/organizer/content-single-event-organizers.php:93
-#: templates/organizer/content-single-event-organizers.php:197
-#: templates/organizer/content-single-event_listing-organizer.php:84
-#: templates/organizer/content-single-event_listing-organizer.php:172
-#: templates/organizer/content-single-event_organizer.php:65
-#: templates/organizer/organizer-dashboard.php:85
-#: templates/venue/content-single-event-venues.php:80
-#: templates/venue/content-single-event_listing-venue.php:96
-#: templates/venue/content-single-event_venue.php:57
-#: templates/venue/venue-dashboard.php:84
+#: templates/dj/content-single-event-djs.php:93
+#: templates/dj/content-single-event-djs.php:197
+#: templates/dj/content-single-event_listing-dj.php:84
+#: templates/dj/content-single-event_listing-dj.php:172
+#: templates/dj/content-single-event_dj.php:65
+#: templates/dj/dj-dashboard.php:85
+#: templates/local/content-single-event-locals.php:80
+#: templates/local/content-single-event_listing-local.php:96
+#: templates/local/content-single-event_local.php:57
+#: templates/local/local-dashboard.php:84
 msgid "Twitter"
 msgstr "Twitter"
 
-#: forms/wp-event-manager-form-submit-organizer.php:174
+#: forms/wp-event-manager-form-submit-dj.php:174
 
-msgid "Twitter URL e.g http://twitter.com/yourorganizer"
-msgstr "推特网址，例如 http://twitter.com/yourorganizer"
+msgid "Twitter URL e.g http://twitter.com/yourdj"
+msgstr "推特网址，例如 http://twitter.com/yourdj"
 
-#: forms/wp-event-manager-form-submit-organizer.php:263
-#: forms/wp-event-manager-form-submit-venue.php:256
+#: forms/wp-event-manager-form-submit-dj.php:263
+#: forms/wp-event-manager-form-submit-local.php:256
 msgid "Submit"
 msgstr "提交"
 
-#: forms/wp-event-manager-form-submit-organizer.php:319
-msgid "Please enter a valid organizer email address"
+#: forms/wp-event-manager-form-submit-dj.php:319
+msgid "Please enter a valid dj email address"
 msgstr "请输入有效的组织者邮箱地址"
 
-#: forms/wp-event-manager-form-submit-venue.php:98
-msgid "Venue Name"
+#: forms/wp-event-manager-form-submit-local.php:98
+msgid "local Name"
 msgstr "地点名称"
 
-#: forms/wp-event-manager-form-submit-venue.php:101
+#: forms/wp-event-manager-form-submit-local.php:101
 
-msgid "Please enter the venue name"
+msgid "Please enter the local name"
 msgstr "请输入场地名称"
 
-#: forms/wp-event-manager-form-submit-venue.php:106
-msgid "Venue Description"
+#: forms/wp-event-manager-form-submit-local.php:106
+msgid "local Description"
 msgstr "地点描述"
 
-#: forms/wp-event-manager-form-submit-venue.php:133
+#: forms/wp-event-manager-form-submit-local.php:133
 
-msgid "Website URL e.g http://www.yourvenue.com"
-msgstr "网站网址，例如 http://www.yourvenue.com"
+msgid "Website URL e.g http://www.yourlocal.com"
+msgstr "网站网址，例如 http://www.yourlocal.com"
 
-#: forms/wp-event-manager-form-submit-venue.php:141
+#: forms/wp-event-manager-form-submit-local.php:141
 
-msgid "Facebook URL e.g http://www.facebook.com/yourvenue"
-msgstr "脸书网址，例如 http://www.facebook.com/yourvenue"
+msgid "Facebook URL e.g http://www.facebook.com/yourlocal"
+msgstr "脸书网址，例如 http://www.facebook.com/yourlocal"
 
-#: forms/wp-event-manager-form-submit-venue.php:149
+#: forms/wp-event-manager-form-submit-local.php:149
 
-msgid "Instagram URL e.g http://www.instagram.com/yourvenue"
-msgstr "Instagram 网址，例如 http://www.instagram.com/yourvenue"
+msgid "Instagram URL e.g http://www.instagram.com/yourlocal"
+msgstr "Instagram 网址，例如 http://www.instagram.com/yourlocal"
 
-#: forms/wp-event-manager-form-submit-venue.php:157
+#: forms/wp-event-manager-form-submit-local.php:157
 
-msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourvenue"
-msgstr "优酷频道网址，例如 http://www.youtube.com/channel/yourvenue"
+msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourlocal"
+msgstr "优酷频道网址，例如 http://www.youtube.com/channel/yourlocal"
 
-#: forms/wp-event-manager-form-submit-venue.php:165
+#: forms/wp-event-manager-form-submit-local.php:165
 
-msgid "Twitter URL e.g http://twitter.com/yourvenue"
-msgstr "推特网址，例如 http://twitter.com/yourvenue"
+msgid "Twitter URL e.g http://twitter.com/yourlocal"
+msgstr "推特网址，例如 http://twitter.com/yourlocal"
 
-#: forms/wp-event-manager-form-submit-venue.php:312
-msgid "Please enter a valid venue email address"
+#: forms/wp-event-manager-form-submit-local.php:312
+msgid "Please enter a valid local email address"
 msgstr "请输入有效的场地邮箱地址"
 
 #: shortcodes/wp-event-manager-shortcodes.php:125
@@ -2986,7 +2986,7 @@ msgstr "操作"
 
 #: shortcodes/wp-event-manager-shortcodes.php:406
 
-msgid "You need to be signed in to manage your organizer listings."
+msgid "You need to be signed in to manage your dj listings."
 msgstr "您需要登录才能管理组织者列表。"
 
 #: shortcodes/wp-event-manager-shortcodes.php:406
@@ -3003,12 +3003,12 @@ msgstr "详情"
 
 #: shortcodes/wp-event-manager-shortcodes.php:563
 
-msgid "You need to be signed in to manage your venue listings."
+msgid "You need to be signed in to manage your local listings."
 msgstr "您需要登录才能管理您的场地列表。"
 
 #: shortcodes/wp-event-manager-shortcodes.php:608
 
-msgid "Venue name"
+msgid "local name"
 msgstr "场地名称"
 
 #: shortcodes/wp-event-manager-shortcodes.php:796
@@ -3042,7 +3042,7 @@ msgstr "您目前是以<strong> %s </ strong>的身份登录的。"
 msgid "Sign out"
 msgstr "退出"
 
-#: templates/account-signin.php:19 templates/organizer/organizer-submit.php:50
+#: templates/account-signin.php:19 templates/dj/dj-submit.php:50
 msgid "Have an account?"
 msgstr "已有账户？"
 
@@ -3062,8 +3062,8 @@ msgstr ""
 #: templates/form-fields/group-field.php:90
 #: templates/form-fields/repeated-field.php:41
 #: templates/form-fields/repeated-field.php:100
-#: templates/organizer/organizer-submit.php:33
-#: templates/venue/venue-submit.php:22
+#: templates/dj/dj-submit.php:33
+#: templates/local/local-submit.php:22
 msgid "(optional)"
 msgstr "（可选的）"
 
@@ -3181,8 +3181,8 @@ msgid "Mark cancelled"
 msgstr "标记已取消"
 
 #: templates/event-dashboard.php:246
-#: templates/organizer/organizer-dashboard.php:126
-#: templates/venue/venue-dashboard.php:125
+#: templates/dj/dj-dashboard.php:126
+#: templates/local/local-dashboard.php:125
 msgid "Duplicate"
 msgstr "复制"
 
@@ -3299,23 +3299,23 @@ msgid "Create A New Event"
 msgstr "创建新事件"
 
 #: templates/event-submit.php:40 templates/event-submit.php:104
-#: templates/organizer/organizer-submit.php:25
-msgid "Organizer Details"
+#: templates/dj/dj-submit.php:25
+msgid "dj Details"
 msgstr "组织者详情"
 
 #: templates/event-submit.php:57 templates/event-submit.php:152
-#: templates/venue/venue-submit.php:12
-msgid "Venue Details"
+#: templates/local/local-submit.php:12
+msgid "local Details"
 msgstr "场地详情"
 
 #: templates/event-submit.php:94 templates/event-submit.php:98
 #: templates/event-submit.php:121
-msgid "Add Organizer"
+msgid "Add dj"
 msgstr "添加组织者"
 
 #: templates/event-submit.php:142 templates/event-submit.php:146
 #: templates/event-submit.php:169
-msgid "Add Venue"
+msgid "Add local"
 msgstr "添加场地"
 
 #: templates/event-submitted.php:7
@@ -3357,152 +3357,152 @@ msgstr "门详情"
 msgid "remove"
 msgstr "移除"
 
-#: templates/organizer/content-single-event-organizers.php:75
-#: templates/organizer/content-single-event-organizers.php:188
-#: templates/organizer/content-single-event_listing-organizer.php:75
-#: templates/organizer/content-single-event_listing-organizer.php:163
-#: templates/organizer/content-single-event_organizer.php:45
-#: templates/organizer/organizer-dashboard.php:67
-#: templates/venue/content-single-event-venues.php:62
-#: templates/venue/content-single-event_listing-venue.php:78
-#: templates/venue/content-single-event_venue.php:39
-#: templates/venue/venue-dashboard.php:66
+#: templates/dj/content-single-event-djs.php:75
+#: templates/dj/content-single-event-djs.php:188
+#: templates/dj/content-single-event_listing-dj.php:75
+#: templates/dj/content-single-event_listing-dj.php:163
+#: templates/dj/content-single-event_dj.php:45
+#: templates/dj/dj-dashboard.php:67
+#: templates/local/content-single-event-locals.php:62
+#: templates/local/content-single-event_listing-local.php:78
+#: templates/local/content-single-event_local.php:39
+#: templates/local/local-dashboard.php:66
 msgid "Get Connect on Website"
 msgstr "在网站上联系"
 
-#: templates/organizer/content-single-event-organizers.php:81
-#: templates/organizer/content-single-event-organizers.php:191
-#: templates/organizer/content-single-event_listing-organizer.php:78
-#: templates/organizer/content-single-event_listing-organizer.php:166
-#: templates/organizer/content-single-event_organizer.php:52
-#: templates/organizer/organizer-dashboard.php:73
-#: templates/venue/content-single-event-venues.php:68
-#: templates/venue/content-single-event_listing-venue.php:84
-#: templates/venue/content-single-event_venue.php:45
-#: templates/venue/venue-dashboard.php:72
+#: templates/dj/content-single-event-djs.php:81
+#: templates/dj/content-single-event-djs.php:191
+#: templates/dj/content-single-event_listing-dj.php:78
+#: templates/dj/content-single-event_listing-dj.php:166
+#: templates/dj/content-single-event_dj.php:52
+#: templates/dj/dj-dashboard.php:73
+#: templates/local/content-single-event-locals.php:68
+#: templates/local/content-single-event_listing-local.php:84
+#: templates/local/content-single-event_local.php:45
+#: templates/local/local-dashboard.php:72
 msgid "Get Connect on Facebook"
 msgstr "在Facebook上联系"
 
-#: templates/organizer/content-single-event-organizers.php:87
-#: templates/organizer/content-single-event-organizers.php:194
-#: templates/organizer/content-single-event_listing-organizer.php:81
-#: templates/organizer/content-single-event_listing-organizer.php:169
-#: templates/organizer/content-single-event_organizer.php:58
-#: templates/organizer/organizer-dashboard.php:79
-#: templates/venue/content-single-event-venues.php:74
-#: templates/venue/content-single-event_listing-venue.php:90
-#: templates/venue/content-single-event_venue.php:51
-#: templates/venue/venue-dashboard.php:78
+#: templates/dj/content-single-event-djs.php:87
+#: templates/dj/content-single-event-djs.php:194
+#: templates/dj/content-single-event_listing-dj.php:81
+#: templates/dj/content-single-event_listing-dj.php:169
+#: templates/dj/content-single-event_dj.php:58
+#: templates/dj/dj-dashboard.php:79
+#: templates/local/content-single-event-locals.php:74
+#: templates/local/content-single-event_listing-local.php:90
+#: templates/local/content-single-event_local.php:51
+#: templates/local/local-dashboard.php:78
 msgid "Get Connect on Instagram"
 msgstr "在Instagram上联系"
 
-#: templates/organizer/content-single-event-organizers.php:93
-#: templates/organizer/content-single-event-organizers.php:197
-#: templates/organizer/content-single-event_listing-organizer.php:84
-#: templates/organizer/content-single-event_listing-organizer.php:172
-#: templates/organizer/content-single-event_organizer.php:65
-#: templates/organizer/organizer-dashboard.php:85
-#: templates/venue/content-single-event-venues.php:80
-#: templates/venue/content-single-event_listing-venue.php:96
-#: templates/venue/content-single-event_venue.php:57
-#: templates/venue/venue-dashboard.php:84
+#: templates/dj/content-single-event-djs.php:93
+#: templates/dj/content-single-event-djs.php:197
+#: templates/dj/content-single-event_listing-dj.php:84
+#: templates/dj/content-single-event_listing-dj.php:172
+#: templates/dj/content-single-event_dj.php:65
+#: templates/dj/dj-dashboard.php:85
+#: templates/local/content-single-event-locals.php:80
+#: templates/local/content-single-event_listing-local.php:96
+#: templates/local/content-single-event_local.php:57
+#: templates/local/local-dashboard.php:84
 msgid "Get Connect on Twitter"
 msgstr "在Twitter上联系"
 
-#: templates/organizer/content-single-event-organizers.php:98
-#: templates/organizer/content-single-event-organizers.php:200
-#: templates/organizer/content-single-event_listing-organizer.php:87
-#: templates/organizer/content-single-event_listing-organizer.php:175
-#: templates/organizer/content-single-event_organizer.php:70
-#: templates/organizer/organizer-dashboard.php:91
-#: templates/venue/content-single-event-venues.php:85
-#: templates/venue/content-single-event_listing-venue.php:102
-#: templates/venue/content-single-event_venue.php:62
-#: templates/venue/venue-dashboard.php:90
+#: templates/dj/content-single-event-djs.php:98
+#: templates/dj/content-single-event-djs.php:200
+#: templates/dj/content-single-event_listing-dj.php:87
+#: templates/dj/content-single-event_listing-dj.php:175
+#: templates/dj/content-single-event_dj.php:70
+#: templates/dj/dj-dashboard.php:91
+#: templates/local/content-single-event-locals.php:85
+#: templates/local/content-single-event_listing-local.php:102
+#: templates/local/content-single-event_local.php:62
+#: templates/local/local-dashboard.php:90
 msgid "Get Connect on Youtube"
 msgstr "在YouTube上联系"
 
-#: templates/organizer/content-single-event-organizers.php:191
-#: templates/organizer/content-single-event_listing-organizer.php:78
-#: templates/organizer/content-single-event_listing-organizer.php:166
+#: templates/dj/content-single-event-djs.php:191
+#: templates/dj/content-single-event_listing-dj.php:78
+#: templates/dj/content-single-event_listing-dj.php:166
 msgid "Faceboo"
 msgstr "Facebook"
 
-#: templates/organizer/event-organizers.php:17
-#: templates/venue/event-venues.php:17
+#: templates/dj/event-djs.php:17
+#: templates/local/event-locals.php:17
 msgid "Browse events"
 msgstr "浏览活动"
 
-#: templates/organizer/event-organizers.php:22
-#: templates/venue/event-venues.php:22
+#: templates/dj/event-djs.php:22
+#: templates/local/event-locals.php:22
 msgid "Available events"
 msgstr "可用活动"
 
-#: templates/organizer/event-organizers.php:32
-#: templates/venue/event-venues.php:32
+#: templates/dj/event-djs.php:32
+#: templates/local/event-locals.php:32
 msgid "All"
 msgstr "所有"
 
-#: templates/organizer/event-organizers.php:64
-#: templates/venue/event-venues.php:64
+#: templates/dj/event-djs.php:64
+#: templates/local/event-locals.php:64
 msgid "Click here, for more info."
 msgstr "点击这里查看更多信息。"
 
-#: templates/organizer/event-organizers.php:86
-#: templates/organizer/event-organizers.php:95
-#: templates/organizer/organizer-dashboard.php:35
-msgid "There are no organizers."
+#: templates/dj/event-djs.php:86
+#: templates/dj/event-djs.php:95
+#: templates/dj/dj-dashboard.php:35
+msgid "There are no djs."
 msgstr "没有组织者。"
 
-#: templates/organizer/organizer-dashboard.php:12
-msgid "Add organizer"
+#: templates/dj/dj-dashboard.php:12
+msgid "Add dj"
 msgstr "添加召集人"
 
-#: templates/organizer/organizer-dashboard.php:111
-#: templates/venue/venue-dashboard.php:110
+#: templates/dj/dj-dashboard.php:111
+#: templates/local/local-dashboard.php:110
 msgid "There is no event."
 msgstr "没有活动"
 
-#: templates/organizer/organizer-event_listing.php:10 wp-event-manager.php:404
+#: templates/dj/dj-event_listing.php:10 wp-event-manager.php:404
 #: wp-event-manager.php:416
 msgid "Current Events"
 msgstr "当前活动"
 
-#: templates/organizer/organizer-event_listing.php:13 wp-event-manager.php:400
+#: templates/dj/dj-event_listing.php:13 wp-event-manager.php:400
 #: wp-event-manager.php:412
 msgid "Upcoming Events"
 msgstr "即将举行的活动"
 
-#: templates/organizer/organizer-event_listing.php:16 wp-event-manager.php:402
+#: templates/dj/dj-event_listing.php:16 wp-event-manager.php:402
 #: wp-event-manager.php:414
 msgid "Past Events"
 msgstr "过往活动"
 
-#: templates/organizer/organizer-submit.php:27
+#: templates/dj/dj-submit.php:27
 #, php-format
-msgid "You are editing an existing organizer. %s"
+msgid "You are editing an existing dj. %s"
 msgstr "您正在编辑现有组织者。%s"
 
-#: templates/organizer/organizer-submit.php:27
-msgid "Create A New organizer"
+#: templates/dj/dj-submit.php:27
+msgid "Create A New dj"
 msgstr "添加新组织者"
 
-#: templates/organizer/organizer-submit.php:52
-#: templates/venue/venue-submit.php:40
+#: templates/dj/dj-submit.php:52
+#: templates/local/local-submit.php:40
 msgid "Log In"
 msgstr "登录"
 
-#: templates/organizer/organizer-submitted.php:9
+#: templates/dj/dj-submitted.php:9
 #, php-format
 msgid ""
-"%s listed successfully. To view your organizer list <a href=\"%s\">click "
+"%s listed successfully. To view your dj list <a href=\"%s\">click "
 "here</a>."
 msgstr "%s 成功上市。要查看您的组织者列表 <a href=\"%s\">，请单击此处</a>。"
 
-#: templates/organizer/organizer-submitted.php:13
+#: templates/dj/dj-submitted.php:13
 #, php-format
 msgid ""
-"%s submitted successfully. Your organizer will be visible once approved."
+"%s submitted successfully. Your dj will be visible once approved."
 msgstr "%s 提交成功。批准后，您的组织者将可见。"
 
 #: templates/sign-in-link.php:2
@@ -3510,36 +3510,36 @@ msgstr "%s 提交成功。批准后，您的组织者将可见。"
 msgid "You must <a href=\"%s\">sign in</a> to view more details."
 msgstr "您必须 <a href=\"%s\">登录</a> 才能查看更多详细信息。"
 
-#: templates/venue/event-venues.php:86 templates/venue/event-venues.php:95
-#: templates/venue/venue-dashboard.php:35
+#: templates/local/event-locals.php:86 templates/local/event-locals.php:95
+#: templates/local/local-dashboard.php:35
 
-msgid "There are no venues."
+msgid "There are no locals."
 msgstr "没有场地。"
 
-#: templates/venue/venue-dashboard.php:12
+#: templates/local/local-dashboard.php:12
 
-msgid "Add venue"
+msgid "Add local"
 msgstr "添加场地"
 
-#: templates/venue/venue-submit.php:15
+#: templates/local/local-submit.php:15
 #, php-format
-msgid "You are editing an existing venue. %s"
+msgid "You are editing an existing local. %s"
 msgstr "您正在编辑现有场地。%s"
 
-#: templates/venue/venue-submit.php:15
-msgid "Create A New venue"
+#: templates/local/local-submit.php:15
+msgid "Create A New local"
 msgstr "添加新场地"
 
-#: templates/venue/venue-submitted.php:7
+#: templates/local/local-submitted.php:7
 #, php-format
 msgid ""
-"%s listed successfully. To view your venue list <a href=\"%s\">click here</"
+"%s listed successfully. To view your local list <a href=\"%s\">click here</"
 "a>."
 msgstr "%s 成功上市。要查看您的场地列表 <a href=\"%s\">，请单击此处</a>。"
 
-#: templates/venue/venue-submitted.php:11
+#: templates/local/local-submitted.php:11
 #, php-format
-msgid "%s submitted successfully. Your venue will be visible once approved."
+msgid "%s submitted successfully. Your local will be visible once approved."
 msgstr "%s 提交成功。批准后即可看到您的场地。"
 
 #: widgets/wp-event-manager-widgets.php:214
@@ -3688,11 +3688,11 @@ msgstr "您确定要删除此活动吗？"
 
 #: wp-event-manager.php:380
 
-msgid "Are you sure you want to delete this organizer?"
+msgid "Are you sure you want to delete this dj?"
 msgstr "是否确实要删除此组织者？"
 
 #: wp-event-manager.php:392
-msgid "Are you sure you want to delete this venue?"
+msgid "Are you sure you want to delete this local?"
 msgstr "你确定要删除这个场地吗？"
 
 #. Plugin Name of the plugin/theme

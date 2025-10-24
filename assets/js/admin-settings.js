@@ -15,17 +15,17 @@ var AdminSettings= function () {
 			jQuery("#setting-event_manager_enable_registration").on('change',AdminSettings.actions.allowAccountCreation);
 			jQuery("#setting-event_manager_submission_expire_options").on('change',AdminSettings.actions.selectEventExpiryOption);						
 			
-			// Show hide organizer fields dropdown in settings
+			// Show hide dj fields dropdown in settings
 			if (jQuery('#setting-wpem_hide_data_from_guest').is(':checked')) {
-				jQuery('.hide_organizer_fields').closest('.hide_organizer_fields').show();
+				jQuery('.hide_dj_fields').closest('.hide_dj_fields').show();
 			}else{
-				 jQuery('.hide_organizer_fields').closest('.hide_organizer_fields').hide();
+				 jQuery('.hide_dj_fields').closest('.hide_dj_fields').hide();
 			}
 			jQuery('#setting-wpem_hide_data_from_guest').change( function(){
 				 if (jQuery('#setting-wpem_hide_data_from_guest').is(':checked')) {
-					jQuery('.hide_organizer_fields').closest('.hide_organizer_fields').show();
+					jQuery('.hide_dj_fields').closest('.hide_dj_fields').show();
 					} else {
-						jQuery('.hide_organizer_fields').closest('.hide_organizer_fields').hide();
+						jQuery('.hide_dj_fields').closest('.hide_dj_fields').hide();
 					}
 			});
 		},

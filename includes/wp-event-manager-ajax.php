@@ -49,11 +49,11 @@ class WP_Event_Manager_Ajax {
 		add_action('wp_ajax_event_manager_get_listings', array($this, 'get_listings'));
 		add_action('wp_ajax_nopriv_event_manager_upload_file', array($this, 'upload_file'));
 		add_action('wp_ajax_event_manager_upload_file', array($this, 'upload_file'));
-		add_action('wp_ajax_add_organizer', array($this, 'add_organizer'));
-		add_action('wp_ajax_nopriv_add_organizer', array($this, 'add_organizer'));
+		add_action('wp_ajax_add_dj', array($this, 'add_dj'));
+		add_action('wp_ajax_nopriv_add_dj', array($this, 'add_dj'));
 
-		add_action('wp_ajax_add_venue', array($this, 'add_venue'));
-		add_action('wp_ajax_nopriv_add_venue', array($this, 'add_venue'));
+		add_action('wp_ajax_add_local', array($this, 'add_local'));
+		add_action('wp_ajax_nopriv_add_local', array($this, 'add_local'));
 	}
 	
 	/**
@@ -355,7 +355,7 @@ class WP_Event_Manager_Ajax {
 			$field    = is_numeric($search_categories[0]) ? 'term_id' : 'slug';
 			$operator = 'all' === get_option('event_manager_category_filter_type', 'all') && count($search_categories) > 1 ? 'AND' : 'IN';
 			$tax_query[] = array(
-				'taxonomy'         => 'event_listing_category',
+				'taxonomy'         => 'event_sounds',
 				'field'            => $field,
 				'terms'            => array_filter(array_values($search_categories)),
 				'include_children' => $operator !== 'AND',
@@ -504,7 +504,7 @@ class WP_Event_Manager_Ajax {
 		if($search_categories) {
 			$showing_categories = array();
 			foreach ($search_categories as $category) {
-				$category_object = get_term_by(is_numeric($category) ? 'id' : 'slug', $category, 'event_listing_category');
+				$category_object = get_term_by(is_numeric($category) ? 'id' : 'slug', $category, 'event_sounds');
 				if(!is_wp_error($category_object)) {
 					$showing_categories[] = $category_object->name;
 				}
@@ -627,29 +627,29 @@ class WP_Event_Manager_Ajax {
 	}
 
 	/**
-	 * Add organizer.
-	 * add organizer with popup action
+	 * Add dj.
+	 * add dj with popup action
 	 * @access public
 	 * @param 
 	 * @return array
 	 * @since 3.1.16
 	 */
-	public function add_organizer() {
+	public function add_dj() {
 
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-			check_ajax_referer( 'wpem_add_organizer_action', 'wpem_add_organizer_nonce' );
+			check_ajax_referer( 'wpem_add_dj_action', 'wpem_add_dj_nonce' );
 		}
 
-		if ( ! is_user_logged_in() || ! current_user_can( 'manage_organizers' ) ) {
+		if ( ! is_user_logged_in() || ! current_user_can( 'manage_djs' ) ) {
 			wp_send_json( [
 				'code'    => 403,
-				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Please login as Organizer to add an organizer!', 'wp-event-manager' ) . '</div>',
+				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Please login as dj to add an dj!', 'wp-event-manager' ) . '</div>',
 			] );
 			wp_die();
 		}
 		
-		if ( ! isset( $_POST['wpem_add_organizer_nonce'] ) 
-			|| ! wp_verify_nonce( $_POST['wpem_add_organizer_nonce'], 'wpem_add_organizer_action' ) ) {
+		if ( ! isset( $_POST['wpem_add_dj_nonce'] ) 
+			|| ! wp_verify_nonce( $_POST['wpem_add_dj_nonce'], 'wpem_add_dj_action' ) ) {
 			wp_send_json([
 				'code'    => 403,
 				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Security check failed.', 'wp-event-manager' ) . '</div>',
@@ -659,49 +659,49 @@ class WP_Event_Manager_Ajax {
 
 		$params = array();
 		parse_str($_REQUEST['form_data'], $params);
-		$params['organizer_description'] = sanitize_text_field($_REQUEST['organizer_description']);
-		$params['submit_organizer'] = 'Submit';
+		$params['dj_description'] = sanitize_text_field($_REQUEST['dj_description']);
+		$params['submit_dj'] = 'Submit';
 
 		$data = [];
 
-		if(!empty($params['organizer_name']) && isset($params['organizer_id'])  && $params['organizer_id'] == 0){
+		if(!empty($params['dj_name']) && isset($params['dj_id'])  && $params['dj_id'] == 0){
 			$_POST = $params;
 
-			if(isset($_COOKIE['wp-event-manager-submitting-organizer-id']))
-			    unset($_COOKIE['wp-event-manager-submitting-organizer-id']);				
-			if(isset($_COOKIE['wp-event-manager-submitting-organizer-key']))
-			    unset($_COOKIE['wp-event-manager-submitting-organizer-key']);
+			if(isset($_COOKIE['wp-event-manager-submitting-dj-id']))
+			    unset($_COOKIE['wp-event-manager-submitting-dj-id']);				
+			if(isset($_COOKIE['wp-event-manager-submitting-dj-key']))
+			    unset($_COOKIE['wp-event-manager-submitting-dj-key']);
 
-			$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
-			$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
-			$event_fields =	$form_submit_organizer_instance->merge_with_custom_fields('frontend');
+			$GLOBALS['event_manager']->forms->get_form('submit-dj', array());
+			$form_submit_dj_instance = call_user_func(array('WP_Event_Manager_Form_Submit_dj', 'instance'));
+			$event_fields =	$form_submit_dj_instance->merge_with_custom_fields('frontend');
 
 			// Submit current event with $_POST values
-			$form_submit_organizer_instance->submit_handler();
+			$form_submit_dj_instance->submit_handler();
 
-			$organizer_id = $form_submit_organizer_instance->get_organizer_id();
+			$dj_id = $form_submit_dj_instance->get_dj_id();
 
-			if(isset($organizer_id) && !empty($organizer_id)){
-				$organizer = get_post($organizer_id);
+			if(isset($dj_id) && !empty($dj_id)){
+				$dj = get_post($dj_id);
 
 				$data = [
 					'code' => 200,
-					'organizer' => [
-						'organizer_id' 	=> $organizer_id,
-						'organizer_name' => $organizer->post_title,
+					'dj' => [
+						'dj_id' 	=> $dj_id,
+						'dj_name' => $dj->post_title,
 					],
 					'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Successfully created', 'wp-event-manager') . '</div>',
 				];
 			} else {
 				$data = [
 					'code' => 404,
-					'message' => '<div class="wpem-alert wpem-alert-danger">'. $form_submit_organizer_instance->get_errors() . '</div>',
+					'message' => '<div class="wpem-alert wpem-alert-danger">'. $form_submit_dj_instance->get_errors() . '</div>',
 				];
 			}
 		} else {
 			$data = [
 				'code' => 404,
-				'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Organizer Name is a required field.', 'wp-event-manager') . '</div>',
+				'message' => '<div class="wpem-alert wpem-alert-danger">'. __('dj Name is a required field.', 'wp-event-manager') . '</div>',
 			];
 		}
 		wp_send_json($data);
@@ -709,29 +709,29 @@ class WP_Event_Manager_Ajax {
 	}
 
 	/**
-	 * Add venue.
-	 * add venue with popup action
+	 * Add local.
+	 * add local with popup action
 	 * @access public
 	 * @param 
 	 * @return array
 	 * @since 3.1.16
 	 */
-	public function add_venue() {
+	public function add_local() {
 
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-			check_ajax_referer( 'wpem_add_venue_action', 'wpem_add_venue_nonce' );
+			check_ajax_referer( 'wpem_add_local_action', 'wpem_add_local_nonce' );
 		}
 
-		if ( ! is_user_logged_in() || ( ! current_user_can( 'manage_venues' ) ) ) {
+		if ( ! is_user_logged_in() || ( ! current_user_can( 'manage_locals' ) ) ) {
 			wp_send_json( [
 				'code'    => 403,
-				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Please login as organizer to add venue!', 'wp-event-manager' ) . '</div>',
+				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Please login as dj to add local!', 'wp-event-manager' ) . '</div>',
 			] );
 			wp_die();
 		}
 		
-		if ( ! isset( $_POST['wpem_add_venue_nonce'] ) 
-			|| ! wp_verify_nonce( $_POST['wpem_add_venue_nonce'], 'wpem_add_venue_action' ) ) {
+		if ( ! isset( $_POST['wpem_add_local_nonce'] ) 
+			|| ! wp_verify_nonce( $_POST['wpem_add_local_nonce'], 'wpem_add_local_action' ) ) {
 			wp_send_json([
 				'code'    => 403,
 				'message' => '<div class="wpem-alert wpem-alert-danger">' . esc_html__( 'Security check failed.', 'wp-event-manager' ) . '</div>',
@@ -741,48 +741,48 @@ class WP_Event_Manager_Ajax {
 
 		$params = array();
 		parse_str($_REQUEST['form_data'], $params);
-		$params['venue_description'] = sanitize_text_field($_REQUEST['venue_description']);
-		$params['submit_venue'] = 'Submit';
+		$params['local_description'] = sanitize_text_field($_REQUEST['local_description']);
+		$params['submit_local'] = 'Submit';
 
 		$data = [];
 
-		if(!empty($params['venue_name']) && isset($params['venue_id'])  && $params['venue_id'] == 0) {
+		if(!empty($params['local_name']) && isset($params['local_id'])  && $params['local_id'] == 0) {
 			$_POST = $params;
 
-			if(isset($_COOKIE['wp-event-manager-submitting-venue-id']))
-			    unset($_COOKIE['wp-event-manager-submitting-venue-id']);				
-			if(isset($_COOKIE['wp-event-manager-submitting-venue-key']))
-			    unset($_COOKIE['wp-event-manager-submitting-venue-key']);
+			if(isset($_COOKIE['wp-event-manager-submitting-local-id']))
+			    unset($_COOKIE['wp-event-manager-submitting-local-id']);				
+			if(isset($_COOKIE['wp-event-manager-submitting-local-key']))
+			    unset($_COOKIE['wp-event-manager-submitting-local-key']);
 
-			$GLOBALS['event_manager']->forms->get_form('submit-venue', array());
-			$form_submit_venue_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Venue', 'instance'));
-			$event_fields =	$form_submit_venue_instance->merge_with_custom_fields('frontend');
+			$GLOBALS['event_manager']->forms->get_form('submit-local', array());
+			$form_submit_local_instance = call_user_func(array('WP_Event_Manager_Form_Submit_local', 'instance'));
+			$event_fields =	$form_submit_local_instance->merge_with_custom_fields('frontend');
 
 			// Submit current event with $_POST values
-			$form_submit_venue_instance->submit_handler();
-			$venue_id = $form_submit_venue_instance->get_venue_id();
+			$form_submit_local_instance->submit_handler();
+			$local_id = $form_submit_local_instance->get_local_id();
 
-			if(isset($venue_id) && !empty($venue_id)){
-				$venue = get_post($venue_id);
+			if(isset($local_id) && !empty($local_id)){
+				$local = get_post($local_id);
 
 				$data = [
 					'code' => 200,
-					'venue' => [
-						'venue_id' 	=> $venue_id,
-						'venue_name' => $venue->post_title,
+					'local' => [
+						'local_id' 	=> $local_id,
+						'local_name' => $local->post_title,
 					],
 					'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Successfully created', 'wp-event-manager') . '</div>',
 				];
 			}else{
 				$data = [
 					'code' => 404,
-					'message' => '<div class="wpem-alert wpem-alert-danger">'. $form_submit_venue_instance->get_errors() . '</div>',
+					'message' => '<div class="wpem-alert wpem-alert-danger">'. $form_submit_local_instance->get_errors() . '</div>',
 				];
 			}
 		} else {
 			$data = [
 				'code' => 404,
-				'message' => '<div class="wpem-alert wpem-alert-danger">'. __('Venue Name is a required field.', 'wp-event-manager') . '</div>',
+				'message' => '<div class="wpem-alert wpem-alert-danger">'. __('local Name is a required field.', 'wp-event-manager') . '</div>',
 			];
 		}
 		wp_send_json($data);

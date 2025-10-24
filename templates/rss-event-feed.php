@@ -2,7 +2,7 @@
 $location = get_event_location($post_id);
 $event_type = get_event_type($post_id);
 $ticket_price  = get_event_ticket_option($post_id);
-$organizer  = get_organizer_name($post_id);
+$dj  = get_dj_name($post_id);
 $start_date   = get_post_meta($post_id, '_event_start_date', true);
 $end_date     = get_post_meta($post_id, '_event_end_date', true);
 
@@ -28,8 +28,8 @@ do_action('event_fee_item_start'); ?>
 		echo "<event_listing:ticket_price><![CDATA[" . esc_attr($ticket_price) . "]]></event_listing:ticket_price>\n";
 	}
 
-	if($organizer) {
-		echo "<event_listing:organizer><![CDATA[" . esc_attr($organizer) . "]]></event_listing:organizer>\n";
+	if($dj) {
+		echo "<event_listing:dj><![CDATA[" . esc_attr($dj) . "]]></event_listing:dj>\n";
 	}
 
 	if ($start_date) {

@@ -114,9 +114,9 @@ class Elementor_Event_Image_Tag extends Data_Tag {
 			if($event_image_tag == 'event_banner'){
 				$value['id']  	= 0;
 				$value['url'] 	= get_event_banner($event);
-			} else if($event_image_tag == 'organizer_logo')	{
+			} else if($event_image_tag == 'dj_logo')	{
 				$value['id'] 	= 0;
-				$value['url'] 	= get_organizer_logo($event, 'full');
+				$value['url'] 	= get_dj_logo($event, 'full');
 			}
 		}
 

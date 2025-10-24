@@ -17,8 +17,8 @@ var FieldEditor = function() {
 			jQuery('.delete-field').on('click', FieldEditor.actions.deleteField); //delete field
 			jQuery('.reset').on('click', FieldEditor.actions.resetFields); //reset field
 			
-			jQuery('.wp-event-manager-organizer-form-field-editor').on('init',FieldEditor.actions.initSortable);
-			jQuery(	'.wp-event-manager-organizer-form-field-editor').trigger('init');
+			jQuery('.wp-event-manager-dj-form-field-editor').on('init',FieldEditor.actions.initSortable);
+			jQuery(	'.wp-event-manager-dj-form-field-editor').trigger('init');
 
 			jQuery(	'body').on('change', '.wp-event-manager-event-form-field-editor #bulk-select', FieldEditor.actions.displayRemoveButton);
 			jQuery('.remove-button').on('click', FieldEditor.actions.deleteBulkSelectField);

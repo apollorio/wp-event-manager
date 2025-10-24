@@ -12,7 +12,7 @@ if (! defined('ABSPATH')) exit; // Exit if accessed directly
  * Elementor widget for event submit.
  *
  */
-class Elementor_Submit_Venue_Form extends Widget_Base {
+class Elementor_Submit_local_Form extends Widget_Base {
 
 	/**
 	 * Retrieve the widget name.
@@ -22,7 +22,7 @@ class Elementor_Submit_Venue_Form extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'submit-venue-form';
+		return 'submit-local-form';
 	}
 
 	/**
@@ -33,7 +33,7 @@ class Elementor_Submit_Venue_Form extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __('Submit Venue Form', 'wp-event-manager');
+		return __('Submit local Form', 'wp-event-manager');
 	}
 	/**	
 	 * Get widget icon.
@@ -57,7 +57,7 @@ class Elementor_Submit_Venue_Form extends Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return ['submit-venue-form', 'code'];
+		return ['submit-local-form', 'code'];
 	}
 
 	/**
@@ -86,7 +86,7 @@ class Elementor_Submit_Venue_Form extends Widget_Base {
 	protected function register_controls() {
 		$this->start_controls_section(
 			'section_shortcode',
-			['label' => __('Submit Venue Form', 'wp-event-manager'),]
+			['label' => __('Submit local Form', 'wp-event-manager'),]
 		);
 		$this->end_controls_section();
 	}
@@ -100,7 +100,7 @@ class Elementor_Submit_Venue_Form extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		echo do_shortcode('[submit_venue_form]');
+		echo do_shortcode('[submit_local_form]');
 	}
 
 	/**

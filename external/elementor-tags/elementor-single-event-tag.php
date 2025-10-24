@@ -146,8 +146,8 @@ class Elementor_Event_Tag extends Tag {
                 if (!$is_event_online) {
                     echo  esc_html($is_event_online);
                 }
-            } else if ($event_tag == 'event_venue_name') {
-                display_event_venue_name('', '', true, $event);
+            } else if ($event_tag == 'event_local_name') {
+                display_event_local_name('', '', true, $event);
             } else if ($event_tag == 'event_address') {
                 display_event_address('', '', true, $event);
             } else if ($event_tag == 'event_pincode') {
@@ -168,24 +168,24 @@ class Elementor_Event_Tag extends Tag {
                 display_event_end_time('', '', true, $event);
             } else if ($event_tag == 'event_registration_deadline') {
                 display_event_registration_end_date('', '', true, $event);
-            } else if ($event_tag == 'organizer_name') {
-                display_organizer_name('', '', true, $event);
-            } else if ($event_tag == 'organizer_logo') {
-                display_organizer_logo('full', '', $event);
-            } else if ($event_tag == 'organizer_description') {
-                echo  wp_kses_post(get_organizer_description($event));
-            } else if ($event_tag == 'organizer_email') {
-                display_organizer_email('', '', true, $event);
-            } else if ($event_tag == 'event_organizer_ids') {
-                echo esc_attr(get_organizer_name($event, true));
-            } else if ($event_tag == 'organizer_website') {
-                display_organizer_website('', '', true, $event);
-            } else if ($event_tag == 'organizer_twitter') {
-                display_organizer_twitter('', '', true, $event);
-            } else if ($event_tag == 'organizer_youtube') {
-                display_organizer_youtube('', '', true, $event);
-            } else if ($event_tag == 'organizer_facebook') {
-                display_organizer_facebook('', '', true, $event);
+            } else if ($event_tag == 'dj_name') {
+                display_dj_name('', '', true, $event);
+            } else if ($event_tag == 'dj_logo') {
+                display_dj_logo('full', '', $event);
+            } else if ($event_tag == 'dj_description') {
+                echo  wp_kses_post(get_dj_description($event));
+            } else if ($event_tag == 'dj_email') {
+                display_dj_email('', '', true, $event);
+            } else if ($event_tag == 'event_dj_ids') {
+                echo esc_attr(get_dj_name($event, true));
+            } else if ($event_tag == 'dj_website') {
+                display_dj_website('', '', true, $event);
+            } else if ($event_tag == 'dj_twitter') {
+                display_dj_twitter('', '', true, $event);
+            } else if ($event_tag == 'dj_youtube') {
+                display_dj_youtube('', '', true, $event);
+            } else if ($event_tag == 'dj_facebook') {
+                display_dj_facebook('', '', true, $event);
             } else if ($event_tag == 'view_count') {
                 $view_count = get_post_views_count($event);
 

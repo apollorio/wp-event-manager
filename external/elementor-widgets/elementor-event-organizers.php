@@ -7,12 +7,12 @@ use Elementor\Controls_Manager;
 if(!defined('ABSPATH')) exit; // Exit if accessed directly
 
 /**
- * Elementor Event Organizers
+ * Elementor Event djs
  *
- * Elementor widget for Event Organizers.
+ * Elementor widget for Event djs.
  *
  */
-class Elementor_Event_Organizers extends Widget_Base {
+class Elementor_Event_djs extends Widget_Base {
 
 	/**
 	 * Retrieve the widget name.
@@ -22,7 +22,7 @@ class Elementor_Event_Organizers extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'event-organizers';
+		return 'event-djs';
 	}
 
 	/**
@@ -33,7 +33,7 @@ class Elementor_Event_Organizers extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __('Event Organizers', 'wp-event-manager');
+		return __('Event djs', 'wp-event-manager');
 	}
 	/**	
 	 * Get widget icon.
@@ -57,7 +57,7 @@ class Elementor_Event_Organizers extends Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return ['event-organizers', 'code'];
+		return ['event-djs', 'code'];
 	}
 
 	/**
@@ -86,7 +86,7 @@ class Elementor_Event_Organizers extends Widget_Base {
 	protected function register_controls() {
 		$this->start_controls_section(
 			'section_shortcode',
-			['label' => __('Event Organizers', 'wp-event-manager'),]
+			['label' => __('Event djs', 'wp-event-manager'),]
 		);
 
 		$this->add_control(
@@ -157,7 +157,7 @@ class Elementor_Event_Organizers extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		echo do_shortcode('[event_organizers order="'.esc_attr($settings['order']).'" orderby="'.esc_attr($settings['orderby']).'" show_thumb="'.esc_attr($settings['show_thumb']).'" show_count="'.esc_attr($settings['show_count']).'"]');
+		echo do_shortcode('[event_djs order="'.esc_attr($settings['order']).'" orderby="'.esc_attr($settings['orderby']).'" show_thumb="'.esc_attr($settings['show_thumb']).'" show_count="'.esc_attr($settings['show_count']).'"]');
 	}
 
 	/**

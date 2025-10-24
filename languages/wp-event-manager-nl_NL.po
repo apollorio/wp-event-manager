@@ -87,8 +87,8 @@ msgid ""
 "have a new release focusing on a handle of fixes and updates & here is a "
 "summary of what has been improved...\n"
 "\n"
-"Manage your Organizers directly at the frontend and backend.\n"
-"Migration of Old Organizer data would be transferred to the list "
+"Manage your djs directly at the frontend and backend.\n"
+"Migration of Old dj data would be transferred to the list "
 "Automatically.\n"
 "A prior Backup does no harm before updating the plugin!"
 msgstr ""
@@ -98,7 +98,7 @@ msgstr ""
 "samenvatting van de verbeteringen...\n"
 "\n"
 "Beheer uw organisatoren direct aan de voor- en achterkant.\n"
-"Migratie van oude organizergegevens wordt automatisch naar de lijst "
+"Migratie van oude djgegevens wordt automatisch naar de lijst "
 "overgebracht.\n"
 "Een eerdere Back-up doet geen kwaad voor het bijwerken van de plugin!"
 
@@ -232,8 +232,8 @@ msgstr ""
 
 #: admin/wp-event-manager-cpt.php:440
 #: external/elementor-widgets/elementor-event-listing.php:139
-#: external/elementor-widgets/elementor-event-organizers.php:114
-#: external/elementor-widgets/elementor-event-venues.php:114
+#: external/elementor-widgets/elementor-event-djs.php:114
+#: external/elementor-widgets/elementor-event-locals.php:114
 #: external/elementor-widgets/elementor-past-event-listing.php:136
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:136
 #: shortcodes/wp-event-manager-shortcodes.php:307
@@ -272,9 +272,9 @@ msgstr "Locatie"
 #: admin/wp-event-manager-cpt.php:448 core/wp-event-manager-install.php:139
 #: core/wp-event-manager-post-types.php:431
 #: forms/wp-event-manager-form-submit-event.php:342
-#: templates/organizer/content-single-event_listing-organizer.php:24
-#: templates/organizer/content-single-event_listing-organizer.php:138
-msgid "Organizer"
+#: templates/dj/content-single-event_listing-dj.php:24
+#: templates/dj/content-single-event_listing-dj.php:138
+msgid "dj"
 msgstr "Organisator"
 
 #: admin/wp-event-manager-cpt.php:450
@@ -342,14 +342,14 @@ msgstr "Bekijk"
 
 #: admin/wp-event-manager-cpt.php:683 core/wp-event-manager-post-types.php:333
 #: templates/event-dashboard.php:246 templates/event-dashboard.php:279
-#: templates/organizer/organizer-dashboard.php:133
-#: templates/venue/venue-dashboard.php:132
+#: templates/dj/dj-dashboard.php:133
+#: templates/local/local-dashboard.php:132
 msgid "Edit"
 msgstr "Bewerken"
 
 #: admin/wp-event-manager-cpt.php:695 templates/event-dashboard.php:287
-#: templates/organizer/organizer-dashboard.php:143
-#: templates/venue/venue-dashboard.php:142 wp-event-manager.php:345
+#: templates/dj/dj-dashboard.php:143
+#: templates/local/local-dashboard.php:142 wp-event-manager.php:345
 #: wp-event-manager.php:357 wp-event-manager.php:369
 msgid "Delete"
 msgstr "Verwijderen"
@@ -601,13 +601,13 @@ msgstr " : %s"
 #: templates/content-single-event_listing.php:330
 #: templates/content-single-event_listing.php:336
 #: templates/content-single-event_listing.php:363
-#: templates/organizer/content-single-event_listing-organizer.php:54
-#: templates/organizer/content-single-event_listing-organizer.php:158
-#: templates/organizer/content-single-event_organizer.php:29
-#: templates/organizer/event-organizers.php:59
-#: templates/venue/content-single-event_listing-venue.php:57
-#: templates/venue/content-single-event_venue.php:21
-#: templates/venue/event-venues.php:59 wp-event-manager-template.php:2896
+#: templates/dj/content-single-event_listing-dj.php:54
+#: templates/dj/content-single-event_listing-dj.php:158
+#: templates/dj/content-single-event_dj.php:29
+#: templates/dj/event-djs.php:59
+#: templates/local/content-single-event_listing-local.php:57
+#: templates/local/content-single-event_local.php:21
+#: templates/local/event-locals.php:59 wp-event-manager-template.php:2896
 #, php-format
 msgid "%s"
 msgstr "%s"
@@ -672,25 +672,25 @@ msgid "General"
 msgstr "Algemeen"
 
 #: admin/wp-event-manager-settings.php:69
-msgid "Enable organizer"
+msgid "Enable dj"
 msgstr "Organisator inschakelen"
 
 #: admin/wp-event-manager-settings.php:70
 msgid ""
-"Disable this to remove the functionality of Organizers on Your Event Website."
+"Disable this to remove the functionality of djs on Your Event Website."
 msgstr ""
 "Schakel dit uit om de functionaliteit van organisators van de "
 "evenementenwebsite te verwijderen."
 
 #: admin/wp-event-manager-settings.php:79
-msgid "Enable venue"
+msgid "Enable local"
 msgstr "Locatie inschakelen"
 
 #: admin/wp-event-manager-settings.php:80
 msgid ""
-"Disable this to remove the functionality of Venue on your Event Website."
+"Disable this to remove the functionality of local on your Event Website."
 msgstr ""
-"Schakel dit uit om de functionaliteit van Venue op je evenementwebsite te "
+"Schakel dit uit om de functionaliteit van local op je evenementwebsite te "
 "verwijderen."
 
 #: admin/wp-event-manager-settings.php:89
@@ -1165,55 +1165,55 @@ msgstr "Voer de URL van de login pagina in."
 
 #: admin/wp-event-manager-settings.php:562
 #, fuzzy
-msgid "Submit Organizer Form Page"
-msgstr "Organizer-formulierpagina verzenden"
+msgid "Submit dj Form Page"
+msgstr "dj-formulierpagina verzenden"
 
 #: admin/wp-event-manager-settings.php:564
 #, fuzzy
 msgid ""
-"Select the page where you have placed the [submit_organizer_form] shortcode. "
+"Select the page where you have placed the [submit_dj_form] shortcode. "
 "This lets the plugin know where the form is located."
 msgstr ""
-"Selecteer de pagina waar u de shortcode [submit_organizer_form] hebt "
+"Selecteer de pagina waar u de shortcode [submit_dj_form] hebt "
 "geplaatst. Dit laat de plug-in weten waar het formulier zich bevindt."
 
 #: admin/wp-event-manager-settings.php:574
 #, fuzzy
-msgid "Organizer Dashboard Page"
-msgstr "Organizer Dashboard Pagina"
+msgid "dj Dashboard Page"
+msgstr "dj Dashboard Pagina"
 
 #: admin/wp-event-manager-settings.php:576
 #, fuzzy
 msgid ""
-"Select the page where you have placed the [organizer_dashboard] shortcode. "
+"Select the page where you have placed the [dj_dashboard] shortcode. "
 "This lets the plugin know where the dashboard is located."
 msgstr ""
-"Selecteer de pagina waar u de shortcode [organizer_dashboard] hebt "
+"Selecteer de pagina waar u de shortcode [dj_dashboard] hebt "
 "geplaatst. Dit laat de plug-in weten waar het dashboard zich bevindt."
 
 #: admin/wp-event-manager-settings.php:587
 #, fuzzy
-msgid "Submit Venue Form Page"
+msgid "Submit local Form Page"
 msgstr "Locatieformulierpagina verzenden"
 
 #: admin/wp-event-manager-settings.php:589
 msgid ""
-"Select the page where you have placed the [submit_venue_form] shortcode. "
+"Select the page where you have placed the [submit_local_form] shortcode. "
 "This lets the plugin know where the form is located."
 msgstr ""
-"Selecteer de pagina waar u de korte code [submit_venue_form] hebt geplaatst. "
+"Selecteer de pagina waar u de korte code [submit_local_form] hebt geplaatst. "
 "Dit laat de plugin weten waar het formulier zich bevindt."
 
 #: admin/wp-event-manager-settings.php:599
-msgid "Venue Dashboard Page"
+msgid "local Dashboard Page"
 msgstr "Pagina locatiedashboard"
 
 #: admin/wp-event-manager-settings.php:601
 msgid ""
-"Select the page where you have placed the [venue_dashboard] shortcode. This "
+"Select the page where you have placed the [local_dashboard] shortcode. This "
 "lets the plugin know where the dashboard is located."
 msgstr ""
-"Selecteer de pagina waar u de korte code [venue_dashboard] hebt geplaatst. "
+"Selecteer de pagina waar u de korte code [local_dashboard] hebt geplaatst. "
 "Dit laat de plugin weten waar het dashboard zich bevindt."
 
 #: admin/wp-event-manager-settings.php:609
@@ -1418,7 +1418,7 @@ msgstr "Bedankt voor het installeren van WP Event Manager!"
 msgid ""
 "This setup wizard will help you get started by creating various pages for "
 "event submission, event management, and listing your events, along with "
-"setting up organizers and venues pages."
+"setting up djs and locals pages."
 msgstr ""
 "Deze installatiewizard helpt u op weg door verschillende pagina's aan te "
 "maken voor het indienen van evenementen, het beheer van evenementen en het "
@@ -1533,11 +1533,11 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:335
 #, fuzzy
 msgctxt "Default page title (wizard)"
-msgid "Submit Organizer Form"
+msgid "Submit dj Form"
 msgstr "Organisatorformulier verzenden"
 
 #: admin/wp-event-manager-setup.php:338
-msgid "This page allows users to Submit the organizers form the frontend."
+msgid "This page allows users to Submit the djs form the frontend."
 msgstr ""
 "Deze pagina stelt gebruikers in staat om de organisatoren van de frontend in "
 "te dienen."
@@ -1545,7 +1545,7 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:340
 #, fuzzy
 msgid ""
-"In case if you do not want to allow your users to submit organizers from the "
+"In case if you do not want to allow your users to submit djs from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
 "Als u uw gebruikers niet wilt toestaan organisatoren in te dienen vanaf de "
@@ -1554,14 +1554,14 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:349
 #, fuzzy
 msgctxt "Default page title (wizard)"
-msgid "Organizer Dashboard"
-msgstr "Organizer-dashboard"
+msgid "dj Dashboard"
+msgstr "dj-dashboard"
 
 #: admin/wp-event-manager-setup.php:352
 #, fuzzy
 msgid ""
 "This page allows people to manage (edit, delete and duplicate) the "
-"organizers form the frontend."
+"djs form the frontend."
 msgstr ""
 "Op deze pagina kunnen mensen de organisatoren van de frontend beheren "
 "(bewerken, verwijderen en dupliceren)."
@@ -1569,7 +1569,7 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:354
 #, fuzzy
 msgid ""
-"In case if you do not want to allow your users to manage organizers from the "
+"In case if you do not want to allow your users to manage djs from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
 "Als u uw gebruikers niet wilt toestaan organisatoren vanaf de frontend te "
@@ -1577,11 +1577,11 @@ msgstr ""
 
 #: admin/wp-event-manager-setup.php:363
 msgctxt "Default page title (wizard)"
-msgid "Event Organizers"
+msgid "Event djs"
 msgstr "Evenement organisatoren"
 
 #: admin/wp-event-manager-setup.php:366
-msgid "This page allows peoples to show organizers from the front-end."
+msgid "This page allows peoples to show djs from the front-end."
 msgstr ""
 "Deze pagina stelt mensen in staat om de organisatoren aan de front-end te "
 "laten zien."
@@ -1589,7 +1589,7 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:368
 #, fuzzy
 msgid ""
-"In case if you do not want to allow your users to show organizers from the "
+"In case if you do not want to allow your users to show djs from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
 "Als u niet wilt dat uw gebruikers organisatoren vanaf de frontend weergeven, "
@@ -1598,18 +1598,18 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:377
 #, fuzzy
 msgctxt "Default page title (wizard)"
-msgid "Submit Venue Form"
+msgid "Submit local Form"
 msgstr "Locatieformulier verzenden"
 
 #: admin/wp-event-manager-setup.php:380
 #, fuzzy
-msgid "This page allows people to Submit the venues from the frontend."
+msgid "This page allows people to Submit the locals from the frontend."
 msgstr "Op deze pagina kunnen mensen de locaties vanaf de frontend indienen."
 
 #: admin/wp-event-manager-setup.php:382
 #, fuzzy
 msgid ""
-"In case if you do not want to allow your users to submit venues from the "
+"In case if you do not want to allow your users to submit locals from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
 "Als u uw gebruikers niet wilt toestaan om locaties vanaf de frontend in te "
@@ -1618,13 +1618,13 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:391
 #, fuzzy
 msgctxt "Default page title (wizard)"
-msgid "Venue Dashboard"
+msgid "local Dashboard"
 msgstr "Pagina locatiedashboard"
 
 #: admin/wp-event-manager-setup.php:394
 #, fuzzy
 msgid ""
-"This page allows people to manage (edit, delete and duplicate) the venues "
+"This page allows people to manage (edit, delete and duplicate) the locals "
 "form the frontend."
 msgstr ""
 "Op deze pagina kunnen mensen de locaties van de frontend beheren (bewerken, "
@@ -1633,7 +1633,7 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:396
 #, fuzzy
 msgid ""
-"In case if you do not want to allow your users to manage venues from the "
+"In case if you do not want to allow your users to manage locals from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
 "Als u uw gebruikers niet wilt toestaan om locaties vanaf de frontend te "
@@ -1642,11 +1642,11 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:405
 #, fuzzy
 msgctxt "Default page title (wizard)"
-msgid "Event Venues"
+msgid "Event locals"
 msgstr "Evenementenlocaties"
 
 #: admin/wp-event-manager-setup.php:408
-msgid "This page allows peoples to show venues from the front-end."
+msgid "This page allows peoples to show locals from the front-end."
 msgstr ""
 "Deze pagina stelt mensen in staat om locaties te laten zien vanaf de front-"
 "end."
@@ -1654,7 +1654,7 @@ msgstr ""
 #: admin/wp-event-manager-setup.php:410
 #, fuzzy
 msgid ""
-"In case if you do not want to allow your users to show venues from the "
+"In case if you do not want to allow your users to show locals from the "
 "frontend, you can uncheck this and skip creating this page."
 msgstr ""
 "Als u uw gebruikers niet wilt toestaan locaties vanaf de frontend weer te "
@@ -1807,12 +1807,12 @@ msgstr "Succesvol gemaakt"
 
 #: core/wp-event-manager-ajax.php:492
 #, fuzzy
-msgid "Organizer Name is a required field."
+msgid "dj Name is a required field."
 msgstr "Naam organisator is een verplicht veld."
 
 #: core/wp-event-manager-ajax.php:561
 #, fuzzy
-msgid "Venue Name is a required field."
+msgid "local Name is a required field."
 msgstr "Locatienaam is een verplicht veld."
 
 #: core/wp-event-manager-filters.php:23 external/elementor.php:132
@@ -2082,55 +2082,55 @@ msgstr[0] "Preview <span class=\"count\">(%s)</span>"
 msgstr[1] "Preview <span class=\"count\">(%s)</span>"
 
 #: core/wp-event-manager-post-types.php:432 templates/event-dashboard.php:23
-#: templates/organizer/event-organizers.php:14
-msgid "Organizers"
+#: templates/dj/event-djs.php:14
+msgid "djs"
 msgstr "Organisatoren"
 
 #: core/wp-event-manager-post-types.php:444
-msgid "Organizer Logo"
+msgid "dj Logo"
 msgstr "Organizator logo"
 
 #: core/wp-event-manager-post-types.php:446
-msgid "Set organizer logo"
+msgid "Set dj logo"
 msgstr "Organizator-logo instellen"
 
 #: core/wp-event-manager-post-types.php:448
-msgid "Remove organizer logo"
+msgid "Remove dj logo"
 msgstr "Organizator-logo verwijderen"
 
 #: core/wp-event-manager-post-types.php:450
-msgid "Use as organizer logo"
+msgid "Use as dj logo"
 msgstr "Gebruiken als Organizator-logo"
 
 #: core/wp-event-manager-post-types.php:472
-#: templates/venue/content-single-event_listing-venue.php:24
-#: templates/venue/content-single-event_listing-venue.php:150
-msgid "Venue"
+#: templates/local/content-single-event_listing-local.php:24
+#: templates/local/content-single-event_listing-local.php:150
+msgid "local"
 msgstr "Locatie"
 
 #: core/wp-event-manager-post-types.php:473
 #: forms/wp-event-manager-form-submit-event.php:354
-#: templates/event-dashboard.php:31 templates/venue/event-venues.php:14
-msgid "Venues"
+#: templates/event-dashboard.php:31 templates/local/event-locals.php:14
+msgid "locals"
 msgstr "Locaties"
 
 #: core/wp-event-manager-post-types.php:485
 #, fuzzy
-msgid "Venue Logo"
+msgid "local Logo"
 msgstr "Locatie Logo"
 
 #: core/wp-event-manager-post-types.php:487
 #, fuzzy
-msgid "Set venue logo"
+msgid "Set local logo"
 msgstr "Locatielogo instellen"
 
 #: core/wp-event-manager-post-types.php:489
 #, fuzzy
-msgid "Remove venue logo"
+msgid "Remove local logo"
 msgstr "Locatielogo verwijderen"
 
 #: core/wp-event-manager-post-types.php:491
-msgid "Use as venue logo"
+msgid "Use as local logo"
 msgstr "Te gebruiken als locatie-logo"
 
 #. translators: %s: product count
@@ -2176,80 +2176,80 @@ msgstr[1] "%s gebeurtenissen hersteld uit de prullenbak."
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1458
 #, fuzzy, php-format
-msgid "%s organizer updated."
-msgid_plural "%s organizers updated."
+msgid "%s dj updated."
+msgid_plural "%s djs updated."
 msgstr[0] "%s organisator bijgewerkt."
 msgstr[1] "%s organisatoren bijgewerkt."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1460
 #, fuzzy, php-format
-msgid "%s organizer not updated, somebody is editing it."
-msgid_plural "%s organizers not updated, somebody is editing them."
+msgid "%s dj not updated, somebody is editing it."
+msgid_plural "%s djs not updated, somebody is editing them."
 msgstr[0] "%s organisator niet bijgewerkt, is iemand het aan het bewerken."
 msgstr[1] "%s organisatoren niet bijgewerkt, bewerkt iemand ze."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1462
 #, fuzzy, php-format
-msgid "%s organizer permanently deleted."
-msgid_plural "%s organizers permanently deleted."
+msgid "%s dj permanently deleted."
+msgid_plural "%s djs permanently deleted."
 msgstr[0] "%s organisator permanent verwijderd."
 msgstr[1] "%s organisatoren permanent verwijderd."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1464
 #, fuzzy, php-format
-msgid "%s organizer moved to the Trash."
-msgid_plural "%s organizers moved to the Trash."
+msgid "%s dj moved to the Trash."
+msgid_plural "%s djs moved to the Trash."
 msgstr[0] "%s organisator verhuisde naar de prullenbak."
 msgstr[1] "%s organisatoren verhuisden naar de prullenbak."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1466
 #, fuzzy, php-format
-msgid "%s organizer restored from the Trash."
-msgid_plural "%s organizers restored from the Trash."
+msgid "%s dj restored from the Trash."
+msgid_plural "%s djs restored from the Trash."
 msgstr[0] "%s organisator hersteld uit de prullenbak."
 msgstr[1] "%s organisatoren hersteld uit de prullenbak."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1474
 #, fuzzy, php-format
-msgid "%s venue updated."
-msgid_plural "%s venues updated."
+msgid "%s local updated."
+msgid_plural "%s locals updated."
 msgstr[0] "%s locatie bijgewerkt."
 msgstr[1] "%s locaties bijgewerkt."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1476
 #, fuzzy, php-format
-msgid "%s venue not updated, somebody is editing it."
-msgid_plural "%s venues not updated, somebody is editing them."
+msgid "%s local not updated, somebody is editing it."
+msgid_plural "%s locals not updated, somebody is editing them."
 msgstr[0] "%s locatie niet bijgewerkt, is iemand het aan het bewerken."
 msgstr[1] "%s locaties niet zijn bijgewerkt, bewerkt iemand ze."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1478
 #, fuzzy, php-format
-msgid "%s venue permanently deleted."
-msgid_plural "%s venues permanently deleted."
+msgid "%s local permanently deleted."
+msgid_plural "%s locals permanently deleted."
 msgstr[0] "%s locatie permanent verwijderd."
 msgstr[1] "%s locaties permanent verwijderd."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1480
 #, fuzzy, php-format
-msgid "%s venue moved to the Trash."
-msgid_plural "%s venues moved to the Trash."
+msgid "%s local moved to the Trash."
+msgid_plural "%s locals moved to the Trash."
 msgstr[0] "%s locatie verhuisde naar de prullenbak."
 msgstr[1] "%s locaties verhuisden naar de prullenbak."
 
 #. translators: %s: product count
 #: core/wp-event-manager-post-types.php:1482
 #, fuzzy, php-format
-msgid "%s venue restored from the Trash."
-msgid_plural "%s venues restored from the Trash."
+msgid "%s local restored from the Trash."
+msgid_plural "%s locals restored from the Trash."
 msgstr[0] "%s locatie gerestaureerd uit de prullenbak."
 msgstr[1] "%s locaties gerestaureerd uit de prullenbak."
 
@@ -2304,10 +2304,10 @@ msgstr "Evenementen Dashboard"
 
 #: external/elementor-widgets/elementor-event-dashboard.php:97
 #: external/elementor-widgets/elementor-event-listing.php:110
-#: external/elementor-widgets/elementor-organizer-dashboard.php:97
+#: external/elementor-widgets/elementor-dj-dashboard.php:97
 #: external/elementor-widgets/elementor-past-event-listing.php:110
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:110
-#: external/elementor-widgets/elementor-venue-dashboard.php:97
+#: external/elementor-widgets/elementor-local-dashboard.php:97
 msgid "Post Per Page"
 msgstr "Evenementen per pagina"
 
@@ -2328,10 +2328,10 @@ msgstr "Toon paginanummering"
 #: external/elementor-widgets/elementor-event-listing.php:186
 #: external/elementor-widgets/elementor-event-listing.php:199
 #: external/elementor-widgets/elementor-event-listing.php:212
-#: external/elementor-widgets/elementor-event-organizers.php:130
-#: external/elementor-widgets/elementor-event-organizers.php:143
-#: external/elementor-widgets/elementor-event-venues.php:130
-#: external/elementor-widgets/elementor-event-venues.php:143
+#: external/elementor-widgets/elementor-event-djs.php:130
+#: external/elementor-widgets/elementor-event-djs.php:143
+#: external/elementor-widgets/elementor-event-locals.php:130
+#: external/elementor-widgets/elementor-event-locals.php:143
 #: external/elementor-widgets/elementor-past-event-listing.php:101
 #: external/elementor-widgets/elementor-single-event-summary.php:155
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:101
@@ -2344,10 +2344,10 @@ msgstr "Niet waar"
 #: external/elementor-widgets/elementor-event-listing.php:187
 #: external/elementor-widgets/elementor-event-listing.php:200
 #: external/elementor-widgets/elementor-event-listing.php:213
-#: external/elementor-widgets/elementor-event-organizers.php:131
-#: external/elementor-widgets/elementor-event-organizers.php:144
-#: external/elementor-widgets/elementor-event-venues.php:131
-#: external/elementor-widgets/elementor-event-venues.php:144
+#: external/elementor-widgets/elementor-event-djs.php:131
+#: external/elementor-widgets/elementor-event-djs.php:144
+#: external/elementor-widgets/elementor-event-locals.php:131
+#: external/elementor-widgets/elementor-event-locals.php:144
 #: external/elementor-widgets/elementor-past-event-listing.php:102
 #: external/elementor-widgets/elementor-single-event-summary.php:156
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:102
@@ -2355,8 +2355,8 @@ msgid "True"
 msgstr "Waar"
 
 #: external/elementor-widgets/elementor-event-listing.php:122
-#: external/elementor-widgets/elementor-event-organizers.php:97
-#: external/elementor-widgets/elementor-event-venues.php:97
+#: external/elementor-widgets/elementor-event-djs.php:97
+#: external/elementor-widgets/elementor-event-locals.php:97
 #: external/elementor-widgets/elementor-past-event-listing.php:119
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:119
 #: widgets/wp-event-manager-widgets.php:547
@@ -2365,8 +2365,8 @@ msgid "Order"
 msgstr "Bestelling"
 
 #: external/elementor-widgets/elementor-event-listing.php:126
-#: external/elementor-widgets/elementor-event-organizers.php:101
-#: external/elementor-widgets/elementor-event-venues.php:101
+#: external/elementor-widgets/elementor-event-djs.php:101
+#: external/elementor-widgets/elementor-event-locals.php:101
 #: external/elementor-widgets/elementor-past-event-listing.php:123
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:123
 #: widgets/wp-event-manager-widgets.php:260
@@ -2379,8 +2379,8 @@ msgid "Ascending (ASC)"
 msgstr "Oplopend (ASC)"
 
 #: external/elementor-widgets/elementor-event-listing.php:127
-#: external/elementor-widgets/elementor-event-organizers.php:102
-#: external/elementor-widgets/elementor-event-venues.php:102
+#: external/elementor-widgets/elementor-event-djs.php:102
+#: external/elementor-widgets/elementor-event-locals.php:102
 #: external/elementor-widgets/elementor-past-event-listing.php:124
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:124
 #: widgets/wp-event-manager-widgets.php:261
@@ -2391,16 +2391,16 @@ msgid "Descending  (DESC)"
 msgstr "Aflopend (DESC)"
 
 #: external/elementor-widgets/elementor-event-listing.php:135
-#: external/elementor-widgets/elementor-event-organizers.php:110
-#: external/elementor-widgets/elementor-event-venues.php:110
+#: external/elementor-widgets/elementor-event-djs.php:110
+#: external/elementor-widgets/elementor-event-locals.php:110
 #: external/elementor-widgets/elementor-past-event-listing.php:132
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:132
 msgid "Order By"
 msgstr "Sorteer op"
 
 #: external/elementor-widgets/elementor-event-listing.php:140
-#: external/elementor-widgets/elementor-event-organizers.php:115
-#: external/elementor-widgets/elementor-event-venues.php:115
+#: external/elementor-widgets/elementor-event-djs.php:115
+#: external/elementor-widgets/elementor-event-locals.php:115
 #: external/elementor-widgets/elementor-past-event-listing.php:137
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:137
 #: widgets/wp-event-manager-widgets.php:562
@@ -2409,8 +2409,8 @@ msgid "ID"
 msgstr "ID"
 
 #: external/elementor-widgets/elementor-event-listing.php:141
-#: external/elementor-widgets/elementor-event-organizers.php:116
-#: external/elementor-widgets/elementor-event-venues.php:116
+#: external/elementor-widgets/elementor-event-djs.php:116
+#: external/elementor-widgets/elementor-event-locals.php:116
 #: external/elementor-widgets/elementor-past-event-listing.php:138
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:138
 #: widgets/wp-event-manager-widgets.php:563
@@ -2419,8 +2419,8 @@ msgid "Name"
 msgstr "Naam"
 
 #: external/elementor-widgets/elementor-event-listing.php:142
-#: external/elementor-widgets/elementor-event-organizers.php:117
-#: external/elementor-widgets/elementor-event-venues.php:117
+#: external/elementor-widgets/elementor-event-djs.php:117
+#: external/elementor-widgets/elementor-event-locals.php:117
 #: external/elementor-widgets/elementor-past-event-listing.php:139
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:139
 #: widgets/wp-event-manager-widgets.php:564
@@ -2445,8 +2445,8 @@ msgid "Event Start Date"
 msgstr "Startdatum Evenement"
 
 #: external/elementor-widgets/elementor-event-listing.php:145
-#: external/elementor-widgets/elementor-event-organizers.php:118
-#: external/elementor-widgets/elementor-event-venues.php:118
+#: external/elementor-widgets/elementor-event-djs.php:118
+#: external/elementor-widgets/elementor-event-locals.php:118
 #: external/elementor-widgets/elementor-past-event-listing.php:142
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:142
 msgid "Rand"
@@ -2525,33 +2525,33 @@ msgstr "Gebeurtenistypen"
 msgid "Enter Event Types by comma separate"
 msgstr "Gebeurtenistypen invoeren per komma gescheiden"
 
-#: external/elementor-widgets/elementor-event-organizers.php:36
-#: external/elementor-widgets/elementor-event-organizers.php:90
-msgid "Event Organizers"
+#: external/elementor-widgets/elementor-event-djs.php:36
+#: external/elementor-widgets/elementor-event-djs.php:90
+msgid "Event djs"
 msgstr "Evenement organisatoren"
 
-#: external/elementor-widgets/elementor-event-organizers.php:126
-#: external/elementor-widgets/elementor-event-venues.php:126
+#: external/elementor-widgets/elementor-event-djs.php:126
+#: external/elementor-widgets/elementor-event-locals.php:126
 msgid "Show Thumb"
 msgstr "Toon Thumb"
 
-#: external/elementor-widgets/elementor-event-organizers.php:139
-#: external/elementor-widgets/elementor-event-venues.php:139
+#: external/elementor-widgets/elementor-event-djs.php:139
+#: external/elementor-widgets/elementor-event-locals.php:139
 msgid "Show Count"
 msgstr "Toon teller"
 
-#: external/elementor-widgets/elementor-event-venues.php:36
-#: external/elementor-widgets/elementor-event-venues.php:90
+#: external/elementor-widgets/elementor-event-locals.php:36
+#: external/elementor-widgets/elementor-event-locals.php:90
 #, fuzzy
-msgid "Event Venues"
+msgid "Event locals"
 msgstr "Evenementenlocaties"
 
-#: external/elementor-widgets/elementor-organizer-dashboard.php:36
-#: external/elementor-widgets/elementor-organizer-dashboard.php:90
-#: templates/organizer/organizer-dashboard.php:4
+#: external/elementor-widgets/elementor-dj-dashboard.php:36
+#: external/elementor-widgets/elementor-dj-dashboard.php:90
+#: templates/dj/dj-dashboard.php:4
 #, fuzzy
-msgid "Organizer Dashboard"
-msgstr "Organizer-dashboard"
+msgid "dj Dashboard"
+msgstr "dj-dashboard"
 
 #: external/elementor-widgets/elementor-past-event-listing.php:36
 #: external/elementor-widgets/elementor-past-event-listing.php:90
@@ -2688,14 +2688,14 @@ msgstr "zelfde dag"
 msgid "specific day"
 msgstr "specifieke dag"
 
-#: external/elementor-widgets/elementor-single-event-organizer.php:36
-#: external/elementor-widgets/elementor-single-event-organizer.php:90
+#: external/elementor-widgets/elementor-single-event-dj.php:36
+#: external/elementor-widgets/elementor-single-event-dj.php:90
 #, fuzzy
-msgid "Single Event Organizer"
+msgid "Single Event dj"
 msgstr "Organisator van één evenement"
 
-#: external/elementor-widgets/elementor-single-event-organizer.php:99
-#: external/elementor-widgets/elementor-single-event-venue.php:98
+#: external/elementor-widgets/elementor-single-event-dj.php:99
+#: external/elementor-widgets/elementor-single-event-local.php:98
 #, fuzzy
 msgid "Note: The widget only works for single event template in Elementor Pro."
 msgstr ""
@@ -2740,10 +2740,10 @@ msgstr "Midden"
 msgid "Right"
 msgstr "Rechts"
 
-#: external/elementor-widgets/elementor-single-event-venue.php:36
-#: external/elementor-widgets/elementor-single-event-venue.php:90
+#: external/elementor-widgets/elementor-single-event-local.php:36
+#: external/elementor-widgets/elementor-single-event-local.php:90
 #, fuzzy
-msgid "Single Event Venue"
+msgid "Single Event local"
 msgstr "Eén evenementenlocatie"
 
 #: external/elementor-widgets/elementor-single-event.php:36
@@ -2751,36 +2751,36 @@ msgstr "Eén evenementenlocatie"
 msgid "Single Event"
 msgstr "Enkelvoudige Event"
 
-#: external/elementor-widgets/elementor-single-organizer.php:36
-#: external/elementor-widgets/elementor-single-organizer.php:90
+#: external/elementor-widgets/elementor-single-dj.php:36
+#: external/elementor-widgets/elementor-single-dj.php:90
 #, fuzzy
-msgid "Single Organizer"
+msgid "Single dj"
 msgstr "Eén organisator"
 
-#: external/elementor-widgets/elementor-single-organizer.php:112
+#: external/elementor-widgets/elementor-single-dj.php:112
 #, fuzzy
-msgid "Not Found Organizer"
+msgid "Not Found dj"
 msgstr "Organisator niet gevonden"
 
-#: external/elementor-widgets/elementor-single-organizer.php:118
-msgid "Select Organizer"
+#: external/elementor-widgets/elementor-single-dj.php:118
+msgid "Select dj"
 msgstr "Organizatör Seç"
 
-#: external/elementor-widgets/elementor-single-venue.php:36
-#: external/elementor-widgets/elementor-single-venue.php:90
+#: external/elementor-widgets/elementor-single-local.php:36
+#: external/elementor-widgets/elementor-single-local.php:90
 #, fuzzy
-msgid "Single Venue"
+msgid "Single local"
 msgstr "Eén locatie"
 
-#: external/elementor-widgets/elementor-single-venue.php:112
-msgid "Not Found Venue"
+#: external/elementor-widgets/elementor-single-local.php:112
+msgid "Not Found local"
 msgstr "Locatie niet gevonden"
 
-#: external/elementor-widgets/elementor-single-venue.php:118
+#: external/elementor-widgets/elementor-single-local.php:118
 #: forms/wp-event-manager-form-submit-event.php:357
 #: wp-event-manager-functions.php:2109
 #, fuzzy
-msgid "Select Venue"
+msgid "Select local"
 msgstr "Selecteer locatie"
 
 #: external/elementor-widgets/elementor-submit-event-form.php:36
@@ -2788,16 +2788,16 @@ msgstr "Selecteer locatie"
 msgid "Submit Event Form"
 msgstr "Evenement formulier verzenden"
 
-#: external/elementor-widgets/elementor-submit-organizer-form.php:36
-#: external/elementor-widgets/elementor-submit-organizer-form.php:90
+#: external/elementor-widgets/elementor-submit-dj-form.php:36
+#: external/elementor-widgets/elementor-submit-dj-form.php:90
 #, fuzzy
-msgid "Submit Organizer Form"
+msgid "Submit dj Form"
 msgstr "Organisatorformulier verzenden"
 
-#: external/elementor-widgets/elementor-submit-venue-form.php:36
-#: external/elementor-widgets/elementor-submit-venue-form.php:90
+#: external/elementor-widgets/elementor-submit-local-form.php:36
+#: external/elementor-widgets/elementor-submit-local-form.php:90
 #, fuzzy
-msgid "Submit Venue Form"
+msgid "Submit local Form"
 msgstr "Locatieformulier verzenden"
 
 #: external/elementor-widgets/elementor-upcoming-event-listing.php:36
@@ -2805,11 +2805,11 @@ msgstr "Locatieformulier verzenden"
 msgid "Upcoming Event Listing"
 msgstr "Komende evenementenlijst"
 
-#: external/elementor-widgets/elementor-venue-dashboard.php:36
-#: external/elementor-widgets/elementor-venue-dashboard.php:90
-#: templates/venue/venue-dashboard.php:4
+#: external/elementor-widgets/elementor-local-dashboard.php:36
+#: external/elementor-widgets/elementor-local-dashboard.php:90
+#: templates/local/local-dashboard.php:4
 #, fuzzy
-msgid "Venue Dashboard"
+msgid "local Dashboard"
 msgstr "Pagina locatiedashboard"
 
 #: external/elementor.php:127
@@ -2872,35 +2872,35 @@ msgid "Select Ticket Type"
 msgstr "Selecteer tickettype"
 
 #: forms/wp-event-manager-form-edit-event.php:66
-#: forms/wp-event-manager-form-edit-organizer.php:66
-#: forms/wp-event-manager-form-edit-venue.php:65
+#: forms/wp-event-manager-form-edit-dj.php:66
+#: forms/wp-event-manager-form-edit-local.php:65
 msgid "Invalid listing"
 msgstr "Ongeldige lijst"
 
 #: forms/wp-event-manager-form-edit-event.php:152
-#: forms/wp-event-manager-form-edit-organizer.php:127
-#: forms/wp-event-manager-form-edit-venue.php:126
+#: forms/wp-event-manager-form-edit-dj.php:127
+#: forms/wp-event-manager-form-edit-local.php:126
 msgid "Save changes"
 msgstr "Wijzigingen opslaan"
 
 #: forms/wp-event-manager-form-edit-event.php:193
 #: forms/wp-event-manager-form-edit-event.php:199
-#: forms/wp-event-manager-form-edit-organizer.php:170
-#: forms/wp-event-manager-form-edit-organizer.php:176
-#: forms/wp-event-manager-form-edit-venue.php:169
-#: forms/wp-event-manager-form-edit-venue.php:175
+#: forms/wp-event-manager-form-edit-dj.php:170
+#: forms/wp-event-manager-form-edit-dj.php:176
+#: forms/wp-event-manager-form-edit-local.php:169
+#: forms/wp-event-manager-form-edit-local.php:175
 msgid "Your changes have been saved."
 msgstr "Je wijzigingen zijn opgeslagen."
 
 #: forms/wp-event-manager-form-edit-event.php:193
-#: forms/wp-event-manager-form-edit-organizer.php:170
-#: forms/wp-event-manager-form-edit-venue.php:169
+#: forms/wp-event-manager-form-edit-dj.php:170
+#: forms/wp-event-manager-form-edit-local.php:169
 msgid "View &rarr;"
 msgstr "Toon &rarr;"
 
 #: forms/wp-event-manager-form-submit-event.php:30
-#: forms/wp-event-manager-form-submit-organizer.php:34
-#: forms/wp-event-manager-form-submit-venue.php:33
+#: forms/wp-event-manager-form-submit-dj.php:34
+#: forms/wp-event-manager-form-submit-local.php:33
 msgid "Submit Details"
 msgstr "Verzend"
 
@@ -2911,8 +2911,8 @@ msgid "Preview"
 msgstr "Voorbeeld"
 
 #: forms/wp-event-manager-form-submit-event.php:44
-#: forms/wp-event-manager-form-submit-organizer.php:41
-#: forms/wp-event-manager-form-submit-venue.php:40
+#: forms/wp-event-manager-form-submit-dj.php:41
+#: forms/wp-event-manager-form-submit-local.php:40
 msgid "Done"
 msgstr "Klaar"
 
@@ -3048,31 +3048,31 @@ msgstr "Gelieve de uiterste registratie datum in te voeren"
 #, fuzzy
 msgid ""
 "<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">If it doesn't show "
-"organizer(s). Manage your organizer(s) from <a href=\"javascript:void(0)\" "
-"class=\"wpem_add_organizer_popup wpem-modal-button\" data-modal-id="
-"\"wpem_add_organizer_popup\">here</a></div>"
+"dj(s). Manage your dj(s) from <a href=\"javascript:void(0)\" "
+"class=\"wpem_add_dj_popup wpem-modal-button\" data-modal-id="
+"\"wpem_add_dj_popup\">here</a></div>"
 msgstr ""
 "<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">Als er geen "
 "organisator(en) worden weergegeven. Beheer uw organisator(en) vanaf <a href="
-"\"javascript:void(0)\" class=\"wpem_add_organizer_popup wpem-modal-button\" "
-"data-modal-id=\"wpem_add_organizer_popup\">hier</a></div>"
+"\"javascript:void(0)\" class=\"wpem_add_dj_popup wpem-modal-button\" "
+"data-modal-id=\"wpem_add_dj_popup\">hier</a></div>"
 
 #: forms/wp-event-manager-form-submit-event.php:358
 #, fuzzy
 msgid ""
 "<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">If it doesn't show "
-"venue(s). Manage your venue(s) from <a href=\"javascript:void(0)\" class="
-"\"wpem_add_venue_popup wpem-modal-button\" data-modal-id="
-"\"wpem_add_venue_popup\">here</a></div>"
+"local(s). Manage your local(s) from <a href=\"javascript:void(0)\" class="
+"\"wpem_add_local_popup wpem-modal-button\" data-modal-id="
+"\"wpem_add_local_popup\">here</a></div>"
 msgstr ""
 "<div class=\"wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0\">Als het geen locatie "
 "(s) toont. Beheer uw locatie(s) vanaf <a href=\"javascript:void(0)\" class="
-"\"wpem_add_venue_popup wpem-modal-button\" data-modal-id="
-"\"wpem_add_venue_popup\">hier</a></div>"
+"\"wpem_add_local_popup wpem-modal-button\" data-modal-id="
+"\"wpem_add_local_popup\">hier</a></div>"
 
 #: forms/wp-event-manager-form-submit-event.php:401
-#: forms/wp-event-manager-form-submit-organizer.php:295
-#: forms/wp-event-manager-form-submit-venue.php:284
+#: forms/wp-event-manager-form-submit-dj.php:295
+#: forms/wp-event-manager-form-submit-local.php:284
 #, php-format
 msgid "%s is a required field."
 msgstr "%s is een verplicht veld."
@@ -3083,8 +3083,8 @@ msgid "%s is invalid."
 msgstr "%s is ongeldig"
 
 #: forms/wp-event-manager-form-submit-event.php:440
-#: forms/wp-event-manager-form-submit-organizer.php:322
-#: forms/wp-event-manager-form-submit-venue.php:311
+#: forms/wp-event-manager-form-submit-dj.php:322
+#: forms/wp-event-manager-form-submit-local.php:311
 #: wp-event-manager-functions.php:1670
 #, php-format
 msgid "\"%s\" (filetype %s) needs to be one of the following file types: %s"
@@ -3138,170 +3138,170 @@ msgstr "Wachtwoord is ongeldig."
 msgid "You must be signed in to post a new listing."
 msgstr "U moet ingelogd zijn om vacatures te kunnen plaatsen."
 
-#: forms/wp-event-manager-form-submit-organizer.php:105
+#: forms/wp-event-manager-form-submit-dj.php:105
 #: shortcodes/wp-event-manager-shortcodes.php:485
-msgid "Organizer name"
+msgid "dj name"
 msgstr "Organisatie naam"
 
-#: forms/wp-event-manager-form-submit-organizer.php:108
+#: forms/wp-event-manager-form-submit-dj.php:108
 msgid "Enter the name of the organization"
 msgstr "Voer de naam van de organisatie in"
 
-#: forms/wp-event-manager-form-submit-organizer.php:113
-#: forms/wp-event-manager-form-submit-venue.php:118
+#: forms/wp-event-manager-form-submit-dj.php:113
+#: forms/wp-event-manager-form-submit-local.php:118
 msgid "Logo"
 msgstr "Logo"
 
-#: forms/wp-event-manager-form-submit-organizer.php:129
-msgid "Organizer Description"
+#: forms/wp-event-manager-form-submit-dj.php:129
+msgid "dj Description"
 msgstr "Beschrijving van de organisator"
 
-#: forms/wp-event-manager-form-submit-organizer.php:137
-msgid "Organizer Email"
+#: forms/wp-event-manager-form-submit-dj.php:137
+msgid "dj Email"
 msgstr "Emailadres organisatie"
 
-#: forms/wp-event-manager-form-submit-organizer.php:140
+#: forms/wp-event-manager-form-submit-dj.php:140
 msgid "Enter your email address"
 msgstr "Vul uw e-mailadres in"
 
-#: forms/wp-event-manager-form-submit-organizer.php:145
-#: forms/wp-event-manager-form-submit-venue.php:134
-#: templates/organizer/content-single-event_listing-organizer.php:72
-#: templates/organizer/content-single-event_listing-organizer.php:176
-#: templates/organizer/content-single-event_organizer.php:45
-#: templates/organizer/organizer-dashboard.php:68
-#: templates/venue/content-single-event_listing-venue.php:77
-#: templates/venue/content-single-event_venue.php:37
-#: templates/venue/venue-dashboard.php:66
+#: forms/wp-event-manager-form-submit-dj.php:145
+#: forms/wp-event-manager-form-submit-local.php:134
+#: templates/dj/content-single-event_listing-dj.php:72
+#: templates/dj/content-single-event_listing-dj.php:176
+#: templates/dj/content-single-event_dj.php:45
+#: templates/dj/dj-dashboard.php:68
+#: templates/local/content-single-event_listing-local.php:77
+#: templates/local/content-single-event_local.php:37
+#: templates/local/local-dashboard.php:66
 msgid "Website"
 msgstr "Website"
 
-#: forms/wp-event-manager-form-submit-organizer.php:148
+#: forms/wp-event-manager-form-submit-dj.php:148
 msgid "Website URL e.g http://www.yourorganization.com"
 msgstr "Website URL b.v. https://www.yourorganization.com"
 
-#: forms/wp-event-manager-form-submit-organizer.php:153
-#: forms/wp-event-manager-form-submit-venue.php:142
+#: forms/wp-event-manager-form-submit-dj.php:153
+#: forms/wp-event-manager-form-submit-local.php:142
 #: templates/content-single-event_listing.php:528
-#: templates/organizer/content-single-event_organizer.php:53
-#: templates/organizer/organizer-dashboard.php:76
-#: templates/venue/content-single-event_listing-venue.php:86
-#: templates/venue/content-single-event_venue.php:46
-#: templates/venue/venue-dashboard.php:74
+#: templates/dj/content-single-event_dj.php:53
+#: templates/dj/dj-dashboard.php:76
+#: templates/local/content-single-event_listing-local.php:86
+#: templates/local/content-single-event_local.php:46
+#: templates/local/local-dashboard.php:74
 msgid "Facebook"
 msgstr "Facebook"
 
-#: forms/wp-event-manager-form-submit-organizer.php:156
+#: forms/wp-event-manager-form-submit-dj.php:156
 #, fuzzy
-msgid "Facebook URL e.g http://www.facebook.com/yourorganizer"
-msgstr "Facebook URL bijvoorbeeld http://www.facebook.com/yourorganizer"
+msgid "Facebook URL e.g http://www.facebook.com/yourdj"
+msgstr "Facebook URL bijvoorbeeld http://www.facebook.com/yourdj"
 
-#: forms/wp-event-manager-form-submit-organizer.php:161
-#: forms/wp-event-manager-form-submit-venue.php:150
-#: templates/organizer/content-single-event_listing-organizer.php:84
-#: templates/organizer/content-single-event_listing-organizer.php:188
-#: templates/organizer/content-single-event_organizer.php:61
-#: templates/organizer/organizer-dashboard.php:84
-#: templates/venue/content-single-event_listing-venue.php:95
-#: templates/venue/content-single-event_venue.php:55
-#: templates/venue/venue-dashboard.php:82
+#: forms/wp-event-manager-form-submit-dj.php:161
+#: forms/wp-event-manager-form-submit-local.php:150
+#: templates/dj/content-single-event_listing-dj.php:84
+#: templates/dj/content-single-event_listing-dj.php:188
+#: templates/dj/content-single-event_dj.php:61
+#: templates/dj/dj-dashboard.php:84
+#: templates/local/content-single-event_listing-local.php:95
+#: templates/local/content-single-event_local.php:55
+#: templates/local/local-dashboard.php:82
 msgid "Instagram"
 msgstr "Instagram"
 
-#: forms/wp-event-manager-form-submit-organizer.php:164
+#: forms/wp-event-manager-form-submit-dj.php:164
 #, fuzzy
-msgid "Instagram URL e.g http://www.instagram.com/yourorganizer"
-msgstr "Instagram URL bijv. http://www.instagram.com/yourorganizer"
+msgid "Instagram URL e.g http://www.instagram.com/yourdj"
+msgstr "Instagram URL bijv. http://www.instagram.com/yourdj"
 
-#: forms/wp-event-manager-form-submit-organizer.php:169
-#: forms/wp-event-manager-form-submit-venue.php:158
-#: templates/organizer/content-single-event_listing-organizer.php:96
-#: templates/organizer/content-single-event_listing-organizer.php:200
-#: templates/organizer/content-single-event_organizer.php:76
-#: templates/organizer/organizer-dashboard.php:100
-#: templates/venue/content-single-event_listing-venue.php:113
-#: templates/venue/content-single-event_venue.php:72
-#: templates/venue/venue-dashboard.php:98
+#: forms/wp-event-manager-form-submit-dj.php:169
+#: forms/wp-event-manager-form-submit-local.php:158
+#: templates/dj/content-single-event_listing-dj.php:96
+#: templates/dj/content-single-event_listing-dj.php:200
+#: templates/dj/content-single-event_dj.php:76
+#: templates/dj/dj-dashboard.php:100
+#: templates/local/content-single-event_listing-local.php:113
+#: templates/local/content-single-event_local.php:72
+#: templates/local/local-dashboard.php:98
 msgid "Youtube"
 msgstr "YouTube"
 
-#: forms/wp-event-manager-form-submit-organizer.php:172
+#: forms/wp-event-manager-form-submit-dj.php:172
 #, fuzzy
-msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourorganizer"
-msgstr "Youtube Kanaal URL b.v. http://www.youtube.com/channel/yourorganizer"
+msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourdj"
+msgstr "Youtube Kanaal URL b.v. http://www.youtube.com/channel/yourdj"
 
-#: forms/wp-event-manager-form-submit-organizer.php:177
-#: forms/wp-event-manager-form-submit-venue.php:166
+#: forms/wp-event-manager-form-submit-dj.php:177
+#: forms/wp-event-manager-form-submit-local.php:166
 #: templates/content-single-event_listing.php:531
-#: templates/organizer/content-single-event_listing-organizer.php:90
-#: templates/organizer/content-single-event_listing-organizer.php:194
-#: templates/organizer/content-single-event_organizer.php:69
-#: templates/organizer/organizer-dashboard.php:92
-#: templates/venue/content-single-event_listing-venue.php:104
-#: templates/venue/content-single-event_venue.php:64
-#: templates/venue/venue-dashboard.php:90
+#: templates/dj/content-single-event_listing-dj.php:90
+#: templates/dj/content-single-event_listing-dj.php:194
+#: templates/dj/content-single-event_dj.php:69
+#: templates/dj/dj-dashboard.php:92
+#: templates/local/content-single-event_listing-local.php:104
+#: templates/local/content-single-event_local.php:64
+#: templates/local/local-dashboard.php:90
 msgid "Twitter"
 msgstr "Twitter"
 
-#: forms/wp-event-manager-form-submit-organizer.php:180
-msgid "Twitter URL e.g http://twitter.com/yourorganizer"
-msgstr "Twitter-URL bijvoorbeeld https://twitter.com/yourorganizer"
+#: forms/wp-event-manager-form-submit-dj.php:180
+msgid "Twitter URL e.g http://twitter.com/yourdj"
+msgstr "Twitter-URL bijvoorbeeld https://twitter.com/yourdj"
 
-#: forms/wp-event-manager-form-submit-organizer.php:273
-#: forms/wp-event-manager-form-submit-venue.php:262
+#: forms/wp-event-manager-form-submit-dj.php:273
+#: forms/wp-event-manager-form-submit-local.php:262
 msgid "Submit"
 msgstr "Verzenden"
 
-#: forms/wp-event-manager-form-submit-organizer.php:306
-#: forms/wp-event-manager-form-submit-venue.php:295
+#: forms/wp-event-manager-form-submit-dj.php:306
+#: forms/wp-event-manager-form-submit-local.php:295
 #, php-format
 msgid "%s is invalid"
 msgstr "%s is ongeldig"
 
-#: forms/wp-event-manager-form-submit-organizer.php:333
-msgid "Please enter a valid organizer email address"
+#: forms/wp-event-manager-form-submit-dj.php:333
+msgid "Please enter a valid dj email address"
 msgstr "Geef een geldig e-mailadres voor de organisator op"
 
-#: forms/wp-event-manager-form-submit-venue.php:102
-msgid "Venue Name"
+#: forms/wp-event-manager-form-submit-local.php:102
+msgid "local Name"
 msgstr "Naam van de locatie"
 
-#: forms/wp-event-manager-form-submit-venue.php:105
-msgid "Please enter the venue name"
+#: forms/wp-event-manager-form-submit-local.php:105
+msgid "Please enter the local name"
 msgstr "Geef de naam van de locatie op"
 
-#: forms/wp-event-manager-form-submit-venue.php:110
+#: forms/wp-event-manager-form-submit-local.php:110
 #, fuzzy
-msgid "Venue Description"
+msgid "local Description"
 msgstr "Beschrijving van de locatie"
 
-#: forms/wp-event-manager-form-submit-venue.php:137
+#: forms/wp-event-manager-form-submit-local.php:137
 #, fuzzy
-msgid "Website URL e.g http://www.yourvenue.com"
-msgstr "Website URL bijv. http://www.yourvenue.com"
+msgid "Website URL e.g http://www.yourlocal.com"
+msgstr "Website URL bijv. http://www.yourlocal.com"
 
-#: forms/wp-event-manager-form-submit-venue.php:145
+#: forms/wp-event-manager-form-submit-local.php:145
 #, fuzzy
-msgid "Facebook URL e.g http://www.facebook.com/yourvenue"
-msgstr "Facebook URL bijvoorbeeld http://www.facebook.com/yourvenue"
+msgid "Facebook URL e.g http://www.facebook.com/yourlocal"
+msgstr "Facebook URL bijvoorbeeld http://www.facebook.com/yourlocal"
 
-#: forms/wp-event-manager-form-submit-venue.php:153
+#: forms/wp-event-manager-form-submit-local.php:153
 #, fuzzy
-msgid "Instagram URL e.g http://www.instagram.com/yourvenue"
-msgstr "Instagram URL, bijvoorbeeld http://www.instagram.com/yourvenue"
+msgid "Instagram URL e.g http://www.instagram.com/yourlocal"
+msgstr "Instagram URL, bijvoorbeeld http://www.instagram.com/yourlocal"
 
-#: forms/wp-event-manager-form-submit-venue.php:161
+#: forms/wp-event-manager-form-submit-local.php:161
 #, fuzzy
-msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourvenue"
-msgstr "Youtube Kanaal URL b.v. http://www.youtube.com/channel/yourvenue"
+msgid "Youtube Channel URL e.g http://www.youtube.com/channel/yourlocal"
+msgstr "Youtube Kanaal URL b.v. http://www.youtube.com/channel/yourlocal"
 
-#: forms/wp-event-manager-form-submit-venue.php:169
-msgid "Twitter URL e.g http://twitter.com/yourvenue"
-msgstr "Twitter-URL bijv. http://twitter.com/yourvenue"
+#: forms/wp-event-manager-form-submit-local.php:169
+msgid "Twitter URL e.g http://twitter.com/yourlocal"
+msgstr "Twitter-URL bijv. http://twitter.com/yourlocal"
 
-#: forms/wp-event-manager-form-submit-venue.php:322
+#: forms/wp-event-manager-form-submit-local.php:322
 #, fuzzy
-msgid "Please enter a valid venue email address"
+msgid "Please enter a valid local email address"
 msgstr "Voer een geldig e-mailadres in"
 
 #: shortcodes/wp-event-manager-shortcodes.php:126
@@ -3361,7 +3361,7 @@ msgid "Details"
 msgstr "Details"
 
 #: shortcodes/wp-event-manager-shortcodes.php:655
-msgid "Venue name"
+msgid "local name"
 msgstr "Locatie naam"
 
 #: shortcodes/wp-event-manager-shortcodes.php:962
@@ -3389,7 +3389,7 @@ msgstr "U bent momenteel ingelogd als <strong>%s</strong>."
 msgid "Sign out"
 msgstr "Uitloggen"
 
-#: templates/account-signin.php:14 templates/organizer/organizer-submit.php:56
+#: templates/account-signin.php:14 templates/dj/dj-submit.php:56
 msgid "Have an account?"
 msgstr "Heb je al een account?"
 
@@ -3420,8 +3420,8 @@ msgstr " U moet zich aanmelden om een nieuw evenement te maken."
 #: templates/form-fields/group-field.php:90
 #: templates/form-fields/repeated-field.php:37
 #: templates/form-fields/repeated-field.php:95
-#: templates/organizer/organizer-submit.php:37
-#: templates/venue/venue-submit.php:24
+#: templates/dj/dj-submit.php:37
+#: templates/local/local-submit.php:24
 msgid "(optional)"
 msgstr "(optioneel)"
 
@@ -3534,8 +3534,8 @@ msgid "Mark cancelled"
 msgstr "Markeren als geannuleerd"
 
 #: templates/event-dashboard.php:261
-#: templates/organizer/organizer-dashboard.php:137
-#: templates/venue/venue-dashboard.php:136
+#: templates/dj/dj-dashboard.php:137
+#: templates/local/local-dashboard.php:136
 msgid "Duplicate"
 msgstr "Kopiëren"
 
@@ -3655,24 +3655,24 @@ msgid "Create A New Event"
 msgstr "Evenement aanmaken"
 
 #: templates/event-submit.php:39 templates/event-submit.php:102
-#: templates/organizer/organizer-submit.php:27
-msgid "Organizer Details"
+#: templates/dj/dj-submit.php:27
+msgid "dj Details"
 msgstr "Organisator Details"
 
 #: templates/event-submit.php:56 templates/event-submit.php:145
-#: templates/venue/venue-submit.php:14
-msgid "Venue Details"
+#: templates/local/local-submit.php:14
+msgid "local Details"
 msgstr "Locatie details"
 
 #: templates/event-submit.php:94 templates/event-submit.php:97
 #: templates/event-submit.php:119
-msgid "Add Organizer"
+msgid "Add dj"
 msgstr "Organisator toevoegen"
 
 #: templates/event-submit.php:137 templates/event-submit.php:140
 #: templates/event-submit.php:162
 #, fuzzy
-msgid "Add Venue"
+msgid "Add local"
 msgstr "Nieuwe locatie toevoegen"
 
 #: templates/event-submitted.php:7
@@ -3718,150 +3718,150 @@ msgstr "Ticket details"
 msgid "remove"
 msgstr "verwijderen"
 
-#: templates/organizer/content-single-event_listing-organizer.php:72
-#: templates/organizer/content-single-event_listing-organizer.php:176
-#: templates/organizer/content-single-event_organizer.php:45
-#: templates/organizer/organizer-dashboard.php:68
-#: templates/venue/content-single-event_listing-venue.php:77
-#: templates/venue/content-single-event_venue.php:37
-#: templates/venue/venue-dashboard.php:66
+#: templates/dj/content-single-event_listing-dj.php:72
+#: templates/dj/content-single-event_listing-dj.php:176
+#: templates/dj/content-single-event_dj.php:45
+#: templates/dj/dj-dashboard.php:68
+#: templates/local/content-single-event_listing-local.php:77
+#: templates/local/content-single-event_local.php:37
+#: templates/local/local-dashboard.php:66
 msgid "Get Connect on Website"
 msgstr "Maak verbinding met de website"
 
-#: templates/organizer/content-single-event_listing-organizer.php:78
-#: templates/organizer/content-single-event_listing-organizer.php:182
-#: templates/organizer/content-single-event_organizer.php:53
-#: templates/organizer/organizer-dashboard.php:76
-#: templates/venue/content-single-event_listing-venue.php:86
-#: templates/venue/content-single-event_venue.php:46
-#: templates/venue/venue-dashboard.php:74
+#: templates/dj/content-single-event_listing-dj.php:78
+#: templates/dj/content-single-event_listing-dj.php:182
+#: templates/dj/content-single-event_dj.php:53
+#: templates/dj/dj-dashboard.php:76
+#: templates/local/content-single-event_listing-local.php:86
+#: templates/local/content-single-event_local.php:46
+#: templates/local/local-dashboard.php:74
 msgid "Get Connect on Facebook"
 msgstr "Maak verbinding met Facebook"
 
-#: templates/organizer/content-single-event_listing-organizer.php:78
-#: templates/organizer/content-single-event_listing-organizer.php:182
+#: templates/dj/content-single-event_listing-dj.php:78
+#: templates/dj/content-single-event_listing-dj.php:182
 msgid "Faceboo"
 msgstr "Faceboo"
 
-#: templates/organizer/content-single-event_listing-organizer.php:84
-#: templates/organizer/content-single-event_listing-organizer.php:188
-#: templates/organizer/content-single-event_organizer.php:61
-#: templates/organizer/organizer-dashboard.php:84
-#: templates/venue/content-single-event_listing-venue.php:95
-#: templates/venue/content-single-event_venue.php:55
-#: templates/venue/venue-dashboard.php:82
+#: templates/dj/content-single-event_listing-dj.php:84
+#: templates/dj/content-single-event_listing-dj.php:188
+#: templates/dj/content-single-event_dj.php:61
+#: templates/dj/dj-dashboard.php:84
+#: templates/local/content-single-event_listing-local.php:95
+#: templates/local/content-single-event_local.php:55
+#: templates/local/local-dashboard.php:82
 msgid "Get Connect on Instagram"
 msgstr "Maak verbinding met Instagram"
 
-#: templates/organizer/content-single-event_listing-organizer.php:90
-#: templates/organizer/content-single-event_listing-organizer.php:194
-#: templates/organizer/content-single-event_organizer.php:69
-#: templates/organizer/organizer-dashboard.php:92
-#: templates/venue/content-single-event_listing-venue.php:104
-#: templates/venue/content-single-event_venue.php:64
-#: templates/venue/venue-dashboard.php:90
+#: templates/dj/content-single-event_listing-dj.php:90
+#: templates/dj/content-single-event_listing-dj.php:194
+#: templates/dj/content-single-event_dj.php:69
+#: templates/dj/dj-dashboard.php:92
+#: templates/local/content-single-event_listing-local.php:104
+#: templates/local/content-single-event_local.php:64
+#: templates/local/local-dashboard.php:90
 msgid "Get Connect on Twitter"
 msgstr "Maak verbinding met Twitter"
 
-#: templates/organizer/content-single-event_listing-organizer.php:96
-#: templates/organizer/content-single-event_listing-organizer.php:200
-#: templates/organizer/content-single-event_organizer.php:76
-#: templates/organizer/organizer-dashboard.php:100
-#: templates/venue/content-single-event_listing-venue.php:113
-#: templates/venue/content-single-event_venue.php:72
-#: templates/venue/venue-dashboard.php:98
+#: templates/dj/content-single-event_listing-dj.php:96
+#: templates/dj/content-single-event_listing-dj.php:200
+#: templates/dj/content-single-event_dj.php:76
+#: templates/dj/dj-dashboard.php:100
+#: templates/local/content-single-event_listing-local.php:113
+#: templates/local/content-single-event_local.php:72
+#: templates/local/local-dashboard.php:98
 msgid "Get Connect on Youtube"
 msgstr "Maak verbinding met YouTube"
 
-#: templates/organizer/event-organizers.php:19
-#: templates/venue/event-venues.php:19
+#: templates/dj/event-djs.php:19
+#: templates/local/event-locals.php:19
 msgid "Browse events"
 msgstr "Door events bladeren"
 
-#: templates/organizer/event-organizers.php:25
-#: templates/venue/event-venues.php:25
+#: templates/dj/event-djs.php:25
+#: templates/local/event-locals.php:25
 #, fuzzy
 msgid "Available events"
 msgstr "Beschikbare evenementen"
 
-#: templates/organizer/event-organizers.php:35
-#: templates/venue/event-venues.php:35
+#: templates/dj/event-djs.php:35
+#: templates/local/event-locals.php:35
 msgid "All"
 msgstr "Alle"
 
-#: templates/organizer/event-organizers.php:68
-#: templates/venue/event-venues.php:68
+#: templates/dj/event-djs.php:68
+#: templates/local/event-locals.php:68
 #, fuzzy
 msgid "Click here, for more info."
 msgstr "Klik hier, voor meer info."
 
-#: templates/organizer/event-organizers.php:90
-#: templates/organizer/event-organizers.php:99
-#: templates/organizer/organizer-dashboard.php:33
+#: templates/dj/event-djs.php:90
+#: templates/dj/event-djs.php:99
+#: templates/dj/dj-dashboard.php:33
 #, fuzzy
-msgid "There are no organizers."
+msgid "There are no djs."
 msgstr "Er zijn geen organisatoren."
 
-#: templates/organizer/organizer-dashboard.php:12
+#: templates/dj/dj-dashboard.php:12
 #, fuzzy
-msgid "Add organizer"
+msgid "Add dj"
 msgstr "Organisator toevoegen"
 
-#: templates/organizer/organizer-dashboard.php:122
-#: templates/venue/venue-dashboard.php:121
+#: templates/dj/dj-dashboard.php:122
+#: templates/local/local-dashboard.php:121
 #, fuzzy
 msgid "There is no event."
 msgstr "Er is geen evenement."
 
-#: templates/organizer/organizer-event_listing.php:10 wp-event-manager.php:385
+#: templates/dj/dj-event_listing.php:10 wp-event-manager.php:385
 #: wp-event-manager.php:397
 msgid "Current Events"
 msgstr "Lopende events"
 
-#: templates/organizer/organizer-event_listing.php:13
+#: templates/dj/dj-event_listing.php:13
 #: widgets/wp-event-manager-widgets.php:600 wp-event-manager.php:381
 #: wp-event-manager.php:393
 msgid "Upcoming Events"
 msgstr "Aankomende evenementen"
 
-#: templates/organizer/organizer-event_listing.php:16
+#: templates/dj/dj-event_listing.php:16
 #: widgets/wp-event-manager-widgets.php:786 wp-event-manager.php:383
 #: wp-event-manager.php:395
 msgid "Past Events"
 msgstr "Afgelopen evenementen"
 
-#: templates/organizer/organizer-submit.php:30
+#: templates/dj/dj-submit.php:30
 #, fuzzy, php-format
-msgid "You are editing an existing organizer. %s"
+msgid "You are editing an existing dj. %s"
 msgstr "U bewerkt een bestaande organisator. %s"
 
-#: templates/organizer/organizer-submit.php:30
-msgid "Create A New organizer"
+#: templates/dj/dj-submit.php:30
+msgid "Create A New dj"
 msgstr "Een nieuwe organisator maken"
 
-#: templates/organizer/organizer-submit.php:58
-#: templates/venue/venue-submit.php:44
+#: templates/dj/dj-submit.php:58
+#: templates/local/local-submit.php:44
 msgid "Log In"
 msgstr "Inloggen"
 
-#: templates/organizer/organizer-submit.php:59
+#: templates/dj/dj-submit.php:59
 #, fuzzy
-msgid " to Submit the List of Organizers from your account."
+msgid " to Submit the List of djs from your account."
 msgstr " om de lijst met organisatoren in te dienen vanuit uw account."
 
-#: templates/organizer/organizer-submitted.php:9
+#: templates/dj/dj-submitted.php:9
 #, fuzzy, php-format
 msgid ""
-"%s listed successfully. To view your organizer list <a href=\"%s\">click "
+"%s listed successfully. To view your dj list <a href=\"%s\">click "
 "here</a>."
 msgstr ""
 "%s met succes vermeld. <a href=\"%s\">Klik hier om</a> uw lijst met "
 "organisatoren te bekijken."
 
-#: templates/organizer/organizer-submitted.php:13
+#: templates/dj/dj-submitted.php:13
 #, fuzzy, php-format
 msgid ""
-"%s submitted successfully. Your organizer will be visible once approved."
+"%s submitted successfully. Your dj will be visible once approved."
 msgstr ""
 "%s met succes ingediend. Uw organisator is zichtbaar zodra deze is "
 "goedgekeurd."
@@ -3871,43 +3871,43 @@ msgstr ""
 msgid "You must <a href=\"%s\">sign in</a> to view more details."
 msgstr "U moet <a href=\"%s\">zich aanmelden</a> om meer details te bekijken."
 
-#: templates/venue/event-venues.php:90 templates/venue/event-venues.php:99
-#: templates/venue/venue-dashboard.php:33
+#: templates/local/event-locals.php:90 templates/local/event-locals.php:99
+#: templates/local/local-dashboard.php:33
 #, fuzzy
-msgid "There are no venues."
+msgid "There are no locals."
 msgstr "Er zijn geen locaties."
 
-#: templates/venue/venue-dashboard.php:12
-msgid "Add venue"
+#: templates/local/local-dashboard.php:12
+msgid "Add local"
 msgstr "Nieuwe locatie toevoegen"
 
-#: templates/venue/venue-submit.php:17
+#: templates/local/local-submit.php:17
 #, fuzzy, php-format
-msgid "You are editing an existing venue. %s"
+msgid "You are editing an existing local. %s"
 msgstr "U bewerkt een bestaande locatie. %s"
 
-#: templates/venue/venue-submit.php:17
+#: templates/local/local-submit.php:17
 #, fuzzy
-msgid "Create A New venue"
+msgid "Create A New local"
 msgstr "Creëer een nieuwe locatie"
 
-#: templates/venue/venue-submit.php:45
+#: templates/local/local-submit.php:45
 #, fuzzy
-msgid " to Submit the List of Venue from your account."
+msgid " to Submit the List of local from your account."
 msgstr " om de locatielijst vanuit uw account in te dienen."
 
-#: templates/venue/venue-submitted.php:7
+#: templates/local/local-submitted.php:7
 #, fuzzy, php-format
 msgid ""
-"%s listed successfully. To view your venue list <a href=\"%s\">click here</"
+"%s listed successfully. To view your local list <a href=\"%s\">click here</"
 "a>."
 msgstr ""
 "%s met succes vermeld. <a href=\"%s\">Klik hier</a> om uw locatielijst te "
 "bekijken."
 
-#: templates/venue/venue-submitted.php:11
+#: templates/local/local-submitted.php:11
 #, fuzzy, php-format
-msgid "%s submitted successfully. Your venue will be visible once approved."
+msgid "%s submitted successfully. Your local will be visible once approved."
 msgstr ""
 "%s met succes ingediend. Uw locatie is zichtbaar zodra deze is goedgekeurd."
 
@@ -4135,12 +4135,12 @@ msgstr "Weet u zeker dat u dit evenement wilt verwijderen?"
 
 #: wp-event-manager.php:361
 #, fuzzy
-msgid "Are you sure you want to delete this organizer?"
-msgstr "Weet je zeker dat je deze organizer wilt verwijderen?"
+msgid "Are you sure you want to delete this dj?"
+msgstr "Weet je zeker dat je deze dj wilt verwijderen?"
 
 #: wp-event-manager.php:373
 #, fuzzy
-msgid "Are you sure you want to delete this venue?"
+msgid "Are you sure you want to delete this local?"
 msgstr "Weet je zeker dat je deze locatie wilt verwijderen?"
 
 #. Plugin Name of the plugin/theme

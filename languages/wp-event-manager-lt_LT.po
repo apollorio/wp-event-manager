@@ -86,7 +86,7 @@ msgid "Field Label"
 msgstr "Laukelio etiketė"
 
 #: admin/wp-event-manager-field-editor.php:129
-msgid "Organizer fields"
+msgid "dj fields"
 msgstr "Organizatorių laukeliai"
 
 #: admin/wp-event-manager-field-editor.php:125
@@ -434,7 +434,7 @@ msgid "%s listed successfully. To view your listing <a href=\"%s\">click here</a
 msgstr "%s buvo pateiktas sėkmingai. Jeigu norite peržiūrėti savo įrašą, <a href=\"%s\">spauskite čia</a>."
 
 #: templates/event-submit.php:37
-msgid "Organizer Details"
+msgid "dj Details"
 msgstr "Organizatoriaus informacija"
 
 #: templates/event-submit.php:20
@@ -529,36 +529,36 @@ msgstr "Įvykių apžvalga"
 msgid "This listing has expired."
 msgstr "Šis įrašas "
 
-#: templates/content-single-event_listing-organizer.php:204
+#: templates/content-single-event_listing-dj.php:204
 msgid "Share This Event"
 msgstr "Pasidalinti šiuo įvykiu"
 
-#: templates/content-single-event_listing-organizer.php:143
-msgid "Organizer Social"
+#: templates/content-single-event_listing-dj.php:143
+msgid "dj Social"
 msgstr "Organizatoriaus socialiniai tinklai"
 
-#: templates/content-single-event_listing-organizer.php:111
+#: templates/content-single-event_listing-dj.php:111
 msgid "Registration End Date"
 msgstr "Registracijos pabaigos data"
 
-#: templates/content-single-event_listing-organizer.php:88
+#: templates/content-single-event_listing-dj.php:88
 msgid "When & Where"
 msgstr "Kada ir kur"
 
-#: templates/content-single-event_listing-organizer.php:80
+#: templates/content-single-event_listing-dj.php:80
 msgid "Ticket Information"
 msgstr "Bilieto informacija"
 
-#: templates/content-single-event_listing-organizer.php:59
-#: templates/content-single-event_listing-organizer.php:66
+#: templates/content-single-event_listing-dj.php:59
+#: templates/content-single-event_listing-dj.php:66
 msgid "Watch Video"
 msgstr "Peržiūrėti vaizdo įrašą"
 
-#: templates/content-single-event_listing-organizer.php:52
+#: templates/content-single-event_listing-dj.php:52
 msgid "View More Details"
 msgstr "Peržiūrėti daugiau informacijos"
 
-#: templates/content-single-event_listing-organizer.php:36
+#: templates/content-single-event_listing-dj.php:36
 msgid "About"
 msgstr "Apie"
 
@@ -726,11 +726,11 @@ msgid "%s is a required field"
 msgstr "%s yra būtinas laukelis"
 
 #: forms/wp-event-manager-form-submit-event.php:399
-msgid "Twitter URL e.g http://twitter.com/yourorganizer"
+msgid "Twitter URL e.g http://twitter.com/yourdj"
 msgstr "Twitter URL, pavyzdžiui http://twitter.com/jusuorganizatorius"
 
 #: forms/wp-event-manager-form-submit-event.php:396
-#: templates/content-single-event_listing-organizer.php:158
+#: templates/content-single-event_listing-dj.php:158
 msgid "Twitter"
 msgstr "Twitter"
 
@@ -826,19 +826,19 @@ msgid "This is where you can create and manage %s."
 msgstr "Čia jūs galite kurti ir valdyti %s."
 
 #: core/wp-event-manager-post-types.php:323
-msgid "Use as organizer logo"
+msgid "Use as dj logo"
 msgstr "Naudoti kaip organizatoriaus logotipą"
 
 #: core/wp-event-manager-post-types.php:321
-msgid "Remove organizer logo"
+msgid "Remove dj logo"
 msgstr "Pašalinti organizatoriaus logotipą"
 
 #: core/wp-event-manager-post-types.php:319
-msgid "Set organizer logo"
+msgid "Set dj logo"
 msgstr "Nustatyti organizatoriaus logotipą"
 
 #: core/wp-event-manager-post-types.php:317
-msgid "Organizer Logo"
+msgid "dj Logo"
 msgstr "Organizatoriaus logotipas"
 
 #: core/wp-event-manager-post-types.php:313
@@ -955,7 +955,7 @@ msgid "Event category"
 msgstr "Įvykio kategorija"
 
 #: core/wp-event-manager-install.php:69
-msgid "Organizer"
+msgid "dj"
 msgstr "Organizatorius"
 
 #: core/wp-event-manager-geocode.php:222 core/wp-event-manager-geocode.php:229
@@ -1105,7 +1105,7 @@ msgstr "Instagram URL, pavyzdžiui http://www.instagram.com/jusuimone"
 
 #: admin/wp-event-manager-writepanels.php:354
 #: forms/wp-event-manager-form-submit-event.php:420
-#: templates/content-single-event_listing-organizer.php:182
+#: templates/content-single-event_listing-dj.php:182
 msgid "Instagram"
 msgstr "Instagram"
 
@@ -1116,7 +1116,7 @@ msgstr "Pinterest URL, pavyzdžiui http://www.pinterest.com/jusuimone"
 
 #: admin/wp-event-manager-writepanels.php:346
 #: forms/wp-event-manager-form-submit-event.php:412
-#: templates/content-single-event_listing-organizer.php:176
+#: templates/content-single-event_listing-dj.php:176
 msgid "Pinterest"
 msgstr "Pinterest"
 
@@ -1127,12 +1127,12 @@ msgstr "Xing URL, pavyzdžiui http://www.xing.com/companies/jusuimone"
 
 #: admin/wp-event-manager-writepanels.php:338
 #: forms/wp-event-manager-form-submit-event.php:404
-#: templates/content-single-event_listing-organizer.php:170
+#: templates/content-single-event_listing-dj.php:170
 msgid "Xing"
 msgstr "Xing"
 
 #: admin/wp-event-manager-writepanels.php:333
-msgid "@yourorganizer"
+msgid "@yourdj"
 msgstr "@jusuorganizatorius"
 
 #: admin/wp-event-manager-writepanels.php:330
@@ -1146,7 +1146,7 @@ msgstr "Linkedin URL pvz. http://www.linkedin.com/company/jusuimone"
 
 #: admin/wp-event-manager-writepanels.php:322
 #: forms/wp-event-manager-form-submit-event.php:388
-#: templates/content-single-event_listing-organizer.php:164
+#: templates/content-single-event_listing-dj.php:164
 msgid "Linkedin"
 msgstr "Linkedin"
 
@@ -1157,7 +1157,7 @@ msgstr "Facebook URL pvz. http://www.facebook.com/jusuimone"
 
 #: admin/wp-event-manager-writepanels.php:314
 #: forms/wp-event-manager-form-submit-event.php:380
-#: templates/content-single-event_listing-organizer.php:152
+#: templates/content-single-event_listing-dj.php:152
 msgid "Facebook"
 msgstr "Facebook"
 
@@ -1168,7 +1168,7 @@ msgstr "Google+ URL pvz. http://plus.google.com/jusuimone"
 
 #: admin/wp-event-manager-writepanels.php:306
 #: forms/wp-event-manager-form-submit-event.php:372
-#: templates/content-single-event_listing-organizer.php:194
+#: templates/content-single-event_listing-dj.php:194
 msgid "Google+"
 msgstr "Google+"
 
@@ -1179,7 +1179,7 @@ msgstr "Youtube kanalo URL pvz. http://www.youtube.com/channel/jusuimone"
 
 #: admin/wp-event-manager-writepanels.php:298
 #: forms/wp-event-manager-form-submit-event.php:364
-#: templates/content-single-event_listing-organizer.php:188
+#: templates/content-single-event_listing-dj.php:188
 msgid "Youtube"
 msgstr "Youtube"
 
@@ -1208,7 +1208,7 @@ msgstr "Svetainės URL pvz. http://www.jusuimone.com"
 
 #: admin/wp-event-manager-writepanels.php:273
 #: forms/wp-event-manager-form-submit-event.php:348
-#: templates/content-single-event_listing-organizer.php:147
+#: templates/content-single-event_listing-dj.php:147
 msgid "Website"
 msgstr "Svetainė"
 
@@ -1234,7 +1234,7 @@ msgstr "Kontaktinio asmens vardas"
 
 #: admin/wp-event-manager-writepanels.php:249
 #: forms/wp-event-manager-form-submit-event.php:324
-msgid "Organizer Description"
+msgid "dj Description"
 msgstr "Organizatoriaus aprašymas"
 
 #: admin/wp-event-manager-writepanels.php:240
@@ -1404,12 +1404,12 @@ msgstr "Adresas"
 
 #: admin/wp-event-manager-writepanels.php:98
 #: forms/wp-event-manager-form-submit-event.php:163
-msgid "Please enter the venue name"
+msgid "Please enter the local name"
 msgstr "Įveskite vietos pavadinimą"
 
 #: admin/wp-event-manager-writepanels.php:95
 #: forms/wp-event-manager-form-submit-event.php:160
-msgid "Venue Name"
+msgid "local Name"
 msgstr "Vietos pavadinimas"
 
 #: admin/wp-event-manager-writepanels.php:88
@@ -1426,7 +1426,7 @@ msgstr "Taip"
 #: forms/wp-event-manager-form-submit-event.php:148
 #: templates/content-event_listing.php:30
 #: templates/content-event_listing.php:56
-#: templates/content-single-event_listing-organizer.php:99
+#: templates/content-single-event_listing-dj.php:99
 #: templates/content-summary-event_listing.php:10
 #: templates/content-widget-event_listing.php:10
 #: templates/event-dashboard.php:78
@@ -2073,7 +2073,7 @@ msgid "Posted Date"
 msgstr "Įkėlimo data"
 
 #: admin/wp-event-manager-cpt.php:392
-msgid "Event Organizer"
+msgid "Event dj"
 msgstr "Įvykių organizatorius"
 
 #: admin/wp-event-manager-cpt.php:390

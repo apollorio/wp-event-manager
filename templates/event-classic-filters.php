@@ -84,17 +84,17 @@ do_action('event_manager_event_filters_before', $atts); ?>
 				foreach ($categories as $category) : ?>
 					<input type="hidden" name="search_categories[]" value="<?php echo esc_attr(sanitize_title($category)); ?>" />
 				<?php endforeach;
-			elseif(isset($show_categories) && !empty($show_categories) && !is_tax('event_listing_category') && get_terms('event_listing_category', ['hide_empty' => false])) : ?>
+		elseif(isset($show_categories) && !empty($show_categories) && !is_tax('event_sounds') && get_terms('event_sounds', ['hide_empty' => false])) : ?>
 				<div class="wpem-col">
 					<div class="wpem-form-group">
 						<label for="search_categories" class="wpem-form-label"><?php esc_attr_e('Category', 'wp-event-manager'); ?></label>
 						<?php if($show_category_multiselect) :
-							event_manager_dropdown_selection(array('value' => 'slug', 'taxonomy' => 'event_listing_category', 'hierarchical' => 1, 'name' => 'search_categories', 'orderby' => 'name', 'selected' => $selected_category, 'hide_empty' => false)); ?>
+						event_manager_dropdown_selection(array('value' => 'slug', 'taxonomy' => 'event_sounds', 'hierarchical' => 1, 'name' => 'search_sounds', 'orderby' => 'name', 'selected' => $selected_category, 'hide_empty' => false)); ?>
 						<?php else :
 							event_manager_dropdown_selection(
 								array(
 									'value' => 'slug',
-									'taxonomy' => 'event_listing_category',
+								'taxonomy' => 'event_sounds',
 									'hierarchical' => 1,
 									'show_option_all' => __('Choose an Event Category', 'wp-event-manager'),
 									'name' => 'search_categories',

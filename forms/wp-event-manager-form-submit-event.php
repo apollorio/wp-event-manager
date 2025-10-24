@@ -105,16 +105,16 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		
 		$this->fields = $this->get_default_event_fields();
 
-		// Unset organizer or venue if disabled
-		$organizer_enabled = get_option( 'enable_event_organizer' );
-		$organizer_submit_page = get_option( 'event_manager_submit_organizer_form_page_id',false );
-		if( !$organizer_enabled || !$organizer_submit_page )
-			unset( $this->fields['organizer']['event_organizer_ids'] );
+		// Unset dj or local if disabled
+		$dj_enabled = get_option( 'enable_event_dj' );
+		$dj_submit_page = get_option( 'event_manager_submit_dj_form_page_id',false );
+		if( !$dj_enabled || !$dj_submit_page )
+			unset( $this->fields['dj']['event_dj_ids'] );
 
-		$venue_enabled = get_option( 'enable_event_venue' );
-		$venue_submit_page = get_option( 'event_manager_submit_venue_form_page_id',false );
-		if( !$venue_enabled || !$venue_submit_page )
-			unset( $this->fields['venue']['event_venue_ids'] );
+		$local_enabled = get_option( 'enable_event_local' );
+		$local_submit_page = get_option( 'event_manager_submit_local_form_page_id',false );
+		if( !$local_enabled || !$local_submit_page )
+			unset( $this->fields['local']['event_local_ids'] );
 
 		// Unset timezone field if setting is site wise timezone
 		$timezone_setting = get_option( 'event_manager_timezone_setting' ,'site_timezone' );
@@ -149,15 +149,15 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			break;
 		}
 
-		$organizer_description = is_admin() ? __('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show organizer(s). Manage your organizer(s) from <a href="post-new.php?post_type=event_organizer" target="_blank" class="wpem_add_organizer_popup wpem-modal-button" data-modal-id="wpem_add_organizer_popup">here</a></div>','wp-event-manager') : __('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show organizer(s). Manage your organizer(s) from <a href="#" onclick="javascript:void(0);" class="wpem_add_organizer_popup wpem-modal-button" data-modal-id="wpem_add_organizer_popup">here</a></div>','wp-event-manager');
-		$venue_description = is_admin() ? __('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show venue(s). Manage your venue(s) from <a href="post-new.php?post_type=event_venue" target="_blank" class="wpem_add_venue_popup wpem-modal-button" data-modal-id="wpem_add_venue_popup">here</a></div>','wp-event-manager') : __('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show venue(s). Manage your venue(s) from <a href="#" onclick="javascript:void(0);" class="wpem_add_venue_popup wpem-modal-button" data-modal-id="wpem_add_venue_popup">here</a></div>','wp-event-manager');
+		$dj_description = is_admin() ? __('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show dj(s). Manage your dj(s) from <a href="post-new.php?post_type=event_dj" target="_blank" class="wpem_add_dj_popup wpem-modal-button" data-modal-id="wpem_add_dj_popup">here</a></div>','wp-event-manager') : __('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show dj(s). Manage your dj(s) from <a href="#" onclick="javascript:void(0);" class="wpem_add_dj_popup wpem-modal-button" data-modal-id="wpem_add_dj_popup">here</a></div>','wp-event-manager');
+		$local_description = is_admin() ? __('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show local(s). Manage your local(s) from <a href="post-new.php?post_type=event_local" target="_blank" class="wpem_add_local_popup wpem-modal-button" data-modal-id="wpem_add_local_popup">here</a></div>','wp-event-manager') : __('<div class="wpem-alert wpem-mt-2 wpem-mb-0 wpem-p-0">If it doesn\'t show local(s). Manage your local(s) from <a href="#" onclick="javascript:void(0);" class="wpem_add_local_popup wpem-modal-button" data-modal-id="wpem_add_local_popup">here</a></div>','wp-event-manager');
 		
-		// Get default organizer
-		$default_organizer = get_option('default_organizer'); 
-		$default_organizer = is_array($default_organizer) ? $default_organizer : array($default_organizer);
+		// Get default dj
+		$default_dj = get_option('default_dj'); 
+		$default_dj = is_array($default_dj) ? $default_dj : array($default_dj);
 		
-		// Get default venue
-		$default_venue = get_option('default_venue');
+		// Get default local
+		$default_local = get_option('default_local');
 
 		// Get default address
 		$default_address = get_option('default_address');
@@ -230,16 +230,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					'tabgroup' => 2,
 				),
 					
-				'event_country' => array(
-					'label'       => __( 'Event Country', 'wp-event-manager' ),
-					'type'        => 'select',
-					'required'    => true,
-					'placeholder' => __( 'Event Country', 'wp-event-manager' ),
-					'priority'    => 7,
-					'visibility'  => 1,
-					'options'     => wpem_get_all_countries(),
-					'tabgroup' => 2,
-				),
+				// Campo de país removido, sempre Brasil
 
 				'event_banner' => array(
 					'label'       => __( 'Event Banner', 'wp-event-manager' ),
@@ -432,13 +423,13 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				),
 			),	
 
-			'organizer' => array(
-				'event_organizer_ids' => array(
-					'label'       	=> __( 'Organizer', 'wp-event-manager' ),		      
+			'dj' => array(
+				'event_dj_ids' => array(
+					'label'       	=> __( 'dj', 'wp-event-manager' ),		      
 			        'type'  		=> 'multiselect',
-				    'default'  		=> $default_organizer,
-				    'options'  		=>apply_filters('wpem_set_organizer_ids', ($current_user_id) ? get_all_organizer_array($current_user_id) : []),
-				    'description'	=> $organizer_description,
+				    'default'  		=> $default_dj,
+				    'options'  		=>apply_filters('wpem_set_dj_ids', ($current_user_id) ? get_all_dj_array($current_user_id) : []),
+				    'description'	=> $dj_description,
 				    'priority'   	=> 24,
 			        'required'		=>false,
 					'visibility'  => 1,
@@ -446,13 +437,13 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				),
 			),			
 			
-			'venue' => array(
-				'event_venue_ids' => array(
-					'label'       	=> __( 'Venues', 'wp-event-manager' ),		      
+			'local' => array(
+				'event_local_ids' => array(
+					'label'       	=> __( 'locals', 'wp-event-manager' ),		      
 			        'type'  		=> 'select',
-				    'default'  		=> $default_venue,
-				    'options'  		=> apply_filters('wpem_set_venue_ids', ($current_user_id) ? get_all_venue_array($current_user_id, '', true) : ['' => __( 'Select Venue', 'wp-event-manager')]),
-				    'description'	=> $venue_description,
+				    'default'  		=> $default_local,
+				    'options'  		=> apply_filters('wpem_set_local_ids', ($current_user_id) ? get_all_local_array($current_user_id, '', true) : ['' => __( 'Select local', 'wp-event-manager')]),
+				    'description'	=> $local_description,
 				    'priority'    	=> 25,
 			        'required'		=>false,
 					'visibility'    => 1,
@@ -474,7 +465,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
     	    // This filter need to apply for remove required attributes when option online event selected and ticket price.
     	    if(isset($group_fields['event_online'] ) ) {
     			if($group_fields['event_online']['value']=='yes') {	  
-				    $group_fields['event_venue_name']['required']=false;
+				    $group_fields['event_local_name']['required']=false;
 					$group_fields['event_address']['required']=false;
 					$group_fields['event_pincode']['required']=false;
 					$group_fields['event_location']['required']=false;
@@ -665,7 +656,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($event->post_content);
 							break;
 
-						case  'organizer_logo':
+						case  'dj_logo':
 							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail( $event->ID ) ? get_post_thumbnail_id( $event->ID ) : esc_url(get_post_meta( $event->ID, '_' . $key, true ));
 							break;
 						
@@ -725,16 +716,16 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			$this->fields = apply_filters( 'submit_event_form_fields_get_user_data', $this->fields, get_current_user_id() );
 		}
 		
-		// Set organizer and venue field
-		$organizer_enabled = get_option( 'enable_event_organizer');
-		$organizer_submit_page = get_option( 'event_manager_submit_organizer_form_page_id',false );
-		if( $organizer_enabled || $organizer_submit_page )
-			$this->fields['organizer']['event_organizer_ids'] = $default_fields['organizer']['event_organizer_ids'];
+		// Set dj and local field
+		$dj_enabled = get_option( 'enable_event_dj');
+		$dj_submit_page = get_option( 'event_manager_submit_dj_form_page_id',false );
+		if( $dj_enabled || $dj_submit_page )
+			$this->fields['dj']['event_dj_ids'] = $default_fields['dj']['event_dj_ids'];
 
-		$venue_enabled = get_option( 'enable_event_venue' );
-		$venue_submit_page = get_option( 'event_manager_submit_venue_form_page_id',false );
-		if( $venue_enabled || $venue_submit_page )
-			$this->fields['venue']['event_venue_ids'] = $default_fields['venue']['event_venue_ids'];
+		$local_enabled = get_option( 'enable_event_local' );
+		$local_submit_page = get_option( 'event_manager_submit_local_form_page_id',false );
+		if( $local_enabled || $local_submit_page )
+			$this->fields['local']['event_local_ids'] = $default_fields['local']['event_local_ids'];
 
 		// Unset timezone field if setting is site wise timezone
 		$timezone_setting = get_option( 'event_manager_timezone_setting' ,'site_timezone' );
@@ -749,8 +740,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 			'resume_edit'       => $this->resume_edit,
 			'action'            => esc_url( $this->get_action() ),
 			'event_fields'      => $this->get_fields( 'event' ),
-			'organizer_fields'	=> $this->get_fields( 'organizer' ),
-			'venue_fields'     	=> $this->get_fields( 'venue' ),
+			'dj_fields'	=> $this->get_fields( 'dj' ),
+			'local_fields'     	=> $this->get_fields( 'local' ),
 			'step'           	=> esc_attr( $this->get_step() ),
 			'submit_button_text' => apply_filters( 'submit_event_form_submit_button_text', __( 'Preview', 'wp-event-manager' ) ),
 		) );
@@ -811,7 +802,7 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 							'username' => ( event_manager_generate_username_from_email() || empty( $_POST['create_account_username'] ) ) ? '' : sanitize_user( $_POST['create_account_username'] ),
 							'password' => ( event_manager_use_standard_password_setup_email() || empty( $_POST['create_account_password'] ) ) ? '' : $_POST['create_account_password'],
 							'email'    => sanitize_email( $_POST['create_account_email'] ),
-							'role'     => get_option( 'event_manager_registration_role','organizer' )
+							'role'     => get_option( 'event_manager_registration_role','dj' )
 						) );
 					}
 				}
@@ -985,14 +976,14 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					set_post_thumbnail( $this->event_id, $attachment_id );
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
 				}
-				elseif ( 'organizer_logo' === $key ) {
+				elseif ( 'dj_logo' === $key ) {
 					$attachment_id = is_numeric( $values[ $group_key ][ $key ] ) ? absint( $values[ $group_key ][ $key ] ) : $this->create_attachment( $values[ $group_key ][ $key ] );
 					if ( empty( $attachment_id ) ) {
 						delete_post_thumbnail( $this->event_id );
 					} else {
 						set_post_thumbnail( $this->event_id, $attachment_id );
 					}
-					update_user_meta( get_current_user_id(), '_organizer_logo', $attachment_id );
+					update_user_meta( get_current_user_id(), '_dj_logo', $attachment_id );
 					
 					// Save meta data
 				}
@@ -1069,20 +1060,20 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 					$event_expiry_date = get_event_expiry_date($this->event_id);
 					update_post_meta( $this->event_id, '_event_expiry_date', $event_expiry_date );
 
-				} elseif ( $key == 'event_organizer_ids' ) {
+				} elseif ( $key == 'event_dj_ids' ) {
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
 
 					if($current_user_id){
-						foreach ($values[ $group_key ][ $key ] as $organizer_id) {
+						foreach ($values[ $group_key ][ $key ] as $dj_id) {
 							$my_post = array(
-						      	'ID'           => $organizer_id,
+						      	'ID'           => $dj_id,
 						      	'post_author'  => $current_user_id,
 						      	'post_status'  => 'publish',
 							);
 							wp_update_post($my_post);	
 						}
 					}
-				} elseif ( $key == 'event_venue_ids' ) {
+				} elseif ( $key == 'event_local_ids' ) {
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
 
 					if( $current_user_id && !empty($values[ $group_key ][ $key ]) )
@@ -1094,8 +1085,8 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 						);
 						wp_update_post($my_post);
 
-						update_post_meta( $values[ $group_key ][ $key ], '_venue_location', sanitize_text_field($values['event']['event_location'] )); 
-						update_post_meta( $values[ $group_key ][ $key ], '_venue_zipcode', sanitize_text_field($values['event']['event_pincode'] ));
+						update_post_meta( $values[ $group_key ][ $key ], '_local_location', sanitize_text_field($values['event']['event_location'] )); 
+						update_post_meta( $values[ $group_key ][ $key ], '_local_zipcode', sanitize_text_field($values['event']['event_pincode'] ));
 					}					
 				} elseif ( $field['type'] == 'date' ) {
 					$date = $values[ $group_key ][ $key ];
@@ -1185,12 +1176,12 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 		}
 		// And user meta to save time in future
 		if ( is_user_logged_in() ) {
-			update_user_meta( get_current_user_id(), '_organizer_name', isset( $values['organizer']['organizer_name'] ) ? $values['organizer']['organizer_name'] : '' );
-			update_user_meta( get_current_user_id(), '_organizer_website', isset( $values['organizer']['organizer_website'] ) ? $values['organizer']['organizer_website'] : '' );
-			update_user_meta( get_current_user_id(), '_organizer_tagline', isset( $values['organizer']['organizer_tagline'] ) ? $values['organizer']['organizer_tagline'] : '' );
-			update_user_meta( get_current_user_id(), '_organizer_twitter', isset( $values['organizer']['organizer_twitter'] ) ? $values['organizer']['organizer_twitter'] : '' );
-			update_user_meta( get_current_user_id(), '_organizer_logo', isset( $values['organizer']['organizer_logo'] ) ? $values['organizer']['organizer_logo'] : '' );
-			update_user_meta( get_current_user_id(), '_organizer_video', isset( $values['organizer']['organizer_video'] ) ? $values['organizer']['organizer_video'] : '' );
+			update_user_meta( get_current_user_id(), '_dj_name', isset( $values['dj']['dj_name'] ) ? $values['dj']['dj_name'] : '' );
+			update_user_meta( get_current_user_id(), '_dj_website', isset( $values['dj']['dj_website'] ) ? $values['dj']['dj_website'] : '' );
+			update_user_meta( get_current_user_id(), '_dj_tagline', isset( $values['dj']['dj_tagline'] ) ? $values['dj']['dj_tagline'] : '' );
+			update_user_meta( get_current_user_id(), '_dj_twitter', isset( $values['dj']['dj_twitter'] ) ? $values['dj']['dj_twitter'] : '' );
+			update_user_meta( get_current_user_id(), '_dj_logo', isset( $values['dj']['dj_logo'] ) ? $values['dj']['dj_logo'] : '' );
+			update_user_meta( get_current_user_id(), '_dj_video', isset( $values['dj']['dj_video'] ) ? $values['dj']['dj_video'] : '' );
 		}
 		do_action( 'event_manager_update_event_data', $this->event_id, $values );
 	}

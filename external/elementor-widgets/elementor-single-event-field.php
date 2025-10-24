@@ -182,8 +182,8 @@ class Elementor_Event_Field extends Widget_Base {
                 } else {
                     echo esc_attr('Online Event', 'wp-event-manager');
                 }
-            } else if ($settings['event_field'] == 'event_venue_name') {
-                display_event_venue_name('', '', true, $event);
+            } else if ($settings['event_field'] == 'event_local_name') {
+                display_event_local_name('', '', true, $event);
             } else if ($settings['event_field'] == 'event_address') {
                 display_event_address('', '', true, $event);
             } else if ($settings['event_field'] == 'event_pincode') {
@@ -219,24 +219,24 @@ class Elementor_Event_Field extends Widget_Base {
                 display_event_timezone('', '', true, $event);
             } else if ($settings['event_field'] == 'event_registration_deadline') {
                 display_event_registration_end_date('', '', true, $event);
-            } else if ($settings['event_field'] == 'organizer_name') {
-                display_organizer_name('', '', true, $event);
-            } else if ($settings['event_field'] == 'organizer_logo') {
-                display_organizer_logo('full', '', $event);
-            } else if ($settings['event_field'] == 'organizer_description') {
-                echo  wp_kses_post(get_organizer_description($event));
-            } else if ($settings['event_field'] == 'organizer_email') {
-                display_organizer_email('', '', true, $event);
-            } else if ($settings['event_field'] == 'event_organizer_ids') {
-                echo  wp_kses_post(get_organizer_name($event, true));
-            } else if ($settings['event_field'] == 'organizer_website') {
-                display_organizer_website('', '', true, $event);
-            } else if ($settings['event_field'] == 'organizer_twitter') {
-                display_organizer_twitter('', '', true, $event);
-            } else if ($settings['event_field'] == 'organizer_youtube') {
-                display_organizer_youtube('', '', true, $event);
+            } else if ($settings['event_field'] == 'dj_name') {
+                display_dj_name('', '', true, $event);
+            } else if ($settings['event_field'] == 'dj_logo') {
+                display_dj_logo('full', '', $event);
+            } else if ($settings['event_field'] == 'dj_description') {
+                echo  wp_kses_post(get_dj_description($event));
+            } else if ($settings['event_field'] == 'dj_email') {
+                display_dj_email('', '', true, $event);
+            } else if ($settings['event_field'] == 'event_dj_ids') {
+                echo  wp_kses_post(get_dj_name($event, true));
+            } else if ($settings['event_field'] == 'dj_website') {
+                display_dj_website('', '', true, $event);
+            } else if ($settings['event_field'] == 'dj_twitter') {
+                display_dj_twitter('', '', true, $event);
+            } else if ($settings['event_field'] == 'dj_youtube') {
+                display_dj_youtube('', '', true, $event);
             } else if ($settings['event_field'] == 'event_video_url') { ?>
-                <?php if (get_organizer_youtube($event)) : ?>
+                <?php if (get_dj_youtube($event)) : ?>
                     <div class="clearfix">&nbsp;</div>
                     <button id="event-youtube-button" data-modal-id="wpem-youtube-modal-popup" class="wpem-theme-button wpem-modal-button"><?php esc_attr_e('Watch video', 'wp-event-manager'); ?></button>
                     <div id="wpem-youtube-modal-popup" class="wpem-modal" role="dialog" aria-labelledby="<?php esc_attr_e('Watch video', 'wp-event-manager'); ?>">
@@ -246,7 +246,7 @@ class Elementor_Event_Field extends Widget_Base {
                                 <div class="wpem-modal-header-close"><a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a></div>
                             </div>
                             <div class="wpem-modal-content">
-                                <?php echo wp_oembed_get(get_organizer_youtube(), array('autoplay' => 1, 'rel' => 0)); ?>
+                                <?php echo wp_oembed_get(get_dj_youtube(), array('autoplay' => 1, 'rel' => 0)); ?>
                             </div>
                         </div>
                         <a href="#"><div class="wpem-modal-overlay"></div></a>
@@ -277,8 +277,8 @@ class Elementor_Event_Field extends Widget_Base {
                     </script>
                 <?php endif; ?>
                 <?php
-            } else if ($settings['event_field'] == 'organizer_facebook') {
-                display_organizer_facebook('', '', true, $event);
+            } else if ($settings['event_field'] == 'dj_facebook') {
+                display_dj_facebook('', '', true, $event);
             } else if ($settings['event_field'] == 'view_count') {
                 $view_count = get_post_views_count($event);
 
@@ -330,8 +330,8 @@ class Elementor_Event_Field extends Widget_Base {
                     </div>
                 </div>
                 <?php
-            } else if ($settings['event_field'] == 'event_venue_ids') {
-                echo  wp_kses_post(get_event_venue_name($event, true));
+            } else if ($settings['event_field'] == 'event_local_ids') {
+                echo  wp_kses_post(get_event_local_name($event, true));
             } else {
                 $event_field = get_post_meta($post_id, '_' . $settings['event_field'], true);
                 if (!empty($event_field)) {

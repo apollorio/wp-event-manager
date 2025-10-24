@@ -13,18 +13,18 @@
 						'query_arg' => ['action' => 'event_dashboard'],
 					],
 				];
-				if (get_option('enable_event_organizer')) {
-					$menus['organizer_dashboard'] = [
-						'title' => __('Organizers', 'wp-event-manager'),
+				if (get_option('enable_event_dj')) {
+					$menus['dj_dashboard'] = [
+						'title' => __('djs', 'wp-event-manager'),
 						'icon' => 'wpem-icon-user-tie',
-						'query_arg' => ['action' => 'organizer_dashboard'],
+						'query_arg' => ['action' => 'dj_dashboard'],
 					];
 				}
-				if (get_option('enable_event_venue')) {
-					$menus['venue_dashboard'] = [
-						'title' => __('Venues', 'wp-event-manager'),
+				if (get_option('enable_event_local')) {
+					$menus['local_dashboard'] = [
+						'title' => __('locals', 'wp-event-manager'),
 						'icon' => 'wpem-icon-location',
-						'query_arg' => ['action' => 'venue_dashboard'],
+						'query_arg' => ['action' => 'local_dashboard'],
 					];
 				}
 
@@ -32,7 +32,7 @@
 				$event_dashboard = get_option('event_manager_event_dashboard_page_id');
 				do_action('wpem_dashboard_menu_before', $menus);
 				foreach ($menus as $name => $menu) {
-					if (($name === 'registration' || $name === 'guest_lists')  && !current_user_can('administrator') && !current_user_can('organizer')) {
+					if (($name === 'registration' || $name === 'guest_lists')  && !current_user_can('administrator') && !current_user_can('dj')) {
 						continue; // Skip rendering this menu item
 					}
 					if (isset($menu['submenu']) && !empty($menu['submenu'])) {
@@ -91,10 +91,10 @@
 
 			<?php do_action('event_manager_event_dashboard_before'); ?>
 
-			<?php if ($current_action === 'organizer_dashboard' && !empty($current_action)) :
-				echo do_shortcode('[organizer_dashboard]');
-			elseif ($current_action === 'venue_dashboard' && !empty($current_action)) :
-				echo do_shortcode('[venue_dashboard]');
+			<?php if ($current_action === 'dj_dashboard' && !empty($current_action)) :
+				echo do_shortcode('[dj_dashboard]');
+			elseif ($current_action === 'local_dashboard' && !empty($current_action)) :
+				echo do_shortcode('[local_dashboard]');
 			elseif (!in_array($current_action, ['event_dashboard', 'delete', 'mark_cancelled', 'mark_not_cancelled']) && !empty($current_action)) :
 				if (has_action('event_manager_event_dashboard_content_' . $current_action)) :
 					do_action('event_manager_event_dashboard_content_' . $current_action, $atts);

@@ -71,14 +71,14 @@ $event = $post; ?>
                                     <div class="wpem-event-title">
                                         <h3 class="wpem-heading-text"><?php the_title(); ?></h3>
                                     </div>
-                                    <?php if (get_option('enable_event_organizer')) : ?>
-                                        <div class="wpem-event-organizer">
-                                            <div class="wpem-event-organizer-name">
-                                                <?php do_action('single_event_organizer_name_start'); ?>
+                                    <?php if (get_option('enable_event_dj')) : ?>
+                                        <div class="wpem-event-dj">
+                                            <div class="wpem-event-dj-name">
+                                                <?php do_action('single_event_dj_name_start'); ?>
                                                 <?php 
-												// translators: %s is the name of the event organizer.
-												printf(wp_kses_post(__('by %s', 'wp-event-manager')), wp_kses_post(get_organizer_name($post, true))); ?>
-                                                <?php do_action('single_event_organizer_name_end'); ?>
+												// translators: %s is the name of the event dj.
+												printf(wp_kses_post(__('by %s', 'wp-event-manager')), wp_kses_post(get_dj_name($post, true))); ?>
+                                                <?php do_action('single_event_dj_name_end'); ?>
                                             </div>
                                         </div>
                                     <?php endif;
@@ -463,7 +463,7 @@ $event = $post; ?>
                                         <div class="wpem-event-category"><?php display_event_category($event); ?></div>
                                     <?php endif; 
                                     /* youtube video button section */    
-                                    if (get_organizer_youtube($event)) : ?>
+                                    if (get_dj_youtube($event)) : ?>
                                         <div class="clearfix">&nbsp;</div>
                                         <a id="event-youtube-button" data-modal-id="wpem-youtube-modal-popup" class="wpem-theme-button wpem-modal-button"><?php esc_html_e('Watch video', 'wp-event-manager'); ?></a>
                                         <div id="wpem-youtube-modal-popup" class="wpem-modal" role="dialog" aria-labelledby="<?php esc_attr_e('Watch video', 'wp-event-manager'); ?>">
@@ -475,7 +475,7 @@ $event = $post; ?>
                                                     <div class="wpem-modal-header-close"><a href="javascript:void(0)" class="wpem-modal-close" id="wpem-modal-close">x</a></div>
                                                 </div>
                                                 <div class="wpem-modal-content">
-                                                    <?php echo wp_oembed_get(get_organizer_youtube($event), array('autoplay' => '1', 'rel' => 0)); ?>
+                                                    <?php echo wp_oembed_get(get_dj_youtube($event), array('autoplay' => '1', 'rel' => 0)); ?>
                                                 </div>
                                             </div>
                                             <a href="#">
@@ -522,22 +522,22 @@ $event = $post; ?>
 
                 <?php
                 $post = $event;
-                //if organizer setting is enable then display organizer section on single event listing
-                if (get_option('enable_event_organizer')) {
+                //if dj setting is enable then display dj section on single event listing
+                if (get_option('enable_event_dj')) {
                     get_event_manager_template(
-                        'content-single-event_listing-organizer.php',
+                        'content-single-event_listing-dj.php',
                         array(),
-                        'wp-event-manager/organizer',
-                        EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer'
+                        'wp-event-manager/dj',
+                        EVENT_MANAGER_PLUGIN_DIR . '/templates/dj'
                    );
                 }
-                //if venue setting is enable then display venue section on single event listing
-                if (get_option('enable_event_venue')) {
+                //if local setting is enable then display local section on single event listing
+                if (get_option('enable_event_local')) {
                     get_event_manager_template(
-                        'content-single-event_listing-venue.php',
+                        'content-single-event_listing-local.php',
                         array(),
-                        'wp-event-manager/venue',
-                        EVENT_MANAGER_PLUGIN_DIR . '/templates/venue'
+                        'wp-event-manager/local',
+                        EVENT_MANAGER_PLUGIN_DIR . '/templates/local'
                    );
                 }
                 /**
