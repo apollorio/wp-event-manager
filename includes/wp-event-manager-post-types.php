@@ -34,8 +34,8 @@ class WP_Event_Manager_Post_Types {
 		add_filter('admin_head', array($this, 'admin_head'));
 
 		add_filter('the_content', array($this, 'event_content'));
-		add_filter('the_content', array($this, 'organizer_content'));
-		add_filter('the_content', array($this, 'venue_content'));
+		add_filter('the_content', array($this, 'dj_content'));
+		add_filter('the_content', array($this, 'local_content'));
 
 		add_filter('archive_template', array($this, 'event_archive'), 20);
 
@@ -101,11 +101,11 @@ class WP_Event_Manager_Post_Types {
 		 * Taxonomies.
 		 */
 		if(get_option('event_manager_enable_categories')) {
-			$singular  = __('Event category', 'wp-event-manager');
-			$plural    = __('Event categories', 'wp-event-manager');
+			$singular  = __('Event Sound', 'wp-event-manager');
+			$plural    = __('Event Sounds', 'wp-event-manager');
 			if(current_theme_supports('event-manager-templates')) {
 				$rewrite   = array(
-					'slug'         => $permalink_structure['category_rewrite_slug'],
+					'slug'         => 'event-sound',
 					'with_front'   => false,
 					'hierarchical' => false
 				);
@@ -114,9 +114,9 @@ class WP_Event_Manager_Post_Types {
 				$rewrite   = true;
 				$public    = true;
 			}
-			register_taxonomy("event_listing_category",
-			apply_filters('register_taxonomy_event_listing_category_object_type', array('event_listing')),
-	       	 	apply_filters('register_taxonomy_event_listing_category_args', array(
+			register_taxonomy("event_sounds",
+			apply_filters('register_taxonomy_event_sounds_object_type', array('event_listing')),
+			apply_filters('register_taxonomy_event_sounds_args', array(
 		            'hierarchical' 			=> true,
 		            'update_count_callback' => '_update_post_term_count',
 		            'label' 				=> $plural,
@@ -145,7 +145,48 @@ class WP_Event_Manager_Post_Types {
 		            'rewrite' 				=> $rewrite,
 		      ))
 		  );
+			// Adiciona os termos de "Sounds" se ainda não existirem
+			$sounds_terms = array(
+				'house' => 'House',
+				'techno' => 'Techno',
+				'trance' => 'Trance',
+				'drum_&_bass' => 'Drum & Bass',
+				'dubstep' => 'Dubstep',
+				'electro_house' => 'Electro House',
+				'tech_house' => 'Tech House',
+				'deep_house' => 'Deep House',
+				'progressive_house' => 'Progressive House',
+				'hardstyle' => 'Hardstyle',
+				'hardcore' => 'Hardcore',
+				'minimal_techno' => 'Minimal Techno',
+				'acid_house' => 'Acid House',
+				'uk_garage' => 'UK Garage',
+				'bass_house' => 'Bass House',
+				'future_house' => 'Future House',
+				'tropical_house' => 'Tropical House',
+				'ambient' => 'Ambient',
+				'downtempo' => 'Downtempo',
+				'electronica' => 'Electronica',
+				'wave' => 'Wave',
+				'vaporwave' => 'Vaporwave',
+				'glitch_hop' => 'Glitch Hop',
+				'psytrance' => 'Psytrance',
+				'hardcore_techno' => 'Hardcore Techno',
+				'big_room_house' => 'Big Room House',
+				'jungle' => 'Jungle',
+				'gqom' => 'Gqom',
+				'eurodance' => 'Eurodance',
+				'hyperpop' => 'Hyperpop',
+			);
+			foreach($sounds_terms as $slug => $name) {
+				if(!term_exists($name, 'event_sounds')) {
+					wp_insert_term($name, 'event_sounds', array('slug' => $slug));
+				}
+			}
 		}
+
+
+		
 		if(get_option('event_manager_enable_event_types')) {
 		        $singular  = __('Event type', 'wp-event-manager');
 				$plural    = __('Event types', 'wp-event-manager');
@@ -289,64 +330,64 @@ class WP_Event_Manager_Post_Types {
 			'label_count'               => _n_noop('Preview <span class="count">(%s)</span>', 'Preview <span class="count">(%s)</span>', 'wp-event-manager')
 		));
 
-		if(get_option('enable_event_organizer')){	
-			$singular  = __('Organizer', 'wp-event-manager');
-			$plural    = __('Organizers', 'wp-event-manager');
-			register_post_type('event_organizer', apply_filters('register_event_organizer_post_type',array(
+		if(get_option('enable_event_dj')){	
+			$singular  = __('dj', 'wp-event-manager');
+			$plural    = __('djs', 'wp-event-manager');
+			register_post_type('event_dj', apply_filters('register_event_dj_post_type',array(
 				        'labels' => array(
 						'name' 					=> $plural,
 						'singular_name' 		=> $singular,
 						'add_new_item' 			=> sprintf(wp_kses('Add %s', 'wp-event-manager'), $singular),
 						'edit_item' 			=> sprintf(wp_kses('Edit %s', 'wp-event-manager'), $singular),
-						'featured_image'        => __('Organizer Logo', 'wp-event-manager'),
-						'set_featured_image'    => __('Set organizer logo', 'wp-event-manager'),
-						'remove_featured_image' => __('Remove organizer logo', 'wp-event-manager'),
-						'use_featured_image'    => __('Use as organizer logo', 'wp-event-manager'),
+						'featured_image'        => __('dj Logo', 'wp-event-manager'),
+						'set_featured_image'    => __('Set dj logo', 'wp-event-manager'),
+						'remove_featured_image' => __('Remove dj logo', 'wp-event-manager'),
+						'use_featured_image'    => __('Use as dj logo', 'wp-event-manager'),
 					),
 					'public'             => true,
 					'publicly_queryable' => true,
 					'show_ui'            => true,
 					'show_in_menu'       => false,
 					'query_var'          => true,
-					'rewrite'            => array('slug' => 'event-organizer'),
+					'rewrite'            => array('slug' => 'event-dj'),
 					'has_archive'        => true,
 					'hierarchical'       => false,
 					'menu_position'      => null,
 					'show_in_menu' => 'edit.php?post_type=event_listing',
 					'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments'),
 					 // ✅ Custom capabilities
-					'capability_type'     => array('event_organizer', 'event_organizers'),
+					'capability_type'     => array('event_dj', 'event_djs'),
 					'map_meta_cap'        => true,
 	    	)));
 		}
 
-		if(get_option('enable_event_venue')){
-			$singular  = __('Venue', 'wp-event-manager');
-			$plural    = __('Venues', 'wp-event-manager');
-			register_post_type('event_venue', apply_filters('register_event_venue_post_type',array(
+		if(get_option('enable_event_local')){
+			$singular  = __('local', 'wp-event-manager');
+			$plural    = __('locals', 'wp-event-manager');
+			register_post_type('event_local', apply_filters('register_event_local_post_type',array(
 				        'labels' => array(
 						'name' 					=> $plural,
 						'singular_name' 		=> $singular,
 						'add_new_item' 			=> sprintf(wp_kses('Add %s', 'wp-event-manager'), $singular),
 						'edit_item' 			=> sprintf(wp_kses('Edit %s', 'wp-event-manager'), $singular),
-						'featured_image'        => __('Venue Logo', 'wp-event-manager'),
-						'set_featured_image'    => __('Set venue logo', 'wp-event-manager'),
-						'remove_featured_image' => __('Remove venue logo', 'wp-event-manager'),
-						'use_featured_image'    => __('Use as venue logo', 'wp-event-manager'),
+						'featured_image'        => __('local Logo', 'wp-event-manager'),
+						'set_featured_image'    => __('Set local logo', 'wp-event-manager'),
+						'remove_featured_image' => __('Remove local logo', 'wp-event-manager'),
+						'use_featured_image'    => __('Use as local logo', 'wp-event-manager'),
 					),
 					'public'             => true,
 					'publicly_queryable' => true,
 					'show_ui'            => true,
 					'show_in_menu'       => false,
 					'query_var'          => true,
-					'rewrite'            => array('slug' => 'event-venue'),
+					'rewrite'            => array('slug' => 'event-local'),
 					'has_archive'        => true,
 					'hierarchical'       => false,
 					'menu_position'      => null,
 					'show_in_menu'       => 'edit.php?post_type=event_listing',
 					'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments'),
 					 // ✅ Custom capabilities
-					'capability_type'    => 'event_venue',
+					'capability_type'    => 'event_local',
 					'map_meta_cap'       => true,
 	    		))
 	    	);
@@ -395,48 +436,48 @@ class WP_Event_Manager_Post_Types {
 	}
 
 	/**
-	 * Add extra content when showing organizer content.
+	 * Add extra content when showing dj content.
 	 */
-	public function organizer_content($content) {
+	public function dj_content($content) {
 		global $post;
 
-		if(!is_singular('event_organizer') || !in_the_loop()) {
+		if(!is_singular('event_dj') || !in_the_loop()) {
 			return $content;
 		}
 
-		remove_filter('the_content', array($this, 'organizer_content'));
-		if('event_organizer' === $post->post_type) {
+		remove_filter('the_content', array($this, 'dj_content'));
+		if('event_dj' === $post->post_type) {
 			ob_start();
-			$organizer_id = get_the_ID();
-            echo do_shortcode('[event_organizer id="'.esc_attr($organizer_id).'"]');
+			$dj_id = get_the_ID();
+            echo do_shortcode('[event_dj id="'.esc_attr($dj_id).'"]');
 			$content = ob_get_clean();
 		}
 
-		add_filter('the_content', array($this, 'organizer_content'));
-		return apply_filters('event_manager_single_organizer_content', $content, $post);
+		add_filter('the_content', array($this, 'dj_content'));
+		return apply_filters('event_manager_single_dj_content', $content, $post);
 	}
 
 	/**
-	 * Add extra content when showing venue content.
+	 * Add extra content when showing local content.
 	 */
-	public function venue_content($content) {
+	public function local_content($content) {
 		global $post;
 
-		if(!is_singular('event_venue') || !in_the_loop()) {
+		if(!is_singular('event_local') || !in_the_loop()) {
 			return $content;
 		}
 
-		remove_filter('the_content', array($this, 'venue_content'));
+		remove_filter('the_content', array($this, 'local_content'));
 
-		if('event_venue' === $post->post_type) {
+		if('event_local' === $post->post_type) {
 			ob_start();
-			$venue_id = get_the_ID();
-			echo do_shortcode('[event_venue id="'.esc_attr($venue_id).'"]');
+			$local_id = get_the_ID();
+			echo do_shortcode('[event_local id="'.esc_attr($local_id).'"]');
 			$content = ob_get_clean();
 		}
 
-		add_filter('the_content', array($this, 'venue_content'));
-		return apply_filters('event_manager_single_venue_content', $content, $post);
+		add_filter('the_content', array($this, 'local_content'));
+		return apply_filters('event_manager_single_local_content', $content, $post);
 	}
 
 	/**
@@ -446,8 +487,8 @@ class WP_Event_Manager_Post_Types {
 	 * @return void
 	 */
 	public function event_archive($template) {
-		if(is_tax('event_listing_category')) {
-			$template = EVENT_MANAGER_PLUGIN_DIR . '/templates/content-event_listing_category.php';
+		if(is_tax('event_sounds')) {
+			$template = EVENT_MANAGER_PLUGIN_DIR . '/templates/content-event_sounds.php';
 	    } elseif(is_tax('event_listing_type')) {
 			$template = EVENT_MANAGER_PLUGIN_DIR . '/templates/content-event_listing_type.php';
 	    }
@@ -566,7 +607,7 @@ class WP_Event_Manager_Post_Types {
 			$field    = is_numeric($cats) ? 'term_id' : 'slug';
 			$operator = 'all' === get_option('event_manager_category_filter_type', 'all') && sizeof($search_categories) > 1 ? 'AND' : 'IN';
 			$query_args['tax_query'][] = array(
-				'taxonomy'         => 'event_listing_category',
+			'taxonomy'         => 'event_sounds',
 				'field'            => $field,
 				'terms'            => $cats,
 				'include_children' => $operator !== 'AND' ,
@@ -1065,33 +1106,33 @@ class WP_Event_Manager_Post_Types {
 			/* translators: %s: product count */
 			'untrashed' => _n('%s event restored from the Trash.', '%s events restored from the Trash.', $bulk_counts['untrashed'], 'wp-event-manager'),
 		);
-		if(get_option('enable_event_organizer')) {
-			$bulk_messages['event_organizer'] = array(
+		if(get_option('enable_event_dj')) {
+			$bulk_messages['event_dj'] = array(
 				/* translators: %s: product count */
-				'updated'   => _n('%s organizer updated.', '%s organizers updated.', $bulk_counts['updated'], 'wp-event-manager'),
+				'updated'   => _n('%s dj updated.', '%s djs updated.', $bulk_counts['updated'], 'wp-event-manager'),
 				/* translators: %s: product count */
-				'locked'    => _n('%s organizer not updated, somebody is editing it.', '%s organizers not updated, somebody is editing them.', $bulk_counts['locked'], 'wp-event-manager'),
+				'locked'    => _n('%s dj not updated, somebody is editing it.', '%s djs not updated, somebody is editing them.', $bulk_counts['locked'], 'wp-event-manager'),
 				/* translators: %s: product count */
-				'deleted'   => _n('%s organizer permanently deleted.', '%s organizers permanently deleted.', $bulk_counts['deleted'], 'wp-event-manager'),
+				'deleted'   => _n('%s dj permanently deleted.', '%s djs permanently deleted.', $bulk_counts['deleted'], 'wp-event-manager'),
 				/* translators: %s: product count */
-				'trashed'   => _n('%s organizer moved to the Trash.', '%s organizers moved to the Trash.', $bulk_counts['trashed'], 'wp-event-manager'),
+				'trashed'   => _n('%s dj moved to the Trash.', '%s djs moved to the Trash.', $bulk_counts['trashed'], 'wp-event-manager'),
 				/* translators: %s: product count */
-				'untrashed' => _n('%s organizer restored from the Trash.', '%s organizers restored from the Trash.', $bulk_counts['untrashed'], 'wp-event-manager'),
+				'untrashed' => _n('%s dj restored from the Trash.', '%s djs restored from the Trash.', $bulk_counts['untrashed'], 'wp-event-manager'),
 			);
 		}
 
-		if(get_option('enable_event_venue')){
-			$bulk_messages['event_venue'] = array(
+		if(get_option('enable_event_local')){
+			$bulk_messages['event_local'] = array(
 				/* translators: %s: product count */
-				'updated'   => _n('%s venue updated.', '%s venues updated.', $bulk_counts['updated'], 'wp-event-manager'),
+				'updated'   => _n('%s local updated.', '%s locals updated.', $bulk_counts['updated'], 'wp-event-manager'),
 				/* translators: %s: product count */
-				'locked'    => _n('%s venue not updated, somebody is editing it.', '%s venues not updated, somebody is editing them.', $bulk_counts['locked'], 'wp-event-manager'),
+				'locked'    => _n('%s local not updated, somebody is editing it.', '%s locals not updated, somebody is editing them.', $bulk_counts['locked'], 'wp-event-manager'),
 				/* translators: %s: product count */
-				'deleted'   => _n('%s venue permanently deleted.', '%s venues permanently deleted.', $bulk_counts['deleted'], 'wp-event-manager'),
+				'deleted'   => _n('%s local permanently deleted.', '%s locals permanently deleted.', $bulk_counts['deleted'], 'wp-event-manager'),
 				/* translators: %s: product count */
-				'trashed'   => _n('%s venue moved to the Trash.', '%s venues moved to the Trash.', $bulk_counts['trashed'], 'wp-event-manager'),
+				'trashed'   => _n('%s local moved to the Trash.', '%s locals moved to the Trash.', $bulk_counts['trashed'], 'wp-event-manager'),
 				/* translators: %s: product count */
-				'untrashed' => _n('%s venue restored from the Trash.', '%s venues restored from the Trash.', $bulk_counts['untrashed'], 'wp-event-manager'),
+				'untrashed' => _n('%s local restored from the Trash.', '%s locals restored from the Trash.', $bulk_counts['untrashed'], 'wp-event-manager'),
 			);
 		}
 		return $bulk_messages;

@@ -525,7 +525,7 @@ abstract class WP_Event_Manager_Form {
 		        unset($default_fields['event']['event_ticket_price']);
 		}
 
-		if(!get_option('event_manager_enable_categories') || (wp_count_terms('event_listing_category') == 0 && isset($custom_fields['event']['event_category']))) {
+	if(!get_option('event_manager_enable_categories') || (wp_count_terms('event_sounds') == 0 && isset($custom_fields['event']['event_category']))) {
 			if(isset($custom_fields['event']['event_category']))
 				$custom_fields['event']['event_category']['visibility']=false;
 			

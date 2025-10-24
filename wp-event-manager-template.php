@@ -359,7 +359,7 @@ function get_event_category($post = null){
 	if($post->post_type !== 'event_listing' || !get_option('event_manager_enable_categories')) {
 		return;
 	}
-	$categories = wp_get_post_terms($post->ID, 'event_listing_category');
+	$categories = wp_get_post_terms($post->ID, 'event_sounds');
 
 	// Return single if not enabled.
 	if(empty($categories))
@@ -664,7 +664,7 @@ function get_event_thumbnail($post = null, $size = 'full') {
 function display_event_banner($size = 'full', $default = null, $post = null){
 
 	$banner = get_event_banner($post);
-	$alt_text = !empty(esc_attr(get_organizer_name($post))) ? esc_attr(get_organizer_name($post)) : get_the_title();
+	$alt_text = !empty(esc_attr(get_dj_name($post))) ? esc_attr(get_dj_name($post)) : get_the_title();
 	$alt_text = apply_filters('display_event_alt_text', $alt_text, $post);
 	if(!empty($banner) && !is_array($banner)  && (strstr($banner, 'http') || file_exists($banner))) {
 		if($size !== 'full') {
@@ -949,60 +949,60 @@ function display_event_timezone_abbr($before = '', $after = '', $echo = true, $p
 }
 
 /**
- * Retrieves the event venue name.
+ * Retrieves the event local name.
  *
  * @access public
  * @param mixed $post (default: null)
  * @return void
  */
-function get_event_venue_name($post = null, $link = false){
+function get_event_local_name($post = null, $link = false){
 
 	$post = get_post($post);
 	/* if($post->post_type !== 'event_listing') */
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_venue']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_local']))
 		return;
 
-	if(!empty($post->_event_venue_ids)) {
-		$venue_name = '';
+	if(!empty($post->_event_local_ids)) {
+		$local_name = '';
 		if($link) {
-			$venue_name .= '<a href="' . get_permalink($post->_event_venue_ids) . '">';
+			$local_name .= '<a href="' . get_permalink($post->_event_local_ids) . '">';
 		}
-		$venue_name .= esc_attr(get_post_meta($post->_event_venue_ids, '_venue_name', true));
+		$local_name .= esc_attr(get_post_meta($post->_event_local_ids, '_local_name', true));
 
 		if($link) {
-			$venue_name .= '</a>';
+			$local_name .= '</a>';
 		}
 
-		return apply_filters('display_event_venue_name', $venue_name, $post);
+		return apply_filters('display_event_local_name', $local_name, $post);
 	}
 
-	if($post->post_type == 'event_venue')
-		return apply_filters('display_event_venue_name', $post->_venue_name, $post);
+	if($post->post_type == 'event_local')
+		return apply_filters('display_event_local_name', $post->_local_name, $post);
 	else
-		return apply_filters('display_event_venue_name', $post->_event_venue_name, $post);
+		return apply_filters('display_event_local_name', $post->_event_local_name, $post);
 }
 
 /**
- * Display or retrieve the current event venue name.
+ * Display or retrieve the current event local name.
  *
  * @access public
  *
  * @param mixed $id (default: null)
  * @return void
  */
-function display_event_venue_name($before = '', $after = '', $echo = true, $post = null){
+function display_event_local_name($before = '', $after = '', $echo = true, $post = null){
 
-	$event_venue_name = get_event_venue_name($post);
-	if(strlen($event_venue_name) == 0)
+	$event_local_name = get_event_local_name($post);
+	if(strlen($event_local_name) == 0)
 		return;
 
-	$event_venue_name = esc_attr(strip_tags($event_venue_name));
-	$event_venue_name = $before . $event_venue_name . $after;
+	$event_local_name = esc_attr(strip_tags($event_local_name));
+	$event_local_name = $before . $event_local_name . $after;
 
 	if($echo)
-		echo esc_attr($event_venue_name);
+		echo esc_attr($event_local_name);
 	else
-		return $event_venue_name;
+		return $event_local_name;
 }
 
 /**
@@ -1102,42 +1102,42 @@ function display_event_pincode($before = '', $after = '', $echo = true, $post = 
 }
 
 /**
- * Gets the organizer name.
+ * Gets the dj name.
  *
  * @access public
  * @param int $post (default: null)
  * @return string
  */
-function get_organizer_name($post = null, $link = false, $link_type = 'frontend'){
+function get_dj_name($post = null, $link = false, $link_type = 'frontend'){
 
 	$post = get_post($post);
 
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer'])) {
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_dj'])) {
 		return '';
 	}
 
-	if(!empty($post->_event_organizer_ids)) {
-		$organizer_name = '';
+	if(!empty($post->_event_dj_ids)) {
+		$dj_name = '';
 
-		foreach($post->_event_organizer_ids as $key => $organizer_id) {
+		foreach($post->_event_dj_ids as $key => $dj_id) {
 			if($key > 0) {
-				$organizer_name .= ', ';
+				$dj_name .= ', ';
 			}
 			if($link) {
 				if($link_type == 'backend') {
-					$organizer_name .= '<a href="' . get_edit_post_link($organizer_id) . '">';
+					$dj_name .= '<a href="' . get_edit_post_link($dj_id) . '">';
 				} else {
-					$organizer_name .= '<a href="' . get_permalink($organizer_id) . '">';
+					$dj_name .= '<a href="' . get_permalink($dj_id) . '">';
 				}
 			}
-			$organizer_name .= esc_attr(get_post_meta($organizer_id, '_organizer_name', true));
+			$dj_name .= esc_attr(get_post_meta($dj_id, '_dj_name', true));
 			if($link) {
-				$organizer_name .= '</a>';
+				$dj_name .= '</a>';
 			}
 		}
-		return apply_filters('display_organizer_name', $organizer_name, $post);
+		return apply_filters('display_dj_name', $dj_name, $post);
 	}
-	return apply_filters('display_organizer_name', $post->_organizer_name, $post);
+	return apply_filters('display_dj_name', $post->_dj_name, $post);
 }
 
 /**
@@ -1147,77 +1147,77 @@ function get_organizer_name($post = null, $link = false, $link_type = 'frontend'
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_name($before = '', $after = '', $echo = true, $post = null){
-	$organizer_name = get_organizer_name($post);
+function display_dj_name($before = '', $after = '', $echo = true, $post = null){
+	$dj_name = get_dj_name($post);
 
-	if(strlen($organizer_name) == 0)
+	if(strlen($dj_name) == 0)
 		return;
 
-	$organizer_name = esc_attr(strip_tags($organizer_name));
-	$organizer_name = $before . $organizer_name . $after;
+	$dj_name = esc_attr(strip_tags($dj_name));
+	$dj_name = $before . $dj_name . $after;
 	if($echo)
-		echo esc_attr($organizer_name);
+		echo esc_attr($dj_name);
 	else
-		return $organizer_name;
+		return $dj_name;
 }
 
 /**
- * Gets the organizer description.
+ * Gets the dj description.
  *
  * @access public
  * @param int $post (default: null)
  * @return string
  */
-function get_organizer_description($post = null){
+function get_dj_description($post = null){
 
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer'])) {
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_dj'])) {
 		return '';
 	}
 
-	return apply_filters('display_organizer_description', $post->_organizer_description, $post);
+	return apply_filters('display_dj_description', $post->_dj_description, $post);
 }
 
 /**
- * It displays the organizer logo.
+ * It displays the dj logo.
  *
  * @access public
  * @param string $size (default: 'full')
  * @param mixed $default (default: null)
  * @return void
  */
-function display_organizer_logo($size = 'full', $default = null, $post = null){ 
+function display_dj_logo($size = 'full', $default = null, $post = null){ 
 
-	$logo = get_organizer_logo($post, $size);
+	$logo = get_dj_logo($post, $size);
 
 	if(has_post_thumbnail($post)) {
-		echo '<img class="organizer_logo" src="' . esc_url($logo) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		echo '<img class="dj_logo" src="' . esc_url($logo) . '" alt="' . esc_attr(get_dj_name($post)) . '" />';
 		// Before 1.0., logo URLs were stored in post meta.
 	} elseif(!empty($logo) && !is_array($logo) && (strstr($logo, 'http') || file_exists($logo))) {
 		if($size !== 'full') {
 			$logo = event_manager_get_resized_image($logo, $size);
 		}
-		echo '<img src="' . esc_url($logo) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		echo '<img src="' . esc_url($logo) . '" alt="' . esc_attr(get_dj_name($post)) . '" />';
 	} elseif($default) {
-		echo '<img src="' . esc_url($default) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		echo '<img src="' . esc_url($default) . '" alt="' . esc_attr(get_dj_name($post)) . '" />';
 	} else if(is_array($logo) && isset($logo[0])) {
-		echo '<img itemprop="image" content="' . esc_url($logo[0]) . '" src="' . esc_url($logo[0]) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		echo '<img itemprop="image" content="' . esc_url($logo[0]) . '" src="' . esc_url($logo[0]) . '" alt="' . esc_attr(get_dj_name($post)) . '" />';
 	} else {
-		echo '<img src="' . esc_url(apply_filters('event_manager_default_organizer_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />';
+		echo '<img src="' . esc_url(apply_filters('event_manager_default_dj_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_dj_name($post)) . '" />';
 	}
 }
 
 /**
- * Gets the organizer logo.
+ * Gets the dj logo.
  *
  * @access public
  * @param mixed $post (default: null)
  * @return string
  */
-function get_organizer_logo($post = null, $size = 'full'){
+function get_dj_logo($post = null, $size = 'full'){
 
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_dj']))
 		return;
 
 	if(has_post_thumbnail($post->ID)) {
@@ -1227,80 +1227,80 @@ function get_organizer_logo($post = null, $size = 'full'){
 		}else{
 			return $src ? $src[0] : '';
 		}
-	} elseif(!empty($post->_organizer_logo)) {
-		return $post->_organizer_logo;
+	} elseif(!empty($post->_dj_logo)) {
+		return $post->_dj_logo;
 		// Before were stored in post meta.
-		return apply_filters('display_organizer_logo', $post->_organizer_logo, $post);
+		return apply_filters('display_dj_logo', $post->_dj_logo, $post);
 	}
 
 	return '';
 }
 
 /**
- * Retrieves the venue description.
+ * Retrieves the local description.
  *
  * @access public
  * @param int $post (default: null)
  * @return string
  */
-function get_venue_description($post = null){
+function get_local_description($post = null){
 
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_venue'])) {
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_local'])) {
 		return '';
 	}
 
-	return apply_filters('display_venue_description', $post->_venue_description, $post);
+	return apply_filters('display_local_description', $post->_local_description, $post);
 }
 
 /**
- * It displays venue logo.
+ * It displays local logo.
  *
  * @access public
  * @param string $size (default: 'full')
  * @param mixed $default (default: null)
  * @return void
  */
-function display_venue_logo($size = 'full', $default = null, $post = null){
+function display_local_logo($size = 'full', $default = null, $post = null){
 
-	$logo = get_venue_logo($post, $size);
+	$logo = get_local_logo($post, $size);
 
 	if(has_post_thumbnail($post)) {
-		printf('<img class="venue_logo" src="' . esc_url($logo) . '" alt="' . esc_attr(get_event_venue_name($post)) . '" />');
+		printf('<img class="local_logo" src="' . esc_url($logo) . '" alt="' . esc_attr(get_event_local_name($post)) . '" />');
 		// Before 1.0., logo URLs were stored in post meta.
 	} elseif(!empty($logo) && !is_array($logo) && (strstr($logo, 'http') || file_exists($logo))) {
 		if($size !== 'full') {
 			$logo = event_manager_get_resized_image($logo, $size);
 		}
-		printf('<img src="' . esc_url($logo) . '" alt="' . esc_attr(get_event_venue_name($post)) . '" />');
+		printf('<img src="' . esc_url($logo) . '" alt="' . esc_attr(get_event_local_name($post)) . '" />');
 	} elseif($default) {
-		printf('<img src="' . esc_url($default) . '" alt="' . esc_attr(get_event_venue_name($post)) . '" />');
+		printf('<img src="' . esc_url($default) . '" alt="' . esc_attr(get_event_local_name($post)) . '" />');
 	} else if(is_array($logo) && isset($logo[0])) {
-		printf('<img itemprop="image" content="' . esc_url($logo[0]) . '" src="' . esc_url($logo[0]) . '" alt="' . esc_attr(get_organizer_name($post)) . '" />');
+		printf('<img itemprop="image" content="' . esc_url($logo[0]) . '" src="' . esc_url($logo[0]) . '" alt="' . esc_attr(get_dj_name($post)) . '" />');
 	} else {
-		printf('<img src="' . esc_url(apply_filters('event_manager_default_venue_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_event_venue_name($post)) . '" />');
+		printf('<img src="' . esc_url(apply_filters('event_manager_default_local_logo', EVENT_MANAGER_PLUGIN_URL . '/assets/images/wpem-placeholder.jpg')) . '" alt="' . esc_attr(get_event_local_name($post)) . '" />');
 	}
 }
 
 /**
- * Gets venue logo.
+ * Gets local logo.
  *
  * @access public
  * @param mixed $post (default: null)
  * @return string
  */
-function get_venue_logo($post = null, $size = 'full'){
+function get_local_logo($post = null, $size = 'full'){
 
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_venue']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_local']))
 		return;
 
 	if(has_post_thumbnail($post->ID)) {
 		$src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size);
 		return $src ? $src[0] : '';
-	} elseif(!empty($post->_venue_logo)) {
+	} elseif(!empty($post->_local_logo)) {
 		// Before were stored in post meta.
-		return apply_filters('display_venue_logo', $post->_venue_logo, $post);
+		return apply_filters('display_local_logo', $post->_local_logo, $post);
 	}
 
 	return '';
@@ -1365,13 +1365,13 @@ function event_manager_get_resized_image($logo, $size){
  * @param mixed $post (default: null)
  * @return string
  */
-function get_event_organizer_contact_person_name($post = null){
+function get_event_dj_contact_person_name($post = null){
 
 	$post = get_post($post);
 	if($post->post_type !== 'event_listing')
 		return;
 
-	return apply_filters('display_organizer_contact_person_name', $post->_organizer_contact_person_name, $post);
+	return apply_filters('display_dj_contact_person_name', $post->_dj_contact_person_name, $post);
 }
 
 /**
@@ -1381,89 +1381,89 @@ function get_event_organizer_contact_person_name($post = null){
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_contact_person_name($before = '', $after = '', $echo = true, $post = null){
+function display_dj_contact_person_name($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_contact_person_name = get_event_organizer_contact_person_name($post);
-	if(strlen($organizer_contact_person_name) == 0)
+	$dj_contact_person_name = get_event_dj_contact_person_name($post);
+	if(strlen($dj_contact_person_name) == 0)
 		return;
 
-	$organizer_contact_person_name = esc_attr(strip_tags($organizer_contact_person_name));
-	$organizer_contact_person_name = $before . $organizer_contact_person_name . $after;
+	$dj_contact_person_name = esc_attr(strip_tags($dj_contact_person_name));
+	$dj_contact_person_name = $before . $dj_contact_person_name . $after;
 	if($echo)
-		echo esc_attr($organizer_contact_person_name);
+		echo esc_attr($dj_contact_person_name);
 	else
-		return $organizer_contact_person_name;
+		return $dj_contact_person_name;
 }
 
 /**
- * Retrieves the current organizer email with optional content of event.
+ * Retrieves the current dj email with optional content of event.
  *
  * @access public
  * @param mixed $post (default: null)
  * @return string
  */
-function get_event_organizer_email($post = null){
+function get_event_dj_email($post = null){
 
 	$post = get_post($post);
 
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_dj']))
 		return;
 
-	if(!empty($post->_event_organizer_ids)) {
-		$organizers_email = '';
-		foreach($post->_event_organizer_ids as $key => $organizer_id) {
+	if(!empty($post->_event_dj_ids)) {
+		$djs_email = '';
+		foreach($post->_event_dj_ids as $key => $dj_id) {
 			if($key > 0) {
-				$organizers_email .= ', ';
+				$djs_email .= ', ';
 			}
-			$organizers_email .= esc_html(get_post_meta($organizer_id, '_organizer_email', true));
+			$djs_email .= esc_html(get_post_meta($dj_id, '_dj_email', true));
 		}
-		return apply_filters('display_organizer_email', $organizers_email, $post);
+		return apply_filters('display_dj_email', $djs_email, $post);
 	}
-	return apply_filters('display_organizer_email', $post->_organizer_email, $post);
+	return apply_filters('display_dj_email', $post->_dj_email, $post);
 }
 
 /**
- * Display or retrieve the current organizer email with optional content.
+ * Display or retrieve the current dj email with optional content.
  *
  * @access public
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_email($before = '', $after = '', $echo = true, $post = null){
+function display_dj_email($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_email = get_event_organizer_email($post);
-	if(strlen($organizer_email) == 0)
+	$dj_email = get_event_dj_email($post);
+	if(strlen($dj_email) == 0)
 		return;
 
-	$organizer_email = esc_attr(strip_tags($organizer_email));
-	$organizer_email = $before . $organizer_email . $after;
+	$dj_email = esc_attr(strip_tags($dj_email));
+	$dj_email = $before . $dj_email . $after;
 	if($echo)
-		echo esc_attr($organizer_email);
+		echo esc_attr($dj_email);
 	else
-		return $organizer_email;
+		return $dj_email;
 }
 
 /**
- * Get the organizer video URL.
+ * Get the dj video URL.
  *
  * @param mixed $post (default: null)
  * @return string
  */
-function get_organizer_video($post = null){
+function get_dj_video($post = null){
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_dj']))
 		return;
 
-	return apply_filters('display_organizer_video', $post->_organizer_video, $post);
+	return apply_filters('display_dj_video', $post->_dj_video, $post);
 }
 
 /**
- * Output the organizer video.
+ * Output the dj video.
  */
-function display_organizer_video($before = '', $after = '', $echo = true, $post = null){
+function display_dj_video($before = '', $after = '', $echo = true, $post = null){
 
 	$video_embed = false;
-	$video       = get_organizer_video($post);
+	$video       = get_dj_video($post);
 	$filetype    = wp_check_filetype($video);
 	if(!empty($video)) {
 		// FV Wordpress Flowplayer Support for advanced video formats
@@ -1475,654 +1475,654 @@ function display_organizer_video($before = '', $after = '', $echo = true, $post 
 			$video_embed = wp_oembed_get($video);
 		}
 	}
-	$video_embed = apply_filters('display_organizer_video_embed', $video_embed, $post);
+	$video_embed = apply_filters('display_dj_video_embed', $video_embed, $post);
 	if($video_embed) {
-		printf('<div class="organizer_video">%s</div>',esc_attr($video_embed));
+		printf('<div class="dj_video">%s</div>',esc_attr($video_embed));
 	}
 }
 
 /**
- * Retrieves the current organizer website.
+ * Retrieves the current dj website.
  *
  * @access public
  * @param int $post (default: null)
  * @return void
  */
-function get_organizer_website($post = null){
+function get_dj_website($post = null){
 
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_dj']))
 		return;
 
-	if(!empty($post->_event_organizer_ids)) {
+	if(!empty($post->_event_dj_ids)) {
 		$website = '';
-		foreach($post->_event_organizer_ids as $key => $organizer_id) {
-			$website .= esc_url(get_post_meta($organizer_id, '_organizer_website', true));
+		foreach($post->_event_dj_ids as $key => $dj_id) {
+			$website .= esc_url(get_post_meta($dj_id, '_dj_website', true));
 			if($website && !strstr($website, 'http:') && !strstr($website, 'https:')) {
 				$website .= 'http://' . $website;
 			}
 		}
-		return apply_filters('display_organizer_website', $website, $post);
+		return apply_filters('display_dj_website', $website, $post);
 	}
 
-	$website = $post->_organizer_website;
+	$website = $post->_dj_website;
 	if($website && !strstr($website, 'http:') && !strstr($website, 'https:')) {
 		$website = 'http://' . $website;
 	}
-	return apply_filters('display_organizer_website', $website, $post);
+	return apply_filters('display_dj_website', $website, $post);
 }
 
 /**
- * Display or retrieve the current organizer website with optional content.
+ * Display or retrieve the current dj website with optional content.
  *
  * @access public
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_website($before = '', $after = '', $echo = true, $post = null){
-	$organizer_website = get_organizer_website($post);
+function display_dj_website($before = '', $after = '', $echo = true, $post = null){
+	$dj_website = get_dj_website($post);
 
-	if(strlen($organizer_website) == 0)
+	if(strlen($dj_website) == 0)
 		return;
 
-	$organizer_website = esc_attr(strip_tags($organizer_website));
-	$organizer_website = $before . $organizer_website . $after;
+	$dj_website = esc_attr(strip_tags($dj_website));
+	$dj_website = $before . $dj_website . $after;
 	if($echo)
-		echo esc_attr($organizer_website);
+		echo esc_attr($dj_website);
 	else
-		return $organizer_website;
+		return $dj_website;
 }
 
 /**
- * Retrieves the current venue website.
+ * Retrieves the current local website.
  *
  * @access public
  * @param int $post (default: null)
  * @return void
  */
-function get_venue_website($post = null){
+function get_local_website($post = null){
 
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_venue']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_local']))
 		return;
 
-	if(!empty($post->_event_venue_ids)) {
+	if(!empty($post->_event_local_ids)) {
 		$website = '';
-		$website .= esc_url(get_post_meta($post->_event_venue_ids, '_venue_website', true));
+		$website .= esc_url(get_post_meta($post->_event_local_ids, '_local_website', true));
 
 		if($website && !strstr($website, 'http:') && !strstr($website, 'https:')) {
 			$website .= 'http://' . $website;
 		}
-		return apply_filters('display_venue_website', $website, $post);
+		return apply_filters('display_local_website', $website, $post);
 	}
 
-	$website = $post->_venue_website;
+	$website = $post->_local_website;
 	if($website && !strstr($website, 'http:') && !strstr($website, 'https:')) {
 		$website = 'http://' . $website;
 	}
-	return apply_filters('display_venue_website', $website, $post);
+	return apply_filters('display_local_website', $website, $post);
 }
 
 /**
- * Display or retrieve the current venue website with optional content.
+ * Display or retrieve the current local website with optional content.
  *
  * @access public
  * @param mixed $id (default: null)
  * @return void
  */
-function display_venue_website($before = '', $after = '', $echo = true, $post = null){
+function display_local_website($before = '', $after = '', $echo = true, $post = null){
 
-	$venue_website = get_venue_website($post);
-	if(strlen($venue_website) == 0)
+	$local_website = get_local_website($post);
+	if(strlen($local_website) == 0)
 		return;
 
-	$venue_website = esc_attr(strip_tags($venue_website));
-	$venue_website = $before . $venue_website . $after;
+	$local_website = esc_attr(strip_tags($local_website));
+	$local_website = $before . $local_website . $after;
 	if($echo)
-		echo esc_attr($venue_website);
+		echo esc_attr($local_website);
 	else
-		return $venue_website;
+		return $local_website;
 }
 
 /**
- * Display or retrieve the current organizer tagline with optional content.
+ * Display or retrieve the current dj tagline with optional content.
  *
  * @access public
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_tagline($before = '', $after = '', $echo = true, $post = null){
+function display_dj_tagline($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_tagline = get_organizer_tagline($post);
+	$dj_tagline = get_dj_tagline($post);
 
-	if(strlen($organizer_tagline) == 0)
+	if(strlen($dj_tagline) == 0)
 		return;
 
-	$organizer_tagline = esc_attr(strip_tags($organizer_tagline));
-	$organizer_tagline = $before . $organizer_tagline . $after;
+	$dj_tagline = esc_attr(strip_tags($dj_tagline));
+	$dj_tagline = $before . $dj_tagline . $after;
 	if($echo)
-		echo esc_attr($organizer_tagline);
+		echo esc_attr($dj_tagline);
 	else
-		return $organizer_tagline;
+		return $dj_tagline;
 }
 
 /**
- * Gets organizer tagline.
+ * Gets dj tagline.
  *
  * @access public
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_tagline($post = null){
+function get_dj_tagline($post = null){
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_dj']))
 		return;
-	return apply_filters('display_organizer_tagline', $post->_organizer_tagline, $post);
+	return apply_filters('display_dj_tagline', $post->_dj_tagline, $post);
 }
 
 /**
- * Retrieves the current organizer twitter link.
+ * Retrieves the current dj twitter link.
  *
  * @access public
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_twitter($post = null){
+function get_dj_twitter($post = null){
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_dj']))
 		return;
 
-	$organizer_twitter = $post->_organizer_twitter;
+	$dj_twitter = $post->_dj_twitter;
 
-	if(strlen($organizer_twitter) == 0)
+	if(strlen($dj_twitter) == 0)
 		return;
 
-	if(strpos($organizer_twitter, '@') === 0)
-		$organizer_twitter = substr($organizer_twitter, 1);
+	if(strpos($dj_twitter, '@') === 0)
+		$dj_twitter = substr($dj_twitter, 1);
 
-	return apply_filters('display_organizer_twitter', $organizer_twitter, $post);
+	return apply_filters('display_dj_twitter', $dj_twitter, $post);
 }
 
 /**
- * Display or retrieve the current organizer twitter link with optional content.
+ * Display or retrieve the current dj twitter link with optional content.
  *
  * @access public
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_twitter($before = '', $after = '', $echo = true, $post = null) {
+function display_dj_twitter($before = '', $after = '', $echo = true, $post = null) {
 
-	$organizer_twitter = get_organizer_twitter($post);
+	$dj_twitter = get_dj_twitter($post);
 
-	if(strlen($organizer_twitter) == 0)
+	if(strlen($dj_twitter) == 0)
 		return;
 
-	$organizer_twitter = esc_attr(strip_tags($organizer_twitter));
-	$organizer_twitter = $before . '<a href="http://twitter.com/' . $organizer_twitter . '" class="organizer_twitter" target="_blank">' . $organizer_twitter . '</a>' . $after;
+	$dj_twitter = esc_attr(strip_tags($dj_twitter));
+	$dj_twitter = $before . '<a href="http://twitter.com/' . $dj_twitter . '" class="dj_twitter" target="_blank">' . $dj_twitter . '</a>' . $after;
 	if($echo)
-		echo esc_attr($organizer_twitter);
+		echo esc_attr($dj_twitter);
 	else
-		return $organizer_twitter;
+		return $dj_twitter;
 }
 
 /**
- * Retrieves the current venue twitter link.
+ * Retrieves the current local twitter link.
  *
  * @access public
  * @param int $post (default: 0)
  * @return void
  */
-function get_venue_twitter($post = null){
+function get_local_twitter($post = null){
 
 	$post = get_post($post);
 
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_venue']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_local']))
 		return;
 
-	$venue_twitter = $post->_venue_twitter;
-	if(strlen($venue_twitter) == 0)
+	$local_twitter = $post->_local_twitter;
+	if(strlen($local_twitter) == 0)
 		return;
 
-	if(strpos($venue_twitter, '@') === 0)
-		$venue_twitter = substr($venue_twitter, 1);
+	if(strpos($local_twitter, '@') === 0)
+		$local_twitter = substr($local_twitter, 1);
 
-	return apply_filters('display_venue_twitter', $venue_twitter, $post);
+	return apply_filters('display_local_twitter', $local_twitter, $post);
 }
 
 /**
- * Display or retrieve the current venue twitter link with optional content.
+ * Display or retrieve the current local twitter link with optional content.
  *
  * @access public
  * @param mixed $id (default: null)
  * @return void
  */
-function display_venue_twitter($before = '', $after = '', $echo = true, $post = null){
+function display_local_twitter($before = '', $after = '', $echo = true, $post = null){
 
-	$venue_twitter = get_venue_twitter($post);
+	$local_twitter = get_local_twitter($post);
 
-	if(strlen($venue_twitter) == 0)
+	if(strlen($local_twitter) == 0)
 		return;
 
-	$venue_twitter = esc_attr(strip_tags($venue_twitter));
-	$venue_twitter = $before . '<a href="http://twitter.com/' . $venue_twitter . '" class="venue_twitter" target="_blank">' . $venue_twitter . '</a>' . $after;
+	$local_twitter = esc_attr(strip_tags($local_twitter));
+	$local_twitter = $before . '<a href="http://twitter.com/' . $local_twitter . '" class="local_twitter" target="_blank">' . $local_twitter . '</a>' . $after;
 	if($echo)
-		echo esc_attr($venue_twitter);
+		echo esc_attr($local_twitter);
 	else
-		return $venue_twitter;
+		return $local_twitter;
 }
 
 /**
- * retrieve the current organizer page on facebook.
+ * retrieve the current dj page on facebook.
  *
  * @access public
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_facebook($post = null){
+function get_dj_facebook($post = null){
 
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_dj']))
 		return;
 
-	$organizer_facebook = $post->_organizer_facebook;
-	if(strlen($organizer_facebook) == 0)
+	$dj_facebook = $post->_dj_facebook;
+	if(strlen($dj_facebook) == 0)
 		return;
 
-	return apply_filters('display_organizer_facebook', $organizer_facebook, $post);
+	return apply_filters('display_dj_facebook', $dj_facebook, $post);
 }
 
 /**
- * Display or retrieve the current organizer page on facebook.
+ * Display or retrieve the current dj page on facebook.
  *
  * @access public
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_facebook($before = '', $after = '', $echo = true, $post = null){
+function display_dj_facebook($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_facebook = get_organizer_facebook($post);
-	if(strlen($organizer_facebook) == 0)
+	$dj_facebook = get_dj_facebook($post);
+	if(strlen($dj_facebook) == 0)
 		return;
 
-	$organizer_facebook = esc_attr(strip_tags($organizer_facebook));
-	$organizer_facebook = $before . $organizer_facebook . $after;
+	$dj_facebook = esc_attr(strip_tags($dj_facebook));
+	$dj_facebook = $before . $dj_facebook . $after;
 	if($echo)
-		echo esc_attr($organizer_facebook);
+		echo esc_attr($dj_facebook);
 	else
-		return $organizer_facebook;
+		return $dj_facebook;
 }
 
 /**
- * Retrieves the current venue page on facebook.
+ * Retrieves the current local page on facebook.
  *
  * @access public
  * @param int $post (default: 0)
  * @return void
  */
-function get_venue_facebook($post = null){
+function get_local_facebook($post = null){
 
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_venue']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_local']))
 		return;
 
-	$venue_facebook = $post->_venue_facebook;
-	if(strlen($venue_facebook) == 0)
+	$local_facebook = $post->_local_facebook;
+	if(strlen($local_facebook) == 0)
 		return;
 
-	return apply_filters('display_venue_facebook', $venue_facebook, $post);
+	return apply_filters('display_local_facebook', $local_facebook, $post);
 }
 
 /**
- * Display or retrieve the current venue page on facebook.
+ * Display or retrieve the current local page on facebook.
  *
  * @access public
  * @param mixed $id (default: null)
  * @return void
  */
-function display_venue_facebook($before = '', $after = '', $echo = true, $post = null){
+function display_local_facebook($before = '', $after = '', $echo = true, $post = null){
 
-	$venue_facebook = get_venue_facebook($post);
-	if(strlen($venue_facebook) == 0)
+	$local_facebook = get_local_facebook($post);
+	if(strlen($local_facebook) == 0)
 		return;
 
-	$venue_facebook = esc_attr(strip_tags($venue_facebook));
-	$venue_facebook = $before . $venue_facebook . $after;
+	$local_facebook = esc_attr(strip_tags($local_facebook));
+	$local_facebook = $before . $local_facebook . $after;
 	if($echo)
-		echo esc_attr($venue_facebook);
+		echo esc_attr($local_facebook);
 	else
-		return $venue_facebook;
+		return $local_facebook;
 }
 
 /**
- * Retrieves the current organizer page on Linkedin.
+ * Retrieves the current dj page on Linkedin.
  *
  * @access public
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_linkedin($post = null){
+function get_dj_linkedin($post = null){
 
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_dj']))
 		return;
 
-	$organizer_linkedin = $post->_organizer_linkedin;
-	if(strlen($organizer_linkedin) == 0)
+	$dj_linkedin = $post->_dj_linkedin;
+	if(strlen($dj_linkedin) == 0)
 		return;
 
-	return apply_filters('display_organizer_linkedin', $organizer_linkedin, $post);
+	return apply_filters('display_dj_linkedin', $dj_linkedin, $post);
 }
 
 /**
- * Display or retrieve the current organizer page on Linkedin.
+ * Display or retrieve the current dj page on Linkedin.
  *
  * @access public
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_linkedin($before = '', $after = '', $echo = true, $post = null){
+function display_dj_linkedin($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_linkedin = get_organizer_linkedin($post);
-	if(strlen($organizer_linkedin) == 0)
+	$dj_linkedin = get_dj_linkedin($post);
+	if(strlen($dj_linkedin) == 0)
 		return;
 
-	$organizer_linkedin = esc_attr(strip_tags($organizer_linkedin));
-	$organizer_linkedin = $before . $organizer_linkedin . $after;
+	$dj_linkedin = esc_attr(strip_tags($dj_linkedin));
+	$dj_linkedin = $before . $dj_linkedin . $after;
 	if($echo)
-		echo esc_attr($organizer_linkedin);
+		echo esc_attr($dj_linkedin);
 	else
-		return $organizer_linkedin;
+		return $dj_linkedin;
 }
 
 /**
- * Retrieves the current organizer link on xing.
+ * Retrieves the current dj link on xing.
  *
  * @access public
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_xing($post = null){
+function get_dj_xing($post = null){
 
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_dj']))
 		return;
 
-	$organizer_xing = $post->_organizer_xing;
-	if(strlen($organizer_xing) == 0)
+	$dj_xing = $post->_dj_xing;
+	if(strlen($dj_xing) == 0)
 		return;
 
-	return apply_filters('display_organizer_xing', $organizer_xing, $post);
+	return apply_filters('display_dj_xing', $dj_xing, $post);
 }
 
 /**
- * Display or retrieve the current organizer link on xing.
+ * Display or retrieve the current dj link on xing.
  *
  * @access public
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_xing($before = '', $after = '', $echo = true, $post = null){
+function display_dj_xing($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_xing = get_organizer_xing($post);
-	if(strlen($organizer_xing) == 0)
+	$dj_xing = get_dj_xing($post);
+	if(strlen($dj_xing) == 0)
 		return;
 
-	$organizer_xing = esc_attr(strip_tags($organizer_xing));
-	$organizer_xing = $before . $organizer_xing . $after;
+	$dj_xing = esc_attr(strip_tags($dj_xing));
+	$dj_xing = $before . $dj_xing . $after;
 	if($echo)
-		echo esc_attr($organizer_xing);
+		echo esc_attr($dj_xing);
 	else
-		return $organizer_xing;
+		return $dj_xing;
 }
 
 /**
- * Retrieves the current organizer link on instagram.
+ * Retrieves the current dj link on instagram.
  *
  * @access public
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_instagram($post = null){
+function get_dj_instagram($post = null){
 
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_dj']))
 		return;
 
-	$organizer_instagram = $post->_organizer_instagram;
-	if(strlen($organizer_instagram) == 0)
+	$dj_instagram = $post->_dj_instagram;
+	if(strlen($dj_instagram) == 0)
 		return;
 
-	return apply_filters('display_organizer_instagram', $organizer_instagram, $post);
+	return apply_filters('display_dj_instagram', $dj_instagram, $post);
 }
 
 /**
- * Display or retrieve the current organizer link on instagram.
+ * Display or retrieve the current dj link on instagram.
  *
  * @access public
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_instagram($before = '', $after = '', $echo = true, $post = null){
+function display_dj_instagram($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_instagram = get_organizer_instagram($post);
-	if(strlen($organizer_instagram) == 0)
+	$dj_instagram = get_dj_instagram($post);
+	if(strlen($dj_instagram) == 0)
 		return;
 
-	$organizer_instagram = esc_attr(strip_tags($organizer_instagram));
-	$organizer_instagram = $before . $organizer_instagram . $after;
+	$dj_instagram = esc_attr(strip_tags($dj_instagram));
+	$dj_instagram = $before . $dj_instagram . $after;
 	if($echo)
-		echo esc_attr($organizer_instagram);
+		echo esc_attr($dj_instagram);
 	else
-		return $organizer_instagram;
+		return $dj_instagram;
 }
 
 /**
- * Retrieves the current venue link on instagram.
+ * Retrieves the current local link on instagram.
  *
  * @access public
  * @param int $post (default: 0)
  * @return void
  */
-function get_venue_instagram($post = null){
+function get_local_instagram($post = null){
 
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_venue']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_local']))
 		return;
 
-	$venue_instagram = $post->_venue_instagram;
-	if(strlen($venue_instagram) == 0)
+	$local_instagram = $post->_local_instagram;
+	if(strlen($local_instagram) == 0)
 		return;
 
-	return apply_filters('display_venue_instagram', $venue_instagram, $post);
+	return apply_filters('display_local_instagram', $local_instagram, $post);
 }
 
 /**
- * Display or retrieve the current venue link on instagram.
+ * Display or retrieve the current local link on instagram.
  *
  * @access public
  * @param mixed $id (default: null)
  * @return void
  */
-function display_venue_instagram($before = '', $after = '', $echo = true, $post = null){
+function display_local_instagram($before = '', $after = '', $echo = true, $post = null){
 
-	$venue_instagram = get_venue_instagram($post);
-	if(strlen($venue_instagram) == 0)
+	$local_instagram = get_local_instagram($post);
+	if(strlen($local_instagram) == 0)
 		return;
 
-	$venue_instagram = esc_attr(strip_tags($venue_instagram));
-	$venue_instagram = $before . $venue_instagram . $after;
+	$local_instagram = esc_attr(strip_tags($local_instagram));
+	$local_instagram = $before . $local_instagram . $after;
 	if($echo)
-		echo esc_attr($venue_instagram);
+		echo esc_attr($local_instagram);
 	else
-		return $venue_instagram;
+		return $local_instagram;
 }
 
 /**
- * Retrieves the current organizer link on pinterest.
+ * Retrieves the current dj link on pinterest.
  *
  * @access public
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_pinterest($post = null){
+function get_dj_pinterest($post = null){
 
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_dj']))
 		return;
 
-	$organizer_pinterest = $post->_organizer_pinterest;
-	if(strlen($organizer_pinterest) == 0)
+	$dj_pinterest = $post->_dj_pinterest;
+	if(strlen($dj_pinterest) == 0)
 		return;
 
-	return apply_filters('display_organizer_pinterest', $organizer_pinterest, $post);
+	return apply_filters('display_dj_pinterest', $dj_pinterest, $post);
 }
 
 /**
- * Display or retrieve the current organizer link on pinterest.
+ * Display or retrieve the current dj link on pinterest.
  *
  * @access public
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_pinterest($before = '', $after = '', $echo = true, $post = null){
+function display_dj_pinterest($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_pinterest = get_organizer_pinterest($post);
-	if(strlen($organizer_pinterest) == 0)
+	$dj_pinterest = get_dj_pinterest($post);
+	if(strlen($dj_pinterest) == 0)
 		return;
 
-	$organizer_pinterest = esc_attr(strip_tags($organizer_pinterest));
-	$organizer_pinterest = $before . $organizer_pinterest . $after;
+	$dj_pinterest = esc_attr(strip_tags($dj_pinterest));
+	$dj_pinterest = $before . $dj_pinterest . $after;
 	if($echo)
-		echo esc_attr($organizer_pinterest);
+		echo esc_attr($dj_pinterest);
 	else
-		return $organizer_pinterest;
+		return $dj_pinterest;
 }
 
 /**
- * Retrieves the current organizer link on youtube.
+ * Retrieves the current dj link on youtube.
  *
  * @access public
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_youtube($post = null){
+function get_dj_youtube($post = null){
 
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_dj']))
 		return;
 
-	$organizer_youtube = $post->_organizer_youtube;
+	$dj_youtube = $post->_dj_youtube;
 	if(in_array($post->post_type, ['event_listing'])) {
-		if($organizer_youtube == '')
-			$organizer_youtube = $post->_event_video_url;
+		if($dj_youtube == '')
+			$dj_youtube = $post->_event_video_url;
 	}
-	if(strlen($organizer_youtube) == 0)
+	if(strlen($dj_youtube) == 0)
 		return;
 
-	return apply_filters('display_organizer_youtube', $organizer_youtube, $post);
+	return apply_filters('display_dj_youtube', $dj_youtube, $post);
 }
 
 /**
- * Display or retrieve the current organizer link on youtube.
+ * Display or retrieve the current dj link on youtube.
  *
  * @access public
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_youtube($before = '', $after = '', $echo = true, $post = null){
+function display_dj_youtube($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_youtube = get_organizer_youtube($post);
-	if(strlen($organizer_youtube) == 0)
+	$dj_youtube = get_dj_youtube($post);
+	if(strlen($dj_youtube) == 0)
 		return;
 
-	$organizer_youtube = esc_attr(strip_tags($organizer_youtube));
-	$organizer_youtube = $before . $organizer_youtube . $after;
+	$dj_youtube = esc_attr(strip_tags($dj_youtube));
+	$dj_youtube = $before . $dj_youtube . $after;
 	if($echo)
-		echo esc_attr($organizer_youtube);
+		echo esc_attr($dj_youtube);
 	else
-		return $organizer_youtube;
+		return $dj_youtube;
 }
 
 /**
- * Retrieves the current venue link on youtube.
+ * Retrieves the current local link on youtube.
  *
  * @access public
  * @param int $post (default: 0)
  * @return void
  */
 
-function get_venue_youtube($post = null){
+function get_local_youtube($post = null){
 
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_venue']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_local']))
 		return;
 
-	$venue_youtube = $post->_venue_youtube;
-	if(strlen($venue_youtube) == 0)
+	$local_youtube = $post->_local_youtube;
+	if(strlen($local_youtube) == 0)
 		return;
 
-	return apply_filters('display_venue_youtube', $venue_youtube, $post);
+	return apply_filters('display_local_youtube', $local_youtube, $post);
 }
 
 /**
- * Display or retrieve the current venue link on youtube.
+ * Display or retrieve the current local link on youtube.
  *
  * @access public
  * @param mixed $id (default: null)
  * @return void
  */
-function display_venue_youtube($before = '', $after = '', $echo = true, $post = null){
-	$venue_youtube = get_venue_youtube($post);
-	if(strlen($venue_youtube) == 0)
+function display_local_youtube($before = '', $after = '', $echo = true, $post = null){
+	$local_youtube = get_local_youtube($post);
+	if(strlen($local_youtube) == 0)
 		return;
 
-	$venue_youtube = esc_attr(strip_tags($venue_youtube));
-	$venue_youtube = $before . $venue_youtube . $after;
+	$local_youtube = esc_attr(strip_tags($local_youtube));
+	$local_youtube = $before . $local_youtube . $after;
 	if($echo)
-		echo esc_attr($venue_youtube);
+		echo esc_attr($local_youtube);
 	else
-		return $venue_youtube;
+		return $local_youtube;
 }
 
 /**
- * Retrieves the current organizer link on google plus.
+ * Retrieves the current dj link on google plus.
  *
  * @access public
  * @param int $post (default: 0)
  * @return void
  */
-function get_organizer_google_plus($post = null){
+function get_dj_google_plus($post = null){
 
 	$post = get_post($post);
-	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_organizer']))
+	if(empty($post) || !in_array($post->post_type, ['event_listing', 'event_dj']))
 		return;
 
-	$organizer_google_plus = $post->_organizer_google_plus;
-	if(strlen($organizer_google_plus) == 0)
+	$dj_google_plus = $post->_dj_google_plus;
+	if(strlen($dj_google_plus) == 0)
 		return;
 
-	return apply_filters('display_organizer_google_plus', $organizer_google_plus, $post);
+	return apply_filters('display_dj_google_plus', $dj_google_plus, $post);
 }
 
 /**
- * Display or retrieve the current organizer link on google plus.
+ * Display or retrieve the current dj link on google plus.
  *
  * @access public
  * @param mixed $id (default: null)
  * @return void
  */
-function display_organizer_google_plus($before = '', $after = '', $echo = true, $post = null){
+function display_dj_google_plus($before = '', $after = '', $echo = true, $post = null){
 
-	$organizer_google_plus = get_organizer_google_plus($post);
-	if(strlen($organizer_google_plus) == 0)
+	$dj_google_plus = get_dj_google_plus($post);
+	if(strlen($dj_google_plus) == 0)
 		return;
 
-	$organizer_google_plus = esc_attr(strip_tags($organizer_google_plus));
-	$organizer_google_plus = $before . $organizer_google_plus . $after;
+	$dj_google_plus = esc_attr(strip_tags($dj_google_plus));
+	$dj_google_plus = $before . $dj_google_plus . $after;
 	if($echo)
-		echo esc_attr($organizer_google_plus);
+		echo esc_attr($dj_google_plus);
 	else
-		return $organizer_google_plus;
+		return $dj_google_plus;
 }
 
 /**
@@ -2341,14 +2341,14 @@ function event_manager_get_event_listing_structured_data($post = null){
 	$data['image'] = get_event_banner($post);
 	$data['startDate'] = get_event_start_date($post);
 	$data['endDate'] = get_event_end_date($post);
-	$data['performer'] = get_organizer_name($post);
+	$data['performer'] = get_dj_name($post);
 	$data['eventAttendanceMode'] = is_event_online($post) ? 'OnlineEventAttendanceMode' : 'OfflineEventAttendanceMode';
 	$data['eventStatus'] = 'EventScheduled';
-	$data['Organizer']['@type'] = 'Organization';
-	$data['Organizer']['name'] = get_organizer_name($post);
-	if($organizer_website = get_organizer_website($post)) {
-		$data['Organizer']['sameAs'] = $organizer_website;
-		$data['Organizer']['url'] = $organizer_website;
+	$data['dj']['@type'] = 'Organization';
+	$data['dj']['name'] = get_dj_name($post);
+	if($dj_website = get_dj_website($post)) {
+		$data['dj']['sameAs'] = $dj_website;
+		$data['dj']['url'] = $dj_website;
 	}
 	$location = get_event_location($post);
 	if(!empty($location) && !is_event_online($post)) {
@@ -2569,9 +2569,9 @@ add_filter('post_thumbnail_html', 'hide_feature_image_single_page', 10, 3);
 function hide_feature_image_single_page($html, $post_id, $post_image_id){
 	if(is_singular('event_listing')) {
 		return '';
-	} else if(is_singular('event_organizer')) {
+	} else if(is_singular('event_dj')) {
 		return '';
-	} else if(is_singular('event_venue')) {
+	} else if(is_singular('event_local')) {
 		return '';
 	}
 	return $html;
@@ -2644,7 +2644,7 @@ function display_wpem_get_query_pagination($max_num_pages = 0, $current_page = 1
 }
 
 /**
- * Get All Fields of Event Organizer Form.
+ * Get All Fields of Event dj Form.
  * @since 3.1.31
  * @param string
  * @return array

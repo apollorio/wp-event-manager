@@ -1,3 +1,4 @@
+
 <?php
 if(!defined('ABSPATH')) {
 	exit;
@@ -61,39 +62,39 @@ class WP_Event_Manager_Install {
 				if(isset($all_fields['event']['event_address']))
 					unset($all_fields['event']['event_address']);
 
-				if(isset($all_fields['event']['event_venue_name']))
-					unset($all_fields['event']['event_venue_name']);
+				if(isset($all_fields['event']['event_local_name']))
+					unset($all_fields['event']['event_local_name']);
 
 				update_option('event_manager_submit_event_form_fields', array('event' =>$all_fields['event']));
-				update_option('event_manager_submit_organizer_form_fields', array('organizer' =>$all_fields['organizer']));	
+				update_option('event_manager_submit_dj_form_fields', array('dj' =>$all_fields['dj']));	
 			}			
 		}
 
-		// 3.1.14 add organizer pages
+		// 3.1.14 add dj pages
 		$pages_to_create = [
-			'submit_organizer_form' => [
-				'page_title' => 'Submit Organizer Form',
-				'page_content' => '[submit_organizer_form]',
+			'submit_dj_form' => [
+				'page_title' => 'Submit dj Form',
+				'page_content' => '[submit_dj_form]',
 			],
-			'organizer_dashboard' => [
-				'page_title' => 'Organizer Dashboard',
-				'page_content' => '[organizer_dashboard]',
+			'dj_dashboard' => [
+				'page_title' => 'dj Dashboard',
+				'page_content' => '[dj_dashboard]',
 			],
-			'event_organizers' => [
-				'page_title' => 'Event Organizers',
-				'page_content' => '[event_organizers]',
+			'event_djs' => [
+				'page_title' => 'Event djs',
+				'page_content' => '[event_djs]',
 			],
-			'submit_venue_form' => [
-				'page_title' => 'Submit Venue Form',
-				'page_content' => '[submit_venue_form]',
+			'submit_local_form' => [
+				'page_title' => 'Submit local Form',
+				'page_content' => '[submit_local_form]',
 			],
-			'venue_dashboard' => [
-				'page_title' => 'Venue Dashboard',
-				'page_content' => '[venue_dashboard]',
+			'local_dashboard' => [
+				'page_title' => 'local Dashboard',
+				'page_content' => '[local_dashboard]',
 			],
-			'event_venues' => [
-				'page_title' => 'Event Venues',
-				'page_content' => '[event_venues]',
+			'event_locals' => [
+				'page_title' => 'Event locals',
+				'page_content' => '[event_locals]',
 			],
 		];
 
@@ -116,7 +117,7 @@ class WP_Event_Manager_Install {
 		}
 
 		if(is_object($wp_roles)) {
-			add_role('organizer', __('Organizer', 'wp-event-manager'), array(
+			add_role('dj', __('dj', 'wp-event-manager'), array(
 				'read'         => true,
 				'edit_posts'   => false,
 				'delete_posts' => false
@@ -128,9 +129,9 @@ class WP_Event_Manager_Install {
 					$wp_roles->add_cap('administrator', $cap);
 				}
 			}
-			if ( $role = get_role( 'organizer' ) ) {
-				$role->add_cap( 'manage_organizers' );
-				$role->add_cap( 'manage_venues' );
+			if ( $role = get_role( 'dj' ) ) {
+				$role->add_cap( 'manage_djs' );
+				$role->add_cap( 'manage_locals' );
 			}
 		}
 	}
@@ -143,8 +144,8 @@ class WP_Event_Manager_Install {
 		return array(
 			'core' => array(
 				'manage_event_listings',
-				'manage_organizers',
-				'manage_venues',
+				'manage_djs',
+				'manage_locals',
 			),
 			'event_listing' => array(
 				"edit_event_listing",
@@ -166,38 +167,38 @@ class WP_Event_Manager_Install {
 				"assign_event_listing_terms"
 			),
 
-			// Organizer capabilities
-			'event_organizer' => array(
-				"edit_event_organizer",
-				"read_event_organizer",
-				"delete_event_organizer",
-				"edit_event_organizers",
-				"edit_others_event_organizers",
-				"publish_event_organizers",
-				"read_private_event_organizers",
-				"delete_event_organizers",
-				"delete_private_event_organizers",
-				"delete_published_event_organizers",
-				"delete_others_event_organizers",
-				"edit_private_event_organizers",
-				"edit_published_event_organizers",
+			// dj capabilities
+			'event_dj' => array(
+				"edit_event_dj",
+				"read_event_dj",
+				"delete_event_dj",
+				"edit_event_djs",
+				"edit_others_event_djs",
+				"publish_event_djs",
+				"read_private_event_djs",
+				"delete_event_djs",
+				"delete_private_event_djs",
+				"delete_published_event_djs",
+				"delete_others_event_djs",
+				"edit_private_event_djs",
+				"edit_published_event_djs",
 			),
 
-			// Venue capabilities
-			'event_venue' => array(
-				"edit_event_venue",
-				"read_event_venue",
-				"delete_event_venue",
-				"edit_event_venues",
-				"edit_others_event_venues",
-				"publish_event_venues",
-				"read_private_event_venues",
-				"delete_event_venues",
-				"delete_private_event_venues",
-				"delete_published_event_venues",
-				"delete_others_event_venues",
-				"edit_private_event_venues",
-				"edit_published_event_venues",
+			// local capabilities
+			'event_local' => array(
+				"edit_event_local",
+				"read_event_local",
+				"delete_event_local",
+				"edit_event_locals",
+				"edit_others_event_locals",
+				"publish_event_locals",
+				"read_private_event_locals",
+				"delete_event_locals",
+				"delete_private_event_locals",
+				"delete_published_event_locals",
+				"delete_others_event_locals",
+				"edit_private_event_locals",
+				"edit_published_event_locals",
 			)
 		);
 	}
@@ -231,19 +232,37 @@ class WP_Event_Manager_Install {
 				'Tournament',
 				'Tradeshow, Consumer Show or Expo'
 			),
-			'event_listing_category' => array(
-				'Business & Professional',
-				'Charity & Causes',
-				'Community & Culture',
-				'Family & Education',
-				'Fashion & Beauty',
-				'Film, Media & Entertainment',
-				'Food & Drink',
-				'Game or Competition',
-				'Other',
-				'Performing & Visual Arts',
-				'Science & Technology',
-				'Sports & Fitness'
+			'event_sounds' => array(
+				'House',
+				'Techno',
+				'Trance',
+				'Drum & Bass',
+				'Dubstep',
+				'Electro House',
+				'Tech House',
+				'Deep House',
+				'Progressive House',
+				'Hardstyle',
+				'Hardcore',
+				'Minimal Techno',
+				'Acid House',
+				'UK Garage',
+				'Bass House',
+				'Future House',
+				'Tropical House',
+				'Ambient',
+				'Downtempo',
+				'Electronica',
+				'Wave',
+				'Vaporwave',
+				'Glitch Hop',
+				'Psytrance',
+				'Hardcore Techno',
+				'Big Room House',
+				'Jungle',
+				'Gqom',
+				'Eurodance',
+				'Hyperpop'
 			)
 		);
 	}
