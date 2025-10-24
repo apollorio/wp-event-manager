@@ -59,7 +59,7 @@ do_action('event_manager_local_dashboard_before');
                                         <?php 
                                         $event_count = get_event_local_count($local->ID);
                                         // translators: %d is the number of events
-                                        printf(esc_html(_n('%d Event', '%d Events', $event_count, 'wp-event-manager')), esc_html($event_count));
+                                        echo esc_html(sprintf(_n('%d Event', '%d Events', $event_count, 'wp-event-manager'), $event_count));
                                         ?>
                                     </div>
                                     <div class="wpem-dashboard-local-address">
@@ -123,7 +123,13 @@ do_action('event_manager_local_dashboard_before');
                                             }
                                         }
 
-                                        echo '<a href="' . esc_url($action_url) . '" class="wpem-dashboard-action-' . esc_attr($action) . '" title="' . esc_attr($value['label']) . '">' . esc_html($value['label']) . '</a> ';
+                                        printf(
+                                            '<a href="%s" class="wpem-dashboard-action-%s" title="%s">%s</a> ',
+                                            esc_url($action_url),
+                                            esc_attr($action),
+                                            esc_attr($value['label']),
+                                            esc_html($value['label'])
+                                        );
                                     }
                                     ?>
                                 </div>
