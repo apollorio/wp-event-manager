@@ -1,18 +1,19 @@
 <?php
 /**
- * WP_Event_Manager_Form_Submit_Organizer class.
+ * WP_Event_Manager_Form_Submit_dj class.
+ * (renomeado de organizer para dj)
  */
-class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
+class WP_Event_Manager_Form_Submit_dj extends WP_Event_Manager_Form {
 	
-	public    $form_name = 'submit-organizer';
+	public    $form_name = 'submit-dj';
 	public    $steps;
 	public    $resume_edit;
 	public    $fields;
-	protected $organizer_id;
-	protected $preview_organizer;
+	protected $dj_id;
+	protected $preview_dj;
 	
 	/** @var 
-	* WP_Event_Manager_Form_Submit_Organizer The single instance of the class 
+	* WP_Event_Manager_Form_Submit_dj The single instance of the class 
 	*/
 	protected static $_instance = null;
 	/**
@@ -30,7 +31,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	 */
 	public function __construct() {
 		add_action('wp', array($this, 'process'));
-		$this->steps  =(array) apply_filters('submit_organizer_steps', array(
+		$this->steps  =(array) apply_filters('submit_dj_steps', array(
 			'submit' => array(
 				'name'     => __('Submit Details', 'wp-event-manager'),
 				'view'     => array($this, 'submit'),
@@ -52,30 +53,30 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 			$this->step = is_numeric($_GET['step']) ? max(absint($_GET['step']), 0) : array_search(esc_attr($_GET['step']), array_keys($this->steps));
 		}
 
-		$this->organizer_id =!empty($_REQUEST['organizer_id']) ? absint($_REQUEST[ 'organizer_id' ]) : 0;
-		if(!event_manager_user_can_edit_event($this->organizer_id)){
-			$this->organizer_id = 0;
+		$this->dj_id =!empty($_REQUEST['dj_id']) ? absint($_REQUEST[ 'dj_id' ]) : 0;
+		if(!event_manager_user_can_edit_event($this->dj_id)){
+			$this->dj_id = 0;
 		}
 		
 		// Allow resuming from cookie.
 		$this->resume_edit = false;
-		if(!isset($_GET[ 'new' ]) &&(!$this->organizer_id) &&!empty($_COOKIE['wp-event-manager-submitting-organizer-id']) &&!empty($_COOKIE['wp-event-manager-submitting-organizer-key'])){
-			$organizer_id     = absint($_COOKIE['wp-event-manager-submitting-organizer-id']);
-			$organizer_status = get_post_status($organizer_id);
-			if('preview' === $organizer_status && esc_attr(get_post_meta($organizer_id, '_wpem_unique_key', true)) === $_COOKIE['wp-event-manager-submitting-organizer-key']) {
-				$this->organizer_id = $organizer_id;
+		if(!isset($_GET[ 'new' ]) &&(!$this->dj_id) &&!empty($_COOKIE['wp-event-manager-submitting-dj-id']) &&!empty($_COOKIE['wp-event-manager-submitting-dj-key'])){
+			$dj_id     = absint($_COOKIE['wp-event-manager-submitting-dj-id']);
+			$dj_status = get_post_status($dj_id);
+			if('preview' === $dj_status && esc_attr(get_post_meta($dj_id, '_wpem_unique_key', true)) === $_COOKIE['wp-event-manager-submitting-dj-key']) {
+				$this->dj_id = $dj_id;
 			}
 		}
 		// Load event details
-		if($this->organizer_id) {
-			$organizer_status = get_post_status($this->organizer_id);
-			if('expired' === $organizer_status) {
-				if(!event_manager_user_can_edit_event($this->organizer_id)) {
-					$this->organizer_id = 0;
+		if($this->dj_id) {
+			$dj_status = get_post_status($this->dj_id);
+			if('expired' === $dj_status) {
+				if(!event_manager_user_can_edit_event($this->dj_id)) {
+					$this->dj_id = 0;
 					$this->step   = 0;
 				}
-			} elseif(!in_array($organizer_status, apply_filters('event_manager_valid_submit_organizer_statuses', array('publish')))) {
-				$this->organizer_id = 0;
+			} elseif(!in_array($dj_status, apply_filters('event_manager_valid_submit_dj_statuses', array('publish')))) {
+				$this->dj_id = 0;
 				$this->step   = 0;
 			}
 		}
@@ -85,25 +86,25 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	 * Get the submitted event ID.
 	 * @return int
 	*/
-	public function get_organizer_id() {
-		return absint($this->organizer_id);
+	public function get_dj_id() {
+		return absint($this->dj_id);
 	}
 
 	/**
-	 * Manage of organizer fields.
+	 * Manage of dj fields.
 	 */
 	public function init_fields() {
-		$this->fields = apply_filters('submit_organizer_form_fields', array(
-			'organizer' => array(
-				'organizer_name' => array(
-					'label'       => __('Organizer name', 'wp-event-manager'),
+		$this->fields = apply_filters('submit_dj_form_fields', array(
+			'dj' => array(
+				'dj_name' => array(
+					'label'       => __('dj name', 'wp-event-manager'),
 					'type'        => 'text',
 					'required'    => true,
-					'placeholder' => __('Enter the name of the organizer', 'wp-event-manager'),
+					'placeholder' => __('Enter the name of the dj', 'wp-event-manager'),
 					'priority'    => 1,
 					'visibility'  => 1,
 				),
-				'organizer_logo' => array(
+				'dj_logo' => array(
 					'label'       => __('Logo', 'wp-event-manager'),
 					'type'        => 'file',
 					'required'    => false,
@@ -119,16 +120,16 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 					),
 					'visibility'  => 1,
 				),
-				'organizer_description' => array(
-					'label'       => __('Organizer Description', 'wp-event-manager'),
+				'dj_description' => array(
+					'label'       => __('dj Description', 'wp-event-manager'),
 					'type'        => 'wp-editor',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 3,
 					'visibility'  => 1,
 				),	
-				'organizer_country' => array(
-					'label'       => __('Organizer Country', 'wp-event-manager'),
+				'dj_country' => array(
+					'label'       => __('dj Country', 'wp-event-manager'),
 					'type'        => 'select',
 					'required'    => true,
 					'placeholder' => '',
@@ -136,15 +137,15 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 					'visibility'  => 1,
 					'options'     => wpem_get_all_countries(),
 				),	
-				'organizer_email' => array(
-					'label'       => __('Organizer Email', 'wp-event-manager'),
+				'dj_email' => array(
+					'label'       => __('dj Email', 'wp-event-manager'),
 					'type'        => 'text',
 					'required'    => true,
 					'placeholder' => __('Enter your email address', 'wp-event-manager'),
 					'priority'    => 5,
 					'visibility'  => 1,
 				),
-				'organizer_website' => array(
+				'dj_website' => array(
 					'label'       => __('Website', 'wp-event-manager'),
 					'type'        => 'text',
 					'required'    => false,
@@ -152,35 +153,35 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 					'priority'    => 6,
 					'visibility'  => 1,
 				),
-				'organizer_facebook' => array(
+				'dj_facebook' => array(
 					'label'       => __('Facebook', 'wp-event-manager'),
 					'type'        => 'text',
 					'required'    => false,
-					'placeholder' => __('Facebook URL e.g http://www.facebook.com/yourorganizer', 'wp-event-manager'),
+					'placeholder' => __('Facebook URL e.g http://www.facebook.com/yourdj', 'wp-event-manager'),
 					'priority'    => 7,
 					'visibility'  => 1,
 				),
-				'organizer_instagram' => array(
+				'dj_instagram' => array(
 					'label'       => __('Instagram', 'wp-event-manager'),
 					'type'        => 'text',
 					'required'    => false,
-					'placeholder' => __('Instagram URL e.g http://www.instagram.com/yourorganizer', 'wp-event-manager'),
+					'placeholder' => __('Instagram URL e.g http://www.instagram.com/yourdj', 'wp-event-manager'),
 					'priority'    => 8,
 					'visibility'  => 1,
 				),
-				'organizer_youtube' => array(
+				'dj_youtube' => array(
 					'label'       => __('Youtube', 'wp-event-manager'),
 					'type'        => 'text',
 					'required'    => false,
-					'placeholder' => __('Youtube Channel URL e.g http://www.youtube.com/channel/yourorganizer', 'wp-event-manager'),
+					'placeholder' => __('Youtube Channel URL e.g http://www.youtube.com/channel/yourdj', 'wp-event-manager'),
 					'priority'    => 9,
 					'visibility'  => 1,
 				),
-				'organizer_twitter' => array(
+				'dj_twitter' => array(
 					'label'       => __('Twitter', 'wp-event-manager'),
 					'type'        => 'text',
 					'required'    => false,
-					'placeholder' => __('Twitter URL e.g http://twitter.com/yourorganizer', 'wp-event-manager'),
+					'placeholder' => __('Twitter URL e.g http://twitter.com/yourdj', 'wp-event-manager'),
 					'priority'    => 10,
 					'visibility'  => 1,
 				),
@@ -195,7 +196,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	 * @return fields Array
 	 */
 	public  function get_event_manager_fieldeditor_fields(){
-		return apply_filters('event_manager_submit_organizer_form_fields', get_option('event_manager_submit_organizer_form_fields', false));
+		return apply_filters('event_manager_submit_dj_form_fields', get_option('event_manager_submit_dj_form_fields', false));
 	}
 
 	/**
@@ -228,50 +229,50 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 			
 		// Load data if neccessary
-		if($this->organizer_id) {
-			$organizer = get_post($this->organizer_id);
+		if($this->dj_id) {
+			$dj = get_post($this->dj_id);
 			foreach($this->fields as $group_key => $group_fields) {
 				foreach($group_fields as $key => $field) {
 					switch($key) {
-						case 'organizer_name' :
-							$this->fields[ $group_key ][ $key ]['value'] = esc_attr($organizer->post_title);
+						case 'dj_name' :
+							$this->fields[ $group_key ][ $key ]['value'] = esc_attr($dj->post_title);
 						break;
-						case 'organizer_description' :
-							$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($organizer->post_content);
+						case 'dj_description' :
+							$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($dj->post_content);
 						break;
-						case  'organizer_logo':
-							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($organizer->ID) ? get_post_thumbnail_id($organizer->ID) : esc_url(get_post_meta($organizer->ID, '_' . $key, true));
+						case  'dj_logo':
+							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($dj->ID) ? get_post_thumbnail_id($dj->ID) : esc_url(get_post_meta($dj->ID, '_' . $key, true));
 						break;
 						default:
-							$this->fields[ $group_key ][ $key ]['value'] = esc_attr(get_post_meta($organizer->ID, '_' . $key, true));
+							$this->fields[ $group_key ][ $key ]['value'] = esc_attr(get_post_meta($dj->ID, '_' . $key, true));
 						break;
 					}
 					if(!empty($field['taxonomy'])) {
-						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms($organizer->ID, $field['taxonomy'], array('fields' => 'ids'));
+						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms($dj->ID, $field['taxonomy'], array('fields' => 'ids'));
 					}
 					
 					if(!empty($field['type']) &&  $field['type'] == 'date'){
-						$event_date = esc_html(get_post_meta($organizer->ID, '_' . $key, true));
+						$event_date = esc_html(get_post_meta($dj->ID, '_' . $key, true));
 						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_date));
 					}
 				}
 			}
-			$this->fields = apply_filters('submit_event_form_fields_get_organizer_data', $this->fields, $organizer);
+			$this->fields = apply_filters('submit_event_form_fields_get_dj_data', $this->fields, $dj);
 		}
 		
 		wp_enqueue_script('wp-event-manager-event-submission');
-		get_event_manager_template('organizer-submit.php', 
+		get_event_manager_template('dj-submit.php', 
 			array(
 				'form'               => esc_attr($this->form_name),
-				'organizer_id'       => esc_attr($this->get_organizer_id()),
+				'dj_id'       => esc_attr($this->get_dj_id()),
 				'resume_edit'        => $this->resume_edit,
 				'action'             => esc_url($this->get_action()),
-				'organizer_fields'   => $this->get_fields('organizer'),
+				'dj_fields'   => $this->get_fields('dj'),
 				'step'               => esc_attr($this->get_step()),
-				'submit_button_text' => apply_filters('submit_organizer_form_submit_button_text',  __('Submit', 'wp-event-manager'))
+				'submit_button_text' => apply_filters('submit_dj_form_submit_button_text',  __('Submit', 'wp-event-manager'))
 			),
-			'wp-event-manager/organizer', 
-            EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer'
+			'wp-event-manager/dj', 
+            EVENT_MANAGER_PLUGIN_DIR . '/templates/dj'
 		);
 	}
 
@@ -281,11 +282,11 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	 * @return bool on success, WP_ERROR on failure
 	 */
 	protected function validate_fields($values) {
-		if ( ! is_user_logged_in() || ( ! current_user_can( 'manage_organizers' ) && ! current_user_can( 'manage_options' ) ) ) {
-			return new WP_Error('validation-error', esc_html__( 'Please login as Organizer to add or update an organizer!', 'wp-event-manager')) ;
+		if ( ! is_user_logged_in() || ( ! current_user_can( 'manage_djs' ) && ! current_user_can( 'manage_options' ) ) ) {
+			return new WP_Error('validation-error', esc_html__( 'Please login as dj to add or update an dj!', 'wp-event-manager')) ;
 		}
 
-		$this->fields =  apply_filters('before_submit_organizer_form_validate_fields', $this->fields , $values);
+		$this->fields =  apply_filters('before_submit_dj_form_validate_fields', $this->fields , $values);
 	    foreach($this->fields as $group_key => $group_fields){     	      
 				 
 			foreach($group_fields as $key => $field) {
@@ -331,14 +332,14 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 			}
 		}
 		
-		// Organizer email validation
-		if(isset($values['organizer']['organizer_email']) && !empty($values['organizer']['organizer_email'])) {
-			if (!is_email($values['organizer']['organizer_email'])) {
-				throw new Exception(esc_attr__('Please enter a valid organizer email address', 'wp-event-manager'));
+		// dj email validation
+		if(isset($values['dj']['dj_email']) && !empty($values['dj']['dj_email'])) {
+			if (!is_email($values['dj']['dj_email'])) {
+				throw new Exception(esc_attr__('Please enter a valid dj email address', 'wp-event-manager'));
 			}
 							
 		}
-		return apply_filters('submit_organizer_form_validate_fields', true, $this->fields, $values);
+		return apply_filters('submit_dj_form_validate_fields', true, $this->fields, $values);
 	}
 
 	/**
@@ -354,8 +355,8 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 			
 			// Get posted values
 			$values = $this->get_posted_fields();
-			//if(empty($_POST['submit_organizer']) || !is_user_logged_in()) {
-			if(empty($_POST['submit_organizer'])) {
+			//if(empty($_POST['submit_dj']) || !is_user_logged_in()) {
+			if(empty($_POST['submit_dj'])) {
 				return;
 			}
 			// Validate required
@@ -366,14 +367,14 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 			$status = is_user_logged_in() ? 'publish' : 'pending';
 			
 			// Update the event
-			$organizer_name        = html_entity_decode( $values['organizer']['organizer_name'] );
-			$organizer_description = html_entity_decode( $values['organizer']['organizer_description'] );
+			$dj_name        = html_entity_decode( $values['dj']['dj_name'] );
+			$dj_description = html_entity_decode( $values['dj']['dj_description'] );
 
-			$organizer_name        = wp_strip_all_tags( $organizer_name );
+			$dj_name        = wp_strip_all_tags( $dj_name );
 
-			$this->save_organizer($organizer_name, $organizer_description, $this->organizer_id ? '' : $status,$values);
+			$this->save_dj($dj_name, $dj_description, $this->dj_id ? '' : $status,$values);
 
-			$this->update_organizer_data($values);
+			$this->update_dj_data($values);
 			// Successful, show next step
 			$this->step ++;
 		} catch(Exception $e) {
@@ -383,7 +384,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Update or create a organizer from posted data.
+	 * Update or create a dj from posted data.
 	 *
 	 * @param  string $post_title
 	 * @param  string $post_content
@@ -391,28 +392,28 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	 * @param  array $values
 	 * @param  bool $update_slug
 	 */
-	protected function save_organizer($post_title, $post_content, $status = 'publish', $values = array(), $update_slug = true) {
-		$organizer_data = array(
+	protected function save_dj($post_title, $post_content, $status = 'publish', $values = array(), $update_slug = true) {
+		$dj_data = array(
 			'post_title'     => sanitize_text_field($post_title),
 			'post_content'   => wp_kses_post($post_content),
-			'post_type'      => 'event_organizer',
+			'post_type'      => 'event_dj',
 			'comment_status' => 'closed'
 		);
 
 		if($status) {
-			$organizer_data['post_status'] = $status;
+			$dj_data['post_status'] = $status;
 		}
-		$organizer_data = apply_filters('submit_organizer_form_save_organizer_data', $organizer_data, $post_title, $post_content, $status, $values);
-		if($this->organizer_id) {
-			$organizer_data['ID'] = $this->organizer_id;
-			wp_update_post($organizer_data);
+		$dj_data = apply_filters('submit_dj_form_save_dj_data', $dj_data, $post_title, $post_content, $status, $values);
+		if($this->dj_id) {
+			$dj_data['ID'] = $this->dj_id;
+			wp_update_post($dj_data);
 		} else {
-			$this->organizer_id = wp_insert_post($organizer_data);
+			$this->dj_id = wp_insert_post($dj_data);
 			if(!headers_sent()) {
 				$wpem_unique_key = uniqid();
-				setcookie('wp-event-manager-submitting-organizer-id', $this->organizer_id, 0, COOKIEPATH, COOKIE_DOMAIN, false);
-				setcookie('wp-event-manager-submitting-organizer-key', $wpem_unique_key, 0, COOKIEPATH, COOKIE_DOMAIN, false);
-				update_post_meta($this->organizer_id, '_wpem_unique_key', $wpem_unique_key);
+				setcookie('wp-event-manager-submitting-dj-id', $this->dj_id, 0, COOKIEPATH, COOKIE_DOMAIN, false);
+				setcookie('wp-event-manager-submitting-dj-key', $wpem_unique_key, 0, COOKIEPATH, COOKIE_DOMAIN, false);
+				update_post_meta($this->dj_id, '_wpem_unique_key', $wpem_unique_key);
 			}
 		}
 	}
@@ -422,7 +423,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	 *
 	 * @param  array $values
 	 */
-	protected function update_organizer_data($values) {
+	protected function update_dj_data($values) {
 		$maybe_attach = array();
 		
 		// Get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
@@ -440,9 +441,9 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 				// Save taxonomies
 				if(!empty($field['taxonomy'])) {
 					if(is_array($values[ $group_key ][ $key ])) {
-						wp_set_object_terms($this->organizer_id, sanitize_text_field($values[ $group_key ][ $key ]), sanitize_text_field($field['taxonomy']), false);
+						wp_set_object_terms($this->dj_id, sanitize_text_field($values[ $group_key ][ $key ]), sanitize_text_field($field['taxonomy']), false);
 					} else {
-						wp_set_object_terms($this->organizer_id, array(sanitize_text_field($values[ $group_key ][ $key ])), sanitize_text_field($field['taxonomy']), false);
+						wp_set_object_terms($this->dj_id, array(sanitize_text_field($values[ $group_key ][ $key ])), sanitize_text_field($field['taxonomy']), false);
 					}				
 				}
 				elseif($field['type'] == 'date') {
@@ -451,16 +452,16 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 						//Convert date and time value into DB formatted format and save eg. 1970-01-01
 						$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format  , $date);
 						$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
-						update_post_meta($this->organizer_id, '_' . $key, $date_dbformatted);
+						update_post_meta($this->dj_id, '_' . $key, $date_dbformatted);
 					}
 					else
-						update_post_meta($this->organizer_id, '_' . $key, '');
+						update_post_meta($this->dj_id, '_' . $key, '');
 					
 				} elseif('file' === $field['type']) { 
-					if($key == 'organizer_logo' && empty($values[ $group_key ][ $key ])){
-						update_post_meta($this->organizer_id, '_thumbnail_id', '');
+					if($key == 'dj_logo' && empty($values[ $group_key ][ $key ])){
+						update_post_meta($this->dj_id, '_thumbnail_id', '');
 					}
-					update_post_meta($this->organizer_id, '_' . $key, $values[ $group_key ][ $key ]);
+					update_post_meta($this->dj_id, '_' . $key, $values[ $group_key ][ $key ]);
 					// Handle attachments.
 					if(is_array($values[ $group_key ][ $key ])) {
 						foreach($values[ $group_key ][ $key ] as $file_url) {
@@ -470,16 +471,16 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 						$maybe_attach[] = $values[ $group_key ][ $key ];
 					}
 				}elseif('url' === $field['type']) { 
-					update_post_meta($this->organizer_id, '_' . $key, esc_url($values[ $group_key ][ $key ]));
+					update_post_meta($this->dj_id, '_' . $key, esc_url($values[ $group_key ][ $key ]));
 
 				} elseif('email' === $field['type']) { 
-					update_post_meta($this->organizer_id, '_' . $key, sanitize_email($values[ $group_key ][ $key ]));
+					update_post_meta($this->dj_id, '_' . $key, sanitize_email($values[ $group_key ][ $key ]));
 					
 				}elseif('text' === $field['type']) { 
-					update_post_meta($this->organizer_id, '_' . $key, wp_strip_all_tags( html_entity_decode( $values[ $group_key ][ $key ] ) ));
+					update_post_meta($this->dj_id, '_' . $key, wp_strip_all_tags( html_entity_decode( $values[ $group_key ][ $key ] ) ));
 					
 				}else{
-					update_post_meta($this->organizer_id, '_' . $key, sanitize_text_field($values[ $group_key ][ $key ]));
+					update_post_meta($this->dj_id, '_' . $key, sanitize_text_field($values[ $group_key ][ $key ]));
 				}
 			}
 		}
@@ -488,7 +489,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		if(sizeof($maybe_attach) && apply_filters('event_manager_attach_uploaded_files', true)) {
 			
 			// Get attachments
-			$attachments     = get_posts('post_parent=' . $this->organizer_id . '&post_type=attachment&fields=ids&numberposts=-1');
+			$attachments     = get_posts('post_parent=' . $this->dj_id . '&post_type=attachment&fields=ids&numberposts=-1');
 			$attachment_urls = array();
 			// Loop attachments already attached to the event
 			foreach($attachments as $attachment_key => $attachment) {
@@ -499,14 +500,14 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 					$attachment_id = $this->create_attachment($attachment_url);
 
 					if ( empty( $attachment_id ) ) {
-						delete_post_thumbnail( $this->organizer_id );
+						delete_post_thumbnail( $this->dj_id );
 					} else {
-						set_post_thumbnail( $this->organizer_id, $attachment_id );
+						set_post_thumbnail( $this->dj_id, $attachment_id );
 					}
 				}
 			}
 		}
-		do_action('event_manager_update_organizer_data', $this->organizer_id, $values);
+		do_action('event_manager_update_dj_data', $this->dj_id, $values);
 	}
 
 	/**
@@ -535,10 +536,10 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 		}
 		
 		$attachment = array(
-			'post_title'   => sanitize_text_field(get_the_title($this->organizer_id)),
+			'post_title'   => sanitize_text_field(get_the_title($this->dj_id)),
 			'post_content' => '',
 			'post_status'  => 'inherit',
-			'post_parent'  => $this->organizer_id,
+			'post_parent'  => $this->dj_id,
 			'guid'         => $attachment_url
 		);
 	
@@ -546,7 +547,7 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 			$attachment['post_mime_type'] = $info['type'];
 		}
 	
-		$attachment_id = wp_insert_attachment($attachment, $attachment_url, $this->organizer_id);
+		$attachment_id = wp_insert_attachment($attachment, $attachment_url, $this->dj_id);
 	
 		if(!is_wp_error($attachment_id)) {
 			wp_update_attachment_metadata($attachment_id, wp_generate_attachment_metadata($attachment_id, $attachment_url));
@@ -559,14 +560,14 @@ class WP_Event_Manager_Form_Submit_Organizer extends WP_Event_Manager_Form {
 	 * Done Step.
 	 */
 	public function done() {
-		do_action('event_manager_organizer_submitted', $this->organizer_id);
+		do_action('event_manager_dj_submitted', $this->dj_id);
 		get_event_manager_template(
-			'organizer-submitted.php', 
+			'dj-submitted.php', 
 			array(
-				'organizer' => get_post($this->organizer_id),
+				'dj' => get_post($this->dj_id),
 			),
-			'wp-event-manager/organizer', 
-            EVENT_MANAGER_PLUGIN_DIR . '/templates/organizer'
+			'wp-event-manager/dj', 
+            EVENT_MANAGER_PLUGIN_DIR . '/templates/dj'
 		);
 	}
 }

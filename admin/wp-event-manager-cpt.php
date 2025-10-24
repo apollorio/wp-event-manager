@@ -32,8 +32,8 @@ class WP_Event_Manager_CPT {
 
 		add_filter('request', array($this, 'sort_columns'));
 
-		add_filter('manage_event_organizer_posts_columns', array($this, 'organizer_columns'), 10);
-		add_action('manage_event_organizer_posts_custom_column', array($this, 'organizer_columns_data'), 10, 2);
+		add_filter('manage_event_dj_posts_columns', array($this, 'dj_columns'), 10);
+		add_action('manage_event_dj_posts_custom_column', array($this, 'dj_columns_data'), 10, 2);
 
 		add_filter('post_updated_messages', array($this, 'post_updated_messages'));
 
@@ -236,8 +236,9 @@ class WP_Event_Manager_CPT {
 		$args['show_count']   = 1;
 		$args['selected']     = (isset($wp_query->query['event_listing_type'])) ? $wp_query->query['event_listing_type'] : '';
 		$args['menu_order']   = false;
-		$terms             = get_terms('event_listing_type', $args);
-		$walker            = new WP_Event_Manager_Category_Walker();
+	$terms             = get_terms('event_listing_type', $args);
+	include_once EVENT_MANAGER_PLUGIN_DIR . '/includes/wp-event-manager-category-walker.php';
+	$walker            = new WP_Event_Manager_Category_Walker();
 
 		if(!$terms) {
 			return;
@@ -308,7 +309,7 @@ class WP_Event_Manager_CPT {
 		$columns['event_banner'] = '<span class="tips dashicons dashicons-format-image" data-tip="' . __('Banner', 'wp-event-manager') . '">' . __('Banner', 'wp-event-manager') . '</span>';
 		$columns['event_listing_type'] = __('Type', 'wp-event-manager');
 		$columns['event_location'] = __('Location', 'wp-event-manager');
-		$columns['event_organizer'] = __('Organizer', 'wp-event-manager');
+		$columns['event_dj'] = __('dj', 'wp-event-manager');
 		$columns['event_start_date'] = __('Start Date', 'wp-event-manager');
 		$columns['event_end_date'] = __('End Date', 'wp-event-manager');
 		$columns['event_expires'] = __('Expiry Date', 'wp-event-manager');
@@ -319,8 +320,8 @@ class WP_Event_Manager_CPT {
 		if(!get_option('event_manager_enable_event_types')) {
 			unset($columns['event_listing_type']);
 		}
-		if(!get_option('enable_event_organizer')) {
-			unset($columns['event_organizer']);
+		if(!get_option('enable_event_dj')) {
+			unset($columns['event_dj']);
 		}
 		return apply_filters('wp_event_manager_cpt_event_column', $columns);
 	}
@@ -407,9 +408,9 @@ class WP_Event_Manager_CPT {
 			case 'event_location':
 				display_event_location($post);
 				break;
-			case 'event_organizer':
-				echo wp_kses_post('<div class="organizer">');
-				echo wp_kses_post(get_organizer_name('', true, 'backend'));
+			case 'event_dj':
+				echo wp_kses_post('<div class="dj">');
+				echo wp_kses_post(get_dj_name('', true, 'backend'));
 				echo wp_kses_post('</div>');
 				break;
 			case 'event_start_date':
@@ -625,11 +626,11 @@ class WP_Event_Manager_CPT {
 						'orderby'  => 'meta_value',
 					)
 				);
-			} elseif('event_organizer' === $vars['orderby']) {
+			} elseif('event_dj' === $vars['orderby']) {
 				$vars = array_merge(
 					$vars,
 					array(
-						'meta_key' => '_organizer_name',
+						'meta_key' => '_dj_name',
 						'orderby'  => 'meta_value',
 					)
 				);
@@ -639,34 +640,34 @@ class WP_Event_Manager_CPT {
 	}
 
 	/**
-	 * Columns of organizer.
+	 * Columns of dj.
 	 *
 	 * @access public
 	 * @param $columns
 	 * @return
 	 * @since 3.1.16
 	 */
-	public function organizer_columns($columns)	{
+	public function dj_columns($columns)	{
 
-		$columns = array_slice($columns, 0, 2, true) + array( 'organizer_id' => __('ID', 'wp-event-manager' ), 'organizer_email' => __('Email', 'wp-event-manager') ) + array_slice($columns, 2, count($columns) - 2, true);
+		$columns = array_slice($columns, 0, 2, true) + array( 'dj_id' => __('ID', 'wp-event-manager' ), 'dj_email' => __('Email', 'wp-event-manager') ) + array_slice($columns, 2, count($columns) - 2, true);
 		
 		return $columns;
 	}
 
 	/**
-	 * Columns data of organizer.
+	 * Columns data of dj.
 	 *
 	 * @access public
 	 * @param $column, $post_id
 	 * @return
 	 * @since 3.1.16
 	 */
-	public function organizer_columns_data($column, $post_id) {
+	public function dj_columns_data($column, $post_id) {
 		switch ($column) {
-			case 'organizer_email':
-				echo esc_html(get_post_meta($post_id, '_organizer_email', true));
+			case 'dj_email':
+				echo esc_html(get_post_meta($post_id, '_dj_email', true));
 				break;
-			case 'organizer_id':
+			case 'dj_id':
 				echo esc_attr(get_the_ID());
 				break;	
 		}

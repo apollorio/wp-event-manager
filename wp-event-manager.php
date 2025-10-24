@@ -115,15 +115,15 @@ class WP_Event_Manager extends WPEM_Updater {
 		// Activation hooks provide ways to perform actions when plugins are activated.
 		register_activation_hook(basename(dirname(__FILE__)) . '/' . basename(__FILE__), array($this, 'activate'));
 		
-		// Hide dashboard pages from non organizer user
-		add_action('event_manager_organizer_dashboard_before', array($this, 'wpem_restrict_non_organizer_access_to_dashboard'));
-		add_action('event_manager_venue_dashboard_before',array($this, 'wpem_restrict_non_organizer_access_to_dashboard'));
-		add_action('event_manager_event_dashboard_before',array($this, 'wpem_restrict_non_organizer_access_to_dashboard'));
-		
-		// Restrict to add venue, organizer, event form for non organizer user.
-		add_action('wp_event_manager_venue_submit_before', array($this, 'wpem_restrict_non_organizer_access_to_dashboard'));
-		add_action('wp_event_manager_organizer_submit_before', array($this, 'wpem_restrict_non_organizer_access_to_dashboard'));
-		add_action('wp_event_manager_event_submit_before', array($this, 'wpem_restrict_non_organizer_access_to_dashboard'));
+	// Hide dashboard pages from non DJ user
+	add_action('event_manager_dj_dashboard_before', array($this, 'wpem_restrict_non_dj_access_to_dashboard'));
+	add_action('event_manager_local_dashboard_before',array($this, 'wpem_restrict_non_dj_access_to_dashboard'));
+	add_action('event_manager_event_dashboard_before',array($this, 'wpem_restrict_non_dj_access_to_dashboard'));
+        
+	// Restrict to add local, DJ, event form for non DJ user.
+	add_action('wp_event_manager_local_submit_before', array($this, 'wpem_restrict_non_dj_access_to_dashboard'));
+	add_action('wp_event_manager_dj_submit_before', array($this, 'wpem_restrict_non_dj_access_to_dashboard'));
+	add_action('wp_event_manager_event_submit_before', array($this, 'wpem_restrict_non_dj_access_to_dashboard'));
 
 		// Switch theme
 		add_action('after_switch_theme', array('WP_Event_Manager_Ajax', 'add_endpoint'), 10);
@@ -350,54 +350,59 @@ class WP_Event_Manager extends WPEM_Updater {
 			'lang'                    => apply_filters('wpem_lang', null) //defined('ICL_LANGUAGE_CODE') ? ICL_LANGUAGE_CODE : '', // WPML workaround until this is standardized			
 		));
 
-		// Use for dashboard
-		wp_register_script('wp-event-manager-event-dashboard', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-dashboard.min.js', array('jquery'), EVENT_MANAGER_VERSION, true);	
-		wp_localize_script('wp-event-manager-event-dashboard', 'event_manager_event_dashboard', array(
+		// Use for DJ dashboard
+		wp_register_script('wp-event-manager-dj-dashboard', EVENT_MANAGER_PLUGIN_URL . '/assets/js/dj-dashboard.min.js', array('jquery'), EVENT_MANAGER_VERSION, true);    
+		wp_localize_script('wp-event-manager-dj-dashboard', 'event_manager_dj_dashboard', array(
 			'i18n_btnOkLabel' => __('Delete', 'wp-event-manager'),
 			'i18n_btnCancelLabel' => __('Cancel', 'wp-event-manager'),
-			'i18n_confirm_delete' => __('Are you sure you want to delete this event?', 'wp-event-manager')
+			'i18n_confirm_delete' => __('Are you sure you want to delete this DJ?', 'wp-event-manager')
 		));
 
-		// Use for organizer dashboard
-		wp_register_script('wp-event-manager-organizer-dashboard', EVENT_MANAGER_PLUGIN_URL . '/assets/js/organizer-dashboard.min.js', array('jquery'), EVENT_MANAGER_VERSION, true);	
-		wp_localize_script('wp-event-manager-organizer-dashboard', 'event_manager_organizer_dashboard', array(
+		// Use for local dashboard
+		wp_register_script('wp-event-manager-local-dashboard', EVENT_MANAGER_PLUGIN_URL . '/assets/js/local-dashboard.min.js', array('jquery'), EVENT_MANAGER_VERSION, true);    
+		wp_localize_script('wp-event-manager-local-dashboard', 'event_manager_local_dashboard', array(
 			'i18n_btnOkLabel' => __('Delete', 'wp-event-manager'),
 			'i18n_btnCancelLabel' => __('Cancel', 'wp-event-manager'),
-			'i18n_confirm_delete' => __('Are you sure you want to delete this organizer?', 'wp-event-manager')
-
+			'i18n_confirm_delete' => __('Are you sure you want to delete this local?', 'wp-event-manager')
 		));
 
-		// Use for venue dashboard
-		wp_register_script('wp-event-manager-venue-dashboard', EVENT_MANAGER_PLUGIN_URL . '/assets/js/venue-dashboard.min.js', array('jquery'), EVENT_MANAGER_VERSION, true);	
-		wp_localize_script('wp-event-manager-venue-dashboard', 'event_manager_venue_dashboard', array(
-			'i18n_btnOkLabel' => __('Delete', 'wp-event-manager'),
-			'i18n_btnCancelLabel' => __('Cancel', 'wp-event-manager'),
-			'i18n_confirm_delete' => __('Are you sure you want to delete this venue?', 'wp-event-manager')
-		));
-
-		// Use for organizer
-		wp_register_script('wp-event-manager-organizer', EVENT_MANAGER_PLUGIN_URL . '/assets/js/organizer.min.js', array('jquery','wp-event-manager-common'), EVENT_MANAGER_VERSION, true);
-    	wp_localize_script('wp-event-manager-organizer', 'event_manager_organizer', array(
-            'i18n_upcomingEventsTitle' => __('Upcoming Events', 'wp-event-manager'),
-            'i18n_pastEventsTitle' => __('Past Events', 'wp-event-manager'),
-    	    'i18n_currentEventsTitle' => __('Current Events', 'wp-event-manager')
+		// Use for DJ
+		wp_register_script('wp-event-manager-dj', EVENT_MANAGER_PLUGIN_URL . '/assets/js/dj.min.js', array('jquery','wp-event-manager-common'), EVENT_MANAGER_VERSION, true);
+		wp_localize_script('wp-event-manager-dj', 'event_manager_dj', array(
+			'i18n_upcomingEventsTitle' => __('Upcoming Events', 'wp-event-manager'),
+			'i18n_pastEventsTitle' => __('Past Events', 'wp-event-manager'),
+			'i18n_currentEventsTitle' => __('Current Events', 'wp-event-manager')
 		));  
 
-		// Use for venue
-		wp_register_script('wp-event-manager-venue', EVENT_MANAGER_PLUGIN_URL . '/assets/js/venue.min.js', array('jquery','wp-event-manager-common'), EVENT_MANAGER_VERSION, true);
-    	wp_localize_script('wp-event-manager-venue', 'event_manager_venue', array(
-            'i18n_upcomingEventsTitle' => __('Upcoming Events', 'wp-event-manager'),
-            'i18n_pastEventsTitle' => __('Past Events', 'wp-event-manager'),
-    	    'i18n_currentEventsTitle' => __('Current Events', 'wp-event-manager')
-		));        	
+		// Use for local
+		wp_register_script('wp-event-manager-local', EVENT_MANAGER_PLUGIN_URL . '/assets/js/local.min.js', array('jquery','wp-event-manager-common'), EVENT_MANAGER_VERSION, true);
+		wp_localize_script('wp-event-manager-local', 'event_manager_local', array(
+			'i18n_upcomingEventsTitle' => __('Upcoming Events', 'wp-event-manager'),
+			'i18n_pastEventsTitle' => __('Past Events', 'wp-event-manager'),
+			'i18n_currentEventsTitle' => __('Current Events', 'wp-event-manager')
+		));
 		
-		// Use for registration
-	    wp_register_script('wp-event-manager-event-registration', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-registration.min.js', array('jquery'), EVENT_MANAGER_VERSION, true);
+	// Use for registration
+	wp_register_script('wp-event-manager-event-registration', EVENT_MANAGER_PLUGIN_URL . '/assets/js/event-registration.min.js', array('jquery'), EVENT_MANAGER_VERSION, true);
 
-		wp_enqueue_style('wp-event-manager-jquery-ui-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-ui/jquery-ui.css');	
-		
-		wp_enqueue_style('wp-event-manager-jquery-timepicker-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.css');
-		wp_register_script('wp-event-manager-jquery-timepicker', EVENT_MANAGER_PLUGIN_URL. '/assets/js/jquery-timepicker/jquery.timepicker.min.js', array('jquery' ,'jquery-ui-core'), EVENT_MANAGER_VERSION, true);
+	wp_enqueue_style('wp-event-manager-jquery-ui-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-ui/jquery-ui.css');    
+	wp_enqueue_style('wp-event-manager-jquery-timepicker-css', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-timepicker/jquery.timepicker.min.css');
+	wp_register_script('wp-event-manager-jquery-timepicker', EVENT_MANAGER_PLUGIN_URL. '/assets/js/jquery-timepicker/jquery.timepicker.min.js', array('jquery' ,'jquery-ui-core'), EVENT_MANAGER_VERSION, true);
+// Wrappers de compatibilidade para hooks/funções antigas
+add_action('event_manager_dj_dashboard_before', function() {
+	do_action('event_manager_dj_dashboard_before');
+});
+add_action('event_manager_local_dashboard_before', function() {
+	do_action('event_manager_local_dashboard_before');
+});
+function wpem_get_dj($id) {
+	_deprecated_function(__FUNCTION__, '2.0', 'wpem_get_dj');
+	return wpem_get_dj($id);
+}
+function wpem_get_local($id) {
+	_deprecated_function(__FUNCTION__, '2.0', 'wpem_get_local');
+	return wpem_get_local($id);
+}
 		wp_enqueue_script('wp-event-manager-jquery-timepicker');
 		
 		wp_register_script('wp-event-manager-slick-script', EVENT_MANAGER_PLUGIN_URL . '/assets/js/slick/slick.min.js', array('jquery'));
@@ -439,40 +444,40 @@ class WP_Event_Manager extends WPEM_Updater {
 		}
 	}
 	/**
-	 * Restrict access to the dashboard for non-organizer and non-administrator users.
+	 * Restrict access to the dashboard for non-DJ and non-administrator users.
 	 *
-	 * This function checks if the current user has the 'organizer' or 'administrator' role.
+	 * This function checks if the current user has the 'dj' or 'administrator' role.
 	 * If the user lacks both capabilities, an informational message is displayed,
 	 * and further access to the dashboard is restricted.
 	 *
 	 * @return void
 	 */
-	public function wpem_restrict_non_organizer_access_to_dashboard() {
-    	if (is_user_logged_in()) {
-    		$current_user = wp_get_current_user();
+	public function wpem_restrict_non_dj_access_to_dashboard() {
+		if (is_user_logged_in()) {
+			$current_user = wp_get_current_user();
     
-    		// Get allowed roles from option, fallback to all roles if not set
-    		$allowed_roles = get_option('event_manager_allowed_submission_roles', array_keys(wp_roles()->roles));
+			// Get allowed roles from option, fallback to all roles if not set
+			$allowed_roles = get_option('event_manager_allowed_submission_roles', array_keys(wp_roles()->roles));
     
-    		// Ensure $allowed_roles is always an array
-    		if (!is_array($allowed_roles)) {
-    			// Convert comma-separated string to array safely
-    			$allowed_roles = array_filter(array_map('trim', explode(',', $allowed_roles)));
-    		}
+			// Ensure $allowed_roles is always an array
+			if (!is_array($allowed_roles)) {
+				// Convert comma-separated string to array safely
+				$allowed_roles = array_filter(array_map('trim', explode(',', $allowed_roles)));
+			}
     
-    		$allowed_roles = array_map('strtolower', $allowed_roles);
-    		$user_roles    = array_map('strtolower', $current_user->roles);
+			$allowed_roles = array_map('strtolower', $allowed_roles);
+			$user_roles    = array_map('strtolower', $current_user->roles);
     
-    		if (!in_array('administrator', $user_roles) && !array_intersect($allowed_roles, $user_roles)) {
-    			?>
-    			<p class="account-sign-in wpem-alert wpem-alert-info">
-    				<?php esc_html_e('You do not have permission to manage this dashboard.', 'wp-event-manager'); ?>
-    			</p>
-    			<?php
-    			exit;
-    		}
-    	}
-    }
+			if (!in_array('administrator', $user_roles) && !array_intersect($allowed_roles, $user_roles)) {
+				?>
+				<p class="account-sign-in wpem-alert wpem-alert-info">
+					<?php esc_html_e('You do not have permission to manage this dashboard.', 'wp-event-manager'); ?>
+				</p>
+				<?php
+				exit;
+			}
+		}
+	}
 }
 
 /**

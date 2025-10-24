@@ -1,17 +1,18 @@
 <?php
 /**
- * WP_Event_Manager_Form_Submit_Venue class.
+ * WP_Event_Manager_Form_Submit_local class.
+ * (renomeado de venue para local)
  */
-class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
+class WP_Event_Manager_Form_Submit_local extends WP_Event_Manager_Form {
 	
-	public    $form_name = 'submit-venue';
+	public    $form_name = 'submit-local';
 	public    $steps;
 	public    $resume_edit;
 	public    $fields;
-	protected $venue_id;
-	protected $preview_venue;
+	protected $local_id;
+	protected $preview_local;
 	/** @var 
-	* WP_Event_Manager_Form_Submit_Venue The single instance of the class 
+	* WP_Event_Manager_Form_Submit_local The single instance of the class 
 	*/
 	protected static $_instance = null;
 	/**
@@ -30,7 +31,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	public function __construct() {
 		add_action('wp', array($this, 'process'));
 		
-		$this->steps  =(array) apply_filters('submit_venue_steps', array(
+		$this->steps  =(array) apply_filters('submit_local_steps', array(
 			'submit' => array(
 				'name'     => __('Submit Details', 'wp-event-manager'),
 				'view'     => array($this, 'submit'),
@@ -51,29 +52,29 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		} elseif(!empty($_GET['step'])) {
 			$this->step = is_numeric(esc_attr($_GET['step'])) ? max(absint($_GET['step']), 0) : array_search(esc_attr($_GET['step']), array_keys($this->steps));
 		}
-		$this->venue_id = !empty($_REQUEST['venue_id']) ? absint($_REQUEST[ 'venue_id' ]) : 0;
-		if(!event_manager_user_can_edit_event($this->venue_id)) {
-			$this->venue_id = 0;
+		$this->local_id = !empty($_REQUEST['local_id']) ? absint($_REQUEST[ 'local_id' ]) : 0;
+		if(!event_manager_user_can_edit_event($this->local_id)) {
+			$this->local_id = 0;
 		}
 		// Allow resuming from cookie.
 		$this->resume_edit = false;
-		if(!isset($_GET[ 'new' ]) &&(!$this->venue_id) && !empty($_COOKIE['wp-event-manager-submitting-venue-id']) && !empty($_COOKIE['wp-event-manager-submitting-venue-key'])){
-			$venue_id     = absint($_COOKIE['wp-event-manager-submitting-venue-id']);
-			$venue_status = get_post_status($venue_id);
-			if('preview' === $venue_status && esc_attr(get_post_meta($venue_id, '_wpem_unique_key', true)) === $_COOKIE['wp-event-manager-submitting-venue-key']) {
-				$this->venue_id = $venue_id;
+		if(!isset($_GET[ 'new' ]) &&(!$this->local_id) && !empty($_COOKIE['wp-event-manager-submitting-local-id']) && !empty($_COOKIE['wp-event-manager-submitting-local-key'])){
+			$local_id     = absint($_COOKIE['wp-event-manager-submitting-local-id']);
+			$local_status = get_post_status($local_id);
+			if('preview' === $local_status && esc_attr(get_post_meta($local_id, '_wpem_unique_key', true)) === $_COOKIE['wp-event-manager-submitting-local-key']) {
+				$this->local_id = $local_id;
 			}
 		}
 		// Load event details
-		if($this->venue_id) {
-			$venue_status = get_post_status($this->venue_id);
-			if('expired' === $venue_status) {
-				if(!event_manager_user_can_edit_event($this->venue_id)) {
-					$this->venue_id = 0;
+		if($this->local_id) {
+			$local_status = get_post_status($this->local_id);
+			if('expired' === $local_status) {
+				if(!event_manager_user_can_edit_event($this->local_id)) {
+					$this->local_id = 0;
 					$this->step   = 0;
 				}
-			} elseif(!in_array($venue_status, apply_filters('event_manager_valid_submit_venue_statuses', array('publish')))) {
-				$this->venue_id = 0;
+			} elseif(!in_array($local_status, apply_filters('event_manager_valid_submit_local_statuses', array('publish')))) {
+				$this->local_id = 0;
 				$this->step   = 0;
 			}
 		}
@@ -83,33 +84,33 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	 * Get the submitted event ID.
 	 * @return int
 	*/
-	public function get_venue_id() {
-		return absint($this->venue_id);
+	public function get_local_id() {
+		return absint($this->local_id);
 	}
 
 	/**
-	 * Venue fields.
+	 * local fields.
 	 */
 	public function init_fields() {
-		$this->fields = apply_filters('submit_venue_form_fields', array(
-			'venue' => array(
-				'venue_name' => array(
-					'label'       => __('Venue Name', 'wp-event-manager'),
+		$this->fields = apply_filters('submit_local_form_fields', array(
+			'local' => array(
+				'local_name' => array(
+					'label'       => __('local Name', 'wp-event-manager'),
 					'type'        => 'text',
 					'required'    => 'true',					
-					'placeholder' => __('Please enter the venue name', 'wp-event-manager'),
+					'placeholder' => __('Please enter the local name', 'wp-event-manager'),
 					'priority'    => 1,
 					'visibility'  => 1,
 				),						
-				'venue_description' => array(
-					'label'       => __('Venue Description', 'wp-event-manager'),
+				'local_description' => array(
+					'label'       => __('local Description', 'wp-event-manager'),
 					'type'        => 'wp-editor',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 2,
 					'visibility'  => 1,
 				),
-				'venue_logo' => array(
+				'local_logo' => array(
 					'label'       => __('Logo', 'wp-event-manager'),
 					'type'        => 'file',
 					'required'    => false,
@@ -125,43 +126,43 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 					),
 					'visibility'  => 1,
 				),
-				'venue_website' => array(
+				'local_website' => array(
 					'label'       => __('Website', 'wp-event-manager'),
 					'type'        => 'text',
 					'required'    => false,
-					'placeholder' => __('Website URL e.g http://www.yourvenue.com', 'wp-event-manager'),
+					'placeholder' => __('Website URL e.g http://www.yourlocal.com', 'wp-event-manager'),
 					'priority'    => 4,
 					'visibility'  => 1,
 				),
-				'venue_facebook' => array(
+				'local_facebook' => array(
 					'label'       => __('Facebook', 'wp-event-manager'),
 					'type'        => 'text',
 					'required'    => false,
-					'placeholder' => __('Facebook URL e.g http://www.facebook.com/yourvenue', 'wp-event-manager'),
+					'placeholder' => __('Facebook URL e.g http://www.facebook.com/yourlocal', 'wp-event-manager'),
 					'priority'    => 5,
 					'visibility'  => 1,
 				),
-				'venue_instagram' => array(
+				'local_instagram' => array(
 					'label'       => __('Instagram', 'wp-event-manager'),
 					'type'        => 'text',
 					'required'    => false,
-					'placeholder' => __('Instagram URL e.g http://www.instagram.com/yourvenue', 'wp-event-manager'),
+					'placeholder' => __('Instagram URL e.g http://www.instagram.com/yourlocal', 'wp-event-manager'),
 					'priority'    => 6,
 					'visibility'  => 1,
 				),
-				'venue_youtube' => array(
+				'local_youtube' => array(
 					'label'       => __('Youtube', 'wp-event-manager'),
 					'type'        => 'text',
 					'required'    => false,
-					'placeholder' => __('Youtube Channel URL e.g http://www.youtube.com/channel/yourvenue', 'wp-event-manager'),
+					'placeholder' => __('Youtube Channel URL e.g http://www.youtube.com/channel/yourlocal', 'wp-event-manager'),
 					'priority'    => 7,
 					'visibility'  => 1,
 				),
-				'venue_twitter' => array(
+				'local_twitter' => array(
 					'label'       => __('Twitter', 'wp-event-manager'),
 					'type'        => 'text',
 					'required'    => false,
-					'placeholder' => __('Twitter URL e.g http://twitter.com/yourvenue', 'wp-event-manager'),
+					'placeholder' => __('Twitter URL e.g http://twitter.com/yourlocal', 'wp-event-manager'),
 					'priority'    => 8,
 					'visibility'  => 1,
 				),				
@@ -176,7 +177,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	 * @return fields Array
 	 */
 	public  function get_event_manager_fieldeditor_fields(){
-		return apply_filters('event_manager_submit_venue_form_fields', get_option('event_manager_submit_venue_form_fields', false));
+		return apply_filters('event_manager_submit_local_form_fields', get_option('event_manager_submit_local_form_fields', false));
 	}
 
 	/**
@@ -209,50 +210,50 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		$php_date_format 		= WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 			
 		// Load data if neccessary
-		if($this->venue_id) {
-			$venue = get_post($this->venue_id);
+		if($this->local_id) {
+			$local = get_post($this->local_id);
 			foreach($this->fields as $group_key => $group_fields) {
 				foreach($group_fields as $key => $field) {
 					switch($key) {
-						case 'venue_name' :
-							$this->fields[ $group_key ][ $key ]['value'] = esc_attr($venue->post_title);
+						case 'local_name' :
+							$this->fields[ $group_key ][ $key ]['value'] = esc_attr($local->post_title);
 						break;
-						case 'venue_description' :
-							$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($venue->post_content);
+						case 'local_description' :
+							$this->fields[ $group_key ][ $key ]['value'] = wp_kses_post($local->post_content);
 						break;
-						case  'venue_logo':
-							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($venue->ID) ? get_post_thumbnail_id($venue->ID) : esc_url(get_post_meta($venue->ID, '_' . $key, true));
+						case  'local_logo':
+							$this->fields[ $group_key ][ $key ]['value'] = has_post_thumbnail($local->ID) ? get_post_thumbnail_id($local->ID) : esc_url(get_post_meta($local->ID, '_' . $key, true));
 						break;
 						default:
-							$this->fields[ $group_key ][ $key ]['value'] = esc_attr(get_post_meta($venue->ID, '_' . $key, true));
+							$this->fields[ $group_key ][ $key ]['value'] = esc_attr(get_post_meta($local->ID, '_' . $key, true));
 						break;
 					}
 					if(!empty($field['taxonomy'])) {
-						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms($venue->ID, $field['taxonomy'], array('fields' => 'ids'));
+						$this->fields[ $group_key ][ $key ]['value'] = wp_get_object_terms($local->ID, $field['taxonomy'], array('fields' => 'ids'));
 					}
 					
 					if(!empty($field['type']) &&  $field['type'] == 'date'){
-						$event_date = esc_html(get_post_meta($venue->ID, '_' . $key, true));
+						$event_date = esc_html(get_post_meta($local->ID, '_' . $key, true));
 						$this->fields[ $group_key ][ $key ]['value'] = date($php_date_format ,strtotime($event_date));
 					}
 				}
 			}
-			$this->fields = apply_filters('submit_venue_form_fields_get_venue_data', $this->fields, $venue);
+			$this->fields = apply_filters('submit_local_form_fields_get_local_data', $this->fields, $local);
 		}
 
 		wp_enqueue_script('wp-event-manager-event-submission');
-		get_event_manager_template('venue-submit.php', 
+		get_event_manager_template('local-submit.php', 
 			array(
 				'form'               => esc_attr($this->form_name),
-				'venue_id'       	 =>esc_attr($this->get_venue_id()),
+				'local_id'       	 =>esc_attr($this->get_local_id()),
 				'resume_edit'        => $this->resume_edit,
 				'action'             => esc_url($this->get_action()),
-				'venue_fields'     	 => $this->get_fields('venue'),
+				'local_fields'     	 => $this->get_fields('local'),
 				'step'               => esc_attr($this->get_step()),
-				'submit_button_text' => apply_filters('submit_venue_form_submit_button_text',  __('Submit', 'wp-event-manager'))
+				'submit_button_text' => apply_filters('submit_local_form_submit_button_text',  __('Submit', 'wp-event-manager'))
 			),
-			'wp-event-manager/venue', 
-            EVENT_MANAGER_PLUGIN_DIR . '/templates/venue'
+			'wp-event-manager/local', 
+            EVENT_MANAGER_PLUGIN_DIR . '/templates/local'
 		);
 	}
 
@@ -262,10 +263,10 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	 * @return bool on success, WP_ERROR on failure
 	 */
 	protected function validate_fields($values) {
-		if ( ! is_user_logged_in() || ( ! current_user_can( 'manage_venues' ) && ! current_user_can( 'manage_options' ) ) ) {
-			return new WP_Error('validation-error', esc_html__( 'Please login as Organizer to add or update venue!', 'wp-event-manager')) ;
+		if ( ! is_user_logged_in() || ( ! current_user_can( 'manage_locals' ) && ! current_user_can( 'manage_options' ) ) ) {
+			return new WP_Error('validation-error', esc_html__( 'Please login as dj to add or update local!', 'wp-event-manager')) ;
 		}
-		$this->fields =  apply_filters('before_submit_venue_form_validate_fields', $this->fields , $values);
+		$this->fields =  apply_filters('before_submit_local_form_validate_fields', $this->fields , $values);
 	      foreach($this->fields as $group_key => $group_fields){     	      
 				 
 			foreach($group_fields as $key => $field) {
@@ -310,13 +311,13 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 				}
 			}
 		}
-		//venue email validation
-		if(isset($values['venue']['venue_email']) && !empty($values['venue']['venue_email'])) {
-			if(!is_email($values['venue']['venue_email'])) {
-				throw new Exception(esc_attr__('Please enter a valid venue email address', 'wp-event-manager'));
+		//local email validation
+		if(isset($values['local']['local_email']) && !empty($values['local']['local_email'])) {
+			if(!is_email($values['local']['local_email'])) {
+				throw new Exception(esc_attr__('Please enter a valid local email address', 'wp-event-manager'));
 			}
 		}
-		return apply_filters('submit_venue_form_validate_fields', true, $this->fields, $values);
+		return apply_filters('submit_local_form_validate_fields', true, $this->fields, $values);
 	}
 
 	/**
@@ -333,7 +334,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			// Get posted values
 			$values = $this->get_posted_fields();
 
-			if(empty($_POST['submit_venue'])) {
+			if(empty($_POST['submit_local'])) {
 				return;
 			}
 			// Validate required
@@ -344,14 +345,14 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			$status = is_user_logged_in() ? 'publish' : 'pending';
 			
 			// Update the event
-			$venue_name        = html_entity_decode( $values['venue']['venue_name'] );
-			$venue_description = html_entity_decode( $values['venue']['venue_description'] );
+			$local_name        = html_entity_decode( $values['local']['local_name'] );
+			$local_description = html_entity_decode( $values['local']['local_description'] );
 
-			$venue_name        = wp_strip_all_tags( $venue_name );
+			$local_name        = wp_strip_all_tags( $local_name );
 
-			$this->save_venue($venue_name, $venue_description, $this->venue_id ? '' : $status, $values);
+			$this->save_local($local_name, $local_description, $this->local_id ? '' : $status, $values);
 
-			$this->update_venue_data($values);
+			$this->update_local_data($values);
 			// Successful, show next step
 			$this->step ++;
 		} catch(Exception $e) {
@@ -361,7 +362,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	}
 
 	/**
-	 * Update or create a venue from posted data
+	 * Update or create a local from posted data
 	 *
 	 * @param  string $post_title
 	 * @param  string $post_content
@@ -369,28 +370,28 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	 * @param  array $values
 	 * @param  bool $update_slug
 	 */
-	protected function save_venue($post_title, $post_content, $status = 'publish', $values = array(), $update_slug = true) {
-		$venue_data = array(
+	protected function save_local($post_title, $post_content, $status = 'publish', $values = array(), $update_slug = true) {
+		$local_data = array(
 			'post_title'     => sanitize_text_field($post_title),
 			'post_content'   => wp_kses_post($post_content),
-			'post_type'      => 'event_venue',
+			'post_type'      => 'event_local',
 			'comment_status' => 'closed'
 		);
 
 		if($status) {
-			$venue_data['post_status'] = $status;
+			$local_data['post_status'] = $status;
 		}
-		$venue_data = apply_filters('submit_venue_form_save_venue_data', $venue_data, $post_title, $post_content, $status, $values);
-		if($this->venue_id) {
-			$venue_data['ID'] = $this->venue_id;
-			wp_update_post($venue_data);
+		$local_data = apply_filters('submit_local_form_save_local_data', $local_data, $post_title, $post_content, $status, $values);
+		if($this->local_id) {
+			$local_data['ID'] = $this->local_id;
+			wp_update_post($local_data);
 		} else {
-			$this->venue_id = wp_insert_post($venue_data);
+			$this->local_id = wp_insert_post($local_data);
 			if(!headers_sent()) {
 				$wpem_unique_key = uniqid();
-				setcookie('wp-event-manager-submitting-venue-id', $this->venue_id, 0, COOKIEPATH, COOKIE_DOMAIN, false);
-				setcookie('wp-event-manager-submitting-venue-key', $wpem_unique_key, 0, COOKIEPATH, COOKIE_DOMAIN, false);
-				update_post_meta($this->venue_id, '_wpem_unique_key', $wpem_unique_key);
+				setcookie('wp-event-manager-submitting-local-id', $this->local_id, 0, COOKIEPATH, COOKIE_DOMAIN, false);
+				setcookie('wp-event-manager-submitting-local-key', $wpem_unique_key, 0, COOKIEPATH, COOKIE_DOMAIN, false);
+				update_post_meta($this->local_id, '_wpem_unique_key', $wpem_unique_key);
 			}
 		}
 	}
@@ -400,7 +401,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	 *
 	 * @param  array $values
 	 */
-	protected function update_venue_data($values) {
+	protected function update_local_data($values) {
 		$maybe_attach = array();
 		
 		//get date and time setting defined in admin panel Event listing -> Settings -> Date & Time formatting
@@ -418,9 +419,9 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 				// Save taxonomies
 				if(!empty($field['taxonomy'])) {
 					if(is_array($values[ $group_key ][ $key ])) {
-						wp_set_object_terms($this->venue_id, sanitize_text_field($values[ $group_key ][ $key ]), sanitize_text_field($field['taxonomy']), false);
+						wp_set_object_terms($this->local_id, sanitize_text_field($values[ $group_key ][ $key ]), sanitize_text_field($field['taxonomy']), false);
 					} else {
-						wp_set_object_terms($this->venue_id, array(sanitize_text_field($values[ $group_key ][ $key ])), sanitize_text_field($field['taxonomy']), false);
+						wp_set_object_terms($this->local_id, array(sanitize_text_field($values[ $group_key ][ $key ])), sanitize_text_field($field['taxonomy']), false);
 					}				
 				// oragnizer logo is a featured image
 				} elseif($field['type'] == 'date') {
@@ -429,16 +430,16 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 						//Convert date and time value into DB formatted format and save eg. 1970-01-01
 						$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format  , $date);
 						$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
-						update_post_meta($this->venue_id, '_' . $key, $date_dbformatted);
+						update_post_meta($this->local_id, '_' . $key, $date_dbformatted);
 					}
 					else
-						update_post_meta($this->venue_id, '_' . $key, '');
+						update_post_meta($this->local_id, '_' . $key, '');
 					
 				} elseif('file' === $field['type']) {
-					if($key == 'venue_logo' && empty($values[ $group_key ][ $key ])){
-						update_post_meta($this->venue_id, '_thumbnail_id', '');
+					if($key == 'local_logo' && empty($values[ $group_key ][ $key ])){
+						update_post_meta($this->local_id, '_thumbnail_id', '');
 					}
-					update_post_meta($this->venue_id, '_' . $key, $values[ $group_key ][ $key ]);
+					update_post_meta($this->local_id, '_' . $key, $values[ $group_key ][ $key ]);
 					// Handle attachments.
 					if(is_array($values[ $group_key ][ $key ])) {
 						foreach($values[ $group_key ][ $key ] as $file_url) {
@@ -448,16 +449,16 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 						$maybe_attach[] = $values[ $group_key ][ $key ];
 					}
 				} elseif('url' === $field['type']) { 
-					update_post_meta($this->venue_id, '_' . $key, esc_url($values[ $group_key ][ $key ]));
+					update_post_meta($this->local_id, '_' . $key, esc_url($values[ $group_key ][ $key ]));
 
 				} elseif('email' === $field['type']) { 
-					update_post_meta($this->venue_id, '_' . $key, sanitize_email($values[ $group_key ][ $key ]));
+					update_post_meta($this->local_id, '_' . $key, sanitize_email($values[ $group_key ][ $key ]));
 					
 				}elseif('text' === $field['type']) { 
-					update_post_meta($this->venue_id, '_' . $key, wp_strip_all_tags( html_entity_decode( $values[ $group_key ][ $key ] ) ));
+					update_post_meta($this->local_id, '_' . $key, wp_strip_all_tags( html_entity_decode( $values[ $group_key ][ $key ] ) ));
 					
 				}else{
-					update_post_meta($this->venue_id, '_' . $key, sanitize_text_field($values[ $group_key ][ $key ]));
+					update_post_meta($this->local_id, '_' . $key, sanitize_text_field($values[ $group_key ][ $key ]));
 				}
 			}
 		}
@@ -465,7 +466,7 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 		// Handle attachments
 		if(sizeof($maybe_attach) && apply_filters('event_manager_attach_uploaded_files', true)) {
 			// Get attachments
-			$attachments     = get_posts('post_parent=' . $this->venue_id . '&post_type=attachment&fields=ids&numberposts=-1');
+			$attachments     = get_posts('post_parent=' . $this->local_id . '&post_type=attachment&fields=ids&numberposts=-1');
 			$attachment_urls = array();
 			// Loop attachments already attached to the event
 			foreach($attachments as $attachment_key => $attachment) {
@@ -477,14 +478,14 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 					$attachment_id = $this->create_attachment($attachment_url);
 
 					if ( empty( $attachment_id ) ) {
-						delete_post_thumbnail( $this->venue_id );
+						delete_post_thumbnail( $this->local_id );
 					} else {
-						set_post_thumbnail( $this->venue_id, $attachment_id );
+						set_post_thumbnail( $this->local_id, $attachment_id );
 					}
 				}
 			}
 		}
-		do_action('event_manager_update_venue_data', $this->venue_id, $values);
+		do_action('event_manager_update_local_data', $this->local_id, $values);
 	}
 
 	/**
@@ -512,16 +513,16 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 			return 0;
 		}
 		$attachment = array(
-						'post_title'   => sanitize_text_field(get_the_title($this->venue_id)),
+						'post_title'   => sanitize_text_field(get_the_title($this->local_id)),
 						'post_content' => '',
 						'post_status'  => 'inherit',
-						'post_parent'  => $this->venue_id,
+						'post_parent'  => $this->local_id,
 						'guid'         => $attachment_url
 					);
 		if($info = wp_check_filetype($attachment_url)) {
 			$attachment['post_mime_type'] = $info['type'];
 		}
-		$attachment_id = wp_insert_attachment($attachment, $attachment_url, $this->venue_id);
+		$attachment_id = wp_insert_attachment($attachment, $attachment_url, $this->local_id);
 		if(!is_wp_error($attachment_id)) {
 			wp_update_attachment_metadata($attachment_id, wp_generate_attachment_metadata($attachment_id, $attachment_url));
 			return $attachment_id;
@@ -533,14 +534,14 @@ class WP_Event_Manager_Form_Submit_Venue extends WP_Event_Manager_Form {
 	 * Done Step.
 	 */
 	public function done() {
-		do_action('event_manager_venue_submitted', $this->venue_id);
+		do_action('event_manager_local_submitted', $this->local_id);
 		get_event_manager_template(
-			'venue-submitted.php', 
+			'local-submitted.php', 
 			array(
-				'venue' => get_post($this->venue_id) 
+				'local' => get_post($this->local_id) 
 			),
-			'wp-event-manager/venue', 
-            EVENT_MANAGER_PLUGIN_DIR . '/templates/venue'
+			'wp-event-manager/local', 
+            EVENT_MANAGER_PLUGIN_DIR . '/templates/local'
 		);
 	}
 }
