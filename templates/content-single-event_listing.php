@@ -540,6 +540,24 @@ $event = $post; ?>
                         EVENT_MANAGER_PLUGIN_DIR . '/templates/venue'
                    );
                 }
+                //if DJ setting is enable then display DJ section on single event listing
+                if (get_option('enable_event_dj')) {
+                    get_event_manager_template(
+                        'content-single-event_listing-dj.php',
+                        array(),
+                        'wp-event-manager/dj',
+                        EVENT_MANAGER_PLUGIN_DIR . '/templates/dj'
+                   );
+                }
+                //if Local setting is enable then display Local section on single event listing
+                if (get_option('enable_event_local')) {
+                    get_event_manager_template(
+                        'content-single-event_listing-local.php',
+                        array(),
+                        'wp-event-manager/local',
+                        EVENT_MANAGER_PLUGIN_DIR . '/templates/local'
+                   );
+                }
                 /**
                  * single_event_listing_end hook
                  */
