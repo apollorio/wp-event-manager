@@ -591,7 +591,7 @@ class WP_Event_Manager_Post_Types {
 			$search_event_types = esc_attr($_GET['search_event_types']);
 			$cats     = explode(',', $search_event_types) + array(0);
 			$field    = is_numeric($cats) ? 'term_id' : 'slug';
-			$operator = 'all' === get_option('event_manager_event_type_filter_type', 'all') && sizeof($search_event_types) > 1 ? 'AND' : 'IN';
+			$operator = 'all' === get_option('event_manager_event_type_filter_type', 'all') && wem_safe_count($search_event_types) > 1 ? 'AND' : 'IN';
 			$query_args['tax_query'][] = array(
 				'taxonomy'         => 'event_listing_type',
 				'field'            => $field,
@@ -605,7 +605,7 @@ class WP_Event_Manager_Post_Types {
 			$search_categories = esc_attr($_GET['search_categories']);
 			$cats     = explode(',', $search_categories) + array(0);
 			$field    = is_numeric($cats) ? 'term_id' : 'slug';
-			$operator = 'all' === get_option('event_manager_category_filter_type', 'all') && sizeof($search_categories) > 1 ? 'AND' : 'IN';
+			$operator = 'all' === get_option('event_manager_category_filter_type', 'all') && wem_safe_count($search_categories) > 1 ? 'AND' : 'IN';
 			$query_args['tax_query'][] = array(
 			'taxonomy'         => 'event_sounds',
 				'field'            => $field,

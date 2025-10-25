@@ -1,0 +1,1 @@
+// ...existing code from venue-dashboard.js, renomear internamente venue→local

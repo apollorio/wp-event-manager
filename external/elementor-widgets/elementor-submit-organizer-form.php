@@ -12,7 +12,7 @@ if (! defined('ABSPATH')) exit; // Exit if accessed directly
  * Elementor widget for event submit.
  *
  */
-class Elementor_Submit_Organizer_Form extends Widget_Base {
+class Elementor_Submit_DJ_Form extends Widget_Base {
 
 	/**
 	 * Retrieve the widget name.
@@ -21,7 +21,7 @@ class Elementor_Submit_Organizer_Form extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'submit-organizer-form';
+		return 'submit-dj-form';
 	}
 
 	/**
@@ -31,7 +31,7 @@ class Elementor_Submit_Organizer_Form extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __('Submit Organizer Form', 'wp-event-manager');
+		return __('Submit DJ Form', 'wp-event-manager');
 	}
 	/**	
 	 * Get widget icon.
@@ -51,7 +51,7 @@ class Elementor_Submit_Organizer_Form extends Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return ['submit-organizer-form', 'code'];
+		return ['submit-dj-form', 'code'];
 	}
 
 	/**
@@ -77,7 +77,7 @@ class Elementor_Submit_Organizer_Form extends Widget_Base {
 	protected function register_controls() {
 		$this->start_controls_section(
 			'section_shortcode',
-			['label' => __('Submit Organizer Form', 'wp-event-manager'),]
+			['label' => __('Submit DJ Form', 'wp-event-manager'),]
 		);
 		$this->end_controls_section();
 	}
@@ -90,7 +90,7 @@ class Elementor_Submit_Organizer_Form extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		echo do_shortcode('[submit_organizer_form]');
+		echo do_shortcode('[submit_dj_form]');
 	}
 
 	/**

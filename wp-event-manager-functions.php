@@ -262,7 +262,7 @@ if(!function_exists('get_event_listings')) :
 		}
 	
 		$event_manager_keyword = esc_attr($args['search_keywords']); 
-		if(!empty($event_manager_keyword) && strlen($event_manager_keyword) >= apply_filters('event_manager_get_listings_keyword_length_threshold', 2)) {
+	if(!empty($event_manager_keyword) && wem_safe_strlen($event_manager_keyword) >= apply_filters('event_manager_get_listings_keyword_length_threshold', 2)) {
 			$query_args['s'] = $event_manager_keyword;
 			add_filter('posts_search', 'get_event_listings_keyword_search');
 		}
@@ -980,6 +980,28 @@ function event_manager_multiselect_event_category() {
 }
 
 /**
+ * True if only one sounds allowed per event.
+ *
+ * @return bool
+ */
+function event_manager_multiselect_sounds() {
+
+	if(!class_exists('WP_Event_Manager_Form_Submit_Event')) {
+        include_once(EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-abstract.php');
+        include_once(EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-event.php');
+    }
+
+    $form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
+    $event_fields = $form_submit_event_instance->merge_with_custom_fields();
+
+    if(isset($event_fields['event']['sounds']['type']) && $event_fields['event']['sounds']['type'] === 'term-multiselect') {
+        return apply_filters('event_manager_multiselect_sounds', true);
+    } else {
+        return apply_filters('event_manager_multiselect_sounds', false);
+    }
+}
+
+/**
  * True if registration is enabled.
  *
  * @return bool
@@ -1122,7 +1144,12 @@ function event_manager_dropdown_selection($args = '') {
 function event_manager_get_page_id($page){	
 	$page_id = get_option('event_manager_' . $page . '_page_id', false);
 	if($page_id) {
-		return apply_filters('wpml_object_id', absint(function_exists('pll_get_post') ? pll_get_post($page_id) : $page_id), 'page', TRUE);
+		// Fallback seguro para pll_get_post
+		$translated_id = $page_id;
+		if(function_exists('pll_get_post')) {
+			$translated_id = pll_get_post($page_id);
+		}
+		return apply_filters('wpml_object_id', absint($translated_id), 'page', TRUE);
 	} else {
 		return 0;
 	}
@@ -1474,7 +1501,7 @@ function event_manager_use_standard_password_setup_email() {
  */
 function event_manager_validate_new_password($password) {
 	// Password must be at least 8 characters long. Trimming here because `wp_hash_password()` will later on.
-	$is_valid_password = strlen(trim ($password)) >= 8;
+	$is_valid_password = wem_safe_strlen(trim ($password)) >= 8;
 	
 	/**
 	 * Allows overriding default Event Manager password validation rules.
@@ -1567,7 +1594,9 @@ function get_all_dj_array($user_id = '', $args = []) {
  * @since 3.1.14
  */
 function get_event_dj_count($dj_id = '') {
-	return sizeof(get_event_by_dj_id($dj_id));
+	$events = get_event_by_dj_id($dj_id);
+	if(!is_array($events) && !($events instanceof Countable)) $events = [];
+	return sizeof($events);
 }
 
 /**
@@ -1670,7 +1699,9 @@ function get_all_local_array($user_id = '', $args = [], $blank_option = false) {
  * @since 3.1.16
  */
 function get_event_local_count($local_id = '') {
-	return sizeof(get_event_by_local_id($local_id));
+	$events = get_event_by_local_id($local_id);
+	if(!is_array($events) && !($events instanceof Countable)) $events = [];
+	return sizeof($events);
 }
 
 /**
@@ -1876,31 +1907,21 @@ if(!function_exists('get_wpem_email_from_name')) {
 if(!function_exists('get_wpem_email_from_address')){
 	/**
 	 * Get the from address for outgoing emails.
-	 *
-	 * @param string $from_email Default wp_mail() email address to send from.
-	 * @return string
-	 * @since 3.1.35
 	 */
-	function get_wpem_email_from_address( $from_email = '' ) {
-		$from_email = get_option('wpem_email_from_address');
-		if(empty($from_email))
-			$from_email = 'noreply@' . (isset($_SERVER['HTTP_HOST']) ? str_replace('www.', '', esc_url_raw( wp_unslash($_SERVER['HTTP_HOST']))) : 'noreply.com');
-			// $from_email = "wordpress@".trim( str_replace( array( 'http://', 'https://' ), '', get_bloginfo('url')));
-		$from_email = apply_filters( 'wpem_email_from_address', $from_email );
-		return sanitize_email( $from_email );
+	function get_wpem_email_from_address() {
+		$from_address = get_option('wpem_email_from_address');
+		if(empty($from_address))
+			$from_address = get_bloginfo('admin_email');
+	   $from_address = apply_filters( 'wpem_email_from_address', $from_address );
+	   return sanitize_email( $from_address );
 	}
 }
 
-if(!function_exists('get_wpem_email_headers')) {
+if(!function_exists('get_wpem_email_headers')){
 	/**
-	 * Get email headers.
-	 *
-	 * @param string, string, string
-	 * @return string
-	 * @since 3.1.35
+	 * Get the email headers for outgoing emails.
 	 */
 	function get_wpem_email_headers($post_id, $sender_name = '', $sender_address = '', $reply_name = '', $replay_address = '', $content_type = 'text/html; charset=UTF-8') {
-		$header[] = 'Content-Type: text/html; charset=UTF-8';
 
 		if (empty($sender_name)) 
 			$sender_name = get_wpem_email_from_name();
@@ -2019,7 +2040,7 @@ function wpem_embed_oembed_html($content) {
  * @since 1.0.1
  */
 function wpem_begnWith($str, $begin_string) {
-	$len = strlen($begin_string);
+	$len = wem_safe_strlen($begin_string);
 	if (is_array($str)) {
 		$str = '';
 	}

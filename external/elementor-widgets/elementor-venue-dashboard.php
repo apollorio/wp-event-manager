@@ -7,12 +7,12 @@ use Elementor\Controls_Manager;
 if (! defined('ABSPATH')) exit; // Exit if accessed directly
 
 /**
- * Elementor Event Venue Dashboard
+ * Elementor Event Local Dashboard
  *
  * Elementor widget for event dashboard.
  *
  */
-class Elementor_Venue_Dashboard extends Widget_Base {
+class Elementor_Local_Dashboard extends Widget_Base {
 
 	/**
 	 * Retrieve the widget name.
@@ -21,7 +21,7 @@ class Elementor_Venue_Dashboard extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'venue-dashboard';
+		return 'local-dashboard';
 	}
 
 	/**
@@ -31,7 +31,7 @@ class Elementor_Venue_Dashboard extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __('Venue Dashboard', 'wp-event-manager');
+		return __('Local Dashboard', 'wp-event-manager');
 	}
 	/**	
 	 * Get widget icon.
@@ -51,7 +51,7 @@ class Elementor_Venue_Dashboard extends Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return ['venue-dashboard', 'code'];
+		return ['local-dashboard', 'code'];
 	}
 
 	/**
@@ -78,7 +78,7 @@ class Elementor_Venue_Dashboard extends Widget_Base {
 	protected function register_controls() {
 		$this->start_controls_section(
 			'section_shortcode',
-			['label' => __('Venue Dashboard', 'wp-event-manager'),]
+			['label' => __('Local Dashboard', 'wp-event-manager'),]
 		);
 		$this->add_control(
 			'posts_per_page',
@@ -105,7 +105,7 @@ class Elementor_Venue_Dashboard extends Widget_Base {
 		else
 		    $posts_per_page = 'posts_per_page=10';
 		
-		echo do_shortcode('[venue_dashboard '.$posts_per_page.' ]');
+		echo do_shortcode('[local_dashboard '.$posts_per_page.' ]');
 	}
 
 	/**

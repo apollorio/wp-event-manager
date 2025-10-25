@@ -29,12 +29,12 @@ var Common = function () {
         	  jQuery('body').removeClass("wpem-modal-open");
         	  jQuery('.wpem-modal').removeClass("wpem-modal-open");
         	});
-            jQuery("#submit-organizer-form").submit(function (e) {
-                jQuery('#submit-organizer-form').css('pointer-events', 'none');
+            jQuery("#submit-dj-form").submit(function (e) {
+                jQuery('#submit-dj-form').css('pointer-events', 'none');
             });
 
-            jQuery("#submit-venue-form").submit(function (e) {
-                jQuery('#submit-venue-form').css('pointer-events', 'none');
+            jQuery("#submit-local-form").submit(function (e) {
+                jQuery('#submit-local-form').css('pointer-events', 'none');
             });
 
         	jQuery(".wpem-modal-close").click(function(){

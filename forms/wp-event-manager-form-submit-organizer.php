@@ -1,8 +1,11 @@
 <?php
 /**
  * WP_Event_Manager_Form_Submit_dj class.
- * (renomeado de organizer para dj)
+ * (renomeado de dj para dj)
  */
+if(!class_exists('WP_Event_Manager_Form')) {
+	include_once(dirname(__FILE__) . '/wp-event-manager-form-abstract.php');
+}
 class WP_Event_Manager_Form_Submit_dj extends WP_Event_Manager_Form {
 	
 	public    $form_name = 'submit-dj';
@@ -323,8 +326,8 @@ class WP_Event_Manager_Form_Submit_dj extends WP_Event_Manager_Form {
 						foreach($check_value as $file_url) {
 							$file_url = current(explode('?', $file_url));
 							$file_info = wp_check_filetype($file_url);
-							if(!is_numeric($file_url) && $file_info &&!in_array($file_info['type'], $field['allowed_mime_types'])) {
-								throw new Exception(sprintf(wp_kses('"%s"(filetype %s) needs to be one of the following file types: %s', 'wp-event-manager'), esc_attr($field['label']),  esc_attr($info['ext']),  esc_attr(implode(', ', array_keys($field['allowed_mime_types']))) )) ;
+								if(!is_numeric($file_url) && $file_info && !in_array($file_info['type'], $field['allowed_mime_types'])) {
+									throw new Exception(sprintf(wp_kses('"%s"(filetype %s) needs to be one of the following file types: %s', 'wp-event-manager'), esc_attr($field['label']), esc_attr($file_info['ext']), esc_attr(implode(', ', array_keys($field['allowed_mime_types']))) ));
 							}
 						}
 					}
@@ -361,7 +364,12 @@ class WP_Event_Manager_Form_Submit_dj extends WP_Event_Manager_Form {
 			}
 			// Validate required
 			if(is_wp_error(($return = $this->validate_fields($values)))) {
-				throw new Exception($return->get_error_message());
+					if(is_object($return) && method_exists($return, 'get_error_message')) {
+						$error_msg = $return->get_error_message();
+					} else {
+						$error_msg = 'Erro desconhecido.';
+					}
+					throw new Exception($error_msg);
 			}
 
 			$status = is_user_logged_in() ? 'publish' : 'pending';

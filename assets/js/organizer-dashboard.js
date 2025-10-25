@@ -1,5 +1,5 @@
-var OrganizerDashboard= function () {
-    /// <summary>Constructor function of the event OrganizerDashboard class.</summary>
+var DJDashboard= function () {
+    /// <summary>Constructor function of the event DJDashboard class.</summary>
     /// <returns type="Home" />      
     return {
 	    ///<summary>
@@ -9,17 +9,17 @@ var OrganizerDashboard= function () {
         /// <since>1.0.0</since> 
         init: function() {
           
-	  	    Common.logInfo("OrganizerDashboard.init...");  
+	  	    Common.logInfo("DJDashboard.init...");  
 	  	    if(jQuery('.event-dashboard-action-delete').length >0)  {
 				jQuery('.event-dashboard-action-delete').css({'cursor':'pointer'});  					
 				//for delete event confirmation dialog / tooltip 
-				jQuery('.event-dashboard-action-delete').on('click', OrganizerDashboard.confirmation.showDialog);	
+				jQuery('.event-dashboard-action-delete').on('click', DJDashboard.confirmation.showDialog);	
 	        }
 
-	        if(jQuery('.event-organizer-count').length >0) {				
+	        if(jQuery('.event-dj-count').length >0) {				
 				//show event list dialog / tooltip 
-				jQuery('.event-organizer-count').on('click', function(){
-					jQuery(this).next('.organizer-events-list').slideToggle();
+				jQuery('.event-dj-count').on('click', function(){
+					jQuery(this).next('.dj-events-list').slideToggle();
 				});	
 	        }
  	 	}, 
@@ -32,15 +32,15 @@ var OrganizerDashboard= function () {
 	        /// <returns type="actions" />     
 	        /// <since>1.0.0</since>       
 	        showDialog: function(event) {
-	        	Common.logInfo("OrganizerDashboard.confirmation.showDialog...");	            
-	           	return confirm(event_manager_organizer_dashboard.i18n_confirm_delete);
+	        	Common.logInfo("DJDashboard.confirmation.showDialog...");	            
+	           	return confirm(event_manager_dj_dashboard.i18n_confirm_delete);
 	           	event.preventDefault(); 
 	        },
 	    }		 //end of comfirmation	 
     } //enf of return	
 }; //end of class
 
-OrganizerDashboard= OrganizerDashboard();
+DJDashboard= DJDashboard();
 jQuery(document).ready(function($) {
-   OrganizerDashboard.init();
+   DJDashboard.init();
 });

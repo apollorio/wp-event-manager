@@ -1,69 +1,69 @@
-var Venues = function () {
+var Locals = function () {
 
-    /// <summary>Constructor function of the Venues class.</summary>
+    /// <summary>Constructor function of the Locals class.</summary>
     /// <since>1.0.0</since>
-    /// <returns type="Venues" />  
+    /// <returns type="Locals" />  
     return {
         /// <summary>
-        /// Initializes the Venues.       
+        /// Initializes the Locals.       
         /// </summary>                 
         /// <returns type="initialization settings" />     
         /// <since>1.0.0</since>  
         init: function () {           
-            Common.logInfo("Venues.init...");
+            Common.logInfo("Locals.init...");
             
             jQuery('#show_ALL').show();
-            jQuery('.venue-letters a').on('click', this.actions.showVenueInfo);
+            jQuery('.local-letters a').on('click', this.actions.showLocalInfo);
 			jQuery("#upcoming-past-tabs a").on('click',this.actions.tabClick); 		
             
             if(localStorage.getItem("layout")=="calendar-layout"){
                 localStorage.setItem("layout", "box-layout");
             }
 			if(jQuery(".normal-section-title").length >0)
-			   jQuery(".normal-section-title").html(event_manager_venue.i18n_upcomingEventsTitle);
+			   jQuery(".normal-section-title").html(event_manager_local.i18n_upcomingEventsTitle);
     	},
 
         actions: {
             /// <summary>
-            /// This function is use to show venue name by based on how alphabet letters are clicked 	  
+            /// This function is use to show local name by based on how alphabet letters are clicked 	  
             /// </summary>
             /// <param name="parent" type="Event"></param>           
             /// <returns type="actions" />     
             /// <since>1.0.0</since>       
-            showVenueInfo: function (event) {
-                Common.logInfo("Venues.actions.showVenueInfo...");
+            showLocalInfo: function (event) {
+                Common.logInfo("Locals.actions.showLocalInfo...");
 
                 var currentClickedLetterId = jQuery(this).attr('id');
                 var showAllLetterId = 'ALL';
-                //first, hide all venue info 	
-                jQuery('.show-venue-info').hide();
+                //first, hide all local info 	
+                jQuery('.show-local-info').hide();
 
-                //checks condition if selected id is \show_All\ then it will show all venue name,else it will show only slected alphabet letter venue name.
+                //checks condition if selected id is \show_All\ then it will show all local name,else it will show only slected alphabet letter local name.
                 if (currentClickedLetterId == showAllLetterId) {
-                    //show all venue block which has clas show-venue-info
-                    jQuery('.show-venue-info').show();
-                    jQuery('.no-venue').addClass('wpem-d-none');
-                } else if(jQuery('#show_' + currentClickedLetterId).length) {	//show clicked letter venue only       
+                    //show all local block which has clas show-local-info
+                    jQuery('.show-local-info').show();
+                    jQuery('.no-local').addClass('wpem-d-none');
+                } else if(jQuery('#show_' + currentClickedLetterId).length) {	//show clicked letter local only       
                     jQuery('#show_' + currentClickedLetterId).css({ "display": "block" });
-                    jQuery('.no-venue').addClass('wpem-d-none');
+                    jQuery('.no-local').addClass('wpem-d-none');
                 }else{
-                    jQuery('.no-venue').removeClass('wpem-d-none');
+                    jQuery('.no-local').removeClass('wpem-d-none');
                 }
                 event.preventDefault();
             },
 			
 			/// <summary>
-            /// This function is use to show tabes of past and upcoming event onsingle venue.	  
+            /// This function is use to show tabes of past and upcoming event onsingle local.	  
             /// </summary>
             /// <param name="parent" type="Event"></param>           
             /// <returns type="actions" />     
             /// <since>1.0.0</since>       
             tabClick: function (event) {
-                Common.logInfo("Venues.actions.showtab...");   
+                Common.logInfo("Locals.actions.showtab...");   
                 
         		if(jQuery(event.target).attr('href')=='#past') {   
                     if(jQuery(".normal-section-title").length >0)
-                      jQuery(".normal-section-title").html(event_manager_venue.i18n_pastEventsTitle);  
+                      jQuery(".normal-section-title").html(event_manager_local.i18n_pastEventsTitle);  
                       
                     if(localStorage.getItem("layout")=="box-layout") {                       
         	            jQuery("#past #line-layout-icon").addClass("lightgray-layout-icon");
@@ -74,7 +74,7 @@ var Venues = function () {
 		            }
                 }else if(jQuery(event.target).attr('href')=='#current') {   
                     if(jQuery(".normal-section-title").length >0)
-                        jQuery(".normal-section-title").html(event_manager_venue.i18n_currentEventsTitle);  
+                        jQuery(".normal-section-title").html(event_manager_local.i18n_currentEventsTitle);  
                      
                     if(localStorage.getItem("layout")=="box-layout") {                       
         	            jQuery("#current #line-layout-icon").addClass("lightgray-layout-icon");
@@ -85,14 +85,14 @@ var Venues = function () {
 		            }
                 } else {
                     if(jQuery(".normal-section-title").length >0)
-                       jQuery(".normal-section-title").html(event_manager_venue.i18n_upcomingEventsTitle);
+                       jQuery(".normal-section-title").html(event_manager_local.i18n_upcomingEventsTitle);
                 }
                 event.preventDefault();
             }                        
         }
     }
 };
-Venues = Venues();
+Locals = Locals();
 jQuery(document).ready(function ($) {
-    Venues.init();
+    Locals.init();
 });

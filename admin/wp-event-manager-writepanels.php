@@ -143,6 +143,10 @@ class WP_Event_Manager_Writepanels {
 		$form_submit_event_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Event', 'instance'));
 		$fields                     = $form_submit_event_instance->merge_with_custom_fields('backend');
 
+		if (!$fields) {
+			$fields = array();
+		}
+
 		/** add _ (prefix) for all backend fields.
 		 *  Field editor will only return fields without _(prefix).
 		 */
@@ -257,11 +261,11 @@ class WP_Event_Manager_Writepanels {
 
 		if(!get_option('event_manager_enable_categories')) {
 			remove_meta_box('event_listing_categorydiv', 'event_listing', 'side');
-		} elseif(false == event_manager_multiselect_event_category()) {
+		} elseif(false == event_manager_multiselect_sounds()) {
 			remove_meta_box('event_listing_categorydiv', 'event_listing', 'side');
-			$event_sounds = get_taxonomy('event_sounds');
+			$event_sounds = get_taxonomy('sounds');
 			if ($event_sounds && isset($event_sounds->labels)) {
-				add_meta_box('event_sounds', $event_sounds->labels->menu_name, array($this, 'event_listing_category_metabox'), 'event_listing', 'side', 'core');
+				add_meta_box('sounds', $event_sounds->labels->menu_name, array($this, 'event_listing_category_metabox'), 'event_listing', 'side', 'core');
 			}
 		}
 
@@ -285,7 +289,7 @@ class WP_Event_Manager_Writepanels {
 				$response->data['visibility']['show_ui'] = false;
 			}
 		}
-		if(false == event_manager_multiselect_event_category()) {
+		if(false == event_manager_multiselect_sounds()) {
 			if('event_listing_category' === $taxonomy->name) {
 				$response->data['visibility']['show_ui'] = false;
 			}
@@ -1142,12 +1146,17 @@ class WP_Event_Manager_Writepanels {
 		$php_date_format = WP_Event_Manager_Date_Time::get_view_date_format_from_datepicker_date_format($datepicker_date_format);
 
 		// Save fields
-		foreach ($this->event_listing_fields() as $key => $field) {
+		$event_fields = $this->event_listing_fields();
+		if (!$event_fields) {
+			$event_fields = array();
+		}
+		foreach ($event_fields as $key => $field) {
 
 			// Event Expiry date
 			if('_event_expiry_date' === $key) {
 				if(!empty($_POST[$key])) {
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post($_POST['date_format']), sanitize_text_field($_POST[$key]));
+					$date = sanitize_text_field($_POST[$key]);
+					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format(wp_kses_post($_POST['date_format']), $date);
 					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
 					update_post_meta($post_id, sanitize_key($key), trim($date_dbformatted));
@@ -1394,9 +1403,17 @@ class WP_Event_Manager_Writepanels {
 		global $post;
 		$current_user = wp_get_current_user();
 
+		if(!class_exists('WP_Event_Manager_Form_Submit_dj')) {
+			include_once(EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-dj.php');
+		}
+
 		$GLOBALS['event_manager']->forms->get_form('submit-dj', array());
 		$form_submit_dj_instance = call_user_func(array('WP_Event_Manager_Form_Submit_dj', 'instance'));
 		$fields                         = $form_submit_dj_instance->merge_with_custom_fields('backend');
+
+		if (!$fields) {
+			$fields = array();
+		}
 
 		/** add _ (prefix) for all backend fields.
 		 *  Field editor will only return fields without _(prefix).
@@ -1447,7 +1464,11 @@ class WP_Event_Manager_Writepanels {
 		echo wp_kses_post('<div class="wp_event_manager_meta_data">');
 		wp_nonce_field('save_meta_data', 'event_manager_nonce');
 		do_action('event_manager_event_dj_data_start', $post_id);
-		foreach ($this->dj_listing_fields() as $key => $field) {
+		$dj_fields = $this->dj_listing_fields();
+		if (!$dj_fields) {
+			$dj_fields = array();
+		}
+		foreach ($dj_fields as $key => $field) {
 			$type = !empty($field['type']) ? $field['type'] : 'text';
 			if($type == 'wp-editor') {
 				$type = 'textarea';
@@ -1483,7 +1504,11 @@ class WP_Event_Manager_Writepanels {
 		update_post_meta($post_id, '_dj_description', wp_kses_post($_POST['content']));
 
 		// Save fields
-		foreach ($this->dj_listing_fields() as $key => $field) {
+		$dj_save_fields = $this->dj_listing_fields();
+		if (!$dj_save_fields) {
+			$dj_save_fields = array();
+		}
+		foreach ($dj_save_fields as $key => $field) {
 			$key = sanitize_text_field($key);
 			if('_dj_author' === $key) {
 				$wpdb->update($wpdb->posts, array('post_author' => $_POST[$key] > 0 ? absint(sanitize_text_field($_POST[$key])) : 0), array('ID' => $post_id));
@@ -1557,9 +1582,17 @@ class WP_Event_Manager_Writepanels {
 		global $post;
 		$current_user = wp_get_current_user();
 
+		if(!class_exists('WP_Event_Manager_Form_Submit_local')) {
+			include_once(EVENT_MANAGER_PLUGIN_DIR . '/forms/wp-event-manager-form-submit-local.php');
+		}
+
 		$GLOBALS['event_manager']->forms->get_form('submit-local', array());
 		$form_submit_local_instance = call_user_func(array('WP_Event_Manager_Form_Submit_local', 'instance'));
 		$fields                     = $form_submit_local_instance->merge_with_custom_fields('backend');
+
+		if (!$fields) {
+			$fields = array();
+		}
 
 		/** add _ (prefix) for all backend fields.
 		 *  Field editor will only return fields without _(prefix).
@@ -1609,7 +1642,11 @@ class WP_Event_Manager_Writepanels {
 		echo wp_kses_post('<div class="wp_event_manager_meta_data">');
 		wp_nonce_field('save_meta_data', 'event_manager_nonce');
 		do_action('event_manager_event_local_data_start', $post_id);
-		foreach ($this->local_listing_fields() as $key => $field) {
+		$local_fields = $this->local_listing_fields();
+		if (!$local_fields) {
+			$local_fields = array();
+		}
+		foreach ($local_fields as $key => $field) {
 			$type = !empty($field['type']) ? $field['type'] : 'text';
 			if($type == 'wp-editor') {
 				$type = 'textarea';
@@ -1645,7 +1682,11 @@ class WP_Event_Manager_Writepanels {
 		update_post_meta($post_id, '_local_description', wp_kses_post($_POST['content']));
 
 		// Save fields
-		foreach ($this->local_listing_fields() as $key => $field) {
+		$local_save_fields = $this->local_listing_fields();
+		if (!$local_save_fields) {
+			$local_save_fields = array();
+		}
+		foreach ($local_save_fields as $key => $field) {
 			$key = sanitize_text_field($key);
 			if('_local_author' === $key) {
 				$wpdb->update($wpdb->posts, array('post_author' => $_POST[$key] > 0 ? absint($_POST[$key]) : 0), array('ID' => $post_id));

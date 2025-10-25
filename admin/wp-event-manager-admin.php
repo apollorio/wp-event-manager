@@ -90,7 +90,7 @@ class WP_Event_Manager_Admin {
 		// Main frontend style
 		wp_enqueue_style('event_manager_admin_css', EVENT_MANAGER_PLUGIN_URL . '/assets/css/backend.min.css');
 
-		if(in_array($screen->id, apply_filters('event_manager_admin_screen_ids', array('edit-event_listing', 'event_listing', 'event_listing_page_event-manager-settings', 'event_listing_page_event-manager-addons', 'event_listing_page_event-manager-upgrade-database', 'edit-event_organizer', 'event_organizer', 'edit-event_venue', 'event_venue')))) {
+		if(in_array($screen->id, apply_filters('event_manager_admin_screen_ids', array('edit-event_listing', 'event_listing', 'event_listing_page_event-manager-settings', 'event_listing_page_event-manager-addons', 'event_listing_page_event-manager-upgrade-database', 'edit-event_dj', 'event_dj', 'edit-event_local', 'event_local')))) {
 			$jquery_version = isset($wp_scripts->registered['jquery-ui-core']->ver) ? $wp_scripts->registered['jquery-ui-core']->ver : '1.9.2';
 
 			wp_enqueue_style('jquery-ui-style', EVENT_MANAGER_PLUGIN_URL . '/assets/js/jquery-ui/jquery-ui.min.css', array(), $jquery_version);
@@ -167,8 +167,8 @@ class WP_Event_Manager_Admin {
 								'3.1.15 has released!
 We are constantly working to improve your event management experience, We have a new release focusing on a handle of fixes and updates & here is a summary of what has been improved...
 
-Manage your Organizers directly at the frontend and backend.
-Migration of Old Organizer data would be transferred to the list Automatically.
+Manage your DJs directly at the frontend and backend.
+Migration of Old DJ data would be transferred to the list Automatically.
 A prior Backup does no harm before updating the plugin!',
 								'wp-event-manager'
 							); ?>
@@ -203,11 +203,11 @@ A prior Backup does no harm before updating the plugin!',
 			wp_die( esc_html__( 'Unauthorized access.', 'wp-event-manager' ), 403 );
 		}
 
-		$GLOBALS['event_manager']->forms->get_form('submit-organizer', array());
-		$form_submit_organizer_instance = call_user_func(array('WP_Event_Manager_Form_Submit_Organizer', 'instance'));
-		$organizer_fields               = $form_submit_organizer_instance->merge_with_custom_fields('backend');
+		$GLOBALS['event_manager']->forms->get_form('submit-dj', array());
+		$form_submit_dj_instance = call_user_func(array('WP_Event_Manager_Form_Submit_DJ', 'instance'));
+		$dj_fields               = $form_submit_dj_instance->merge_with_custom_fields('backend');
 
-		if(!empty($organizer_fields) && isset($organizer_fields['organizer']) && !empty($organizer_fields['organizer'])) {
+		if(!empty($dj_fields) && isset($dj_fields['dj']) && !empty($dj_fields['dj'])) {
 			$args = array(
 				'post_type'      => 'event_listing',
 				'post_status'    => array('publish'),
@@ -216,17 +216,17 @@ A prior Backup does no harm before updating the plugin!',
 			$events = new WP_Query($args);
 			if($events->found_posts > 0) {
 				foreach ($events->posts as $event) {
-					if(isset($event->_organizer_email) && !empty($event->_organizer_email)) {
-						$organizer_data = array();
-						foreach ($organizer_fields['organizer'] as $key => $field) {
+					if(isset($event->_dj_email) && !empty($event->_dj_email)) {
+						$dj_data = array();
+						foreach ($dj_fields['dj'] as $key => $field) {
 							$name = '_' . $key;
-							if($key == 'organizer_logo') {
-								$organizer_data[$key] = $event->_thumbnail_id;
+							if($key == 'dj_logo') {
+								$dj_data[$key] = $event->_thumbnail_id;
 							} else {
-								$organizer_data[$key] = $event->$name;
+								$dj_data[$key] = $event->$name;
 							}
 						}
-						$this->migrate_organizer_from_event_meta($event, $organizer_data);
+						$this->migrate_dj_from_event_meta($event, $dj_data);
 						$this->banner_image_set_thumnail($event);
 					}
 				}
@@ -238,35 +238,35 @@ A prior Backup does no harm before updating the plugin!',
 	}
 
 	/**
-	 * Migrate organizer from event meta.
+	 * Migrate dj from event meta.
 	 */
-	public function migrate_organizer_from_event_meta($event, $organizer_data)	{
-		$organizer_id = check_organizer_exist($organizer_data['organizer_email']);
-		if(!$organizer_id) {
+	public function migrate_dj_from_event_meta($event, $dj_data)	{
+		$dj_id = check_dj_exist($dj_data['dj_email']);
+		if(!$dj_id) {
 			$args = apply_filters(
-				'wpem_create_event_organizer_data',
+				'wpem_create_event_dj_data',
 				array(
-					'post_title'     => wp_strip_all_tags($organizer_data['organizer_name']),
-					'post_content'   => $organizer_data['organizer_description'],
+					'post_title'     => wp_strip_all_tags($dj_data['dj_name']),
+					'post_content'   => $dj_data['dj_description'],
 					'post_status'    => 'publish',
-					'post_type'      => 'event_organizer',
+					'post_type'      => 'event_dj',
 					'comment_status' => 'closed',
 					'post_author'    => $event->post_author,
 				)
 			);
-			$organizer_id = wp_insert_post($args);
+			$dj_id = wp_insert_post($args);
 		}
 
-		foreach ($organizer_data as $name => $value) {
-			if($name == 'organizer_logo') {
-				update_post_meta($organizer_id, '_thumbnail_id', sanitize_text_field($value));
+		foreach ($dj_data as $name => $value) {
+			if($name == 'dj_logo') {
+				update_post_meta($dj_id, '_thumbnail_id', sanitize_text_field($value));
 			} else {
-				update_post_meta($organizer_id, '_' . $name, sanitize_text_field($value));
+				update_post_meta($dj_id, '_' . $name, sanitize_text_field($value));
 
 				delete_post_meta($event->ID, '_' . $name);
 			}
 		}
-		update_post_meta($event->ID, '_event_organizer_ids', array($organizer_id));
+		update_post_meta($event->ID, '_event_dj_ids', array($dj_id));
 	}
 
 	/**

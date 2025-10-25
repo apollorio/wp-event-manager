@@ -4,9 +4,46 @@
  * Event Submission Form
  */
 if(!defined('ABSPATH')) exit;
-global $event_manager; 
+global $event_manager;
 do_action('wp_event_manager_event_submit_before');
-$allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
+$allowed_field_types = array_keys(wpem_get_form_field_types());
+
+// Initialize fields variables to prevent undefined variable warnings
+$dj_fields = array();
+$local_fields = array();
+
+// Get DJ fields if enabled
+if(get_option('enable_event_dj')) {
+	$dj_fields = $GLOBALS['event_manager']->forms->get_fields('submit-dj');
+	if(is_user_logged_in()) {
+		$current_user = wp_get_current_user();
+		if(isset($dj_fields['dj']['dj_name']))
+			$dj_fields['dj']['dj_name']['value'] =  $current_user->display_name;
+		if(isset($dj_fields['dj']['dj_email']))
+			$dj_fields['dj']['dj_email']['value'] =  $current_user->user_email;
+	}
+}
+
+// Get Local fields if enabled
+if(get_option('enable_event_local')) {
+	// Garante que a classe está carregada
+	if(!class_exists('WP_Event_Manager_Form_Submit_local')) {
+		$forms_dir = defined('EVENT_MANAGER_PLUGIN_DIR') ? EVENT_MANAGER_PLUGIN_DIR . '/forms/' : dirname(__FILE__) . '/../forms/';
+		$file = $forms_dir . 'wp-event-manager-form-submit-local.php';
+		if(file_exists($file)) {
+			include_once($file);
+		}
+	}
+	if(class_exists('WP_Event_Manager_Form_Submit_local')) {
+		$GLOBALS['event_manager']->forms->get_form('submit-local', array());
+		$form_submit_local_instance = call_user_func(array('WP_Event_Manager_Form_Submit_local', 'instance'));
+		$local_fields = $form_submit_local_instance->merge_with_custom_fields('backend');
+	} else {
+		$local_fields = array();
+	}
+}
+
+?>
 
 <form action="<?php echo esc_url($action); ?>" method="post" id="submit-event-form" class="wpem-form-wrapper wpem-main event-manager-form" enctype="multipart/form-data">
 	<?php if(apply_filters('submit_event_form_show_signin', true)) : 
@@ -34,7 +71,7 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 		$show_thumbnail_field = get_option('event_manager_upload_custom_thumbnail', false); 
 
 		foreach($event_fields as $key => $field) : 
-			if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] = false)) :
+			if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] == false)) :
 				continue;
 			endif; 
 			if (isset($field['type']) && $field['type'] === 'media-library-image' && !is_user_logged_in()) {
@@ -62,9 +99,9 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 
 		<!-- dj Information Fields -->
 		<?php if(get_option('enable_event_dj')) :
-			if($dj_fields) :
+			if(isset($dj_fields['dj']) && is_array($dj_fields['dj'])) :
 				do_action('submit_event_form_dj_fields_start');
-				foreach($dj_fields as $key => $field) :
+				foreach($dj_fields['dj'] as $key => $field) :
 					if (isset($field['type']) && $field['type'] === 'media-library-image' && !is_user_logged_in()) {
 						continue;
 					}
@@ -74,37 +111,37 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 					<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
 						<h2 class="wpem-form-title wpem-heading-text"><?php esc_html_e('dj Details', 'wp-event-manager'); ?></h2>
 						<label for="<?php echo esc_attr($key); ?>">
-							<?php echo esc_html($field['label'], 'wp-event-manager');
-							echo wp_kses_post(apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?>
+							<?php echo esc_html(isset($field['label']) ? $field['label'] : $key, 'wp-event-manager');
+							echo wp_kses_post(apply_filters('submit_event_form_required_label', isset($field['required']) && $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?>
 						</label>
-						<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
+						<div class="field <?php echo esc_attr(isset($field['required']) && $field['required'] ? 'required-field' : ''); ?>">
 							<?php $field_type = in_array($field['type'], $allowed_field_types, true) ? $field['type'] : 'text';
 							get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); ?>
 						</div>
 					</fieldset>
 				<?php endforeach;
-				do_action('submit_event_form_dj_fields_end'); 
+				do_action('submit_event_form_dj_fields_end');
 			 endif; 
 		endif; ?>
 
 		<!-- local Information Fields -->
 		<?php if(get_option('enable_event_local')) :
-			if($local_fields) :
-				 do_action('submit_event_form_local_fields_start'); 
-				foreach($local_fields as $key => $field) :
+			if(isset($local_fields['local']) && is_array($local_fields['local'])) :
+				do_action('submit_event_form_local_fields_start');
+				foreach($local_fields['local'] as $key => $field) :
 					if (isset($field['type']) && $field['type'] === 'media-library-image' && !is_user_logged_in()) {
 						continue;
 					}
 					if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] == false)) :
 						continue;
-					endif;?>
+					endif; ?>
 					<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
 						<h2 class="wpem-form-title wpem-heading-text"><?php esc_html_e('local Details', 'wp-event-manager'); ?></h2>
 						<label for="<?php echo esc_attr($key); ?>">
-							<?php echo esc_html($field['label'], 'wp-event-manager');
-							echo wp_kses_post(apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?>
+							<?php echo esc_html(isset($field['label']) ? $field['label'] : $key, 'wp-event-manager');
+							echo wp_kses_post(apply_filters('submit_event_form_required_label', isset($field['required']) && $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?>
 						</label>
-						<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
+						<div class="field <?php echo esc_attr(isset($field['required']) && $field['required'] ? 'required-field' : ''); ?>">
 							<?php $field_type = in_array($field['type'], $allowed_field_types, true) ? $field['type'] : 'text';
 							get_event_manager_template('form-fields/' . $field_type . '-field.php', array('key' => $key, 'field' => $field)); ?>
 						</div>
@@ -115,6 +152,14 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 		endif; ?>
 
 		<div class="wpem-form-footer">
+
+			<!-- OpenStreetMap / Leaflet map preview and hidden geolocation fields -->
+			<div id="wpem-map" style="width:100%;height:300px;margin-bottom:1rem;display:none;"></div>
+			<input type="hidden" name="geolocated" id="geolocated" value="" />
+			<input type="hidden" name="geolocation_lat" id="geolocation_lat" value="" />
+			<input type="hidden" name="geolocation_long" id="geolocation_long" value="" />
+			<input type="hidden" name="geolocation_formatted_address" id="geolocation_formatted_address" value="" />
+
 			<input type="hidden" name="event_manager_form" value="<?php echo esc_attr($form); ?>" />
 			<input type="hidden" name="event_id" value="<?php echo esc_attr($event_id); ?>" />
 			<input type="hidden" name="step" value="<?php echo esc_attr($step); ?>" />
@@ -125,17 +170,7 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 	endif; ?>
 </form>
 
-<?php if(get_option('enable_event_dj')) : 
-
-	$dj_fields =	$GLOBALS['event_manager']->forms->get_fields('submit-dj');
-	if(is_user_logged_in()) {
-		$current_user = wp_get_current_user();
-		if(isset($dj_fields['dj']['dj_name']))
-			$dj_fields['dj']['dj_name']['value'] =  $current_user->display_name;
-		if(isset($dj_fields['dj']['dj_email']))
-			$dj_fields['dj']['dj_email']['value'] =  $current_user->user_email;
-	}
-	?>
+<?php if(get_option('enable_event_dj')) : ?>
 
 	<div id="wpem_add_dj_popup" class="wpem-modal" role="dialog" aria-labelledby="<?php echo esc_attr__('Add dj', 'wp-event-manager'); ?>">
 		<div class="wpem-modal-content-wrapper">
@@ -158,8 +193,8 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 							<?php endif; ?>
 							<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">
 								<label for="<?php echo esc_attr($key, 'wp-event-manager'); ?>">
-								<?php echo esc_html($field['label'], 'wp-event-manager');
-								 echo wp_kses_post(apply_filters('submit_event_form_required_label', $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?>
+								<?php echo esc_html(isset($field['label']) ? $field['label'] : $key, 'wp-event-manager');
+								 echo wp_kses_post(apply_filters('submit_event_form_required_label', isset($field['required']) && $field['required'] ? '<span class="require-field">*</span>' : ' <small>' . __('(optional)', 'wp-event-manager') . '</small>', $field)); ?>
 								</label>
 								<div class="field <?php echo esc_attr($field['required'] ? 'required-field' : ''); ?>">
 									<?php $field_type = in_array($field['type'], $allowed_field_types, true) ? $field['type'] : 'text';
@@ -186,13 +221,9 @@ $allowed_field_types = array_keys(wpem_get_form_field_types()); ?>
 			<div class="wpem-modal-overlay"></div>
 		</a>
 	</div>
-<?php endif;
+<?php endif; ?>
 
-if(get_option('enable_event_local')) :
-
-	$GLOBALS['event_manager']->forms->get_form('submit-local', array());
-	$form_submit_local_instance = call_user_func(array('WP_Event_Manager_Form_Submit_local', 'instance'));
-	$local_fields =	$form_submit_local_instance->merge_with_custom_fields('backend'); ?>
+<?php if(get_option('enable_event_local')) : ?>
 
 	<div id="wpem_add_local_popup" class="wpem-modal" role="dialog" aria-labelledby="<?php echo esc_attr__('Add local', 'wp-event-manager'); ?>">
 		<div class="wpem-modal-content-wrapper">
@@ -209,7 +240,7 @@ if(get_option('enable_event_local')) :
 					<?php do_action('submit_local_form_local_fields_start'); ?>
 
 					<?php foreach($local_fields['local'] as $key => $field) : 
-						if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] = false)) :
+						if(isset($field['visibility']) && ($field['visibility'] == 0 || $field['visibility'] == false)) :
 							continue;
 						endif; ?>
 						<fieldset class="wpem-form-group fieldset-<?php echo esc_attr($key); ?>">

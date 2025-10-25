@@ -7,12 +7,12 @@ use Elementor\Controls_Manager;
 if(!defined('ABSPATH')) exit; // Exit if accessed directly
 
 /**
- * Elementor Single Organizer
+ * Elementor Single DJ
  *
- * Elementor widget for single Organizer.
+ * Elementor widget for single DJ.
  *
  */
-class Elementor_Single_Organizer extends Widget_Base {
+class Elementor_Single_DJ extends Widget_Base {
 
 	/**
 	 * Retrieve the widget name.
@@ -22,7 +22,7 @@ class Elementor_Single_Organizer extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'single-organizer';
+		return 'single-dj';
 	}
 
 	/**
@@ -33,7 +33,7 @@ class Elementor_Single_Organizer extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __('Single Organizer', 'wp-event-manager');
+		return __('Single DJ', 'wp-event-manager');
 	}
 	/**	
 	 * Get widget icon.
@@ -57,7 +57,7 @@ class Elementor_Single_Organizer extends Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return ['single-organizer', 'code'];
+		return ['single-dj', 'code'];
 	}
 
 	/**
@@ -84,10 +84,10 @@ class Elementor_Single_Organizer extends Widget_Base {
 	protected function register_controls() {
 		$this->start_controls_section(
 			'section_shortcode',
-			['label' => __('Single Organizer', 'wp-event-manager'),]
+			['label' => __('Single DJ', 'wp-event-manager'),]
 		);
 		$args = array(
-				'post_type'		=> 'event_organizer',
+				'post_type'		=> 'event_dj',
 				'post_status'	=> 'publish',
 				'posts_per_page'=> -1,
 				'suppress_filters' => 0,
@@ -100,12 +100,12 @@ class Elementor_Single_Organizer extends Widget_Base {
 				$options[$rganizer->ID] = $rganizer->post_title;
 			}
 		}else{
-			$options[] = __('Not Found Organizer', 'wp-event-manager');
+			$options[] = __('Not Found DJ', 'wp-event-manager');
 		}
 		$this->add_control(
-			'organizer_id',
+			'dj_id',
 			[
-				'label'     => __('Select Organizer', 'wp-event-manager'),
+				'label'     => __('Select DJ', 'wp-event-manager'),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => '',
 				'options'	=> $options
@@ -122,15 +122,15 @@ class Elementor_Single_Organizer extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		if($settings['organizer_id']>0){
-		    $organizer_id = 'id='.esc_attr($settings['organizer_id']);
-		    $settings['organizer_id']='id='.esc_attr($settings['organizer_id']);
+		if($settings['dj_id']>0){
+		    $dj_id = 'id='.esc_attr($settings['dj_id']);
+		    $settings['dj_id']='id='.esc_attr($settings['dj_id']);
 		}
 		else{
-		    $organizer_id = '';
-		    $settings['organizer_id']='';
+		    $dj_id = '';
+		    $settings['dj_id']='';
 		}
-		echo do_shortcode('[event_organizer '.$organizer_id.' ]');
+		echo do_shortcode('[event_dj '.$dj_id.' ]');
 	}
 
 	/**

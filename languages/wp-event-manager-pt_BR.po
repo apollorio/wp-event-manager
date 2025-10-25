@@ -86,7 +86,7 @@ msgid "Field Label"
 msgstr "Legenda do campo"
 
 #: admin/wp-event-manager-field-editor.php:129
-msgid "Organizer fields"
+msgid "DJ fields"
 msgstr "Campos do organizador"
 
 #: admin/wp-event-manager-field-editor.php:125
@@ -434,7 +434,7 @@ msgid "%s listed successfully. To view your listing <a href=\"%s\">click here</a
 msgstr "%s listado com sucesso. Para visualizar sua listagem, <a href=\"%s\">clique aqui</a>."
 
 #: templates/event-submit.php:37
-msgid "Organizer Details"
+msgid "DJ Details"
 msgstr "Detalhes do organizador"
 
 #: templates/event-submit.php:20
@@ -529,36 +529,36 @@ msgstr "Visão geral do evento"
 msgid "This listing has expired."
 msgstr "Esta lista expirou."
 
-#: templates/content-single-event_listing-organizer.php:204
+#: templates/content-single-event_listing-dj.php:204
 msgid "Share This Event"
 msgstr "Compartilhar este evento"
 
-#: templates/content-single-event_listing-organizer.php:143
-msgid "Organizer Social"
+#: templates/content-single-event_listing-dj.php:143
+msgid "DJ Social"
 msgstr "Organizador social"
 
-#: templates/content-single-event_listing-organizer.php:111
+#: templates/content-single-event_listing-dj.php:111
 msgid "Registration End Date"
 msgstr "Data final de registro"
 
-#: templates/content-single-event_listing-organizer.php:88
+#: templates/content-single-event_listing-dj.php:88
 msgid "When & Where"
 msgstr "Quando & Onde"
 
-#: templates/content-single-event_listing-organizer.php:80
+#: templates/content-single-event_listing-dj.php:80
 msgid "Ticket Information"
 msgstr "Informações de ingressos"
 
-#: templates/content-single-event_listing-organizer.php:59
-#: templates/content-single-event_listing-organizer.php:66
+#: templates/content-single-event_listing-dj.php:59
+#: templates/content-single-event_listing-dj.php:66
 msgid "Watch Video"
 msgstr "Assistir vídeo"
 
-#: templates/content-single-event_listing-organizer.php:52
+#: templates/content-single-event_listing-dj.php:52
 msgid "View More Details"
 msgstr "Ver mais detalhes"
 
-#: templates/content-single-event_listing-organizer.php:36
+#: templates/content-single-event_listing-dj.php:36
 msgid "About"
 msgstr "Sobre"
 
@@ -726,11 +726,11 @@ msgid "%s is a required field"
 msgstr "%s é um campo obrigatório"
 
 #: forms/wp-event-manager-form-submit-event.php:399
-msgid "Twitter URL e.g http://twitter.com/yourorganizer"
+msgid "Twitter URL e.g http://twitter.com/yourdj"
 msgstr "URL do Twitter ex. http://twitter.com/seuorganizador"
 
 #: forms/wp-event-manager-form-submit-event.php:396
-#: templates/content-single-event_listing-organizer.php:158
+#: templates/content-single-event_listing-dj.php:158
 msgid "Twitter"
 msgstr "Twitter"
 
@@ -824,19 +824,19 @@ msgid "This is where you can create and manage %s."
 msgstr "Aqui você pode criar e gerenciar %s."
 
 #: core/wp-event-manager-post-types.php:323
-msgid "Use as organizer logo"
+msgid "Use as dj logo"
 msgstr "Utilizar como logo do organizador"
 
 #: core/wp-event-manager-post-types.php:321
-msgid "Remove organizer logo"
+msgid "Remove dj logo"
 msgstr "Remover logo do organizador"
 
 #: core/wp-event-manager-post-types.php:319
-msgid "Set organizer logo"
+msgid "Set dj logo"
 msgstr "Definir logo do organizador"
 
 #: core/wp-event-manager-post-types.php:317
-msgid "Organizer Logo"
+msgid "DJ Logo"
 msgstr "Logo do organizador"
 
 #: core/wp-event-manager-post-types.php:313
@@ -953,7 +953,7 @@ msgid "Event category"
 msgstr "Categoria de evento"
 
 #: core/wp-event-manager-install.php:69
-msgid "Organizer"
+msgid "DJ"
 msgstr "Organizador"
 
 #: core/wp-event-manager-geocode.php:222 core/wp-event-manager-geocode.php:229
@@ -1102,7 +1102,7 @@ msgstr "URL do Instagram ex. http://www.instagram.com/suaempresa"
 
 #: admin/wp-event-manager-writepanels.php:354
 #: forms/wp-event-manager-form-submit-event.php:420
-#: templates/content-single-event_listing-organizer.php:182
+#: templates/content-single-event_listing-dj.php:182
 msgid "Instagram"
 msgstr "Instagram"
 
@@ -1113,7 +1113,7 @@ msgstr "URL do Pinterest ex. http://www.pinterest.com/suaempresa"
 
 #: admin/wp-event-manager-writepanels.php:346
 #: forms/wp-event-manager-form-submit-event.php:412
-#: templates/content-single-event_listing-organizer.php:176
+#: templates/content-single-event_listing-dj.php:176
 msgid "Pinterest"
 msgstr "Pinterest"
 
@@ -1124,12 +1124,12 @@ msgstr "URL do Xing ex. http://www.xing.com/companies/suaempresa"
 
 #: admin/wp-event-manager-writepanels.php:338
 #: forms/wp-event-manager-form-submit-event.php:404
-#: templates/content-single-event_listing-organizer.php:170
+#: templates/content-single-event_listing-dj.php:170
 msgid "Xing"
 msgstr "Xing"
 
 #: admin/wp-event-manager-writepanels.php:333
-msgid "@yourorganizer"
+msgid "@yourdj"
 msgstr "@seuorganizador"
 
 #: admin/wp-event-manager-writepanels.php:330
@@ -1143,7 +1143,7 @@ msgstr "URL do LinkedIn ex. http://www.linkedin.com/company/suaempresa"
 
 #: admin/wp-event-manager-writepanels.php:322
 #: forms/wp-event-manager-form-submit-event.php:388
-#: templates/content-single-event_listing-organizer.php:164
+#: templates/content-single-event_listing-dj.php:164
 msgid "Linkedin"
 msgstr "LinkedIn"
 
@@ -1154,7 +1154,7 @@ msgstr "URL do Facebook ex. http://www.facebook.com/suaempresa"
 
 #: admin/wp-event-manager-writepanels.php:314
 #: forms/wp-event-manager-form-submit-event.php:380
-#: templates/content-single-event_listing-organizer.php:152
+#: templates/content-single-event_listing-dj.php:152
 msgid "Facebook"
 msgstr "Facebook"
 
@@ -1165,7 +1165,7 @@ msgstr "URL do Google+ ex. http://plus.google.com/suacompanhia"
 
 #: admin/wp-event-manager-writepanels.php:306
 #: forms/wp-event-manager-form-submit-event.php:372
-#: templates/content-single-event_listing-organizer.php:194
+#: templates/content-single-event_listing-dj.php:194
 msgid "Google+"
 msgstr "Google+"
 
@@ -1176,7 +1176,7 @@ msgstr "URL do Canal do Youtube ex. http://www.youtube.com/channel/suaempresa"
 
 #: admin/wp-event-manager-writepanels.php:298
 #: forms/wp-event-manager-form-submit-event.php:364
-#: templates/content-single-event_listing-organizer.php:188
+#: templates/content-single-event_listing-dj.php:188
 msgid "Youtube"
 msgstr "Youtube"
 
@@ -1205,7 +1205,7 @@ msgstr "URL do Website ex. http://www.suaempresa.com"
 
 #: admin/wp-event-manager-writepanels.php:273
 #: forms/wp-event-manager-form-submit-event.php:348
-#: templates/content-single-event_listing-organizer.php:147
+#: templates/content-single-event_listing-dj.php:147
 msgid "Website"
 msgstr "Website"
 
@@ -1231,7 +1231,7 @@ msgstr "Nome do ponto de contato"
 
 #: admin/wp-event-manager-writepanels.php:249
 #: forms/wp-event-manager-form-submit-event.php:324
-msgid "Organizer Description"
+msgid "DJ Description"
 msgstr "Descrição do organizador"
 
 #: admin/wp-event-manager-writepanels.php:240
@@ -1401,12 +1401,12 @@ msgstr "Endereço"
 
 #: admin/wp-event-manager-writepanels.php:98
 #: forms/wp-event-manager-form-submit-event.php:163
-msgid "Please enter the venue name"
+msgid "Please enter the local name"
 msgstr "Insira o nome do local"
 
 #: admin/wp-event-manager-writepanels.php:95
 #: forms/wp-event-manager-form-submit-event.php:160
-msgid "Venue Name"
+msgid "Local Name"
 msgstr "Nome do local"
 
 #: admin/wp-event-manager-writepanels.php:88
@@ -1423,7 +1423,7 @@ msgstr "Sim"
 #: forms/wp-event-manager-form-submit-event.php:148
 #: templates/content-event_listing.php:30
 #: templates/content-event_listing.php:56
-#: templates/content-single-event_listing-organizer.php:99
+#: templates/content-single-event_listing-dj.php:99
 #: templates/content-summary-event_listing.php:10
 #: templates/content-widget-event_listing.php:10
 #: templates/event-dashboard.php:78
@@ -2070,7 +2070,7 @@ msgid "Posted Date"
 msgstr "Data de publicação"
 
 #: admin/wp-event-manager-cpt.php:392
-msgid "Event Organizer"
+msgid "Event DJ"
 msgstr "Organizador do evento"
 
 #: admin/wp-event-manager-cpt.php:390

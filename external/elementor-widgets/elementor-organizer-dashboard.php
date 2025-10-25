@@ -7,12 +7,12 @@ use Elementor\Controls_Manager;
 if (! defined('ABSPATH')) exit; // Exit if accessed directly
 
 /**
- * Elementor Event Organizer Dashboard
+ * Elementor Event DJ Dashboard
  *
- * Elementor widget for organizer dashboard.
+ * Elementor widget for dj dashboard.
  *
  */
-class Elementor_Organizer_Dashboard extends Widget_Base {
+class Elementor_DJ_Dashboard extends Widget_Base {
 
 	/**
 	 * Retrieve the widget name.
@@ -22,7 +22,7 @@ class Elementor_Organizer_Dashboard extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'organizer-dashboard';
+		return 'dj-dashboard';
 	}
 
 	/**
@@ -33,7 +33,7 @@ class Elementor_Organizer_Dashboard extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __('Organizer Dashboard', 'wp-event-manager');
+		return __('DJ Dashboard', 'wp-event-manager');
 	}
 	/**	
 	 * Get widget icon.
@@ -57,7 +57,7 @@ class Elementor_Organizer_Dashboard extends Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return ['organizer-dashboard', 'code'];
+		return ['dj-dashboard', 'code'];
 	}
 
 	/**
@@ -86,7 +86,7 @@ class Elementor_Organizer_Dashboard extends Widget_Base {
 	protected function register_controls() {
 		$this->start_controls_section(
 			'section_shortcode',
-			['label' => __('Organizer Dashboard', 'wp-event-manager'),]
+			['label' => __('DJ Dashboard', 'wp-event-manager'),]
 		);
 		$this->add_control(
 			'posts_per_page',
@@ -113,7 +113,7 @@ class Elementor_Organizer_Dashboard extends Widget_Base {
 			$posts_per_page = 'posts_per_page='.(int)$settings['posts_per_page'];
 		else
 		    $posts_per_page = 'posts_per_page=10';
-		echo do_shortcode('[organizer_dashboard '.$posts_per_page.' ]');
+		echo do_shortcode('[dj_dashboard '.$posts_per_page.' ]');
 	}
 
 	/**

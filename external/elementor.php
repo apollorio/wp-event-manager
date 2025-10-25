@@ -171,17 +171,17 @@ class Plugin {
 		require_once(__DIR__ . '/elementor-widgets/elementor-single-event-field.php');
 		require_once(__DIR__ . '/elementor-widgets/elementor-upcoming-event-listing.php');
 
-		require_once(__DIR__ . '/elementor-widgets/elementor-submit-organizer-form.php');
-		require_once(__DIR__ . '/elementor-widgets/elementor-organizer-dashboard.php');
-		require_once(__DIR__ . '/elementor-widgets/elementor-single-event-organizer.php');
-		require_once(__DIR__ . '/elementor-widgets/elementor-single-organizer.php');
-		require_once(__DIR__ . '/elementor-widgets/elementor-event-organizers.php');
+		require_once(__DIR__ . '/elementor-widgets/elementor-submit-dj-form.php');
+		require_once(__DIR__ . '/elementor-widgets/elementor-dj-dashboard.php');
+		require_once(__DIR__ . '/elementor-widgets/elementor-single-event-dj.php');
+		require_once(__DIR__ . '/elementor-widgets/elementor-single-dj.php');
+		require_once(__DIR__ . '/elementor-widgets/elementor-event-djs.php');
 
-		require_once(__DIR__ . '/elementor-widgets/elementor-submit-venue-form.php');
-		require_once(__DIR__ . '/elementor-widgets/elementor-venue-dashboard.php');
-		require_once(__DIR__ . '/elementor-widgets/elementor-single-event-venue.php');
-		require_once(__DIR__ . '/elementor-widgets/elementor-single-venue.php');
-		require_once(__DIR__ . '/elementor-widgets/elementor-event-venues.php');
+		require_once(__DIR__ . '/elementor-widgets/elementor-submit-local-form.php');
+		require_once(__DIR__ . '/elementor-widgets/elementor-local-dashboard.php');
+		require_once(__DIR__ . '/elementor-widgets/elementor-single-event-local.php');
+		require_once(__DIR__ . '/elementor-widgets/elementor-single-local.php');
+		require_once(__DIR__ . '/elementor-widgets/elementor-event-locals.php');
 	}
 
 	/**
@@ -205,17 +205,17 @@ class Plugin {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Event_Field());
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Upcoming_Event_Listing());
 
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Organizer_Dashboard());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Submit_Organizer_Form());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Single_Event_Organizer());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Single_Organizer());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Event_Organizers());
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_DJ_Dashboard());
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Submit_DJ_Form());
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Single_Event_DJ());
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Single_DJ());
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Event_DJs());
 
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Venue_Dashboard());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Submit_Venue_Form());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Single_Event_Venue());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Single_Venue());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Event_Venues());
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Local_Dashboard());
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Submit_Local_Form());
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Single_Event_Local());
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Single_Local());
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\Elementor_Event_Locals());
 	}
 
 	/**

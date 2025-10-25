@@ -1,3 +1,21 @@
+	/**
+	 * Stub para obter campos padrão. Deve ser sobrescrito nas subclasses.
+	 */
+	public function get_default_fields() {
+		return array();
+	}
+	/**
+	 * Stub para obter campos do field editor. Deve ser sobrescrito nas subclasses.
+	 */
+	public function get_event_manager_fieldeditor_fields() {
+		return array();
+	}
+	/**
+	 * Stub para uso do campo recaptcha. Pode ser sobrescrito nas subclasses.
+	 */
+	public function use_recaptcha_field() {
+		return false;
+	}
 <?php
 /**
  * Abstract WP_Event_Manager_Form class.
@@ -17,14 +35,35 @@ abstract class WP_Event_Manager_Form {
 	 * Cloning is forbidden.
 	 */
 	public function __clone() {
-		_doing_it_wrong(__FUNCTION__);
+	_doing_it_wrong(__FUNCTION__, 'Cloning is forbidden for WP_Event_Manager_Form.', '1.0.0');
+	}
+
+	/**
+	 * Stub para obter campos padrão. Deve ser sobrescrito nas subclasses.
+	 */
+	public function get_default_fields() {
+		return array();
+	}
+
+	/**
+	 * Stub para obter campos do field editor. Deve ser sobrescrito nas subclasses.
+	 */
+	public function get_event_manager_fieldeditor_fields() {
+		return array();
+	}
+
+	/**
+	 * Stub para uso do campo recaptcha. Pode ser sobrescrito nas subclasses.
+	 */
+	public function use_recaptcha_field() {
+		return false;
 	}
 
 	/**
 	 * Unserializing instances of this class is forbidden.
 	 */
 	public function __wakeup() {
-		_doing_it_wrong(__FUNCTION__);
+	_doing_it_wrong(__FUNCTION__, 'Unserializing is forbidden for WP_Event_Manager_Form.', '1.0.0');
 	}
 
 	/**
@@ -200,7 +239,7 @@ abstract class WP_Event_Manager_Form {
 	 * Enqueue the scripts for the form.
 	 */
 	public function enqueue_scripts() {
-		if($this->use_recaptcha_field()) {
+	if(method_exists($this, 'use_recaptcha_field') && $this->use_recaptcha_field()) {
 			wp_enqueue_script('recaptcha', 'https://www.google.com/recaptcha/api.js');
 		}
 	}
@@ -510,8 +549,8 @@ abstract class WP_Event_Manager_Form {
 	 */
 	public function merge_with_custom_fields($field_view = 'frontend') { 
 	
-		$custom_fields  = $this->get_event_manager_fieldeditor_fields();
-		$default_fields = $this->get_default_fields();
+	$custom_fields  = method_exists($this, 'get_event_manager_fieldeditor_fields') ? $this->get_event_manager_fieldeditor_fields() : array();
+	$default_fields = method_exists($this, 'get_default_fields') ? $this->get_default_fields() : array();
 		
 		if(!get_option('event_manager_enable_event_ticket_prices', false)){
 		    if(isset($custom_fields['event']['event_ticket_options']))

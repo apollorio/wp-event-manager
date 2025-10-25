@@ -108,7 +108,9 @@ class WP_Event_Manager_Forms {
 	public function get_form($form_name, $atts = array()) {
 		if($form = $this->load_form_class($form_name)) {
 			ob_start();
-			$form->output($atts);
+			if (is_object($form) && method_exists($form, 'output')) {
+				$form->output($atts);
+			}
 			return ob_get_clean();
 		}
 	}
@@ -122,7 +124,7 @@ class WP_Event_Manager_Forms {
 	public function get_fields($form_name) {
 		$fields = array();
 		if($form = $this->load_form_class($form_name)) {
-			$fields = $form->merge_with_custom_fields('frontend');
+			$fields = (is_object($form) && method_exists($form, 'merge_with_custom_fields')) ? $form->merge_with_custom_fields('frontend') : array();
 		}
 		return $fields;
 	}

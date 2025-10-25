@@ -1,0 +1,1 @@
+// ...existing code from organizer-dashboard.js, renomear internamente organizer→dj

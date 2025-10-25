@@ -25,8 +25,8 @@ class WP_Event_Manager_Data_Cleaner {
 	 */
 	private static $custom_post_types = array(
 		'event_listing',
-		'event_organizer',
-		'event_venue',
+		'event_dj',
+		'event_local',
 	);
 
 	/**
@@ -84,7 +84,7 @@ class WP_Event_Manager_Data_Cleaner {
 	 *
 	 * @var $role
 	 */
-	private static $role = 'organizer';
+	private static $role = 'dj';
 
 	/**
 	 * Capabilities to be deleted.
@@ -118,12 +118,12 @@ class WP_Event_Manager_Data_Cleaner {
 	 * @var array $user_meta_keys
 	 */
 	private static $user_meta_keys = array(
-		'_organizer_logo',
-		'_organizer_name',
-		'_organizer_website',
-		'_organizer_tagline',
-		'_organizer_twitter',
-		'_organizer_video',
+		'_dj_logo',
+		'_dj_name',
+		'_dj_website',
+		'_dj_tagline',
+		'_dj_twitter',
+		'_dj_video',
 	);
 
 	/**
@@ -173,7 +173,7 @@ class WP_Event_Manager_Data_Cleaner {
 	 * @return void
 	 */
 	private static function delete_event_with_attachment($post_id) {
-		if(!in_array(get_post_type($post_id), ['event_listing', 'event_organizer']))
+		if(!in_array(get_post_type($post_id), ['event_listing', 'event_dj']))
 			return;
 		
  		$event_banner = esc_url(get_post_meta($post_id, '_event_banner', true));
@@ -271,40 +271,40 @@ class WP_Event_Manager_Data_Cleaner {
 			wp_delete_post($events_page_id, true);
 		}
 
-		// Trash the submit organizer page.
-		$submit_organizer_form_page_id = get_option('event_manager_submit_organizer_form_page_id');
-		if($submit_organizer_form_page_id) {
-			wp_delete_post($submit_organizer_form_page_id, true);
+		// Trash the submit dj page.
+		$submit_dj_form_page_id = get_option('event_manager_submit_dj_form_page_id');
+		if($submit_dj_form_page_id) {
+			wp_delete_post($submit_dj_form_page_id, true);
 		}
 
-		// Trash the organizer dashboard page.
-		$organizer_dashboard_page_id = get_option('event_manager_organizer_dashboard_page_id');
-		if($organizer_dashboard_page_id) {
-			wp_delete_post($organizer_dashboard_page_id, true);
+		// Trash the dj dashboard page.
+		$dj_dashboard_page_id = get_option('event_manager_dj_dashboard_page_id');
+		if($dj_dashboard_page_id) {
+			wp_delete_post($dj_dashboard_page_id, true);
 		}
 
-		// Trash the event organizer page.
-		$event_organizers_page_id = get_option('event_manager_event_organizers_page_id');
-		if($event_organizers_page_id) {
-			wp_delete_post($event_organizers_page_id, true);
+		// Trash the event dj page.
+		$event_djs_page_id = get_option('event_manager_event_djs_page_id');
+		if($event_djs_page_id) {
+			wp_delete_post($event_djs_page_id, true);
 		}
 
-		// Trash the submit venue page.
-		$submit_venue_form_page_id = get_option('event_manager_submit_venue_form_page_id');
-		if($submit_venue_form_page_id) {
-			wp_delete_post($submit_venue_form_page_id, true);
+		// Trash the submit local page.
+		$submit_local_form_page_id = get_option('event_manager_submit_local_form_page_id');
+		if($submit_local_form_page_id) {
+			wp_delete_post($submit_local_form_page_id, true);
 		}
 
-		// Trash the venue dashboard page.
-		$venue_dashboard_page_id = get_option('event_manager_venue_dashboard_page_id');
-		if($venue_dashboard_page_id) {
-			wp_delete_post($venue_dashboard_page_id, true);
+		// Trash the local dashboard page.
+		$local_dashboard_page_id = get_option('event_manager_local_dashboard_page_id');
+		if($local_dashboard_page_id) {
+			wp_delete_post($local_dashboard_page_id, true);
 		}
 
-		// Trash the event venue page.
-		$event_venues_page_id = get_option('event_manager_event_venues_page_id');
-		if($event_venues_page_id) {
-			wp_delete_post($event_venues_page_id, true);
+		// Trash the event local page.
+		$event_locals_page_id = get_option('event_manager_event_locals_page_id');
+		if($event_locals_page_id) {
+			wp_delete_post($event_locals_page_id, true);
 		}
 	}
 

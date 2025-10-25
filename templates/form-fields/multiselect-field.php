@@ -7,7 +7,7 @@ wp_enqueue_script('wpem-dompurify', EVENT_MANAGER_PLUGIN_URL . '/assets/js/dom-p
 
 <select multiple="multiple" name="<?php echo esc_attr(isset($field['name']) ? $field['name'] : $key); ?>[]" id="<?php echo esc_attr($key); ?>" class="event-manager-multiselect" data-no_results_text="<?php esc_attr_e('No results match', 'wp-event-manager'); ?>" attribute="<?php echo esc_attr(isset($field['attribute']) ? $field['attribute'] : ''); ?>" data-multiple_text="<?php esc_attr_e('Select Some Options', 'wp-event-manager'); ?>">
     <?php 
-    // Get the default value (array of default organizers)
+    // Get the default value (array of default djs)
     $default_value = isset($field['default']) ? (array)$field['default'] : []; // Ensure it's an array
 
     foreach ($field['options'] as $option_key => $option_value) : ?>

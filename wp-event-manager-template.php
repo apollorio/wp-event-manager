@@ -484,10 +484,13 @@ function display_event_location($map_link = true, $post = null){
 	if(is_event_online($post)) {
 		echo wp_kses_post(apply_filters('display_event_location_anywhere_text', __('Online Event', 'wp-event-manager')));
 	} else {
-		if($map_link === true || ($map_link && $map_link !== '-'))
-			echo wp_kses_post(apply_filters('display_event_location_map_link', '<a  href="http://maps.google.com/maps?q=' . urlencode($location) . '&zoom=14&size=512x512&maptype=roadmap&sensor=false" target="_blank">' . $location . '</a>', $location, $post));
-		else
+		if($map_link === true || ($map_link && $map_link !== '-')) {
+			$location_safe = is_string($location) ? $location : '';
+			// OpenStreetMap link
+			echo wp_kses_post(apply_filters('display_event_location_map_link', '<a href="https://www.openstreetmap.org/search?query=' . urlencode($location_safe) . '" target="_blank">' . $location_safe . '</a>', $location_safe, $post));
+		} else {
 			echo wp_kses_post($location);
+		}
 	}
 }
 
@@ -524,7 +527,7 @@ function get_event_ticket_option($post = null){
 function display_event_ticket_option($before = '', $after = '', $echo = true, $post = null){
 
 	$event_ticket_option = get_event_ticket_option($post);
-	if(strlen($event_ticket_option) == 0)
+	if(wem_safe_strlen($event_ticket_option) == 0)
 		return;
 
 	$event_ticket_option = esc_attr(strip_tags($event_ticket_option));
@@ -572,7 +575,7 @@ function get_event_registration_end_date($post = null){
 function display_event_registration_end_date($before = '', $after = '', $echo = true, $post = null){
 
 	$event_registration_end_date = get_event_registration_end_date($post);
-	if(strlen($event_registration_end_date) == 0)
+	if(wem_safe_strlen($event_registration_end_date) == 0)
 		return;
 
 	$date_format 		= WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
@@ -715,7 +718,7 @@ function get_event_start_date($post = null){
  */
 function display_event_start_date($before = '', $after = '', $echo = true, $post = null){
 	$event_start_date = get_event_start_date($post);
-	if(strlen($event_start_date) == 0)
+	if(wem_safe_strlen($event_start_date) == 0)
 		return;
 	$date_format 		= WP_Event_Manager_Date_Time::get_event_manager_view_date_format();
 	$event_start_date 	= date_i18n($date_format, strtotime($event_start_date));
@@ -762,7 +765,7 @@ function get_event_start_time($post = null){
  */
 function display_event_start_time($before = '', $after = '', $echo = true, $post = null){
 	$event_start_time = get_event_start_time($post);
-	if(strlen($event_start_time) == 0)
+	if(wem_safe_strlen($event_start_time) == 0)
 		return;
 
 	$event_start_time = esc_attr(strip_tags($event_start_time));
@@ -800,7 +803,7 @@ function get_event_end_date($post = null){
 function display_event_end_date($before = '', $after = '', $echo = true, $post = null){
 
 	$event_end_date = get_event_end_date($post);
-	if(strlen($event_end_date) == 0)
+	if(wem_safe_strlen($event_end_date) == 0)
 		return;
 
 	$event_end_date = esc_attr(strip_tags($event_end_date));
@@ -850,7 +853,7 @@ function get_event_end_time($post = null){
 function display_event_end_time($before = '', $after = '', $echo = true, $post = null){
 
 	$event_end_time = get_event_end_time($post);
-	if(strlen($event_end_time) == 0)
+	if(wem_safe_strlen($event_end_time) == 0)
 		return;
 
 	$event_end_time = esc_attr(strip_tags($event_end_time));
@@ -899,7 +902,7 @@ function get_event_timezone($post = null, $abbr = true){
 function display_event_timezone($before = '', $after = '', $echo = true, $post = null){
 
 	$event_timezone = get_event_timezone($post);
-	if(strlen($event_timezone) == 0)
+	if(wem_safe_strlen($event_timezone) == 0)
 		return;
 
 	$event_timezone = $before . $event_timezone . $after;
@@ -937,7 +940,7 @@ function get_event_timezone_abbr($post = null){
 function display_event_timezone_abbr($before = '', $after = '', $echo = true, $post = null){
 
 	$event_timezone = get_event_timezone_abbr($post);
-	if(strlen($event_timezone) == 0)
+	if(wem_safe_strlen($event_timezone) == 0)
 		return;
 
 	$event_timezone = $before . $event_timezone . $after;
@@ -993,12 +996,11 @@ function get_event_local_name($post = null, $link = false){
 function display_event_local_name($before = '', $after = '', $echo = true, $post = null){
 
 	$event_local_name = get_event_local_name($post);
-	if(strlen($event_local_name) == 0)
-		return;
-
-	$event_local_name = esc_attr(strip_tags($event_local_name));
+	if(!is_string($event_local_name)) $event_local_name = '';
+	if(wem_safe_strlen($event_local_name) == 0)
+		return '';
+	$event_local_name = esc_attr(strip_tags((string)$event_local_name));
 	$event_local_name = $before . $event_local_name . $after;
-
 	if($echo)
 		echo esc_attr($event_local_name);
 	else
@@ -1051,12 +1053,11 @@ function get_event_address($post = null){
 function display_event_address($before = '', $after = '', $echo = true, $post = null){
 
 	$event_address = get_event_address($post);
-	if(strlen($event_address) == 0)
-		return;
-
-	$event_address = esc_attr(strip_tags($event_address));
+	if(!is_string($event_address)) $event_address = '';
+	if(wem_safe_strlen($event_address) == 0)
+		return '';
+	$event_address = esc_attr(strip_tags((string)$event_address));
 	$event_address = $before . $event_address . $after;
-
 	if($echo)
 		echo esc_attr($event_address);
 	else
@@ -1089,12 +1090,11 @@ function get_event_pincode($post = null){
 function display_event_pincode($before = '', $after = '', $echo = true, $post = null){
 
 	$event_pincode = get_event_pincode($post);
-	if(strlen($event_pincode) == 0)
-		return;
-
-	$event_pincode = esc_attr(strip_tags($event_pincode));
+	if(!is_string($event_pincode)) $event_pincode = '';
+	if(wem_safe_strlen($event_pincode) == 0)
+		return '';
+	$event_pincode = esc_attr(strip_tags((string)$event_pincode));
 	$event_pincode = $before . $event_pincode . $after;
-
 	if($echo)
 		echo esc_attr($event_pincode);
 	else
@@ -1150,7 +1150,7 @@ function get_dj_name($post = null, $link = false, $link_type = 'frontend'){
 function display_dj_name($before = '', $after = '', $echo = true, $post = null){
 	$dj_name = get_dj_name($post);
 
-	if(strlen($dj_name) == 0)
+	if(wem_safe_strlen($dj_name) == 0)
 		return;
 
 	$dj_name = esc_attr(strip_tags($dj_name));
@@ -1384,7 +1384,7 @@ function get_event_dj_contact_person_name($post = null){
 function display_dj_contact_person_name($before = '', $after = '', $echo = true, $post = null){
 
 	$dj_contact_person_name = get_event_dj_contact_person_name($post);
-	if(strlen($dj_contact_person_name) == 0)
+	if(wem_safe_strlen($dj_contact_person_name) == 0)
 		return;
 
 	$dj_contact_person_name = esc_attr(strip_tags($dj_contact_person_name));
@@ -1432,7 +1432,7 @@ function get_event_dj_email($post = null){
 function display_dj_email($before = '', $after = '', $echo = true, $post = null){
 
 	$dj_email = get_event_dj_email($post);
-	if(strlen($dj_email) == 0)
+	if(wem_safe_strlen($dj_email) == 0)
 		return;
 
 	$dj_email = esc_attr(strip_tags($dj_email));
@@ -1522,10 +1522,11 @@ function get_dj_website($post = null){
 function display_dj_website($before = '', $after = '', $echo = true, $post = null){
 	$dj_website = get_dj_website($post);
 
-	if(strlen($dj_website) == 0)
+	if(!is_string($dj_website)) $dj_website = '';
+	if(wem_safe_strlen($dj_website) == 0)
 		return;
 
-	$dj_website = esc_attr(strip_tags($dj_website));
+	$dj_website = esc_attr(strip_tags((string)$dj_website));
 	$dj_website = $before . $dj_website . $after;
 	if($echo)
 		echo esc_attr($dj_website);
@@ -1573,10 +1574,11 @@ function get_local_website($post = null){
 function display_local_website($before = '', $after = '', $echo = true, $post = null){
 
 	$local_website = get_local_website($post);
-	if(strlen($local_website) == 0)
+	if(!is_string($local_website)) $local_website = '';
+	if(wem_safe_strlen($local_website) == 0)
 		return;
 
-	$local_website = esc_attr(strip_tags($local_website));
+	$local_website = esc_attr(strip_tags((string)$local_website));
 	$local_website = $before . $local_website . $after;
 	if($echo)
 		echo esc_attr($local_website);
@@ -1595,10 +1597,11 @@ function display_dj_tagline($before = '', $after = '', $echo = true, $post = nul
 
 	$dj_tagline = get_dj_tagline($post);
 
-	if(strlen($dj_tagline) == 0)
+	if(!is_string($dj_tagline)) $dj_tagline = '';
+	if(wem_safe_strlen($dj_tagline) == 0)
 		return;
 
-	$dj_tagline = esc_attr(strip_tags($dj_tagline));
+	$dj_tagline = esc_attr(strip_tags((string)$dj_tagline));
 	$dj_tagline = $before . $dj_tagline . $after;
 	if($echo)
 		echo esc_attr($dj_tagline);
@@ -1634,7 +1637,8 @@ function get_dj_twitter($post = null){
 
 	$dj_twitter = $post->_dj_twitter;
 
-	if(strlen($dj_twitter) == 0)
+	if(!is_string($dj_twitter)) $dj_twitter = '';
+	if(strlen($dj_twitter ?? '') == 0)
 		return;
 
 	if(strpos($dj_twitter, '@') === 0)
@@ -1646,7 +1650,6 @@ function get_dj_twitter($post = null){
 /**
  * Display or retrieve the current dj twitter link with optional content.
  *
- * @access public
  * @param mixed $id (default: null)
  * @return void
  */
@@ -1654,10 +1657,10 @@ function display_dj_twitter($before = '', $after = '', $echo = true, $post = nul
 
 	$dj_twitter = get_dj_twitter($post);
 
-	if(strlen($dj_twitter) == 0)
+	if(strlen($dj_twitter ?? '') == 0)
 		return;
 
-	$dj_twitter = esc_attr(strip_tags($dj_twitter));
+	$dj_twitter = esc_attr(strip_tags((string)$dj_twitter));
 	$dj_twitter = $before . '<a href="http://twitter.com/' . $dj_twitter . '" class="dj_twitter" target="_blank">' . $dj_twitter . '</a>' . $after;
 	if($echo)
 		echo esc_attr($dj_twitter);
@@ -1680,7 +1683,8 @@ function get_local_twitter($post = null){
 		return;
 
 	$local_twitter = $post->_local_twitter;
-	if(strlen($local_twitter) == 0)
+	if(!is_string($local_twitter)) $local_twitter = '';
+	if(strlen($local_twitter ?? '') == 0)
 		return;
 
 	if(strpos($local_twitter, '@') === 0)
@@ -1700,10 +1704,10 @@ function display_local_twitter($before = '', $after = '', $echo = true, $post = 
 
 	$local_twitter = get_local_twitter($post);
 
-	if(strlen($local_twitter) == 0)
+	if(wem_safe_strlen($local_twitter) == 0)
 		return;
 
-	$local_twitter = esc_attr(strip_tags($local_twitter));
+	$local_twitter = esc_attr(strip_tags((string)$local_twitter));
 	$local_twitter = $before . '<a href="http://twitter.com/' . $local_twitter . '" class="local_twitter" target="_blank">' . $local_twitter . '</a>' . $after;
 	if($echo)
 		echo esc_attr($local_twitter);
@@ -1725,7 +1729,8 @@ function get_dj_facebook($post = null){
 		return;
 
 	$dj_facebook = $post->_dj_facebook;
-	if(strlen($dj_facebook) == 0)
+	if(!is_string($dj_facebook)) $dj_facebook = '';
+	if(strlen($dj_facebook ?? '') == 0)
 		return;
 
 	return apply_filters('display_dj_facebook', $dj_facebook, $post);
@@ -1741,10 +1746,10 @@ function get_dj_facebook($post = null){
 function display_dj_facebook($before = '', $after = '', $echo = true, $post = null){
 
 	$dj_facebook = get_dj_facebook($post);
-	if(strlen($dj_facebook) == 0)
+	if(wem_safe_strlen($dj_facebook) == 0)
 		return;
 
-	$dj_facebook = esc_attr(strip_tags($dj_facebook));
+	$dj_facebook = esc_attr(strip_tags((string)$dj_facebook));
 	$dj_facebook = $before . $dj_facebook . $after;
 	if($echo)
 		echo esc_attr($dj_facebook);
@@ -1766,7 +1771,8 @@ function get_local_facebook($post = null){
 		return;
 
 	$local_facebook = $post->_local_facebook;
-	if(strlen($local_facebook) == 0)
+	if(!is_string($local_facebook)) $local_facebook = '';
+	if(strlen($local_facebook ?? '') == 0)
 		return;
 
 	return apply_filters('display_local_facebook', $local_facebook, $post);
@@ -1782,10 +1788,10 @@ function get_local_facebook($post = null){
 function display_local_facebook($before = '', $after = '', $echo = true, $post = null){
 
 	$local_facebook = get_local_facebook($post);
-	if(strlen($local_facebook) == 0)
+	if(wem_safe_strlen($local_facebook) == 0)
 		return;
 
-	$local_facebook = esc_attr(strip_tags($local_facebook));
+	$local_facebook = esc_attr(strip_tags((string)$local_facebook));
 	$local_facebook = $before . $local_facebook . $after;
 	if($echo)
 		echo esc_attr($local_facebook);
@@ -1807,7 +1813,8 @@ function get_dj_linkedin($post = null){
 		return;
 
 	$dj_linkedin = $post->_dj_linkedin;
-	if(strlen($dj_linkedin) == 0)
+	if(!is_string($dj_linkedin)) $dj_linkedin = '';
+	if(strlen($dj_linkedin ?? '') == 0)
 		return;
 
 	return apply_filters('display_dj_linkedin', $dj_linkedin, $post);
@@ -1823,10 +1830,10 @@ function get_dj_linkedin($post = null){
 function display_dj_linkedin($before = '', $after = '', $echo = true, $post = null){
 
 	$dj_linkedin = get_dj_linkedin($post);
-	if(strlen($dj_linkedin) == 0)
+	if(wem_safe_strlen($dj_linkedin) == 0)
 		return;
 
-	$dj_linkedin = esc_attr(strip_tags($dj_linkedin));
+	$dj_linkedin = esc_attr(strip_tags((string)$dj_linkedin));
 	$dj_linkedin = $before . $dj_linkedin . $after;
 	if($echo)
 		echo esc_attr($dj_linkedin);
@@ -1848,7 +1855,8 @@ function get_dj_xing($post = null){
 		return;
 
 	$dj_xing = $post->_dj_xing;
-	if(strlen($dj_xing) == 0)
+	if(!is_string($dj_xing)) $dj_xing = '';
+	if(strlen($dj_xing ?? '') == 0)
 		return;
 
 	return apply_filters('display_dj_xing', $dj_xing, $post);
@@ -1864,10 +1872,10 @@ function get_dj_xing($post = null){
 function display_dj_xing($before = '', $after = '', $echo = true, $post = null){
 
 	$dj_xing = get_dj_xing($post);
-	if(strlen($dj_xing) == 0)
+	if(wem_safe_strlen($dj_xing) == 0)
 		return;
 
-	$dj_xing = esc_attr(strip_tags($dj_xing));
+	$dj_xing = esc_attr(strip_tags((string)$dj_xing));
 	$dj_xing = $before . $dj_xing . $after;
 	if($echo)
 		echo esc_attr($dj_xing);
@@ -1889,7 +1897,8 @@ function get_dj_instagram($post = null){
 		return;
 
 	$dj_instagram = $post->_dj_instagram;
-	if(strlen($dj_instagram) == 0)
+	if(!is_string($dj_instagram)) $dj_instagram = '';
+	if(strlen($dj_instagram ?? '') == 0)
 		return;
 
 	return apply_filters('display_dj_instagram', $dj_instagram, $post);
@@ -1905,10 +1914,10 @@ function get_dj_instagram($post = null){
 function display_dj_instagram($before = '', $after = '', $echo = true, $post = null){
 
 	$dj_instagram = get_dj_instagram($post);
-	if(strlen($dj_instagram) == 0)
+	if(wem_safe_strlen($dj_instagram) == 0)
 		return;
 
-	$dj_instagram = esc_attr(strip_tags($dj_instagram));
+	$dj_instagram = esc_attr(strip_tags((string)$dj_instagram));
 	$dj_instagram = $before . $dj_instagram . $after;
 	if($echo)
 		echo esc_attr($dj_instagram);
@@ -1930,7 +1939,8 @@ function get_local_instagram($post = null){
 		return;
 
 	$local_instagram = $post->_local_instagram;
-	if(strlen($local_instagram) == 0)
+	if(!is_string($local_instagram)) $local_instagram = '';
+	if(strlen($local_instagram ?? '') == 0)
 		return;
 
 	return apply_filters('display_local_instagram', $local_instagram, $post);
@@ -1946,10 +1956,10 @@ function get_local_instagram($post = null){
 function display_local_instagram($before = '', $after = '', $echo = true, $post = null){
 
 	$local_instagram = get_local_instagram($post);
-	if(strlen($local_instagram) == 0)
+	if(wem_safe_strlen($local_instagram) == 0)
 		return;
 
-	$local_instagram = esc_attr(strip_tags($local_instagram));
+	$local_instagram = esc_attr(strip_tags((string)$local_instagram));
 	$local_instagram = $before . $local_instagram . $after;
 	if($echo)
 		echo esc_attr($local_instagram);
@@ -1971,7 +1981,8 @@ function get_dj_pinterest($post = null){
 		return;
 
 	$dj_pinterest = $post->_dj_pinterest;
-	if(strlen($dj_pinterest) == 0)
+	if(!is_string($dj_pinterest)) $dj_pinterest = '';
+	if(strlen($dj_pinterest ?? '') == 0)
 		return;
 
 	return apply_filters('display_dj_pinterest', $dj_pinterest, $post);
@@ -1987,10 +1998,10 @@ function get_dj_pinterest($post = null){
 function display_dj_pinterest($before = '', $after = '', $echo = true, $post = null){
 
 	$dj_pinterest = get_dj_pinterest($post);
-	if(strlen($dj_pinterest) == 0)
+	if(wem_safe_strlen($dj_pinterest) == 0)
 		return;
 
-	$dj_pinterest = esc_attr(strip_tags($dj_pinterest));
+	$dj_pinterest = esc_attr(strip_tags((string)$dj_pinterest));
 	$dj_pinterest = $before . $dj_pinterest . $after;
 	if($echo)
 		echo esc_attr($dj_pinterest);
@@ -2016,7 +2027,8 @@ function get_dj_youtube($post = null){
 		if($dj_youtube == '')
 			$dj_youtube = $post->_event_video_url;
 	}
-	if(strlen($dj_youtube) == 0)
+	if(!is_string($dj_youtube)) $dj_youtube = '';
+	if(strlen($dj_youtube ?? '') == 0)
 		return;
 
 	return apply_filters('display_dj_youtube', $dj_youtube, $post);
@@ -2032,10 +2044,10 @@ function get_dj_youtube($post = null){
 function display_dj_youtube($before = '', $after = '', $echo = true, $post = null){
 
 	$dj_youtube = get_dj_youtube($post);
-	if(strlen($dj_youtube) == 0)
+	if(wem_safe_strlen($dj_youtube) == 0)
 		return;
 
-	$dj_youtube = esc_attr(strip_tags($dj_youtube));
+	$dj_youtube = esc_attr(strip_tags((string)$dj_youtube));
 	$dj_youtube = $before . $dj_youtube . $after;
 	if($echo)
 		echo esc_attr($dj_youtube);
@@ -2058,7 +2070,8 @@ function get_local_youtube($post = null){
 		return;
 
 	$local_youtube = $post->_local_youtube;
-	if(strlen($local_youtube) == 0)
+	if(!is_string($local_youtube)) $local_youtube = '';
+	if(strlen($local_youtube ?? '') == 0)
 		return;
 
 	return apply_filters('display_local_youtube', $local_youtube, $post);
@@ -2073,10 +2086,10 @@ function get_local_youtube($post = null){
  */
 function display_local_youtube($before = '', $after = '', $echo = true, $post = null){
 	$local_youtube = get_local_youtube($post);
-	if(strlen($local_youtube) == 0)
+	if(wem_safe_strlen($local_youtube) == 0)
 		return;
 
-	$local_youtube = esc_attr(strip_tags($local_youtube));
+	$local_youtube = esc_attr(strip_tags((string)$local_youtube));
 	$local_youtube = $before . $local_youtube . $after;
 	if($echo)
 		echo esc_attr($local_youtube);
@@ -2098,7 +2111,8 @@ function get_dj_google_plus($post = null){
 		return;
 
 	$dj_google_plus = $post->_dj_google_plus;
-	if(strlen($dj_google_plus) == 0)
+	if(!is_string($dj_google_plus)) $dj_google_plus = '';
+	if(strlen($dj_google_plus ?? '') == 0)
 		return;
 
 	return apply_filters('display_dj_google_plus', $dj_google_plus, $post);
@@ -2114,10 +2128,10 @@ function get_dj_google_plus($post = null){
 function display_dj_google_plus($before = '', $after = '', $echo = true, $post = null){
 
 	$dj_google_plus = get_dj_google_plus($post);
-	if(strlen($dj_google_plus) == 0)
+	if(wem_safe_strlen($dj_google_plus) == 0)
 		return;
 
-	$dj_google_plus = esc_attr(strip_tags($dj_google_plus));
+	$dj_google_plus = esc_attr(strip_tags((string)$dj_google_plus));
 	$dj_google_plus = $before . $dj_google_plus . $after;
 	if($echo)
 		echo esc_attr($dj_google_plus);
@@ -2523,7 +2537,7 @@ function get_event_ticket_price($post = null){
 function display_event_ticket_price($before = '', $after = '', $echo = true, $post = null){
 
 	$event_ticket_price = get_event_ticket_price($post);
-	if(strlen($event_ticket_price) == 0)
+	if(!is_string($event_ticket_price) || strlen($event_ticket_price) == 0)
 		return;
 
 	$event_ticket_price = strip_tags($event_ticket_price);

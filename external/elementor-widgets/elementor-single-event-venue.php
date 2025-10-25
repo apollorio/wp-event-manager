@@ -12,7 +12,7 @@ if (! defined('ABSPATH')) exit; // Exit if accessed directly
  * Elementor widget for single event.
  *
  */
-class Elementor_Single_Event_Venue extends Widget_Base {
+class Elementor_Single_Event_Local extends Widget_Base {
 
 	/**
 	 * Retrieve the widget name.
@@ -21,7 +21,7 @@ class Elementor_Single_Event_Venue extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'single-event-venue';
+		return 'single-event-local';
 	}
 
 	/**
@@ -31,7 +31,7 @@ class Elementor_Single_Event_Venue extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __('Single Event Venue', 'wp-event-manager');
+		return __('Single Event Local', 'wp-event-manager');
 	}
 	/**	
 	 * Get widget icon.
@@ -51,7 +51,7 @@ class Elementor_Single_Event_Venue extends Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return ['single-event-venue', 'code'];
+		return ['single-event-local', 'code'];
 	}
 
 	/**
@@ -80,7 +80,7 @@ class Elementor_Single_Event_Venue extends Widget_Base {
 	protected function register_controls() {
 		$this->start_controls_section(
 			'section_shortcode',
-			['label' => __('Single Event Venue', 'wp-event-manager'),]
+			['label' => __('Single Event Local', 'wp-event-manager'),]
 		);
 		$args = [
             'post_type'   => 'event_listing',
@@ -124,7 +124,7 @@ class Elementor_Single_Event_Venue extends Widget_Base {
 		    $event_id = get_the_ID();
 		    $settings['event_id']='id='.esc_attr($event_id);
 		}
-		echo do_shortcode('[single_event_venue id="'.$event_id.'"]');
+		echo do_shortcode('[single_event_local id="'.$event_id.'"]');
 	}
 
 	/**

@@ -7,12 +7,12 @@ use Elementor\Controls_Manager;
 if (! defined('ABSPATH')) exit; // Exit if accessed directly
 
 /**
- * Elementor Single Venue
+ * Elementor Single Local
  *
- * Elementor widget for single Venue.
+ * Elementor widget for single Local.
  *
  */
-class Elementor_Single_Venue extends Widget_Base {
+class Elementor_Single_Local extends Widget_Base {
 
 	/**
 	 * Retrieve the widget name.
@@ -22,7 +22,7 @@ class Elementor_Single_Venue extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'single-venue';
+		return 'single-local';
 	}
 
 	/**
@@ -32,7 +32,7 @@ class Elementor_Single_Venue extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __('Single Venue', 'wp-event-manager');
+		return __('Single Local', 'wp-event-manager');
 	}
 	/**	
 	 * Get widget icon.
@@ -52,7 +52,7 @@ class Elementor_Single_Venue extends Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return [ 'single-venue', 'code' ];
+		return [ 'single-local', 'code' ];
 	}
 
 	/**
@@ -79,10 +79,10 @@ class Elementor_Single_Venue extends Widget_Base {
 	protected function register_controls() {
 		$this->start_controls_section(
 			'section_shortcode',
-			['label' => __('Single Venue', 'wp-event-manager'),]
+			['label' => __('Single Local', 'wp-event-manager'),]
 		);
 		$args = array(
-				'post_type'		=> 'event_venue',
+				'post_type'		=> 'event_local',
 				'post_status'	=> 'publish',
 				'posts_per_page'=> -1,
 				'suppress_filters' => 0,
@@ -95,12 +95,12 @@ class Elementor_Single_Venue extends Widget_Base {
 				$options[$rganizer->ID] = $rganizer->post_title;
 			}
 		}else{
-			$options[] = __('Not Found Venue', 'wp-event-manager');
+			$options[] = __('Not Found Local', 'wp-event-manager');
 		}
 		$this->add_control(
-			'venue_id',
+			'local_id',
 			[
-				'label'     => __('Select Venue', 'wp-event-manager'),
+				'label'     => __('Select Local', 'wp-event-manager'),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => '',
 				'options'	=> $options
@@ -118,14 +118,14 @@ class Elementor_Single_Venue extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		if($settings['venue_id']>0){
-		    $venue_id = 'id='.esc_attr($settings['venue_id']);
-		    $settings['venue_id']='id='.esc_attr($settings['venue_id']);
+		if($settings['local_id']>0){
+		    $local_id = 'id='.esc_attr($settings['local_id']);
+		    $settings['local_id']='id='.esc_attr($settings['local_id']);
 		}else{
-		    $venue_id = '';
-		    $settings['venue_id']='';
+		    $local_id = '';
+		    $settings['local_id']='';
 		}
-		echo do_shortcode('[event_venue '.$venue_id.' ]');
+		echo do_shortcode('[event_local '.$local_id.' ]');
 	}
 
 	/**
