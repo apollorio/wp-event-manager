@@ -437,17 +437,26 @@ $event = $post; ?>
                                         <div>
                                             <?php
                                             /* if (get_event_address()) { ?>
-                                                <a href="http://maps.google.com/maps?q=<?php display_event_address();?>">  
+                                                <a href="http://maps.google.com/maps?q=<?php display_event_address();?>">
                                                     <?php display_event_address();
                                                     echo esc_attr(',');?>
                                                 </a><?php
                                             } */
-                                            if (!is_event_online()) {?> 
+                                            if (!is_event_online()) {?>
                                                     <?php display_event_location();?>
                                             <?php } else {?>
                                                 <?php esc_attr_e('Online event', 'wp-event-manager'); ?>
                                             <?php } ?>
                                         </div>
+
+                                        <?php if (!is_event_online() && get_event_location()) : ?>
+                                        <!-- OpenStreetMap display for event location -->
+                                        <?php
+                                        $event_lat = get_post_meta($post->ID, 'geolocation_lat', true);
+                                        $event_lng = get_post_meta($post->ID, 'geolocation_long', true);
+                                        ?>
+                                        <div id="wpem-event-map" style="width:100%;height:300px;margin-top:1rem;border:1px solid #ddd;border-radius:4px;" data-lat="<?php echo esc_attr($event_lat); ?>" data-lon="<?php echo esc_attr($event_lng); ?>"></div>
+                                        <?php endif; ?>
                                     </div>
                                     <!-- Event location section end-->
                                     <?php /*event types section */ ?>

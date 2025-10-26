@@ -52,6 +52,28 @@
     }
 
     $(document).ready(function(){
+        // Handle single event page map display
+        var $eventMap = $('#wpem-event-map');
+        if($eventMap.length) {
+            // Try to get coordinates from hidden inputs or data attributes
+            var lat = $eventMap.data('lat') || $('#geolocation_lat').val();
+            var lon = $eventMap.data('lon') || $('#geolocation_long').val();
+
+            if(lat && lon) {
+                initMap(parseFloat(lat), parseFloat(lon), 'wpem-event-map');
+            } else {
+                // Try to geocode from the displayed location text
+                var $locationText = $('.wpem-event-location, .event-location').first();
+                if($locationText.length && $locationText.text().trim()) {
+                    geocode($locationText.text().trim(), function(res){
+                        if(res) {
+                            initMap(parseFloat(res.lat), parseFloat(res.lon), 'wpem-event-map');
+                        }
+                    });
+                }
+            }
+        }
+
         var $form = $('#submit-event-form');
         if(!$form.length) return;
 
