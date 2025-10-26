@@ -1335,6 +1335,196 @@ class WP_Event_Manager_Shortcodes{
 
 		return ob_get_clean();
 	}
+
+	/**
+	 * Shortcode which lists all DJs.
+	 */
+	public function output_event_djs($atts = array()){
+		ob_start();
+
+		extract($atts = shortcode_atts(apply_filters('event_manager_output_event_djs_defaults', array(
+			'per_page' => esc_attr(get_option('event_manager_per_page')),
+			'orderby' => 'title',
+			'order' => 'ASC',
+			'title' => __('DJs', 'wp-event-manager'),
+		)), $atts));
+
+		// Get all DJs
+		$djs = get_all_event_dj('', array(
+			'posts_per_page' => $per_page,
+			'orderby' => $orderby,
+			'order' => $order,
+		));
+
+		if($djs && !empty($djs)) {
+			// Prepare data for template
+			$djs_array = array();
+			foreach ($djs as $dj) {
+				$first_letter = strtoupper(substr($dj->post_title, 0, 1));
+				if (is_numeric($first_letter)) {
+					$first_letter = '0-9';
+				}
+				$djs_array[$first_letter][$dj->ID] = $dj->post_title;
+			}
+
+			$countAllEvents = wp_count_posts('event_listing')->publish;
+
+			get_event_manager_template(
+				'event-djs.php',
+				array(
+					'djs' => $djs,
+					'djs_array' => $djs_array,
+					'countAllEvents' => $countAllEvents,
+				),
+				'wp-event-manager/dj',
+				EVENT_MANAGER_PLUGIN_DIR . '/templates/dj'
+			);
+		} else {
+			$default_djs = get_posts(array(
+				'numberposts' => -1,
+				'post_type'   => 'event_dj',
+				'post_status'   => 'publish'
+			));
+			if(count($default_djs) == 0): ?>
+				<div class="no_event_djs_found wpem-alert wpem-alert-danger wpem-mb-0"><?php esc_attr_e('There are currently no DJs.', 'wp-event-manager'); ?></div>
+			<?php endif;
+		}
+
+		wp_reset_postdata();
+
+		return '<div class="event_djs">' . ob_get_clean() . '</div>';
+	}
+
+	/**
+	 * Shortcode which lists all Locals.
+	 */
+	public function output_event_locals($atts = array()){
+		ob_start();
+
+		extract($atts = shortcode_atts(apply_filters('event_manager_output_event_locals_defaults', array(
+			'per_page' => esc_attr(get_option('event_manager_per_page')),
+			'orderby' => 'title',
+			'order' => 'ASC',
+			'title' => __('Locals', 'wp-event-manager'),
+		)), $atts));
+
+		// Get all Locals
+		$locals = get_all_event_local('', array(
+			'posts_per_page' => $per_page,
+			'orderby' => $orderby,
+			'order' => $order,
+		));
+
+		if($locals && !empty($locals)) {
+			// Prepare data for template
+			$locals_array = array();
+			foreach ($locals as $local) {
+				$first_letter = strtoupper(substr($local->post_title, 0, 1));
+				if (is_numeric($first_letter)) {
+					$first_letter = '0-9';
+				}
+				$locals_array[$first_letter][$local->ID] = $local->post_title;
+			}
+
+			$countAllEvents = wp_count_posts('event_listing')->publish;
+
+			get_event_manager_template(
+				'event-locals.php',
+				array(
+					'locals' => $locals,
+					'locals_array' => $locals_array,
+					'countAllEvents' => $countAllEvents,
+				),
+				'wp-event-manager/local',
+				EVENT_MANAGER_PLUGIN_DIR . '/templates/local'
+			);
+		} else {
+			$default_locals = get_posts(array(
+				'numberposts' => -1,
+				'post_type'   => 'event_local',
+				'post_status'   => 'publish'
+			));
+			if(count($default_locals) == 0): ?>
+				<div class="no_event_locals_found wpem-alert wpem-alert-danger wpem-mb-0"><?php esc_attr_e('There are currently no Locals.', 'wp-event-manager'); ?></div>
+			<?php endif;
+		}
+
+		wp_reset_postdata();
+
+		return '<div class="event_locals">' . ob_get_clean() . '</div>';
+	}
+
+	/**
+	 * Shortcode which shows a single DJ.
+	 */
+	public function output_event_dj($atts = array()){
+		$atts = shortcode_atts(array(
+			'id' => '',
+		), $atts);
+
+		$id = absint($atts['id']);
+
+		ob_start();
+
+		$dj = get_post($id);
+		if (!$dj || $dj->post_type !== 'event_dj' || !current_user_can('read_post', $id)) {
+			return ''; // Or show a "not allowed" message
+		}
+
+		do_action('single_event_djs_content_start');
+
+		get_event_manager_template(
+			'content-single-event-djs.php',
+			array(
+				'dj'    	  => $dj,
+				'dj_id'    => $id,
+			),
+			'wp-event-manager/dj',
+			EVENT_MANAGER_PLUGIN_DIR . '/templates/dj'
+		);
+
+		wp_reset_postdata();
+
+		do_action('single_event_djs_content_end');
+
+		return ob_get_clean();
+	}
+
+	/**
+	 * Shortcode which shows a single Local.
+	 */
+	public function output_event_local($atts = array()){
+		$atts = shortcode_atts(array(
+			'id' => '',
+		), $atts);
+
+		$id = absint($atts['id']);
+
+		ob_start();
+
+		$local = get_post($id);
+		if (!$local || $local->post_type !== 'event_local' || !current_user_can('read_post', $id)) {
+			return ''; // Or show a "not allowed" message
+		}
+
+		do_action('single_event_locals_content_start');
+
+		get_event_manager_template(
+			'content-single-event-locals.php',
+			array(
+				'local'    	  => $local,
+				'local_id'    => $id,
+			),
+			'wp-event-manager/local',
+			EVENT_MANAGER_PLUGIN_DIR . '/templates/local'
+		);
+
+		wp_reset_postdata();
+
+		do_action('single_event_locals_content_end');
+
+		return ob_get_clean();
+	}
 }
 
 new WP_Event_Manager_Shortcodes();
