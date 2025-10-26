@@ -1,21 +1,3 @@
-	/**
-	 * Stub para obter campos padrão. Deve ser sobrescrito nas subclasses.
-	 */
-	public function get_default_fields() {
-		return array();
-	}
-	/**
-	 * Stub para obter campos do field editor. Deve ser sobrescrito nas subclasses.
-	 */
-	public function get_event_manager_fieldeditor_fields() {
-		return array();
-	}
-	/**
-	 * Stub para uso do campo recaptcha. Pode ser sobrescrito nas subclasses.
-	 */
-	public function use_recaptcha_field() {
-		return false;
-	}
 <?php
 /**
  * Abstract WP_Event_Manager_Form class.
