@@ -525,6 +525,7 @@ if(!function_exists('get_event_listing_categories')) :
 				'orderby'    => 'name',
 				'order'      => 'ASC',
 				'hide_empty' => false,
+				'fields'     => 'all' // Ensure objects are returned
 			);
 		/**
 		 * Change the category query arguments.
@@ -1096,7 +1097,8 @@ function event_manager_dropdown_selection($args = '') {
 			'hide_empty'      => $query['hide_empty'],
 			'child_of'        => $query['child_of'],
 			'exclude'         => $query['exclude'],
-			'hierarchical'    => $query['hierarchical']
+			'hierarchical'    => $query['hierarchical'],
+			'fields'          => 'all' // Ensure objects are returned, not arrays
 		));
  
 		set_transient($categories_hash, $categories, DAY_IN_SECONDS * 30);

@@ -206,6 +206,7 @@ class WP_Event_Manager_CPT {
 		$r['show_count'] = 1;
 		$r['selected'] = (isset($wp_query->query['event_listing_category'])) ? $wp_query->query['event_listing_category'] : '';
 		$r['menu_order'] = false;
+		$r['fields'] = 'all'; // Ensure objects are returned
 		$terms = get_terms('event_listing_category', $r);
 		$walker = new WP_Event_Manager_Category_Walker();
 
@@ -236,6 +237,7 @@ class WP_Event_Manager_CPT {
 		$args['show_count']   = 1;
 		$args['selected']     = (isset($wp_query->query['event_listing_type'])) ? $wp_query->query['event_listing_type'] : '';
 		$args['menu_order']   = false;
+		$args['fields']       = 'all'; // Ensure objects are returned
 	$terms             = get_terms('event_listing_type', $args);
 	include_once EVENT_MANAGER_PLUGIN_DIR . '/includes/wp-event-manager-category-walker.php';
 	$walker            = new WP_Event_Manager_Category_Walker();

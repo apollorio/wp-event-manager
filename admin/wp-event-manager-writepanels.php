@@ -312,7 +312,7 @@ class WP_Event_Manager_Writepanels {
 		$name = 'tax_input[' . $taxonomy . '][]';
 
 		// Get all the terms for this taxonomy
-		$terms     = get_terms($taxonomy, array('hide_empty' => 0));
+		$terms     = get_terms($taxonomy, array('hide_empty' => 0, 'fields' => 'all'));
 		$postterms = get_the_terms($post->ID, $taxonomy);
 		$current   = ($postterms ? array_pop($postterms) : false);
 		$current   = ($current ? $current->term_id : 0);
@@ -380,7 +380,7 @@ class WP_Event_Manager_Writepanels {
 		$name = 'tax_input[' . $taxonomy . '][]';
 
 		// Get all the terms for this taxonomy
-		$terms     = get_terms($taxonomy, array('hide_empty' => 0));
+		$terms     = get_terms($taxonomy, array('hide_empty' => 0, 'fields' => 'all'));
 		$postterms = get_the_terms($post->ID, $taxonomy);
 		$current   = ($postterms ? array_pop($postterms) : false);
 		$current   = ($current ? $current->term_id : 0);
